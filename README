@@ -1,0 +1,15 @@
+apt-get install build-essential
+apt-get install bc
+apt-get install libssl-dev
+apt-get install bear
+apt-get install libclang-3.9-dev
+apt-get install llvm-3.9-dev
+
+apt-get install libelf-dev
+
+ldd rewriter
+
+cd /usr/lib/x86_64-linux-gnu/
+ln -s ./libclang-3.9.so.1 ./libclang.so.1
+
+

@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang='en'><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>test output - /usr/lib/clang/3.9.0/include/stddef.h</title><link href="../../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"><link href="../../static/bootstrap/css/dropdowns-enhancement.min.css" rel="stylesheet"><link href="../../static/animated-modal/animate.min.css" rel="stylesheet"><link href="../../static/font-awesome/css/font-awesome.min.css" rel="stylesheet"><link href="../../static/style.css" rel="stylesheet"></head><body><div class="container-fluid"><div class="container"><nav class="navbar navbar-default navbar-fixed-top"><div class="container-fluid" id="navbar"><!-- Brand and toggle get grouped for better mobile display --><div class="navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><span class="navbar-brand" style="padding-top: 8px"><ol id="path" itemscope itemtype="http://schema.org/BreadcrumbList"><!-- ROOT DIRECTORY --><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../06/416cc91f3e3d90.html"><i itemprop="image" alt="root" class="glyphicon glyphicon-hdd" style="vertical-align: middle"></i>&nbsp;</a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../60/7abc7e1c17ae25.html"><span itemprop="name">usr</span></a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../56/20789ba73f1cfb.html"><span itemprop="name">lib</span></a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../2e/77cf54ab31ed42.html"><span itemprop="name">clang</span></a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../86/09322bb00871c1.html"><span itemprop="name">3.9.0</span></a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../4f/f0139f0ae9a426.html"><span itemprop="name">include</span></a></li></ol>stddef.h</span></div><!-- Collect the nav links, forms, and other content for toggling --><!-- mostly taken from http://www.bootply.com/t7O3HSGlbc --><div class="collapse navbar-collapse" id="main-navbar"><div class="form-group" style="margin-top: 8px; margin-bottom: 0px;"><div class="input-group"><div class="input-group-btn"><button class="btn btn-default correct-height" data-label-placement><i class="glyphicon glyphicon-console data-label"></i></button><button data-toggle="dropdown" class="btn btn-default dropdown-toggle correct-height"><span class="caret"></span> </button><ul class="dropdown-menu"><li><input type="radio" id="sb-symbol" name="sb" value="symbol" checked><label for="sb-symbol"><i class="glyphicon glyphicon-console data-label"></i> Symbol</label></li><li><input type="radio" id="sb-file" name="sb" value="file"><label for="sb-file"><i class="glyphicon glyphicon-file data-label"></i> File</label></li><li><input type="radio" id="sb-text" name="sb" value="text"><label for="sb-text"><i class="glyphicon glyphicon-text-background data-label"></i> Text</label></li><li><input type="radio" id="sb-line" name="sb" value="line"><label for="sb-line"><i class="glyphicon glyphicon-indent-left data-label"></i> Line</label></li></ul></div><input type="text" name="search" id="searchbox-symbol" class="form-control" placeholder="Search symbol (std::list, list, kfree_skb, any full or partial variable/class/function/... name)"><input type="text" name="search" id="searchbox-file" class="form-control hidden" placeholder="Search file (/usr/include/alloca.h, alloca.h, any full or partial path)"><input type="text" name="search" id="searchbox-text" class="form-control hidden" placeholder="Search text (content of comments, strings, full text search over the source code)"><input type="text" name="search" id="searchbox-line" class="form-control hidden" placeholder="Go to line (53, 1120, just type the line number and enter)"><div class="input-group-btn"><div class="btn-group hidden" id="tag-menu"><button data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="tag-default"></button><ul class="dropdown-menu pull-center" id="tag-entries"></ul></div><a class="btn btn-default" href="../meta/about.html" type="button" id="sbexr-about"><i title="About this site" class="glyphicon glyphicon-info-sign"></i></a><a class="btn btn-default" href="../meta/help.html" type="button" id="sbexr-help"><i title="Help!!" class="glyphicon glyphicon-question-sign"></i></a></div></div></div></div><!-- /.navbar-collapse --></div><!-- /.container-fluid --></nav></div><pre class='code'><span id='line-number'><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>10</i><i>11</i><i>12</i><i>13</i><i>14</i><i>15</i><i>16</i><i>17</i><i>18</i><i>19</i><i>20</i><i>21</i><i>22</i><i>23</i><i>24</i><i>25</i><i>26</i><i>27</i><i>28</i><i>29</i><i>30</i><i>31</i><i>32</i><i>33</i><i>34</i><i>35</i><i>36</i><i>37</i><i>38</i><i>39</i><i>40</i><i>41</i><i>42</i><i>43</i><i>44</i><i>45</i><i>46</i><i>47</i><i>48</i><i>49</i><i>50</i><i>51</i><i>52</i><i>53</i><i>54</i><i>55</i><i>56</i><i>57</i><i>58</i><i>59</i><i>60</i><i>61</i><i>62</i><i>63</i><i>64</i><i>65</i><i>66</i><i>67</i><i>68</i><i>69</i><i>70</i><i>71</i><i>72</i><i>73</i><i>74</i><i>75</i><i>76</i><i>77</i><i>78</i><i>79</i><i>80</i><i>81</i><i>82</i><i>83</i><i>84</i><i>85</i><i>86</i><i>87</i><i>88</i><i>89</i><i>90</i><i>91</i><i>92</i><i>93</i><i>94</i><i>95</i><i>96</i><i>97</i><i>98</i><i>99</i><i>100</i><i>101</i><i>102</i><i>103</i><i>104</i><i>105</i><i>106</i><i>107</i><i>108</i><i>109</i><i>110</i><i>111</i><i>112</i><i>113</i><i>114</i><i>115</i><i>116</i><i>117</i><i>118</i><i>119</i><i>120</i><i>121</i><i>122</i><i>123</i><i>124</i><i>125</i><i>126</i><i>127</i><i>128</i><i>129</i><i>130</i><i>131</i><i>132</i><i>133</i><i>134</i><i>135</i><i>136</i><i>137</i></span><span itemscope itemtype="http://schema.org/SoftwareSourceCode"><meta itemprop="programmingLanguage" content="C" /><span class='comment'>/*===---- stddef.h - Basic type definitions --------------------------------===
+ *
+ * Copyright (c) 2008 Eli Friedman
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ *===-----------------------------------------------------------------------===
+ */</span>
+
+<span class='directive'>#if !defined(__STDDEF_H) || defined(__need_ptrdiff_t) ||                       \
+    defined(__need_size_t) || defined(__need_wchar_t) ||                       \
+    defined(__need_NULL) || defined(__need_wint_t)</span>
+
+<span class='directive'>#if !defined(__need_ptrdiff_t) &amp;&amp; !defined(__need_size_t) &amp;&amp;                   \
+    !defined(__need_wchar_t) &amp;&amp; !defined(__need_NULL) &amp;&amp;                       \
+    !defined(__need_wint_t)</span><span class='preprocessor-if muted'>
+<span class='comment'>/* Always define miscellaneous pieces when modules are available. */</span>
+<span class='directive'>#if !__has_feature(modules)</span>
+<span class='directive'>#define __STDDEF_H</span>
+<span class='directive'>#endif</span>
+<span class='directive'>#define __need_ptrdiff_t</span>
+<span class='directive'>#define __need_size_t</span>
+<span class='directive'>#define __need_wchar_t</span>
+<span class='directive'>#define __need_NULL</span>
+<span class='directive'>#define __need_STDDEF_H_misc</span>
+<span class='comment'>/* __need_wint_t is intentionally not defined here. */</span></span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#if defined(__need_ptrdiff_t)</span><span class='preprocessor-if muted'>
+<span class='directive'>#if !defined(_PTRDIFF_T) || __has_feature(modules)</span>
+<span class='comment'>/* Always define ptrdiff_t when modules are available. */</span>
+<span class='directive'>#if !__has_feature(modules)</span>
+<span class='directive'>#define _PTRDIFF_T</span>
+<span class='directive'>#endif</span>
+<span class='keyword typedef'>typedef</span> __PTRDIFF_TYPE__ ptrdiff_t;
+<span class='directive'>#endif</span>
+<span class='directive'>#undef __need_ptrdiff_t</span></span>
+<span class='directive'>#endif /* defined(__need_ptrdiff_t) */</span>
+
+<span class='directive'>#if defined(__need_size_t)</span>
+<span class='directive'>#if !defined(_SIZE_T) || __has_feature(modules)</span><span class='preprocessor-if muted'>
+<span class='comment'>/* Always define size_t when modules are available. */</span>
+<span class='directive'>#if !__has_feature(modules)</span>
+<span class='directive'>#define _SIZE_T</span>
+<span class='directive'>#endif</span>
+<span class='def def-Typedef' id='0003e0010003e017'><span class='keyword typedef'>typedef</span> __SIZE_TYPE__ size_t</span>;</span>
+<span class='directive'>#endif</span>
+<span class='directive'>#undef __need_size_t</span>
+<span class='directive'>#endif /*defined(__need_size_t) */</span>
+
+<span class='directive'>#if defined(__need_STDDEF_H_misc)</span><span class='preprocessor-if muted'>
+<span class='comment'>/* ISO9899:2011 7.20 (C11 Annex K): Define rsize_t if __STDC_WANT_LIB_EXT1__ is
+ * enabled. */</span>
+<span class='directive'>#if (defined(__STDC_WANT_LIB_EXT1__) &amp;&amp; __STDC_WANT_LIB_EXT1__ &gt;= 1 &amp;&amp; \
+     !defined(_RSIZE_T)) || __has_feature(modules)</span>
+<span class='comment'>/* Always define rsize_t when modules are available. */</span>
+<span class='directive'>#if !__has_feature(modules)</span>
+<span class='directive'>#define _RSIZE_T</span>
+<span class='directive'>#endif</span>
+<span class='keyword typedef'>typedef</span> __SIZE_TYPE__ rsize_t;
+<span class='directive'>#endif</span></span>
+<span class='directive'>#endif /* defined(__need_STDDEF_H_misc) */</span>
+
+<span class='directive'>#if defined(__need_wchar_t)</span><span class='preprocessor-if muted'>
+<span class='directive'>#ifndef __cplusplus</span>
+<span class='comment'>/* Always define wchar_t when modules are available. */</span>
+<span class='directive'>#if !defined(_WCHAR_T) || __has_feature(modules)</span>
+<span class='directive'>#if !__has_feature(modules)</span>
+<span class='directive'>#define _WCHAR_T</span>
+<span class='directive'>#if defined(_MSC_EXTENSIONS)</span>
+<span class='directive'>#define _WCHAR_T_DEFINED</span>
+<span class='directive'>#endif</span>
+<span class='directive'>#endif</span>
+<span class='keyword typedef'>typedef</span> __WCHAR_TYPE__ <span class='keyword wchar_t'>wchar_t</span>;
+<span class='directive'>#endif</span>
+<span class='directive'>#endif</span>
+<span class='directive'>#undef __need_wchar_t</span></span>
+<span class='directive'>#endif /* defined(__need_wchar_t) */</span>
+
+<span class='directive'>#if defined(__need_NULL)</span>
+<span class='directive'>#undef NULL</span>
+<span class='directive'>#ifdef __cplusplus</span>
+<span class='directive'>#  if !defined(__MINGW32__) &amp;&amp; !defined(_MSC_VER)</span>
+<span class='directive'>#    define NULL __null</span>
+<span class='directive'>#  else</span><span class='preprocessor-if muted'>
+<span class='directive'>#    define NULL 0</span></span>
+<span class='directive'>#  endif</span>
+<span class='directive'>#else</span><span class='preprocessor-if muted'>
+<span class='directive'>#  define NULL ((void*)0)</span></span>
+<span class='directive'>#endif</span>
+<span class='directive'>#ifdef __cplusplus</span>
+<span class='directive'>#if defined(_MSC_EXTENSIONS) &amp;&amp; defined(_NATIVE_NULLPTR_SUPPORTED)</span><span class='preprocessor-if muted'>
+<span class='keyword namespace'>namespace</span> std { <span class='keyword typedef'>typedef</span> <span class='keyword decltype'>decltype</span>(<span class='keyword nullptr'>nullptr</span>) nullptr_t; }
+<span class='keyword using'>using</span> ::std::nullptr_t;</span>
+<span class='directive'>#endif</span>
+<span class='directive'>#endif</span>
+<span class='directive'>#undef __need_NULL</span>
+<span class='directive'>#endif /* defined(__need_NULL) */</span>
+
+<span class='directive'>#if defined(__need_STDDEF_H_misc)</span><span class='preprocessor-if muted'>
+<span class='directive'>#if __STDC_VERSION__ &gt;= 201112L || __cplusplus &gt;= 201103L</span>
+<span class='directive'>#include "__stddef_max_align_t.h"</span>
+<span class='directive'>#endif</span>
+<span class='directive'>#define offsetof(t, d) __builtin_offsetof(t, d)</span>
+<span class='directive'>#undef __need_STDDEF_H_misc</span></span>
+<span class='directive'>#endif  /* defined(__need_STDDEF_H_misc) */</span>
+
+<span class='comment'>/* Some C libraries expect to see a wint_t here. Others (notably MinGW) will use
+__WINT_TYPE__ directly; accommodate both by requiring __need_wint_t */</span>
+<span class='directive'>#if defined(__need_wint_t)</span><span class='preprocessor-if muted'>
+<span class='comment'>/* Always define wint_t when modules are available. */</span>
+<span class='directive'>#if !defined(_WINT_T) || __has_feature(modules)</span>
+<span class='directive'>#if !__has_feature(modules)</span>
+<span class='directive'>#define _WINT_T</span>
+<span class='directive'>#endif</span>
+<span class='keyword typedef'>typedef</span> __WINT_TYPE__ wint_t;
+<span class='directive'>#endif</span>
+<span class='directive'>#undef __need_wint_t</span></span>
+<span class='directive'>#endif /* __need_wint_t */</span>
+
+<span class='directive'>#endif</span></span><span class='cl'></span></pre></div><script src="../../globals.js"></script><script src="../../static/jquery.min.js"></script><script src="../../static/bootstrap/js/bootstrap.min.js"></script><script src="../../static/bootstrap/js/dropdowns-enhancement.js"></script><script src="../../static/animated-modal/animatedModal.js"></script><script src="../../static/jquery.autocomplete.js"></script><script src="../../static/js.cookie.js"></script><script src="../../static/local.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-40501108-2', 'auto');ga('send', 'pageview');</script></body></html>

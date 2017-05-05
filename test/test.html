@@ -1,0 +1,794 @@
+<!doctype html>
+<html>
+<head>
+<title>test</title>
+<style type="text/css">
+ body { font-family:Helvetica, sans-serif; font-size:10pt }
+ h1 { font-size:14pt }
+ .type { color: green}
+ .code { border-collapse:collapse; width:100%; }
+ .code { font-family: "Monospace", monospace; font-size:10pt }
+ .code { line-height: 1.2em }
+ .compound { display: inline-block; }
+ .compound.level-0:hover { margin-left: 1px; border-left-style: solid; border-left-color: yellow; }
+ .compound.level-1:hover { margin-left: 2px; border-left-style: solid; border-left-color: green; }
+ .compound.level-2:hover { margin-left: 3px; border-left-style: solid; border-left-color: orange; }
+ .comment { color: magenta; font-style: oblique }
+ .string { color: purple; }
+ .numeric { color: purple; }
+ .char { color: purple; }
+ .directive { color: blue; }
+ .expansion { display: none; }
+ .macro:hover .expansion { display: block; border: 2px solid #FF0000; padding: 2px; background-color:#FFF0F0; font-weight: normal;   -webkit-border-radius:5px;  -webkit-box-shadow:1px 1px 7px #000; position: absolute; top: -1em; left:10em; z-index: 1 } 
+ .macro { color: darkmagenta; background-color:LemonChiffon; position: relative }
+ .num { width:2.5em; padding-right:2ex; background-color:#eeeeee }
+ .num { text-align:right; font-size:8pt }
+ .num { color:#444444 }
+ .line { padding-left: 1ex; border-left: 3px solid #ccc }
+ .line { white-space: pre }
+ .msg { -webkit-box-shadow:1px 1px 7px #000 }
+ .msg { -webkit-border-radius:5px }
+ .msg { font-family:Helvetica, sans-serif; font-size:8pt }
+ .msg { float:left }
+ .msg { padding:0.25em 1ex 0.25em 1ex }
+ .msg { margin-top:10px; margin-bottom:10px }
+ .msg { font-weight:bold }
+ .msg { max-width:60em; word-wrap: break-word; white-space: pre-wrap }
+ .msgT { padding:0x; spacing:0x }
+ .msgEvent { background-color:#fff8b4; color:#000000 }
+ .msgControl { background-color:#bbbbbb; color:#000000 }
+ .mrange { background-color:#dfddf3 }
+ .mrange { border-bottom:1px solid #6F9DBE }
+ .PathIndex { font-weight: bold; padding:0px 5px; margin-right:5px; }
+ .PathIndex { -webkit-border-radius:8px }
+ .PathIndexEvent { background-color:#bfba87 }
+ .PathIndexControl { background-color:#8c8c8c }
+ .PathNav a { text-decoration:none; font-size: larger }
+ .CodeInsertionHint { font-weight: bold; background-color: #10dd10 }
+ .CodeRemovalHint { background-color:#de1010 }
+ .CodeRemovalHint { border-bottom:1px solid #6F9DBE }
+ table.simpletable {
+   padding: 5px;
+   font-size:12pt;
+   margin:20px;
+   border-collapse: collapse; border-spacing: 0px;
+ }
+ td.rowname {
+   text-align:right; font-weight:bold; color:#444444;
+   padding-right:2ex; }
+</style>
+</head>
+<body><pre class='code'><span class='directive'>#include &lt;stdio.h&gt;</span>
+<span class='directive'>#include "test.h"</span>
+
+<span class='directive'># define TEST(foo) if (foo) { printf("foo"); }</span>
+
+<span class='comment'>/// Test comment.</span>
+<div class='compound level-0'><span class='type'>int</span> test() {
+  printf(<span class='string'>"this is a test"</span>);
+
+<div class='compound level-1'>  {
+    int a = <span class='numeric'>9</span>;
+    printf(<span class='string'>"this is another test: %d"</span>, a);
+
+  }</div>
+
+  return <span class='numeric'>3</span>;
+}</div>
+
+<span class='comment'>// This is a pre-existing comment.</span>
+<span class='comment'>/** Test comment */</span>
+<div class='compound level-0'><span class='type'>int</span> main(void) {
+  int value = <span class='numeric'>12</span>;
+<div class='compound level-1'>  if (<span class='numeric'>1</span>) { value = test();
+<div class='compound level-2'>    if (value &gt; <span class='numeric'>5</span>) {
+      printf(<span class='string'>"this is a second test"</span>);
+    }</div>
+  }</div>
+  TEST(value);
+  return <span class='numeric'>0</span>;
+}</div>
+</pre></body></html>
+<!doctype html>
+<html>
+<head>
+<title>test</title>
+<style type="text/css">
+ body { font-family:Helvetica, sans-serif; font-size:10pt }
+ h1 { font-size:14pt }
+ .type { color: green}
+ .code { border-collapse:collapse; width:100%; }
+ .code { font-family: "Monospace", monospace; font-size:10pt }
+ .code { line-height: 1.2em }
+ .compound { display: inline-block; }
+ .compound.level-0:hover { margin-left: 1px; border-left-style: solid; border-left-color: yellow; }
+ .compound.level-1:hover { margin-left: 2px; border-left-style: solid; border-left-color: green; }
+ .compound.level-2:hover { margin-left: 3px; border-left-style: solid; border-left-color: orange; }
+ .comment { color: magenta; font-style: oblique }
+ .string { color: purple; }
+ .numeric { color: purple; }
+ .char { color: purple; }
+ .directive { color: blue; }
+ .expansion { display: none; }
+ .macro:hover .expansion { display: block; border: 2px solid #FF0000; padding: 2px; background-color:#FFF0F0; font-weight: normal;   -webkit-border-radius:5px;  -webkit-box-shadow:1px 1px 7px #000; position: absolute; top: -1em; left:10em; z-index: 1 } 
+ .macro { color: darkmagenta; background-color:LemonChiffon; position: relative }
+ .num { width:2.5em; padding-right:2ex; background-color:#eeeeee }
+ .num { text-align:right; font-size:8pt }
+ .num { color:#444444 }
+ .line { padding-left: 1ex; border-left: 3px solid #ccc }
+ .line { white-space: pre }
+ .msg { -webkit-box-shadow:1px 1px 7px #000 }
+ .msg { -webkit-border-radius:5px }
+ .msg { font-family:Helvetica, sans-serif; font-size:8pt }
+ .msg { float:left }
+ .msg { padding:0.25em 1ex 0.25em 1ex }
+ .msg { margin-top:10px; margin-bottom:10px }
+ .msg { font-weight:bold }
+ .msg { max-width:60em; word-wrap: break-word; white-space: pre-wrap }
+ .msgT { padding:0x; spacing:0x }
+ .msgEvent { background-color:#fff8b4; color:#000000 }
+ .msgControl { background-color:#bbbbbb; color:#000000 }
+ .mrange { background-color:#dfddf3 }
+ .mrange { border-bottom:1px solid #6F9DBE }
+ .PathIndex { font-weight: bold; padding:0px 5px; margin-right:5px; }
+ .PathIndex { -webkit-border-radius:8px }
+ .PathIndexEvent { background-color:#bfba87 }
+ .PathIndexControl { background-color:#8c8c8c }
+ .PathNav a { text-decoration:none; font-size: larger }
+ .CodeInsertionHint { font-weight: bold; background-color: #10dd10 }
+ .CodeRemovalHint { background-color:#de1010 }
+ .CodeRemovalHint { border-bottom:1px solid #6F9DBE }
+ table.simpletable {
+   padding: 5px;
+   font-size:12pt;
+   margin:20px;
+   border-collapse: collapse; border-spacing: 0px;
+ }
+ td.rowname {
+   text-align:right; font-weight:bold; color:#444444;
+   padding-right:2ex; }
+</style>
+</head>
+<body><pre class='code'><span class='comment'>// Copyright (c) 2013 Carlo Contavalli (ccontavalli@gmail.com).</span>
+<span class='comment'>// All rights reserved.</span>
+<span class='comment'>// </span>
+<span class='comment'>// Redistribution and use in source and binary forms, with or without</span>
+<span class='comment'>// modification, are permitted provided that the following conditions are met:</span>
+<span class='comment'>// </span>
+<span class='comment'>//    1. Redistributions of source code must retain the above copyright notice,</span>
+<span class='comment'>//    this list of conditions and the following disclaimer.</span>
+<span class='comment'>// </span>
+<span class='comment'>//    2. Redistributions in binary form must reproduce the above copyright</span>
+<span class='comment'>//    notice, this list of conditions and the following disclaimer in the</span>
+<span class='comment'>//    documentation and/or other materials provided with the distribution.</span>
+<span class='comment'>// </span>
+<span class='comment'>// THIS SOFTWARE IS PROVIDED BY Carlo Contavalli ''AS IS'' AND ANY EXPRESS OR</span>
+<span class='comment'>// IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF</span>
+<span class='comment'>// MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO</span>
+<span class='comment'>// EVENT SHALL Carlo Contavalli OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,</span>
+<span class='comment'>// INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span>
+<span class='comment'>// (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<span class='comment'>// LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span>
+<span class='comment'>// ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span>
+<span class='comment'>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF</span>
+<span class='comment'>// THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<span class='comment'>// </span>
+<span class='comment'>// The views and conclusions contained in the software and documentation are</span>
+<span class='comment'>// those of the authors and should not be interpreted as representing official</span>
+<span class='comment'>// policies, either expressed or implied, of Carlo Contavalli.</span>
+
+<span class='comment'>//------------------------------------------------------------------------------</span>
+<span class='comment'>// Clang rewriter sample. Demonstrates:</span>
+<span class='comment'>//</span>
+<span class='comment'>// * How to use RecursiveASTVisitor to find interesting AST nodes.</span>
+<span class='comment'>// * How to use the Rewriter API to rewrite the source code.</span>
+<span class='comment'>//</span>
+<span class='comment'>// Eli Bendersky (eliben@gmail.com)</span>
+<span class='comment'>// This code is in the public domain</span>
+<span class='comment'>//------------------------------------------------------------------------------</span>
+<span class='directive'>#include &lt;iostream&gt;</span>
+<span class='directive'>#include &lt;cstdio&gt;</span>
+<span class='directive'>#include &lt;memory&gt;</span>
+<span class='directive'>#include &lt;string&gt;</span>
+<span class='directive'>#include &lt;sstream&gt;</span>
+<span class='directive'>#include &lt;iomanip&gt;</span>
+
+<span class='directive'>#include &lt;iostream&gt;</span>
+<span class='directive'>#include &lt;fstream&gt;</span>
+
+<span class='directive'>#include &lt;sys/stat.h&gt;</span>
+<span class='directive'>#include &lt;sys/types.h&gt;</span>
+
+<span class='directive'>#include "clang/AST/ASTConsumer.h"</span>
+<span class='directive'>#include "clang/AST/RecursiveASTVisitor.h"</span>
+<span class='directive'>#include "clang/AST/ASTContext.h"</span>
+<span class='directive'>#include "clang/Basic/Diagnostic.h"</span>
+<span class='directive'>#include "clang/Basic/FileManager.h"</span>
+<span class='directive'>#include "clang/Basic/SourceManager.h"</span>
+<span class='directive'>#include "clang/Basic/TargetOptions.h"</span>
+<span class='directive'>#include "clang/Basic/TargetInfo.h"</span>
+<span class='directive'>#include "clang/Frontend/CompilerInstance.h"</span>
+<span class='directive'>#include "clang/Lex/Preprocessor.h"</span>
+<span class='directive'>#include "clang/Parse/ParseAST.h"</span>
+<span class='directive'>#include "clang/Rewrite/Core/Rewriter.h"</span>
+<span class='directive'>#include "clang/Rewrite/Core/HTMLRewrite.h"</span>
+<span class='directive'>#include "clang/Rewrite/Frontend/Rewriters.h"</span>
+<span class='directive'>#include "llvm/Support/Host.h"</span>
+<span class='directive'>#include "llvm/Support/raw_ostream.h"</span>
+
+<span class='comment'>// ./clang/lib/Frontend/Rewrite/HTMLPrint.cpp</span>
+<span class='comment'>// CommentVisitor</span>
+
+<span class='comment'>// Scoping:</span>
+<span class='comment'>//   - variable names: links are scoped. Clicking on hte name brings to the definition within the scope.</span>
+<span class='comment'>//   - function names: static in .cc are per file, non static are global.</span>
+<span class='comment'>//   - class definitions: in .cc file, they are per file?</span>
+<span class='comment'>//</span>
+<span class='comment'>// Two parts of the problem:</span>
+<span class='comment'>// - identifying position of objects, linking to objects.</span>
+
+using namespace clang;
+
+void WrapIt(Rewriter&amp; R, FileID FID, const char *title);
+void RawHighlight(Rewriter &amp;R, FileID FID, const Preprocessor &amp;PP);
+
+class Id {
+ public:
+  Id(std::string start) {
+    if (!start.empty()) {
+      base_ = start;
+      base_.append(<span class='string'>"-"</span>);
+    }
+  }
+
+  std::string Get() {
+    return base_ + std::to_string(id_++);
+  }
+
+ private:
+  std::string base_ = <span class='string'>""</span>;
+  uint64_t id_ = <span class='numeric'>0</span>;
+};
+
+<span class='comment'>// By implementing RecursiveASTVisitor, we can specify which AST nodes</span>
+<span class='comment'>// we're interested in by overriding relevant methods.</span>
+class MyASTVisitor : public RecursiveASTVisitor&lt;MyASTVisitor&gt; {
+public:
+  MyASTVisitor(Rewriter &amp;rewriter, SourceManager&amp; source_manager) : rewriter_(rewriter), source_manager_(source_manager) {}
+
+  bool TraverseStmt(Stmt *s) {
+    static int depth = <span class='numeric'>0</span>;
+    if (s &amp;&amp; isa&lt;CompoundStmt&gt;(s)) {
+      auto *statement = cast&lt;CompoundStmt&gt;(s);
+
+      <span class='comment'>// Find location with start of column.</span>
+      auto start = statement-&gt;getLocStart();
+      if (!start.isMacroID()) {
+        auto fid = source_manager_.getMainFileID();
+        auto line = source_manager_.getExpansionLineNumber(start);
+        auto cache = source_manager_.getSLocEntry(fid).getFile().getContentCache();
+        auto offset = cache-&gt;SourceLineCache[line - <span class='numeric'>1</span>];
+
+        auto&amp; buffer = rewriter_.getEditBuffer(fid);
+        std::string div = <span class='string'>"&lt;div class='compound level-"</span> + std::to_string(depth) + <span class='string'>"'&gt;"</span>;
+        buffer.InsertText(offset, div, false);
+        <span class='comment'>//auto column = source_manager_.getSpellingColumnNumber(start);</span>
+        <span class='comment'>// auto cstart2 = source_manager_.translateLineCol(source_manager_.getMainFileID(), line, 0);</span>
+        <span class='comment'>// auto cstart = statement-&gt;getLocStart();</span>
+
+        <span class='comment'>// rewriter_.InsertText(statement-&gt;getLocStart(), "/**/");</span>
+        ++depth;
+        <span class='comment'>// std::cerr &lt;&lt; "Entering compound " &lt;&lt; cstart.printToString(source_manager_) &lt;&lt; " or " &lt;&lt; cstart2.printToString(source_manager_) &lt;&lt; std::endl;</span>
+        auto result = RecursiveASTVisitor&lt;MyASTVisitor&gt;::TraverseStmt(s);
+        --depth;
+        rewriter_.InsertTextAfterToken(statement-&gt;getLocEnd(), <span class='string'>"&lt;/div&gt;"</span>);
+        <span class='comment'>//std::cerr &lt;&lt; "Exiting compound " &lt;&lt; statement-&gt;getLocEnd().printToString(source_manager_) &lt;&lt; std::endl;</span>
+        return result;
+      }
+    }
+
+    return RecursiveASTVisitor&lt;MyASTVisitor&gt;::TraverseStmt(s);
+  }
+
+  bool VisitStmt(Stmt *s) {
+    std::cerr &lt;&lt; <span class='string'>"Visiting statement "</span> &lt;&lt; s-&gt;getLocStart().printToString(source_manager_) &lt;&lt; std::endl;
+
+<span class='directive'>#if 0</span>
+    <span class='comment'>// Only care about If statements.</span>
+    if (isa&lt;IfStmt&gt;(s)) {
+      IfStmt *IfStatement = cast&lt;IfStmt&gt;(s);
+      Stmt *Then = IfStatement-&gt;getThen();
+
+      rewriter_.InsertText(Then-&gt;getLocStart(), <span class='string'>"// the 'if' part\n"</span>, true,
+                             true);
+
+      Stmt *Else = IfStatement-&gt;getElse();
+      if (Else)
+        rewriter_.InsertText(Else-&gt;getLocStart(), <span class='string'>"// the 'else' part\n"</span>,
+                               true, true);
+    }
+<span class='directive'>#endif</span>
+
+    return true;
+  }
+
+  bool VisitBlockDecl(BlockDecl *d) {
+    std::cerr &lt;&lt; <span class='string'>"Visiting block "</span> &lt;&lt; std::endl;
+    return true;
+  }
+
+  bool VisitFunctionDecl(FunctionDecl *f) {
+    std::cerr &lt;&lt; <span class='string'>"Visiting function "</span> &lt;&lt; std::endl;
+
+    <span class='comment'>// Only function definitions (with bodies), not declarations.</span>
+    if (f-&gt;hasBody()) {
+
+      <span class='comment'>// Type name as string</span>
+      QualType QT = f-&gt;getReturnType();
+      std::string TypeStr = QT.getAsString();
+
+      <span class='comment'>// Function name</span>
+      DeclarationName DeclName = f-&gt;getNameInfo().getName();
+      std::string FuncName = DeclName.getAsString();
+
+      <span class='comment'>// Add comment before</span>
+<span class='directive'>#if 0</span>
+      std::stringstream SSBefore;
+      SSBefore &lt;&lt; <span class='string'>"// Begin function "</span> &lt;&lt; FuncName &lt;&lt; <span class='string'>" returning "</span> &lt;&lt; TypeStr
+               &lt;&lt; <span class='string'>"\n"</span>;
+      SourceLocation source_location = f-&gt;getSourceRange().getBegin();
+      rewriter_.InsertText(source_location, SSBefore.str(), true, true);
+<span class='directive'>#endif</span>
+
+<span class='directive'>#if 0</span>
+      Stmt *FuncBody = f-&gt;getBody();
+      <span class='comment'>// And after</span>
+      std::stringstream SSAfter;
+      SSAfter &lt;&lt; <span class='string'>"\n// End function "</span> &lt;&lt; FuncName;
+      auto source_location = FuncBody-&gt;getLocEnd().getLocWithOffset(<span class='numeric'>1</span>);
+      rewriter_.InsertText(source_location, SSAfter.str(), true, true);
+<span class='directive'>#endif</span>
+
+      auto source_location = f-&gt;getReturnTypeSourceRange().getEnd();
+      rewriter_.InsertTextAfterToken(source_location, <span class='string'>"&lt;/span&gt;"</span>);
+      source_location = f-&gt;getReturnTypeSourceRange().getBegin();
+      rewriter_.InsertTextBefore(source_location, <span class='string'>"&lt;span class='type'&gt;"</span>);
+    }
+
+    return true;
+  }
+
+private:
+  <span class='comment'>//Id id_;</span>
+  Rewriter &amp;rewriter_;
+  SourceManager &amp;source_manager_;
+};
+
+<span class='comment'>// Implementation of the ASTConsumer interface for reading an AST produced</span>
+<span class='comment'>// by the Clang parser.</span>
+class MyASTConsumer : public ASTConsumer {
+public:
+  MyASTConsumer(CompilerInstance&amp; ci, Rewriter &amp;rewriter, SourceManager &amp;source_manager) : ci_(ci), rewriter_(rewriter), visitor_(rewriter, source_manager) {}
+
+  <span class='comment'>// Override the method that gets called for each parsed top-level</span>
+  <span class='comment'>// declaration.</span>
+  bool HandleTopLevelDecl(DeclGroupRef DR) override {
+    for (DeclGroupRef::iterator b = DR.begin(), e = DR.end(); b != e; ++b)
+      <span class='comment'>// Traverse the declaration using our AST visitor.</span>
+      visitor_.TraverseDecl(*b);
+    return true;
+  }
+
+  void HandleTranslationUnit(ASTContext&amp; ctx) override {
+    const auto&amp; sm = ctx.getSourceManager();
+    const auto&amp; fid = sm.getMainFileID();
+
+    WrapIt(rewriter_, fid, <span class='string'>"test"</span>);
+    RawHighlight(rewriter_, fid, ci_.getPreprocessor());
+
+    html::EscapeText(rewriter_, fid, false, true);
+
+    const auto&amp; location = sm.getLocForStartOfFile(sm.getMainFileID());
+    std::cerr &lt;&lt; <span class='string'>"HANDLE TU "</span> &lt;&lt; fid.getHashValue()
+      &lt;&lt; <span class='string'>" "</span> &lt;&lt; location.printToString(sm) &lt;&lt; std::endl;
+  }
+
+private:
+  CompilerInstance&amp; ci_;
+  Rewriter&amp; rewriter_;
+  MyASTVisitor visitor_;
+};
+
+
+<span class='type'>void</span> HighlightRange(RewriteBuffer &amp;RB, unsigned B, unsigned E,
+                          const char *BufferStart,
+<div class='compound level-0'>                          const char *StartTag, const char *EndTag) {
+  <span class='comment'>// Insert the tag at the absolute start/end of the range.</span>
+  RB.InsertTextAfter(B, StartTag);
+  RB.InsertTextBefore(E, EndTag);
+
+  <span class='comment'>// Scan the range to see if there is a \r or \n.  If so, and if the line is</span>
+  <span class='comment'>// not blank, insert tags on that line as well.</span>
+  bool HadOpenTag = true;
+
+  unsigned LastNonWhiteSpace = B;
+<div class='compound level-1'>  for (unsigned i = B; i != E; ++i) {
+    switch (BufferStart[i]) {
+    case <span class='char'>'\r'</span>:
+    case <span class='char'>'\n'</span>:
+      <span class='comment'>// Okay, we found a newline in the range.  If we have an open tag, we need</span>
+      <span class='comment'>// to insert a close tag at the first non-whitespace before the newline.</span>
+      if (HadOpenTag)
+        RB.InsertTextBefore(LastNonWhiteSpace+<span class='numeric'>1</span>, EndTag);
+
+      <span class='comment'>// Instead of inserting an open tag immediately after the newline, we</span>
+      <span class='comment'>// wait until we see a non-whitespace character.  This prevents us from</span>
+      <span class='comment'>// inserting tags around blank lines, and also allows the open tag to</span>
+      <span class='comment'>// be put *after* whitespace on a non-blank line.</span>
+      HadOpenTag = false;
+      break;
+    case <span class='char'>'\0'</span>:
+    case <span class='char'>' '</span>:
+    case <span class='char'>'\t'</span>:
+    case <span class='char'>'\f'</span>:
+    case <span class='char'>'\v'</span>:
+      <span class='comment'>// Ignore whitespace.</span>
+      break;
+
+    default:
+      <span class='comment'>// If there is no tag open, do it now.</span>
+      if (!HadOpenTag) {
+        RB.InsertTextAfter(i, StartTag);
+        HadOpenTag = true;
+      }
+
+      <span class='comment'>// Remember this character.</span>
+      LastNonWhiteSpace = i;
+      break;
+    }
+  }</div>
+}</div>
+<span class='type'>void</span> HighlightRange(Rewriter &amp;R, SourceLocation B, SourceLocation E,
+<div class='compound level-0'>                          const char *StartTag, const char *EndTag) {
+  SourceManager &amp;SM = R.getSourceMgr();
+  B = SM.getExpansionLoc(B);
+  E = SM.getExpansionLoc(E);
+  FileID FID = SM.getFileID(B);
+  assert(SM.getFileID(E) == FID &amp;&amp; <span class='string'>"B/E not in the same file!"</span>);
+
+  unsigned BOffset = SM.getFileOffset(B);
+  unsigned EOffset = SM.getFileOffset(E);
+
+  <span class='comment'>// Include the whole end token in the range.</span>
+  EOffset += Lexer::MeasureTokenLength(E, R.getSourceMgr(), R.getLangOpts());
+
+  bool Invalid = false;
+  const char *BufferStart = SM.getBufferData(FID, &amp;Invalid).data();
+  if (Invalid)
+    return;
+  
+  HighlightRange(R.getEditBuffer(FID), BOffset, EOffset,
+                 BufferStart, StartTag, EndTag);
+}</div>
+<div class='compound level-0'><span class='type'>void</span> RawHighlight(Rewriter &amp;R, FileID FID, const Preprocessor &amp;PP) {
+  RewriteBuffer &amp;RB = R.getEditBuffer(FID);
+
+  const SourceManager &amp;SM = PP.getSourceManager();
+  const llvm::MemoryBuffer *FromFile = SM.getBuffer(FID);
+  Lexer L(FID, FromFile, SM, PP.getLangOpts());
+  const char *BufferStart = L.getBuffer().data();
+
+  <span class='comment'>// Inform the preprocessor that we want to retain comments as tokens, so we</span>
+  <span class='comment'>// can highlight them.</span>
+  L.SetCommentRetentionState(true);
+
+  <span class='comment'>// Lex all the tokens in raw mode, to avoid entering #includes or expanding</span>
+  <span class='comment'>// macros.</span>
+  Token Tok;
+  L.LexFromRawLexer(Tok);
+
+  while (Tok.isNot(tok::eof)) {
+    unsigned TokOffs = SM.getFileOffset(Tok.getLocation());
+    unsigned TokLen = Tok.getLength();
+    switch (Tok.getKind()) {
+    default: break;
+    case tok::comment:
+      HighlightRange(RB, TokOffs, TokOffs+TokLen, BufferStart,
+                     <span class='string'>"&lt;span class='comment'&gt;"</span>, <span class='string'>"&lt;/span&gt;"</span>);
+      break;
+    case tok::utf8_string_literal:
+      <span class='comment'>// Chop off the u part of u8 prefix</span>
+      ++TokOffs;
+      --TokLen;
+      <span class='comment'>// FALL THROUGH to chop the 8</span>
+    case tok::wide_string_literal:
+    case tok::utf16_string_literal:
+    case tok::utf32_string_literal:
+      <span class='comment'>// Chop off the L, u, U or 8 prefix</span>
+      ++TokOffs;
+      --TokLen;
+      <span class='comment'>// FALL THROUGH.</span>
+    case tok::string_literal:
+      <span class='comment'>// FIXME: Exclude the optional ud-suffix from the highlighted range.</span>
+      HighlightRange(RB, TokOffs, TokOffs+TokLen, BufferStart,
+                     <span class='string'>"&lt;span class='string'&gt;"</span>, <span class='string'>"&lt;/span&gt;"</span>);
+      break;
+    case tok::numeric_constant:
+      HighlightRange(RB, TokOffs, TokOffs+TokLen, BufferStart,
+                     <span class='string'>"&lt;span class='numeric'&gt;"</span>, <span class='string'>"&lt;/span&gt;"</span>);
+      break;
+    case tok::utf8_char_constant:
+      ++TokOffs;
+      --TokLen;
+    case tok::wide_char_constant:
+    case tok::utf16_char_constant:
+    case tok::utf32_char_constant:
+      <span class='comment'>// Chop off the L, u, U or 8 prefix</span>
+      ++TokOffs;
+      --TokLen;
+    case tok::char_constant:
+      HighlightRange(RB, TokOffs, TokOffs+TokLen, BufferStart,
+                     <span class='string'>"&lt;span class='char'&gt;"</span>, <span class='string'>"&lt;/span&gt;"</span>);
+      break;
+    case tok::hash: {
+      <span class='comment'>// If this is a preprocessor directive, all tokens to end of line are too.</span>
+      if (!Tok.isAtStartOfLine())
+        break;
+
+      <span class='comment'>// Eat all of the tokens until we get to the next one at the start of</span>
+      <span class='comment'>// line.</span>
+      unsigned TokEnd = TokOffs+TokLen;
+      L.LexFromRawLexer(Tok);
+      while (!Tok.isAtStartOfLine() &amp;&amp; Tok.isNot(tok::eof)) {
+        TokEnd = SM.getFileOffset(Tok.getLocation())+Tok.getLength();
+        L.LexFromRawLexer(Tok);
+      }
+
+      <span class='comment'>// Find end of line.  This is a hack.</span>
+      HighlightRange(RB, TokOffs, TokEnd, BufferStart,
+                     <span class='string'>"&lt;span class='directive'&gt;"</span>, <span class='string'>"&lt;/span&gt;"</span>);
+
+      <span class='comment'>// Don't skip the next token.</span>
+      continue;
+    }
+    }
+
+    L.LexFromRawLexer(Tok);
+  }
+}</div>
+
+
+
+<div class='compound level-0'><span class='type'>void</span> WrapIt(Rewriter&amp; R, FileID FID, const char *title) {
+
+  const llvm::MemoryBuffer *Buf = R.getSourceMgr().getBuffer(FID);
+  const char* FileStart = Buf-&gt;getBufferStart();
+  const char* FileEnd = Buf-&gt;getBufferEnd();
+
+  SourceLocation StartLoc = R.getSourceMgr().getLocForStartOfFile(FID);
+  SourceLocation EndLoc = StartLoc.getLocWithOffset(FileEnd-FileStart);
+
+  std::string s;
+  llvm::raw_string_ostream os(s);
+  os &lt;&lt; <span class='string'>"&lt;!doctype html&gt;\n"</span> <span class='comment'>// Use HTML 5 doctype</span>
+        <span class='string'>"&lt;html&gt;\n&lt;head&gt;\n"</span>;
+
+  if (title)
+    os &lt;&lt; <span class='string'>"&lt;title&gt;"</span> &lt;&lt; html::EscapeText(title) &lt;&lt; <span class='string'>"&lt;/title&gt;\n"</span>;
+
+  os &lt;&lt; <span class='string'>"&lt;style type=\"text/css\"&gt;\n"</span>
+      <span class='comment'>// " body { color:#000000; background-color:#ffffff }\n"</span>
+      <span class='string'>" body { font-family:Helvetica, sans-serif; font-size:10pt }\n"</span>
+      <span class='string'>" h1 { font-size:14pt }\n"</span>
+      <span class='string'>" .type { color: green}\n"</span>
+      <span class='string'>" .code { border-collapse:collapse; width:100%; }\n"</span>
+      <span class='string'>" .code { font-family: \"Monospace\", monospace; font-size:10pt }\n"</span>
+      <span class='string'>" .code { line-height: 1.2em }\n"</span>
+      <span class='string'>" .compound { display: inline-block; }\n"</span>
+      <span class='string'>" .compound.level-0:hover { margin-left: 1px; border-left-style: solid; border-left-color: yellow; }\n"</span>
+      <span class='string'>" .compound.level-1:hover { margin-left: 2px; border-left-style: solid; border-left-color: green; }\n"</span>
+      <span class='string'>" .compound.level-2:hover { margin-left: 3px; border-left-style: solid; border-left-color: orange; }\n"</span>
+      <span class='string'>" .comment { color: magenta; font-style: oblique }\n"</span>
+      <span class='string'>" .string { color: purple; }\n"</span>
+      <span class='string'>" .numeric { color: purple; }\n"</span>
+      <span class='string'>" .char { color: purple; }\n"</span>
+      <span class='string'>" .directive { color: blue; }\n"</span>
+
+      <span class='comment'>// Macro expansions.</span>
+      <span class='string'>" .expansion { display: none; }\n"</span>
+      <span class='string'>" .macro:hover .expansion { display: block; border: 2px solid #FF0000; "</span>
+          <span class='string'>"padding: 2px; background-color:#FFF0F0; font-weight: normal; "</span>
+          <span class='string'>"  -webkit-border-radius:5px;  -webkit-box-shadow:1px 1px 7px #000; "</span>
+          <span class='string'>"position: absolute; top: -1em; left:10em; z-index: 1 } \n"</span>
+      <span class='string'>" .macro { color: darkmagenta; background-color:LemonChiffon;"</span>
+             <span class='comment'>// Macros are position: relative to provide base for expansions.</span>
+             <span class='string'>" position: relative }\n"</span>
+      <span class='string'>" .num { width:2.5em; padding-right:2ex; background-color:#eeeeee }\n"</span>
+      <span class='string'>" .num { text-align:right; font-size:8pt }\n"</span>
+      <span class='string'>" .num { color:#444444 }\n"</span>
+      <span class='string'>" .line { padding-left: 1ex; border-left: 3px solid #ccc }\n"</span>
+      <span class='string'>" .line { white-space: pre }\n"</span>
+      <span class='string'>" .msg { -webkit-box-shadow:1px 1px 7px #000 }\n"</span>
+      <span class='string'>" .msg { -webkit-border-radius:5px }\n"</span>
+      <span class='string'>" .msg { font-family:Helvetica, sans-serif; font-size:8pt }\n"</span>
+      <span class='string'>" .msg { float:left }\n"</span>
+      <span class='string'>" .msg { padding:0.25em 1ex 0.25em 1ex }\n"</span>
+      <span class='string'>" .msg { margin-top:10px; margin-bottom:10px }\n"</span>
+      <span class='string'>" .msg { font-weight:bold }\n"</span>
+      <span class='string'>" .msg { max-width:60em; word-wrap: break-word; white-space: pre-wrap }\n"</span>
+      <span class='string'>" .msgT { padding:0x; spacing:0x }\n"</span>
+      <span class='string'>" .msgEvent { background-color:#fff8b4; color:#000000 }\n"</span>
+      <span class='string'>" .msgControl { background-color:#bbbbbb; color:#000000 }\n"</span>
+      <span class='string'>" .mrange { background-color:#dfddf3 }\n"</span>
+      <span class='string'>" .mrange { border-bottom:1px solid #6F9DBE }\n"</span>
+      <span class='string'>" .PathIndex { font-weight: bold; padding:0px 5px; "</span>
+        <span class='string'>"margin-right:5px; }\n"</span>
+      <span class='string'>" .PathIndex { -webkit-border-radius:8px }\n"</span>
+      <span class='string'>" .PathIndexEvent { background-color:#bfba87 }\n"</span>
+      <span class='string'>" .PathIndexControl { background-color:#8c8c8c }\n"</span>
+      <span class='string'>" .PathNav a { text-decoration:none; font-size: larger }\n"</span>
+      <span class='string'>" .CodeInsertionHint { font-weight: bold; background-color: #10dd10 }\n"</span>
+      <span class='string'>" .CodeRemovalHint { background-color:#de1010 }\n"</span>
+      <span class='string'>" .CodeRemovalHint { border-bottom:1px solid #6F9DBE }\n"</span>
+      <span class='string'>" table.simpletable {\n"</span>
+      <span class='string'>"   padding: 5px;\n"</span>
+      <span class='string'>"   font-size:12pt;\n"</span>
+      <span class='string'>"   margin:20px;\n"</span>
+      <span class='string'>"   border-collapse: collapse; border-spacing: 0px;\n"</span>
+      <span class='string'>" }\n"</span>
+      <span class='string'>" td.rowname {\n"</span>
+      <span class='string'>"   text-align:right; font-weight:bold; color:#444444;\n"</span>
+      <span class='string'>"   padding-right:2ex; }\n"</span>
+      <span class='string'>"&lt;/style&gt;\n&lt;/head&gt;\n&lt;body&gt;&lt;pre class='code'&gt;"</span>;
+
+  <span class='comment'>// Generate header</span>
+  R.InsertTextBefore(StartLoc, os.str());
+  <span class='comment'>// Generate footer</span>
+
+  R.InsertTextAfter(EndLoc, <span class='string'>"&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;\n"</span>);
+}</div>
+
+template&lt; typename T &gt;
+std::string ToHex( T i )
+{
+    std::stringstream stream;
+    stream 
+           &lt;&lt; std::setfill (<span class='char'>'0'</span>) &lt;&lt; std::setw(sizeof(T)*<span class='numeric'>2</span>) 
+           &lt;&lt; std::hex &lt;&lt; i;
+    return stream.str();
+}
+
+std::string Join(const std::initializer_list&lt;std::string&gt;&amp; paths) {
+  std::string result;
+  if (!paths.size())
+    return result;
+
+  <span class='comment'>// Append all elements of the list, followed by a "/".</span>
+  for (const auto&amp; path : paths) {
+    result.append(path);
+    result.append(<span class='string'>"/"</span>);
+  }
+
+  <span class='comment'>// Remove last trailing "/".</span>
+  result.resize(result.size() - <span class='numeric'>1</span>);
+  return result;
+}
+
+std::string MakeSourcePath(unsigned hash) {
+  std::string hex = ToHex(hash);
+  auto end = hex.length();
+  return Join({<span class='string'>"output"</span>, <span class='string'>"sources"</span>, hex.substr(end - <span class='numeric'>2</span>), hex.substr(<span class='numeric'>0</span>, end - <span class='numeric'>2</span>) + <span class='string'>".html"</span>});
+}
+
+<div class='compound level-0'>bool MakeDirs(const std::string&amp; path, int mode) {
+  std::string copy(path);
+
+  for (std::size_t index = <span class='numeric'>1</span>;
+       (index = copy.find(<span class='char'>'/'</span>, index)) != std::string::npos;) {
+    copy[index] = <span class='char'>'\0'</span>;
+    if (!mkdir(copy.c_str(), mode) &amp;&amp; errno != EEXIST)
+      return false;
+
+    copy[index] = <span class='char'>'/'</span>;
+    index = index + <span class='numeric'>1</span>;
+  }
+  return true;
+}</div>
+
+
+<div class='compound level-0'><span class='type'>int</span> main(int argc, char *argv[]) {
+<div class='compound level-1'>  if (argc &lt; <span class='numeric'>2</span>) {
+    llvm::errs() &lt;&lt; <span class='string'>"Usage: rewritersample &lt;filename&gt;...\n"</span>;
+    return <span class='numeric'>1</span>;
+  }</div>
+
+  <span class='comment'>// CompilerInstance will hold the instance of the Clang compiler for us,</span>
+  <span class='comment'>// managing the various objects needed to run the compiler.</span>
+  CompilerInstance ci;
+  ci.createDiagnostics();
+
+  LangOptions &amp;lo = ci.getLangOpts();
+  <span class='comment'>// lo.CPlusPlus = 1;</span>
+
+  <span class='comment'>// Initialize target info with the default triple for our platform.</span>
+  auto target_options = std::make_shared&lt;TargetOptions&gt;();
+  target_options-&gt;Triple = llvm::sys::getDefaultTargetTriple();
+  TargetInfo *target_info =
+      TargetInfo::CreateTargetInfo(ci.getDiagnostics(), target_options);
+  ci.setTarget(target_info);
+
+  ci.createFileManager();
+  FileManager &amp;file_mgr = ci.getFileManager();
+  ci.createSourceManager(file_mgr);
+  SourceManager &amp;source_mgr = ci.getSourceManager();
+  <span class='comment'>//ci.createPreprocessor(TU_Module);</span>
+  ci.createPreprocessor(TU_Complete);
+  ci.createASTContext();
+
+  <span class='comment'>// A Rewriter helps us manage the code rewriting task.</span>
+  Rewriter rewriter;
+  rewriter.setSourceMgr(source_mgr, ci.getLangOpts());
+
+  <span class='comment'>// Create an AST consumer instance which is going to get called by</span>
+  <span class='comment'>// ParseAST.</span>
+  MyASTConsumer consumer(ci, rewriter, source_mgr);
+
+<div class='compound level-1'>  for (int i = <span class='numeric'>1</span>; i &lt; argc; ++i) {
+    <span class='comment'>// Set the main file handled by the source manager to the input file.</span>
+    const FileEntry *input = file_mgr.getFile(argv[i]);
+    auto fid = source_mgr.createFileID(input, SourceLocation(), SrcMgr::C_User);
+    source_mgr.setMainFileID(fid);
+    ci.getDiagnosticClient().BeginSourceFile(ci.getLangOpts(), &amp;ci.getPreprocessor());
+
+    auto fib = source_mgr.fileinfo_begin();
+    auto fie = source_mgr.fileinfo_end();
+<div class='compound level-2'>    for (int i = <span class='numeric'>0</span>; fib != fie; ++fib, ++i) {
+      std::cerr &lt;&lt; <span class='string'>"FIB "</span> &lt;&lt; i &lt;&lt; std::endl;
+    }</div>
+
+    <span class='comment'>// Parse the file to AST, registering our consumer as the AST consumer.</span>
+    ParseAST(ci.getPreprocessor(), &amp;consumer, ci.getASTContext(), false <span class='comment'>/* Print Stats */</span>);
+
+    fib = source_mgr.fileinfo_begin();
+    fie = source_mgr.fileinfo_end();
+<div class='compound level-2'>    for (int i = <span class='numeric'>0</span>; fib != fie; ++fib, ++i) {
+      std::cerr &lt;&lt; <span class='string'>"FIB "</span> &lt;&lt; i &lt;&lt; std::endl;
+    }</div>
+
+
+    <span class='comment'>// NOTES, about handling comments:</span>
+    <span class='comment'>// auto *pp = ci.getPreprocessor();</span>
+    <span class='comment'>// pp-&gt;addCommentHandler();</span>
+    <span class='comment'>// </span>
+
+
+
+    <span class='comment'>// Check comments. THIS ONLY CAPTURES doxygen comments.</span>
+    auto&amp; ast_context = ci.getASTContext();
+<span class='comment'>//    ast_context.getExternalSource()-&gt;ReadComments();</span>
+    const auto&amp; comments = ast_context.getRawCommentList().getComments();
+    std::cerr &lt;&lt; <span class='string'>"DUMPING COMMENTS"</span> &lt;&lt; std::endl;
+    for (auto&amp; comment : comments) 
+      std::cerr &lt;&lt; <span class='string'>"COMMENT "</span> &lt;&lt; comment-&gt;getRawText(source_mgr).str() &lt;&lt; std::endl;
+    std::cerr &lt;&lt; <span class='string'>"DONE COMMENTS"</span> &lt;&lt; std::endl;
+
+    auto path = MakeSourcePath(fid.getHashValue());
+    std::cerr &lt;&lt; <span class='string'>"PATH "</span> &lt;&lt; path &lt;&lt; std::endl;
+<div class='compound level-2'>    if (!MakeDirs(path, <span class='numeric'>0777</span>)) {
+      std::cerr &lt;&lt; <span class='string'>"FAILED TO MAKE DIRS"</span> &lt;&lt; std::endl;
+      return <span class='numeric'>5</span>;
+    }</div>
+
+    <span class='comment'>// At this point the rewriter's buffer should be full with the rewritten</span>
+    <span class='comment'>// file contents.</span>
+    const RewriteBuffer *RewriteBuf = rewriter.getRewriteBufferFor(fid);
+    llvm::outs() &lt;&lt; std::string(RewriteBuf-&gt;begin(), RewriteBuf-&gt;end());
+
+    std::ofstream myfile;
+    myfile.open(path);
+    myfile &lt;&lt; std::string(RewriteBuf-&gt;begin(), RewriteBuf-&gt;end());
+  }</div>
+
+  return <span class='numeric'>0</span>;
+}</div>
+</pre></body></html>

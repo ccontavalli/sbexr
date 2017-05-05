@@ -1,0 +1,9 @@
+{% code
+type SourcePage struct {
+  BasePage
+}
+%}
+
+{% func (page *SourcePage) Body() %}
+<pre class='code'><span id='line-number'>{{#lines}}<span>{{line}}</span>{{/lines}}</span>{{code}}<span class='cl'></span></pre>
+{% endfunc %}

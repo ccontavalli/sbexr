@@ -1,0 +1,348 @@
+#!/usr/bin/python
+
+import collections
+import glob
+import grp
+import operator
+import os
+import re
+import subprocess
+import sys
+import tempfile
+import time
+
+KERNEL_TREE = "/opt/sbexr/linux-stable"
+KERNEL_REVISIONS = 5
+FS_REVISIONS = 10
+OUTPUT_TREE = "/opt/sbexr/trees"
+BEAR_TREE = "/opt/sbexr/builds"
+RUN_TREE = "/opt/sbexr/run"
+INDEX_TREE = "/opt/sbexr/indexes"
+BINARY_TREE = "/opt/sbexr/sbexr"
+TMP_TREE = "/opt/sbexr/tmp"
+
+RunResult = collections.namedtuple("RunResult", ["status", "stdout", "stderr", "time"])
+def Run(args, **kwargs):
+  kwargs.setdefault("stderr", subprocess.PIPE)
+  kwargs.setdefault("stdout", subprocess.PIPE)
+
+  start = time.time()
+  process = subprocess.Popen(args, stdin=subprocess.PIPE,
+                             shell=isinstance(args, str), **kwargs)
+  sys.stderr.write("Running: %s" % args)
+  sys.stderr.flush()
+
+  stdout, stderr = process.communicate()
+  status = process.wait()
+  end = time.time()
+  sys.stderr.write(" %0.3fs\n" % (end - start))
+  sys.stderr.flush()
+
+  if status:
+    print >>sys.stderr, "FAILED:", kwargs, "\n"
+    if stdout:
+      print >>sys.stderr, "  stdout:", stdout.strip()
+    if stderr:
+      print >>sys.stderr, "  stderr:", stderr.strip()
+    print >>sys.stderr, "  status:", status
+  return RunResult(status, stdout, stderr, end - start)
+
+def KernelRun(args, **kwargs):
+  return Run(args, cwd=KERNEL_TREE, **kwargs)
+
+def CleanupKernel():
+  KernelRun(["git", "reset", "--hard"])
+  KernelRun(["git", "clean", "-f"])
+  KernelRun(["git", "clean", "-f", "-d"])
+
+def UpdateKernel():
+  if KernelRun(["git", "checkout", "master"]).status:
+    raise BuildError("git checkout failed")
+  result = KernelRun(["git", "pull"])
+  if result.status or "Already" in result.stdout:
+    return False
+  return True
+
+
+def VersionNormalize(version):
+  def _int(value):
+    try:
+      return int(value)
+    except:
+      return value
+
+  # v4.7-rc6 will return:
+  #   ('', 'v', 4, '.', 7, '-rc', 6)
+  split = re.split('([^0-9]+)', version)
+  return tuple(map(_int, split))
+
+def VersionCompare(x, y):
+  if len(x) == len(y):
+    return cmp(x, y)
+
+  shortest = min(len(x), len(y))
+  result = cmp(x[0:shortest], y[0:shortest])
+  if result != 0:
+    return result
+
+  # 1.2.3.4 vs 1.2.3
+  if len(x) > len(y):
+    if x[shortest] == ".":
+      return 1
+    return -1
+
+  # 1.2.3 vs 1.2.3.4
+  if y[shortest] == ".":
+    return -1
+  return 1
+
+def SortTags(tags):
+  return map(operator.itemgetter(1),
+             sorted(map(lambda x: (VersionNormalize(x), x), set(tags)),
+                     cmp=lambda x, y: VersionCompare(x[0], y[0])))
+
+
+def GetGitTags():
+  # git for-each-ref --sort=-taggerdate --format='%(refname:short)' refs/tags
+  # result = KernelRun(["git", "for-each-ref", "--sort=-taggerdate", "--format=%%(refname:short)", "refs/tags"])
+  result = KernelRun(["git", "tag"])
+  if result.status or not result.stdout:
+    return False
+
+  tags = filter(lambda x: re.search(r'v[0-9.rc-]*', x), result.stdout.split()) 
+  return tags
+
+
+def FilterTags(tags, limit=-1):
+  tags = SortTags(tags)
+  last = tags[-1]
+  tags = filter(lambda tag: "-rc" not in tag, tags)
+  if tags[-1] != last:
+    tags = tags + [last]
+  if limit > 0 and len(tags) > limit:
+    tags = tags[-limit:]
+  return tags
+
+def GetFsTags(tree):
+  tags = []
+  for tag in os.listdir(tree):
+    path = os.path.join(tree, tag)
+    if not os.path.isdir(path) or os.path.islink(path):
+      continue
+    tags.append(tag)
+  return tags
+  # result = glob.glob(os.path.join(path, "v*.*"))
+  # return result
+
+class BuildError(RuntimeError):
+  pass
+
+def CheckoutKernel(tag):
+  CleanupKernel()
+  if (KernelRun(["make", "mrproper"]).status or
+      KernelRun(["git", "checkout", tag]).status):
+    raise BuildError("make mrproper or git checkout failed")
+
+def ConfigureKernel():
+  if KernelRun(["make", "allmodconfig"]).status:
+    raise BuildError("make failed");
+
+def CreateBearFile(tag, directory, output):
+  fd, path = tempfile.mkstemp(prefix="bear-", suffix="." + tag + ".json", dir=TMP_TREE)
+  os.write(fd, "[]\n")
+  os.close(fd)
+
+  stdout = open(os.path.join(directory, tag + ".build.stdout"), "w")
+  stderr = open(os.path.join(directory, tag + ".build.stderr"), "w")
+  result = KernelRun(["bear", "-a", "-o", path, "make", "-j3"], stdout=stdout, stderr=stderr)
+  if result.status:
+    raise BuildError("bear make failed", result)
+  Run(["mv", path, output])
+
+def CreateRunTree(binary, directory):
+  if Run(["cp", "-a", os.path.join(binary, "templates"), "-t", directory]).status:
+    raise BuildError("Creation of tree failed")
+
+def PrepareOutputDir(run, tag):
+  tree_dir = tempfile.mkdtemp(prefix="build-", suffix="-" + tag, dir=TMP_TREE)
+  if (Run(["ln", "-Tfs", tree_dir, os.path.join(run, "output")]).status or
+      Run(["cp", "-a", os.path.join(BINARY_TREE, "output", "static"), os.path.join(tree_dir, "static")]).status):
+    raise BuildError("Could not prepare output directory")
+  return tree_dir
+
+def CommitOutputDir(path, tree, tag):
+  tree_dir = os.path.join(tree, tag)
+
+  discard_dir = None
+  if os.path.exists(tree_dir):
+    discard_dir = tempfile.mktemp(prefix="discard-", suffix="-" + tag, dir=TMP_TREE)
+    if Run(["mv", tree_dir, discard_dir]).status:
+      raise BuildError("Could not move %s out of the way to %s" % (tree_dir, discard_dir))
+
+  if (Run(["chmod", "0755", path]).status or
+      Run(["mv", path, tree_dir]).status):
+    raise BuildError("Could not move generate dir in place")
+
+  if discard_dir:
+    Run(["rm", "-rf", discard_dir])
+
+def UpdateLatest(tree, tags=None):
+  if tags == None:
+    tags = SortTags(GetFsTags(tree))
+  for tag in reversed(tags):
+    index = os.path.join(tree, tag, "sources", "meta", "index.html")
+    if os.path.exists(index):
+      break
+  else:
+    return
+
+  Run(["ln", "-Tfs", tag, "latest"], cwd=tree)
+  for ifile in GetIndexFilesForTag(tag):
+    Run(["ln", "-Tfs", ifile, ifile.replace("." + tag + ".", ".latest.")])
+
+  # Generate sitemap
+  stdout = open(os.path.join(BEAR_TREE, tag + ".sitemap.stdout"), "w")
+  stderr = open(os.path.join(BEAR_TREE, tag + ".sitemap.stderr"), "w")
+  Run([os.path.join(BINARY_TREE, "sitemap/sitemap"),
+                     "--json-file", os.path.join(INDEX_TREE, "index." + tag + ".json"),
+                     "--source-url", "http://sbexr.rabexc.org/latest/sources",
+                     "--tree-dir", os.path.join(OUTPUT_TREE, tag, "sources"),
+                     "--sitemap-url", "http://sbexr.rabexc.org",
+                     "--output", OUTPUT_TREE], stdout=stdout, stderr=stderr)
+
+
+def UpdateValidTags(tree, tags=None):
+  if tags == None:
+    tags = SortTags(GetFsTags(tree))
+
+  # 1) Find the list of all valid TAGS.
+  tags = SortTags(tags)
+  tags.reverse()
+  print >>sys.stderr, "UPDATING TAGS: ", tree, tags
+
+  # Update each file with the tags.
+  for tag in tags:
+    path = os.path.join(tree, tag, "globals.js")
+    try:
+      gl = open(path, "r+")
+      data = gl.read()
+      data = re.sub(r"globalAllTags\s*=\s*\[[^]]*\]", r"globalAllTags = %s" % tags, data, re.M)
+      gl.seek(0, 0)
+      gl.truncate(0)
+      gl.write(data)
+    except IOError as err:
+      print >>sys.stderr, "WARNING: updating global.js FAILED %s" % err
+      pass
+
+def RestartServer():
+  Run(["killall", "server"])
+
+
+def GetIndexFilesForTag(tag):
+  return glob.glob(os.path.join(INDEX_TREE, "*." + tag + ".*"))
+
+def GetVersionFiles(tag):
+  rewriter_tagfile = os.path.join(BEAR_TREE, tag + ".rewriter.completed")
+  rewriter_binfile = os.path.join(BINARY_TREE, "src", "sbexr")
+  return rewriter_tagfile, rewriter_binfile
+
+def NeedsUpdating(tag):
+  rewriter_tagfile, rewriter_binfile = GetVersionFiles(tag)
+  if not os.path.exists(rewriter_tagfile):
+    print >>sys.stderr, "NEEDS UPDATE", tag, "- NO TAGFILE", rewriter_tagfile
+    return True
+  tagfile_ctime = os.path.getctime(rewriter_tagfile) 
+  binfile_ctime = os.path.getctime(rewriter_binfile)
+  if tagfile_ctime < binfile_ctime:
+    print >>sys.stderr, "NEEDS UPDATE", tag, "- TIMESTAMPS", tagfile_ctime, "vs", binfile_ctime
+    return True
+
+  print >>sys.stderr, "NO UPDATE NEEDED FOR", tag, "-", rewriter_tagfile, "<", rewriter_binfile, "-", tagfile_ctime, "<", binfile_ctime
+  return False
+
+def RunSbexr(tag):
+  rewriter_tagfile, rewriter_binfile = GetVersionFiles(tag)
+
+  stdout = open(os.path.join(BEAR_TREE, tag + ".rewriter.stdout"), "w")
+  stderr = open(os.path.join(BEAR_TREE, tag + ".rewriter.stderr"), "w")
+  result = Run([rewriter_binfile, "-c", "/opt/sbexr/linux-stable", "--index", INDEX_TREE, "-t", tag, "-p", "Linux", "."], stdout=stdout, stderr=stderr, cwd=RUN_TREE)
+  if result.status == 0:
+    open(rewriter_tagfile, "w").write("DONE %0.3f" % result.time)
+    return True
+  return False
+
+def main():
+  CleanupKernel()
+  UpdateLatest(OUTPUT_TREE)
+  UpdateValidTags(OUTPUT_TREE)
+  RestartServer()
+
+  while True:
+    UpdateKernel()
+
+    all_fs_tags = GetFsTags(OUTPUT_TREE)
+
+    desired_fs_tags = FilterTags(all_fs_tags, limit=FS_REVISIONS)
+    desired_git_tags = FilterTags(GetGitTags(), limit=KERNEL_REVISIONS)
+
+    # Remove all tags from the file system that are no longer desired.
+    undesired_fs_tags = set(all_fs_tags).difference(desired_fs_tags);
+    for undesired in undesired_fs_tags:
+      Run(["rm", "-rf", os.path.join(OUTPUT_TREE, undesired)])
+      Run(["rm", "-f"] + GetIndexFilesForTag(undesired))
+    
+    if undesired_fs_tags:
+      UpdateLatest(OUTPUT_TREE, desired_fs_tags)
+      UpdateValidTags(OUTPUT_TREE, desired_fs_tags)
+      RestartServer()
+
+    # From the most recent tag backward, check if we need to generate the three
+    # or we have a newer version of sbexr.
+    all_desired_tags = SortTags(set(desired_fs_tags).union(set(desired_git_tags)))
+    for tag in reversed(all_desired_tags):
+      skip_tree = os.path.join(BEAR_TREE, tag + ".skip")
+      print >>sys.stderr, "CHECKING", skip_tree
+      if os.path.exists(skip_tree):
+        print >>sys.stderr, "SKIP FILE FOR", tag, skip_tree
+        continue
+     
+      # Stop going back to re-generate previous versions if this version is already
+      # up to date, or if we have to restart from the beginning.
+      if not NeedsUpdating(tag) or (tag != all_desired_tags[-1] and NeedsUpdating(all_desired_tags[-1])):
+        break
+
+      CreateRunTree(BINARY_TREE, RUN_TREE)
+      CheckoutKernel(tag)
+
+      bear_tree = os.path.join(BEAR_TREE, tag + ".json")
+      if not os.path.exists(bear_tree):
+        ConfigureKernel()
+        CreateBearFile(tag, BEAR_TREE, bear_tree)
+        # This will clean up the tree, and check it out again.
+        CheckoutKernel(tag)
+ 
+      Run(["ln", "-Tfs", bear_tree, os.path.join(RUN_TREE, "compile_commands.json")])
+
+      ConfigureKernel()
+      path = PrepareOutputDir(RUN_TREE, tag)
+
+      if not RunSbexr(tag):
+        continue
+
+      CommitOutputDir(path, OUTPUT_TREE, tag)
+      UpdateLatest(OUTPUT_TREE)
+      UpdateValidTags(OUTPUT_TREE)
+      RestartServer()
+
+    print >>sys.stderr, "NOTHING TO DO - SLEEPING"
+    time.sleep(120)
+
+
+    # - Get list of kernel releases
+    #   - update all .html files to have the correct list of tags.
+    #   - if different from current one
+
+if __name__ == "__main__":
+  # execute only if run as a script
+  main()
+

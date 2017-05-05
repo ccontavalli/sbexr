@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{project}}{{#project}} {{tag}} - {{/project}}{{curr_path}}</title>
+  {{>INCLUDE_CSS}}
+</head>
+
+<body>
+<div class="container-fluid">
+{{>INCLUDE_NAVBAR}}
+<pre class='code'><span id='line-number'>{{#lines}}<i>{{line}}</i>{{/lines}}</span><span itemscope itemtype="http://schema.org/SoftwareSourceCode"><meta itemprop="programmingLanguage" content="C" />{{code}}</span><span class='cl'></span></pre>
+</div>
+{{>INCLUDE_JS}}
+</body>
+</html>

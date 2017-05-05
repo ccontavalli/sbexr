@@ -1,0 +1,74 @@
+- // WHEN CLICKING ON A LINK, if points with the same page,
+  // IF POINTS WITHIN THE SAME WINDOW, do not change scrolling.
+  // Rather, just highlight the target.
+
+- names in all-symbols.json... don't have namespace identifier. They should!
+  namespace is important.
+
+DONE  // FIXME: THIS IS WRONG.
+      // Problem: errno-base.h, a file with only macros and defines.
+      // Now:
+      // - RecursiveASTParser will not be invoked - there are no top level declarations.
+      // - Nothing of the file will be rewritten - no ast after all
+      // - RenderFile will never be called!!
+
+DONE  // ON THE DIRECTORY VIEW, when an INDEX FILE IS DISPLAYED,
+      // selecting :78 will highlight the whole line! Directory tree
+      // and all!
+
+DONE In make test-server, searching for symbol __c, ends up having multiple repeated definitions for the same location! bad!
+
+
+- pinctrl-palmas.c:354, problem:
+  - There is a macro that defines a list of elements, like:
+    # define ELEMENTS \
+        DECLARE_ELEMENT(foo) \
+        DECLARE_ELEMENT(bar)
+
+    And in different places, we have things like:
+
+    
+    enum {
+    # undef DECLARE_ELEMENT
+    # define DECLARE_ELEMENT(value) EnumConstant##value
+    };
+
+    End result: all those symbols, eg, EnumConstantfoo, EnumConstantbar,
+    have exactly the same source line/column and expansion line/column
+
+
+in global-symbols database:
+- all entries that have no name that I manually verified were
+  prototype definitions, eg, things like:
+
+    atoi(const char*);
+         ^^^^^^^^^^^-> declaration has no name!!
+
+  plan: in the database, provide not only the name, but the type of the
+  declaration. and then the context.
+
+  in this case:
+
+     context: atoi(const char*)
+     type: const char*
+     name: ""
+
+
+
+In slab.h, kmalloc.h, header is marked as muted, included multiple times. 
+
+kernel handler:
+
+DONE It loops over the last X tags from git, only regenerates those tags.
+     Instead: it should look at regenerating all tags if an updated
+     rewriter is available.
+
+
+==================
+When there is something like:
+
+struct sk_buff *skb, *tmp_skb;
+
+struct sk_buff is surrounded by span and a twice, creating nested a links.
+
+

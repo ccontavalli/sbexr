@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<title>test.c</title>
+<style type="text/css">
+ body { color:#000000; background-color:#ffffff }
+ body { font-family:Helvetica, sans-serif; font-size:10pt }
+ h1 { font-size:14pt }
+ .code { border-collapse:collapse; width:100%; }
+ .code { font-family: "Monospace", monospace; font-size:10pt }
+ .code { line-height: 1.2em }
+ .comment { color: green; font-style: oblique }
+ .keyword { color: blue }
+ .string_literal { color: red }
+ .directive { color: darkmagenta }
+ .expansion { display: none; }
+ .macro:hover .expansion { display: block; border: 2px solid #FF0000; padding: 2px; background-color:#FFF0F0; font-weight: normal;   -webkit-border-radius:5px;  -webkit-box-shadow:1px 1px 7px #000; position: absolute; top: -1em; left:10em; z-index: 1 } 
+ .macro { color: darkmagenta; background-color:LemonChiffon; position: relative }
+ .num { width:2.5em; padding-right:2ex; background-color:#eeeeee }
+ .num { text-align:right; font-size:8pt }
+ .num { color:#444444 }
+ .line { padding-left: 1ex; border-left: 3px solid #ccc }
+ .line { white-space: pre }
+ .msg { -webkit-box-shadow:1px 1px 7px #000 }
+ .msg { -webkit-border-radius:5px }
+ .msg { font-family:Helvetica, sans-serif; font-size:8pt }
+ .msg { float:left }
+ .msg { padding:0.25em 1ex 0.25em 1ex }
+ .msg { margin-top:10px; margin-bottom:10px }
+ .msg { font-weight:bold }
+ .msg { max-width:60em; word-wrap: break-word; white-space: pre-wrap }
+ .msgT { padding:0x; spacing:0x }
+ .msgEvent { background-color:#fff8b4; color:#000000 }
+ .msgControl { background-color:#bbbbbb; color:#000000 }
+ .mrange { background-color:#dfddf3 }
+ .mrange { border-bottom:1px solid #6F9DBE }
+ .PathIndex { font-weight: bold; padding:0px 5px; margin-right:5px; }
+ .PathIndex { -webkit-border-radius:8px }
+ .PathIndexEvent { background-color:#bfba87 }
+ .PathIndexControl { background-color:#8c8c8c }
+ .PathNav a { text-decoration:none; font-size: larger }
+ .CodeInsertionHint { font-weight: bold; background-color: #10dd10 }
+ .CodeRemovalHint { background-color:#de1010 }
+ .CodeRemovalHint { border-bottom:1px solid #6F9DBE }
+ table.simpletable {
+   padding: 5px;
+   font-size:12pt;
+   margin:20px;
+   border-collapse: collapse; border-spacing: 0px;
+ }
+ td.rowname {
+   text-align:right; font-weight:bold; color:#444444;
+   padding-right:2ex; }
+</style>
+</head>
+<body><table class="code">
+<tr><td class="num" id="LN1">1</td><td class="line"><span class='directive'>#include &lt;stdio.h&gt;</span></td></tr>
+<tr><td class="num" id="LN2">2</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN3">3</td><td class="line"><span class='directive'># define <span class='macro'>TEST(foo)<span class='expansion'>if (foo) { printf("foo"); }</span></span> if (foo) { printf("foo"); }</span></td></tr>
+<tr><td class="num" id="LN4">4</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN5">5</td><td class="line"><span class='keyword'>int</span> test() {</td></tr>
+<tr><td class="num" id="LN6">6</td><td class="line">  printf(<span class='string_literal'>"this is a test"</span>);</td></tr>
+<tr><td class="num" id="LN7">7</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN8">8</td><td class="line">  {</td></tr>
+<tr><td class="num" id="LN9">9</td><td class="line">    <span class='keyword'>int</span> a = 9;</td></tr>
+<tr><td class="num" id="LN10">10</td><td class="line">    printf(<span class='string_literal'>"this is another test: %d"</span>, a);</td></tr>
+<tr><td class="num" id="LN11">11</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN12">12</td><td class="line">  }</td></tr>
+<tr><td class="num" id="LN13">13</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN14">14</td><td class="line">  <span class='keyword'>return</span> 3;</td></tr>
+<tr><td class="num" id="LN15">15</td><td class="line">}</td></tr>
+<tr><td class="num" id="LN16">16</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN17">17</td><td class="line"><span class='comment'>// This is a pre-existing comment.</span></td></tr>
+<tr><td class="num" id="LN18">18</td><td class="line"><span class='keyword'>int</span> main(<span class='keyword'>void</span>) {</td></tr>
+<tr><td class="num" id="LN19">19</td><td class="line">  <span class='keyword'>int</span> value = 12;</td></tr>
+<tr><td class="num" id="LN20">20</td><td class="line">  <span class='keyword'>if</span> (1) { value = test();</td></tr>
+<tr><td class="num" id="LN21">21</td><td class="line">    <span class='keyword'>if</span> (value &gt; 5) {</td></tr>
+<tr><td class="num" id="LN22">22</td><td class="line">      printf(<span class='string_literal'>"this is a second test"</span>);</td></tr>
+<tr><td class="num" id="LN23">23</td><td class="line">    }</td></tr>
+<tr><td class="num" id="LN24">24</td><td class="line">  }</td></tr>
+<tr><td class="num" id="LN25">25</td><td class="line">  <span class='macro'>TEST(value)<span class='expansion'>if (value) { printf("foo"); }</span></span>;</td></tr>
+<tr><td class="num" id="LN26">26</td><td class="line">  <span class='keyword'>return</span> 0;</td></tr>
+<tr><td class="num" id="LN27">27</td><td class="line">}</td></tr>
+</table></body></html>

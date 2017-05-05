@@ -1,0 +1,524 @@
+<!DOCTYPE html><html lang='en'><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>test output - /usr/include/libio.h</title><link href="../../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"><link href="../../static/bootstrap/css/dropdowns-enhancement.min.css" rel="stylesheet"><link href="../../static/animated-modal/animate.min.css" rel="stylesheet"><link href="../../static/font-awesome/css/font-awesome.min.css" rel="stylesheet"><link href="../../static/style.css" rel="stylesheet"></head><body><div class="container-fluid"><div class="container"><nav class="navbar navbar-default navbar-fixed-top"><div class="container-fluid" id="navbar"><!-- Brand and toggle get grouped for better mobile display --><div class="navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><span class="navbar-brand" style="padding-top: 8px"><ol id="path" itemscope itemtype="http://schema.org/BreadcrumbList"><!-- ROOT DIRECTORY --><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../06/416cc91f3e3d90.html"><i itemprop="image" alt="root" class="glyphicon glyphicon-hdd" style="vertical-align: middle"></i>&nbsp;</a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../60/7abc7e1c17ae25.html"><span itemprop="name">usr</span></a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../19/901c5d9478e5ce.html"><span itemprop="name">include</span></a></li></ol>libio.h</span></div><!-- Collect the nav links, forms, and other content for toggling --><!-- mostly taken from http://www.bootply.com/t7O3HSGlbc --><div class="collapse navbar-collapse" id="main-navbar"><div class="form-group" style="margin-top: 8px; margin-bottom: 0px;"><div class="input-group"><div class="input-group-btn"><button class="btn btn-default correct-height" data-label-placement><i class="glyphicon glyphicon-console data-label"></i></button><button data-toggle="dropdown" class="btn btn-default dropdown-toggle correct-height"><span class="caret"></span> </button><ul class="dropdown-menu"><li><input type="radio" id="sb-symbol" name="sb" value="symbol" checked><label for="sb-symbol"><i class="glyphicon glyphicon-console data-label"></i> Symbol</label></li><li><input type="radio" id="sb-file" name="sb" value="file"><label for="sb-file"><i class="glyphicon glyphicon-file data-label"></i> File</label></li><li><input type="radio" id="sb-text" name="sb" value="text"><label for="sb-text"><i class="glyphicon glyphicon-text-background data-label"></i> Text</label></li><li><input type="radio" id="sb-line" name="sb" value="line"><label for="sb-line"><i class="glyphicon glyphicon-indent-left data-label"></i> Line</label></li></ul></div><input type="text" name="search" id="searchbox-symbol" class="form-control" placeholder="Search symbol (std::list, list, kfree_skb, any full or partial variable/class/function/... name)"><input type="text" name="search" id="searchbox-file" class="form-control hidden" placeholder="Search file (/usr/include/alloca.h, alloca.h, any full or partial path)"><input type="text" name="search" id="searchbox-text" class="form-control hidden" placeholder="Search text (content of comments, strings, full text search over the source code)"><input type="text" name="search" id="searchbox-line" class="form-control hidden" placeholder="Go to line (53, 1120, just type the line number and enter)"><div class="input-group-btn"><div class="btn-group hidden" id="tag-menu"><button data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="tag-default"></button><ul class="dropdown-menu pull-center" id="tag-entries"></ul></div><a class="btn btn-default" href="../meta/about.html" type="button" id="sbexr-about"><i title="About this site" class="glyphicon glyphicon-info-sign"></i></a><a class="btn btn-default" href="../meta/help.html" type="button" id="sbexr-help"><i title="Help!!" class="glyphicon glyphicon-question-sign"></i></a></div></div></div></div><!-- /.navbar-collapse --></div><!-- /.container-fluid --></nav></div><pre class='code'><span id='line-number'><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>10</i><i>11</i><i>12</i><i>13</i><i>14</i><i>15</i><i>16</i><i>17</i><i>18</i><i>19</i><i>20</i><i>21</i><i>22</i><i>23</i><i>24</i><i>25</i><i>26</i><i>27</i><i>28</i><i>29</i><i>30</i><i>31</i><i>32</i><i>33</i><i>34</i><i>35</i><i>36</i><i>37</i><i>38</i><i>39</i><i>40</i><i>41</i><i>42</i><i>43</i><i>44</i><i>45</i><i>46</i><i>47</i><i>48</i><i>49</i><i>50</i><i>51</i><i>52</i><i>53</i><i>54</i><i>55</i><i>56</i><i>57</i><i>58</i><i>59</i><i>60</i><i>61</i><i>62</i><i>63</i><i>64</i><i>65</i><i>66</i><i>67</i><i>68</i><i>69</i><i>70</i><i>71</i><i>72</i><i>73</i><i>74</i><i>75</i><i>76</i><i>77</i><i>78</i><i>79</i><i>80</i><i>81</i><i>82</i><i>83</i><i>84</i><i>85</i><i>86</i><i>87</i><i>88</i><i>89</i><i>90</i><i>91</i><i>92</i><i>93</i><i>94</i><i>95</i><i>96</i><i>97</i><i>98</i><i>99</i><i>100</i><i>101</i><i>102</i><i>103</i><i>104</i><i>105</i><i>106</i><i>107</i><i>108</i><i>109</i><i>110</i><i>111</i><i>112</i><i>113</i><i>114</i><i>115</i><i>116</i><i>117</i><i>118</i><i>119</i><i>120</i><i>121</i><i>122</i><i>123</i><i>124</i><i>125</i><i>126</i><i>127</i><i>128</i><i>129</i><i>130</i><i>131</i><i>132</i><i>133</i><i>134</i><i>135</i><i>136</i><i>137</i><i>138</i><i>139</i><i>140</i><i>141</i><i>142</i><i>143</i><i>144</i><i>145</i><i>146</i><i>147</i><i>148</i><i>149</i><i>150</i><i>151</i><i>152</i><i>153</i><i>154</i><i>155</i><i>156</i><i>157</i><i>158</i><i>159</i><i>160</i><i>161</i><i>162</i><i>163</i><i>164</i><i>165</i><i>166</i><i>167</i><i>168</i><i>169</i><i>170</i><i>171</i><i>172</i><i>173</i><i>174</i><i>175</i><i>176</i><i>177</i><i>178</i><i>179</i><i>180</i><i>181</i><i>182</i><i>183</i><i>184</i><i>185</i><i>186</i><i>187</i><i>188</i><i>189</i><i>190</i><i>191</i><i>192</i><i>193</i><i>194</i><i>195</i><i>196</i><i>197</i><i>198</i><i>199</i><i>200</i><i>201</i><i>202</i><i>203</i><i>204</i><i>205</i><i>206</i><i>207</i><i>208</i><i>209</i><i>210</i><i>211</i><i>212</i><i>213</i><i>214</i><i>215</i><i>216</i><i>217</i><i>218</i><i>219</i><i>220</i><i>221</i><i>222</i><i>223</i><i>224</i><i>225</i><i>226</i><i>227</i><i>228</i><i>229</i><i>230</i><i>231</i><i>232</i><i>233</i><i>234</i><i>235</i><i>236</i><i>237</i><i>238</i><i>239</i><i>240</i><i>241</i><i>242</i><i>243</i><i>244</i><i>245</i><i>246</i><i>247</i><i>248</i><i>249</i><i>250</i><i>251</i><i>252</i><i>253</i><i>254</i><i>255</i><i>256</i><i>257</i><i>258</i><i>259</i><i>260</i><i>261</i><i>262</i><i>263</i><i>264</i><i>265</i><i>266</i><i>267</i><i>268</i><i>269</i><i>270</i><i>271</i><i>272</i><i>273</i><i>274</i><i>275</i><i>276</i><i>277</i><i>278</i><i>279</i><i>280</i><i>281</i><i>282</i><i>283</i><i>284</i><i>285</i><i>286</i><i>287</i><i>288</i><i>289</i><i>290</i><i>291</i><i>292</i><i>293</i><i>294</i><i>295</i><i>296</i><i>297</i><i>298</i><i>299</i><i>300</i><i>301</i><i>302</i><i>303</i><i>304</i><i>305</i><i>306</i><i>307</i><i>308</i><i>309</i><i>310</i><i>311</i><i>312</i><i>313</i><i>314</i><i>315</i><i>316</i><i>317</i><i>318</i><i>319</i><i>320</i><i>321</i><i>322</i><i>323</i><i>324</i><i>325</i><i>326</i><i>327</i><i>328</i><i>329</i><i>330</i><i>331</i><i>332</i><i>333</i><i>334</i><i>335</i><i>336</i><i>337</i><i>338</i><i>339</i><i>340</i><i>341</i><i>342</i><i>343</i><i>344</i><i>345</i><i>346</i><i>347</i><i>348</i><i>349</i><i>350</i><i>351</i><i>352</i><i>353</i><i>354</i><i>355</i><i>356</i><i>357</i><i>358</i><i>359</i><i>360</i><i>361</i><i>362</i><i>363</i><i>364</i><i>365</i><i>366</i><i>367</i><i>368</i><i>369</i><i>370</i><i>371</i><i>372</i><i>373</i><i>374</i><i>375</i><i>376</i><i>377</i><i>378</i><i>379</i><i>380</i><i>381</i><i>382</i><i>383</i><i>384</i><i>385</i><i>386</i><i>387</i><i>388</i><i>389</i><i>390</i><i>391</i><i>392</i><i>393</i><i>394</i><i>395</i><i>396</i><i>397</i><i>398</i><i>399</i><i>400</i><i>401</i><i>402</i><i>403</i><i>404</i><i>405</i><i>406</i><i>407</i><i>408</i><i>409</i><i>410</i><i>411</i><i>412</i><i>413</i><i>414</i><i>415</i><i>416</i><i>417</i><i>418</i><i>419</i><i>420</i><i>421</i><i>422</i><i>423</i><i>424</i><i>425</i><i>426</i><i>427</i><i>428</i><i>429</i><i>430</i><i>431</i><i>432</i><i>433</i><i>434</i><i>435</i><i>436</i><i>437</i><i>438</i><i>439</i><i>440</i><i>441</i><i>442</i><i>443</i><i>444</i><i>445</i><i>446</i><i>447</i><i>448</i><i>449</i><i>450</i><i>451</i><i>452</i><i>453</i><i>454</i><i>455</i><i>456</i><i>457</i><i>458</i><i>459</i><i>460</i><i>461</i><i>462</i><i>463</i><i>464</i><i>465</i><i>466</i><i>467</i><i>468</i><i>469</i><i>470</i><i>471</i><i>472</i><i>473</i><i>474</i><i>475</i><i>476</i><i>477</i><i>478</i><i>479</i><i>480</i><i>481</i><i>482</i><i>483</i><i>484</i><i>485</i><i>486</i><i>487</i><i>488</i><i>489</i><i>490</i><i>491</i><i>492</i><i>493</i><i>494</i><i>495</i><i>496</i><i>497</i><i>498</i><i>499</i><i>500</i><i>501</i><i>502</i><i>503</i><i>504</i><i>505</i><i>506</i><i>507</i><i>508</i><i>509</i><i>510</i><i>511</i><i>512</i><i>513</i><i>514</i><i>515</i><i>516</i><i>517</i><i>518</i><i>519</i><i>520</i><i>521</i><i>522</i><i>523</i><i>524</i></span><span itemscope itemtype="http://schema.org/SoftwareSourceCode"><meta itemprop="programmingLanguage" content="C" /><span class='comment'>/* Copyright (C) 1991-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+   Written by Per Bothner &lt;bothner@cygnus.com&gt;.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   &lt;http://www.gnu.org/licenses/&gt;.
+
+   As a special exception, if you link the code in this file with
+   files compiled with a GNU compiler to produce an executable,
+   that does not cause the resulting executable to be covered by
+   the GNU Lesser General Public License.  This exception does not
+   however invalidate any other reasons why the executable file
+   might be covered by the GNU Lesser General Public License.
+   This exception applies to code released by its copyright holders
+   in files containing the exception.  */</span>
+
+<span class='directive'>#ifndef _IO_STDIO_H</span>
+<span class='directive'>#define _IO_STDIO_H</span>
+
+<span class='directive'>#include <a class='include' href='../f1/d5c5895ea25227.html'>&lt;_G_config.h&gt;</a></span>
+<span class='comment'>/* ALL of these should be defined in _G_config.h */</span>
+<span class='directive'>#define _IO_fpos_t _G_fpos_t</span>
+<span class='directive'>#define _IO_fpos64_t _G_fpos64_t</span>
+<span class='directive'>#define _IO_size_t size_t</span>
+<span class='directive'>#define _IO_ssize_t __ssize_t</span>
+<span class='directive'>#define _IO_off_t __off_t</span>
+<span class='directive'>#define _IO_off64_t __off64_t</span>
+<span class='directive'>#define _IO_pid_t __pid_t</span>
+<span class='directive'>#define _IO_uid_t __uid_t</span>
+<span class='directive'>#define _IO_iconv_t _G_iconv_t</span>
+<span class='directive'>#define _IO_HAVE_ST_BLKSIZE _G_HAVE_ST_BLKSIZE</span>
+<span class='directive'>#define _IO_BUFSIZ _G_BUFSIZ</span>
+<span class='directive'>#define _IO_va_list _G_va_list</span>
+<span class='directive'>#define _IO_wint_t wint_t</span>
+
+<span class='comment'>/* This define avoids name pollution if we're using GNU stdarg.h */</span>
+<span class='directive'>#define __need___va_list</span>
+<span class='directive'>#include <a class='include' href='../a0/fcc3fb21a49632.html'>&lt;stdarg.h&gt;</a></span>
+<span class='directive'>#ifdef __GNUC_VA_LIST</span>
+<span class='directive'># undef _IO_va_list</span>
+<span class='directive'># define _IO_va_list __gnuc_va_list</span>
+<span class='directive'>#endif /* __GNUC_VA_LIST */</span>
+
+<span class='directive'>#ifndef __P</span><span class='preprocessor-if muted'>
+<span class='directive'># include &lt;sys/cdefs.h&gt;</span></span>
+<span class='directive'>#endif /*!__P*/</span>
+
+<span class='directive'>#define _IO_UNIFIED_JUMPTABLES 1</span>
+
+<span class='directive'>#ifndef EOF</span>
+<span class='directive'># define EOF (-1)</span>
+<span class='directive'>#endif</span>
+<span class='directive'>#ifndef NULL</span><span class='preprocessor-if muted'>
+<span class='directive'># if defined __GNUG__ &amp;&amp; \
+    (__GNUC__ &gt; 2 || (__GNUC__ == 2 &amp;&amp; __GNUC_MINOR__ &gt;= 8))</span>
+<span class='directive'>#  define NULL (__null)</span>
+<span class='directive'># else</span>
+<span class='directive'>#  if !defined(__cplusplus)</span>
+<span class='directive'>#   define NULL ((void*)0)</span>
+<span class='directive'>#  else</span>
+<span class='directive'>#   define NULL (0)</span>
+<span class='directive'>#  endif</span>
+<span class='directive'># endif</span></span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#define _IOS_INPUT	1</span>
+<span class='directive'>#define _IOS_OUTPUT	2</span>
+<span class='directive'>#define _IOS_ATEND	4</span>
+<span class='directive'>#define _IOS_APPEND	8</span>
+<span class='directive'>#define _IOS_TRUNC	16</span>
+<span class='directive'>#define _IOS_NOCREATE	32</span>
+<span class='directive'>#define _IOS_NOREPLACE	64</span>
+<span class='directive'>#define _IOS_BIN	128</span>
+
+<span class='comment'>/* Magic numbers and bits for the _flags field.
+   The magic numbers use the high-order bits of _flags;
+   the remaining bits are available for variable flags.
+   Note: The magic numbers must all be negative if stdio
+   emulation is desired. */</span>
+
+<span class='directive'>#define _IO_MAGIC 0xFBAD0000 /* Magic number */</span>
+<span class='directive'>#define _OLD_STDIO_MAGIC 0xFABC0000 /* Emulate old stdio. */</span>
+<span class='directive'>#define _IO_MAGIC_MASK 0xFFFF0000</span>
+<span class='directive'>#define _IO_USER_BUF 1 /* User owns buffer; don't delete it on close. */</span>
+<span class='directive'>#define _IO_UNBUFFERED 2</span>
+<span class='directive'>#define _IO_NO_READS 4 /* Reading not allowed */</span>
+<span class='directive'>#define _IO_NO_WRITES 8 /* Writing not allowd */</span>
+<span class='directive'>#define _IO_EOF_SEEN 0x10</span>
+<span class='directive'>#define _IO_ERR_SEEN 0x20</span>
+<span class='directive'>#define _IO_DELETE_DONT_CLOSE 0x40 /* Don't call close(_fileno) on cleanup. */</span>
+<span class='directive'>#define _IO_LINKED 0x80 /* Set if linked (using _chain) to streambuf::_list_all.*/</span>
+<span class='directive'>#define _IO_IN_BACKUP 0x100</span>
+<span class='directive'>#define _IO_LINE_BUF 0x200</span>
+<span class='directive'>#define _IO_TIED_PUT_GET 0x400 /* Set if put and get pointer logicly tied. */</span>
+<span class='directive'>#define _IO_CURRENTLY_PUTTING 0x800</span>
+<span class='directive'>#define _IO_IS_APPENDING 0x1000</span>
+<span class='directive'>#define _IO_IS_FILEBUF 0x2000</span>
+<span class='directive'>#define _IO_BAD_SEEN 0x4000</span>
+<span class='directive'>#define _IO_USER_LOCK 0x8000</span>
+
+<span class='directive'>#define _IO_FLAGS2_MMAP 1</span>
+<span class='directive'>#define _IO_FLAGS2_NOTCANCEL 2</span>
+<span class='directive'>#ifdef _LIBC</span><span class='preprocessor-if muted'>
+<span class='directive'># define _IO_FLAGS2_FORTIFY 4</span></span>
+<span class='directive'>#endif</span>
+<span class='directive'>#define _IO_FLAGS2_USER_WBUF 8</span>
+<span class='directive'>#ifdef _LIBC</span><span class='preprocessor-if muted'>
+<span class='directive'># define _IO_FLAGS2_SCANF_STD 16</span>
+<span class='directive'># define _IO_FLAGS2_NOCLOSE 32</span>
+<span class='directive'># define _IO_FLAGS2_CLOEXEC 64</span></span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* These are "formatting flags" matching the iostream fmtflags enum values. */</span>
+<span class='directive'>#define _IO_SKIPWS 01</span>
+<span class='directive'>#define _IO_LEFT 02</span>
+<span class='directive'>#define _IO_RIGHT 04</span>
+<span class='directive'>#define _IO_INTERNAL 010</span>
+<span class='directive'>#define _IO_DEC 020</span>
+<span class='directive'>#define _IO_OCT 040</span>
+<span class='directive'>#define _IO_HEX 0100</span>
+<span class='directive'>#define _IO_SHOWBASE 0200</span>
+<span class='directive'>#define _IO_SHOWPOINT 0400</span>
+<span class='directive'>#define _IO_UPPERCASE 01000</span>
+<span class='directive'>#define _IO_SHOWPOS 02000</span>
+<span class='directive'>#define _IO_SCIENTIFIC 04000</span>
+<span class='directive'>#define _IO_FIXED 010000</span>
+<span class='directive'>#define _IO_UNITBUF 020000</span>
+<span class='directive'>#define _IO_STDIO 040000</span>
+<span class='directive'>#define _IO_DONT_CLOSE 0100000</span>
+<span class='directive'>#define _IO_BOOLALPHA 0200000</span>
+
+
+<span class='decl decl-CXXRecord' id='0009000100090008'><span class='keyword struct'>struct</span> _IO_jump_t</span>;  <span class='keyword struct'>struct</span> _IO_FILE;
+
+<span class='comment'>/* Handle lock.  */</span>
+<span class='directive'>#ifdef _IO_MTSAFE_IO</span><span class='preprocessor-if muted'>
+<span class='comment'>/* _IO_lock_t defined in internal headers during the glibc build.  */</span></span>
+<span class='directive'>#else</span>
+<span class='def def-Typedef' id='000960010009600e'><span class='keyword typedef'>typedef</span> <span class='keyword void'>void</span> _IO_lock_t</span>;
+<span class='directive'>#endif</span>
+
+
+<span class='comment'>/* A streammarker remembers a position in a buffer. */</span>
+
+<span class='def def-CXXRecord' id='0009c001000ad001'><span class='keyword struct'>struct</span> _IO_marker {
+  <span class='def def-Field' id='0009d0030009d016'><a class='declaration-uses' href='../32/b7a89454949ee9.html#0009c001000ad001'><span class='keyword struct'>struct</span> _IO_marker *</a>_next</span>;
+  <span class='def def-Field' id='0009e0030009e014'><a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'><span class='keyword struct'>struct</span> _IO_FILE *</a>_sbuf</span>;
+  <span class='comment'>/* If _pos &gt;= 0
+ it points to _buf-&gt;Gbase()+_pos. FIXME comment */</span>
+  <span class='comment'>/* if _pos &lt; 0, it points to _buf-&gt;eBptr()+_pos. FIXME comment */</span>
+  <span class='def def-Field' id='000a2003000a2007'><span class='keyword int'>int</span> _pos</span>;
+<span class='directive'>#if 0</span><span class='preprocessor-if muted'>
+    <span class='keyword void'>void</span> set_streampos(streampos sp) { _spos = sp; }
+    <span class='keyword void'>void</span> set_offset(<span class='keyword int'>int</span> offset) { _pos = offset; _spos = (streampos)(-<span class='numeric'>2</span>); }
+  <span class='keyword public'>public</span>:
+    streammarker(streambuf *sb);
+    ~streammarker();
+    <span class='keyword int'>int</span> saving() { <span class='keyword return'>return</span>  _spos == -<span class='numeric'>2</span>; }
+    <span class='keyword int'>int</span> delta(streammarker&amp;);
+    <span class='keyword int'>int</span> delta();</span>
+<span class='directive'>#endif</span>
+}</span>;
+
+<span class='comment'>/* This is the structure from the libstdc++ codecvt class.  */</span>
+<span class='def def-Enum' id='000b0001000b6001'><span class='keyword enum'>enum</span> __codecvt_result
+{
+  <span class='def def-EnumConstant' id='000b2003000b2003'>__codecvt_ok</span>,
+  <span class='def def-EnumConstant' id='000b3003000b3003'>__codecvt_partial</span>,
+  <span class='def def-EnumConstant' id='000b4003000b4003'>__codecvt_error</span>,
+  <span class='def def-EnumConstant' id='000b5003000b5003'>__codecvt_noconv</span>
+}</span>;
+
+<span class='directive'>#if defined _LIBC || defined _GLIBCPP_USE_WCHAR_T</span><span class='preprocessor-if muted'>
+<span class='comment'>/* The order of the elements in the following struct must match the order
+   of the virtual functions in the libstdc++ codecvt class.  */</span>
+<span class='keyword struct'>struct</span> _IO_codecvt
+{
+  <span class='keyword void'>void</span> (*__codecvt_destr) (<span class='keyword struct'>struct</span> _IO_codecvt *);
+  <span class='keyword enum'>enum</span> __codecvt_result (*__codecvt_do_out) (<span class='keyword struct'>struct</span> _IO_codecvt *,
+					     __mbstate_t *,
+					     <span class='keyword const'>const</span> <span class='keyword wchar_t'>wchar_t</span> *,
+					     <span class='keyword const'>const</span> <span class='keyword wchar_t'>wchar_t</span> *,
+					     <span class='keyword const'>const</span> <span class='keyword wchar_t'>wchar_t</span> **, <span class='keyword char'>char</span> *,
+					     <span class='keyword char'>char</span> *, <span class='keyword char'>char</span> **);
+  <span class='keyword enum'>enum</span> __codecvt_result (*__codecvt_do_unshift) (<span class='keyword struct'>struct</span> _IO_codecvt *,
+						 __mbstate_t *, <span class='keyword char'>char</span> *,
+						 <span class='keyword char'>char</span> *, <span class='keyword char'>char</span> **);
+  <span class='keyword enum'>enum</span> __codecvt_result (*__codecvt_do_in) (<span class='keyword struct'>struct</span> _IO_codecvt *,
+					    __mbstate_t *,
+					    <span class='keyword const'>const</span> <span class='keyword char'>char</span> *, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *,
+					    <span class='keyword const'>const</span> <span class='keyword char'>char</span> **, <span class='keyword wchar_t'>wchar_t</span> *,
+					    <span class='keyword wchar_t'>wchar_t</span> *, <span class='keyword wchar_t'>wchar_t</span> **);
+  <span class='keyword int'>int</span> (*__codecvt_do_encoding) (<span class='keyword struct'>struct</span> _IO_codecvt *);
+  <span class='keyword int'>int</span> (*__codecvt_do_always_noconv) (<span class='keyword struct'>struct</span> _IO_codecvt *);
+  <span class='keyword int'>int</span> (*__codecvt_do_length) (<span class='keyword struct'>struct</span> _IO_codecvt *, __mbstate_t *,
+			      <span class='keyword const'>const</span> <span class='keyword char'>char</span> *, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *, _IO_size_t);
+  <span class='keyword int'>int</span> (*__codecvt_do_max_length) (<span class='keyword struct'>struct</span> _IO_codecvt *);
+
+  _IO_iconv_t __cd_in;
+  _IO_iconv_t __cd_out;
+};
+
+<span class='comment'>/* Extra data for wide character streams.  */</span>
+<span class='keyword struct'>struct</span> _IO_wide_data
+{
+  <span class='keyword wchar_t'>wchar_t</span> *_IO_read_ptr;	<span class='comment'>/* Current read pointer */</span>
+  <span class='keyword wchar_t'>wchar_t</span> *_IO_read_end;	<span class='comment'>/* End of get area. */</span>
+  <span class='keyword wchar_t'>wchar_t</span> *_IO_read_base;	<span class='comment'>/* Start of putback+get area. */</span>
+  <span class='keyword wchar_t'>wchar_t</span> *_IO_write_base;	<span class='comment'>/* Start of put area. */</span>
+  <span class='keyword wchar_t'>wchar_t</span> *_IO_write_ptr;	<span class='comment'>/* Current put pointer. */</span>
+  <span class='keyword wchar_t'>wchar_t</span> *_IO_write_end;	<span class='comment'>/* End of put area. */</span>
+  <span class='keyword wchar_t'>wchar_t</span> *_IO_buf_base;	<span class='comment'>/* Start of reserve area. */</span>
+  <span class='keyword wchar_t'>wchar_t</span> *_IO_buf_end;		<span class='comment'>/* End of reserve area. */</span>
+  <span class='comment'>/* The following fields are used to support backing up and undo. */</span>
+  <span class='keyword wchar_t'>wchar_t</span> *_IO_save_base;	<span class='comment'>/* Pointer to start of non-current get area. */</span>
+  <span class='keyword wchar_t'>wchar_t</span> *_IO_backup_base;	<span class='comment'>/* Pointer to first valid character of
+				   backup area */</span>
+  <span class='keyword wchar_t'>wchar_t</span> *_IO_save_end;	<span class='comment'>/* Pointer to end of non-current get area. */</span>
+
+  __mbstate_t _IO_state;
+  __mbstate_t _IO_last_state;
+  <span class='keyword struct'>struct</span> _IO_codecvt _codecvt;
+
+  <span class='keyword wchar_t'>wchar_t</span> _shortbuf[<span class='numeric'>1</span>];
+
+  <span class='keyword const'>const</span> <span class='keyword struct'>struct</span> _IO_jump_t *_wide_vtable;
+};</span>
+<span class='directive'>#endif</span>
+
+<span class='def def-CXXRecord' id='000f100100133001'><span class='keyword struct'>struct</span> _IO_FILE {
+  <span class='def def-Field' id='000f2003000f2007'><span class='keyword int'>int</span> _flags</span>;		<span class='comment'>/* High-order word is _IO_MAGIC; rest is flags. */</span>
+<span class='directive'>#define _IO_file_flags _flags</span>
+
+  <span class='comment'>/* The following pointers correspond to the C++ streambuf protocol. */</span>
+  <span class='comment'>/* Note:  Tk uses the _IO_read_ptr and _IO_read_end fields directly. */</span>
+  <span class='def def-Field' id='000f7003000f7009'><span class='keyword char'>char</span>* _IO_read_ptr</span>;	<span class='comment'>/* Current read pointer */</span>
+  <span class='def def-Field' id='000f8003000f8009'><span class='keyword char'>char</span>* _IO_read_end</span>;	<span class='comment'>/* End of get area. */</span>
+  <span class='def def-Field' id='000f9003000f9009'><span class='keyword char'>char</span>* _IO_read_base</span>;	<span class='comment'>/* Start of putback+get area. */</span>
+  <span class='def def-Field' id='000fa003000fa009'><span class='keyword char'>char</span>* _IO_write_base</span>;	<span class='comment'>/* Start of put area. */</span>
+  <span class='def def-Field' id='000fb003000fb009'><span class='keyword char'>char</span>* _IO_write_ptr</span>;	<span class='comment'>/* Current put pointer. */</span>
+  <span class='def def-Field' id='000fc003000fc009'><span class='keyword char'>char</span>* _IO_write_end</span>;	<span class='comment'>/* End of put area. */</span>
+  <span class='def def-Field' id='000fd003000fd009'><span class='keyword char'>char</span>* _IO_buf_base</span>;	<span class='comment'>/* Start of reserve area. */</span>
+  <span class='def def-Field' id='000fe003000fe009'><span class='keyword char'>char</span>* _IO_buf_end</span>;	<span class='comment'>/* End of reserve area. */</span>
+  <span class='comment'>/* The following fields are used to support backing up and undo. */</span>
+  <span class='def def-Field' id='0010000300100009'><span class='keyword char'>char</span> *_IO_save_base</span>; <span class='comment'>/* Pointer to start of non-current get area. */</span>
+  <span class='def def-Field' id='0010100300101009'><span class='keyword char'>char</span> *_IO_backup_base</span>;  <span class='comment'>/* Pointer to first valid character of backup area */</span>
+  <span class='def def-Field' id='0010200300102009'><span class='keyword char'>char</span> *_IO_save_end</span>; <span class='comment'>/* Pointer to end of non-current get area. */</span>
+
+  <span class='def def-Field' id='0010400300104016'><a class='declaration-uses' href='../32/b7a89454949ee9.html#0009c001000ad001'><span class='keyword struct'>struct</span> _IO_marker *</a>_markers</span>;
+
+  <span class='def def-Field' id='0010600300106014'><a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'><span class='keyword struct'>struct</span> _IO_FILE *</a>_chain</span>;
+
+  <span class='def def-Field' id='0010800300108007'><span class='keyword int'>int</span> _fileno</span>;
+<span class='directive'>#if 0</span><span class='preprocessor-if muted'>
+  <span class='keyword int'>int</span> _blksize;</span>
+<span class='directive'>#else</span>
+  <span class='def def-Field' id='0010c0030010c007'><span class='keyword int'>int</span> _flags2</span>;
+<span class='directive'>#endif</span>
+  <span class='def def-Field' id='000250130010e00d0010e0030010e00d'>_IO_off_t _old_offset</span>; <span class='comment'>/* This used to be _offset but it's too small.  */</span>
+
+<span class='directive'>#define __HAVE_COLUMN /* temporary */</span>
+  <span class='comment'>/* 1+column number of pbase(); 0 is unknown. */</span>
+  <span class='def def-Field' id='0011200300112012'><span class='keyword unsigned'>unsigned</span> <span class='keyword short'>short</span> _cur_column</span>;
+  <span class='def def-Field' id='001130030011300f'><span class='keyword signed'>signed</span> <span class='keyword char'>char</span> _vtable_offset</span>;
+  <span class='def def-Field' id='0011400300114013'><span class='keyword char'>char</span> _shortbuf[<span class='numeric'>1</span>]</span>;
+
+  <span class='comment'>/*  char* _save_gptr;  char* _save_egptr; */</span>
+
+  <span class='def def-Field' id='001180030011800f'>_IO_lock_t *_lock</span>;
+<span class='directive'>#ifdef _IO_USE_OLD_IO_FILE</span><span class='preprocessor-if muted'>
+};
+
+<span class='keyword struct'>struct</span> _IO_FILE_complete
+{
+  <span class='keyword struct'>struct</span> _IO_FILE _file;</span>
+<span class='directive'>#endif</span>
+<span class='directive'>#if defined _G_IO_IO_FILE_VERSION &amp;&amp; _G_IO_IO_FILE_VERSION == 0x20001</span>
+  <span class='def def-Field' id='000260150012100f001210030012100f'>_IO_off64_t _offset</span>;
+<span class='directive'># if defined _LIBC || defined _GLIBCPP_USE_WCHAR_T</span><span class='preprocessor-if muted'>
+  <span class='comment'>/* Wide character stream stuff.  */</span>
+  <span class='keyword struct'>struct</span> _IO_codecvt *_codecvt;
+  <span class='keyword struct'>struct</span> _IO_wide_data *_wide_data;
+  <span class='keyword struct'>struct</span> _IO_FILE *_freeres_list;
+  <span class='keyword void'>void</span> *_freeres_buf;</span>
+<span class='directive'># else</span>
+  <span class='def def-Field' id='0012900300129009'><span class='keyword void'>void</span> *__pad1</span>;
+  <span class='def def-Field' id='0012a0030012a009'><span class='keyword void'>void</span> *__pad2</span>;
+  <span class='def def-Field' id='0012b0030012b009'><span class='keyword void'>void</span> *__pad3</span>;
+  <span class='def def-Field' id='0012c0030012c009'><span class='keyword void'>void</span> *__pad4</span>;
+<span class='directive'># endif</span>
+  <span class='def def-Field' id='0012e0030012e00a'>size_t __pad5</span>;
+  <span class='def def-Field' id='0012f0030012f007'><span class='keyword int'>int</span> _mode</span>;
+  <span class='comment'>/* Make sure we don't get into trouble again.  */</span>
+  <span class='def def-Field' id='001310030013104a'><span class='keyword char'>char</span> _unused2[<span class='numeric'>15</span> * <span class='keyword sizeof'>sizeof</span> (<span class='keyword int'>int</span>) - <span class='numeric'>4</span> * <span class='keyword sizeof'>sizeof</span> (<span class='keyword void'>void</span> *) - <span class='keyword sizeof'>sizeof</span> (size_t)]</span>;
+<span class='directive'>#endif</span>
+}</span>;
+
+<span class='directive'>#ifndef __cplusplus</span><span class='preprocessor-if muted'>
+<span class='keyword typedef'>typedef</span> <span class='keyword struct'>struct</span> _IO_FILE _IO_FILE;</span>
+<span class='directive'>#endif</span>
+
+<span class='decl decl-CXXRecord' id='0013900100139008'><span class='keyword struct'>struct</span> _IO_FILE_plus</span>;
+
+<span class='decl decl-Var' id='0013b0010013b01d'><span class='keyword extern'>extern</span> <a class='declaration-uses' href='../32/b7a89454949ee9.html#0013900100139008'><span class='keyword struct'>struct</span> _IO_FILE_plus</a> _IO_2_1_stdin_</span>;
+<span class='decl decl-Var' id='0013c0010013c01d'><span class='keyword extern'>extern</span> <a class='declaration-uses' href='../32/b7a89454949ee9.html#0013900100139008'><span class='keyword struct'>struct</span> _IO_FILE_plus</a> _IO_2_1_stdout_</span>;
+<span class='decl decl-Var' id='0013d0010013d01d'><span class='keyword extern'>extern</span> <a class='declaration-uses' href='../32/b7a89454949ee9.html#0013900100139008'><span class='keyword struct'>struct</span> _IO_FILE_plus</a> _IO_2_1_stderr_</span>;
+<span class='directive'>#ifndef _LIBC</span>
+<span class='directive'>#define _IO_stdin ((_IO_FILE*)(&amp;_IO_2_1_stdin_))</span>
+<span class='directive'>#define _IO_stdout ((_IO_FILE*)(&amp;_IO_2_1_stdout_))</span>
+<span class='directive'>#define _IO_stderr ((_IO_FILE*)(&amp;_IO_2_1_stderr_))</span>
+<span class='directive'>#else</span><span class='preprocessor-if muted'>
+<span class='keyword extern'>extern</span> _IO_FILE *_IO_stdin attribute_hidden;
+<span class='keyword extern'>extern</span> _IO_FILE *_IO_stdout attribute_hidden;
+<span class='keyword extern'>extern</span> _IO_FILE *_IO_stderr attribute_hidden;</span>
+<span class='directive'>#endif</span>
+
+
+<span class='comment'>/* Functions to do I/O and file management for a stream.  */</span>
+
+<span class='comment'>/* Read NBYTES bytes from COOKIE into a buffer pointed to by BUF.
+   Return number of bytes read.  */</span>
+<span class='def def-Typedef' id='0014d0010014d04d'><span class='keyword typedef'>typedef</span> __ssize_t __io_read_fn (<span class='keyword void'>void</span> *__cookie, <span class='keyword char'>char</span> *__buf, size_t __nbytes)</span>;
+
+<span class='comment'>/* Write N bytes pointed to by BUF to COOKIE.  Write all N bytes
+   unless there is an error.  Return number of bytes written.  If
+   there is an error, return 0 and do not write anything.  If the file
+   has been opened for append (__mode.__append set), then set the file
+   pointer to the end of the file and then do the write; if not, just
+   write at the current file pointer.  */</span>
+<span class='def def-Typedef' id='0015500100156010'><span class='keyword typedef'>typedef</span> __ssize_t __io_write_fn (<span class='keyword void'>void</span> *__cookie, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__buf,
+				 size_t __n)</span>;
+
+<span class='comment'>/* Move COOKIE's file position to *POS bytes from the
+   beginning of the file (if W is SEEK_SET),
+   the current position (if W is SEEK_CUR),
+   or the end of the file (if W is SEEK_END).
+   Set *POS to the new file position.
+   Returns zero if successful, nonzero if not.  */</span>
+<span class='def def-Typedef' id='0015e0010015e046'><span class='keyword typedef'>typedef</span> <span class='keyword int'>int</span> __io_seek_fn (<span class='keyword void'>void</span> *__cookie, _IO_off64_t *__pos, <span class='keyword int'>int</span> __w)</span>;
+
+<span class='comment'>/* Close COOKIE.  */</span>
+<span class='def def-Typedef' id='001610010016102a'><span class='keyword typedef'>typedef</span> <span class='keyword int'>int</span> __io_close_fn (<span class='keyword void'>void</span> *__cookie)</span>;
+
+
+<span class='directive'>#ifdef _GNU_SOURCE</span>
+<span class='comment'>/* User-visible names for the above.  */</span>
+<span class='def def-Typedef' id='0016600100166016'><span class='keyword typedef'>typedef</span> __io_read_fn cookie_read_function_t</span>;
+<span class='def def-Typedef' id='0016700100167017'><span class='keyword typedef'>typedef</span> __io_write_fn cookie_write_function_t</span>;
+<span class='def def-Typedef' id='0016800100168016'><span class='keyword typedef'>typedef</span> __io_seek_fn cookie_seek_function_t</span>;
+<span class='def def-Typedef' id='0016900100169017'><span class='keyword typedef'>typedef</span> __io_close_fn cookie_close_function_t</span>;
+
+<span class='comment'>/* The structure with the cookie function pointers.  */</span>
+<span class='def def-Typedef' id='0016c00100172003'><span class='keyword typedef'>typedef</span> <span class='def def-CXXRecord' id='0016c00900172001'><span class='keyword struct'>struct</span>
+{
+  <span class='def def-Field' id='0016e0030016e011'>__io_read_fn *read</span>;		<span class='comment'>/* Read bytes.  */</span>
+  <span class='def def-Field' id='0016f0030016f012'>__io_write_fn *write</span>;		<span class='comment'>/* Write bytes.  */</span>
+  <span class='def def-Field' id='0017000300170011'>__io_seek_fn *seek</span>;		<span class='comment'>/* Seek/tell file position.  */</span>
+  <span class='def def-Field' id='0017100300171012'>__io_close_fn *close</span>;		<span class='comment'>/* Close file.  */</span>
+}</span> _IO_cookie_io_functions_t</span>;
+<span class='def def-Typedef' id='0017300100173023'><span class='keyword typedef'>typedef</span> _IO_cookie_io_functions_t cookie_io_functions_t</span>;
+
+<span class='decl decl-CXXRecord' id='0017500100175008'><span class='keyword struct'>struct</span> _IO_cookie_file</span>;
+
+<span class='comment'>/* Initialize one of those.  */</span>
+<span class='decl decl-Function' id='0017800100179038'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> _IO_cookie_init (<a class='declaration-uses' href='../32/b7a89454949ee9.html#0017500100175008'><span class='keyword struct'>struct</span> _IO_cookie_file *</a>__cfile, <span class='keyword int'>int</span> __read_write,
+			     <span class='keyword void'>void</span> *__cookie, <a class='declaration-uses' href='../32/b7a89454949ee9.html#0016c00900172001'>_IO_cookie_io_functions_t</a> __fns)</span>;
+<span class='directive'>#endif</span>
+
+
+<span class='directive'>#ifdef __cplusplus</span>
+<span class='keyword extern'>extern</span> <span class='string'>"C"</span> {
+<span class='directive'>#endif</span>
+
+<span class='decl decl-Function' id='0018100100181023'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __underflow (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a>)</span>;
+<span class='decl decl-Function' id='001820010018201f'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __uflow (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a>)</span>;
+<span class='decl decl-Function' id='0018300100183027'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __overflow (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a>, <span class='keyword int'>int</span>)</span>;
+<span class='directive'>#if defined _LIBC || defined _GLIBCPP_USE_WCHAR_T</span><span class='preprocessor-if muted'>
+<span class='keyword extern'>extern</span> _IO_wint_t __wunderflow (_IO_FILE *);
+<span class='keyword extern'>extern</span> _IO_wint_t __wuflow (_IO_FILE *);
+<span class='keyword extern'>extern</span> _IO_wint_t __woverflow (_IO_FILE *, _IO_wint_t);</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#if  __GNUC__ &gt;= 3</span>
+<span class='directive'># define _IO_BE(expr, res) __builtin_expect ((expr), res)</span>
+<span class='directive'>#else</span><span class='preprocessor-if muted'>
+<span class='directive'># define _IO_BE(expr, res) (expr)</span></span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#define _IO_getc_unlocked(_fp) \
+       (_IO_BE ((_fp)-&gt;_IO_read_ptr &gt;= (_fp)-&gt;_IO_read_end, 0) \
+	? __uflow (_fp) : *(unsigned char *) (_fp)-&gt;_IO_read_ptr++)</span>
+<span class='directive'>#define _IO_peekc_unlocked(_fp) \
+       (_IO_BE ((_fp)-&gt;_IO_read_ptr &gt;= (_fp)-&gt;_IO_read_end, 0) \
+	  &amp;&amp; __underflow (_fp) == EOF ? EOF \
+	: *(unsigned char *) (_fp)-&gt;_IO_read_ptr)</span>
+<span class='directive'>#define _IO_putc_unlocked(_ch, _fp) \
+   (_IO_BE ((_fp)-&gt;_IO_write_ptr &gt;= (_fp)-&gt;_IO_write_end, 0) \
+    ? __overflow (_fp, (unsigned char) (_ch)) \
+    : (unsigned char) (*(_fp)-&gt;_IO_write_ptr++ = (_ch)))</span>
+
+<span class='directive'>#if defined _LIBC || defined _GLIBCPP_USE_WCHAR_T</span><span class='preprocessor-if muted'>
+<span class='directive'># define _IO_getwc_unlocked(_fp) \
+  (_IO_BE ((_fp)-&gt;_wide_data == NULL					\
+	   || ((_fp)-&gt;_wide_data-&gt;_IO_read_ptr				\
+	       &gt;= (_fp)-&gt;_wide_data-&gt;_IO_read_end), 0)			\
+   ? __wuflow (_fp) : (_IO_wint_t) *(_fp)-&gt;_wide_data-&gt;_IO_read_ptr++)</span>
+<span class='directive'># define _IO_putwc_unlocked(_wch, _fp) \
+  (_IO_BE ((_fp)-&gt;_wide_data == NULL					\
+	   || ((_fp)-&gt;_wide_data-&gt;_IO_write_ptr				\
+	       &gt;= (_fp)-&gt;_wide_data-&gt;_IO_write_end), 0)			\
+   ? __woverflow (_fp, _wch)						\
+   : (_IO_wint_t) (*(_fp)-&gt;_wide_data-&gt;_IO_write_ptr++ = (_wch)))</span></span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#define _IO_feof_unlocked(__fp) (((__fp)-&gt;_flags &amp; _IO_EOF_SEEN) != 0)</span>
+<span class='directive'>#define _IO_ferror_unlocked(__fp) (((__fp)-&gt;_flags &amp; _IO_ERR_SEEN) != 0)</span>
+
+<span class='decl decl-Function' id='001ad001001ad024'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> _IO_getc (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a>__fp)</span>;
+<span class='decl decl-Function' id='001ae001001ae02d'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> _IO_putc (<span class='keyword int'>int</span> __c, <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a>__fp)</span>;
+<span class='decl decl-Function' id='001af0010003c01b001af001001af026'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> _IO_feof (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a>__fp) __THROW</span>;
+<span class='decl decl-Function' id='001b00010003c01b001b0001001b0028'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> _IO_ferror (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a>__fp) __THROW</span>;
+
+<span class='decl decl-Function' id='001b2001001b202c'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> _IO_peekc_locked (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a>__fp)</span>;
+
+<span class='comment'>/* This one is for Emacs. */</span>
+<span class='directive'>#define _IO_PENDING_OUTPUT_COUNT(_fp)	\
+	((_fp)-&gt;_IO_write_ptr - (_fp)-&gt;_IO_write_base)</span>
+
+<span class='decl decl-Function' id='001b80010003c01b001b8001001b8028'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> _IO_flockfile (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a>) __THROW</span>;
+<span class='decl decl-Function' id='001b90010003c01b001b9001001b902a'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> _IO_funlockfile (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a>) __THROW</span>;
+<span class='decl decl-Function' id='001ba0010003c01b001ba001001ba02a'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> _IO_ftrylockfile (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a>) __THROW</span>;
+
+<span class='directive'>#ifdef _IO_MTSAFE_IO</span><span class='preprocessor-if muted'>
+<span class='directive'># define _IO_peekc(_fp) _IO_peekc_locked (_fp)</span>
+<span class='directive'># define _IO_flockfile(_fp) \
+  if (((_fp)-&gt;_flags &amp; _IO_USER_LOCK) == 0) _IO_flockfile (_fp)</span>
+<span class='directive'># define _IO_funlockfile(_fp) \
+  if (((_fp)-&gt;_flags &amp; _IO_USER_LOCK) == 0) _IO_funlockfile (_fp)</span></span>
+<span class='directive'>#else</span>
+<span class='directive'># define _IO_peekc(_fp) _IO_peekc_unlocked (_fp)</span>
+<span class='directive'># define _IO_flockfile(_fp) /**/</span>
+<span class='directive'># define _IO_funlockfile(_fp) /**/</span>
+<span class='directive'># define _IO_ftrylockfile(_fp) /**/</span>
+<span class='directive'># define _IO_cleanup_region_start(_fct, _fp) /**/</span>
+<span class='directive'># define _IO_cleanup_region_end(_Doit) /**/</span>
+<span class='directive'>#endif /* !_IO_MTSAFE_IO */</span>
+
+<span class='decl decl-Function' id='001cb001001cc020'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> _IO_vfscanf (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a> __restrict, <span class='keyword const'>const</span> <span class='keyword char'>char</span> * __restrict,
+			_IO_va_list, <span class='keyword int'>int</span> *__restrict)</span>;
+<span class='decl decl-Function' id='001cd001001ce010'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> _IO_vfprintf (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a>__restrict, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict,
+			 _IO_va_list)</span>;
+<span class='decl decl-Function' id='001cf001001cf03a'><span class='keyword extern'>extern</span> _IO_ssize_t _IO_padn (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a>, <span class='keyword int'>int</span>, _IO_ssize_t)</span>;
+<span class='decl decl-Function' id='001d0001001d003c'><span class='keyword extern'>extern</span> _IO_size_t _IO_sgetn (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a>, <span class='keyword void'>void</span> *, _IO_size_t)</span>;
+
+<span class='decl decl-Function' id='001d2001001d2042'><span class='keyword extern'>extern</span> _IO_off64_t _IO_seekoff (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a>, _IO_off64_t, <span class='keyword int'>int</span>, <span class='keyword int'>int</span>)</span>;
+<span class='decl decl-Function' id='001d3001001d303d'><span class='keyword extern'>extern</span> _IO_off64_t _IO_seekpos (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a>, _IO_off64_t, <span class='keyword int'>int</span>)</span>;
+
+<span class='decl decl-Function' id='001d50010003c01b001d5001001d502f'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> _IO_free_backup_area (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>_IO_FILE *</a>) __THROW</span>;
+
+<span class='directive'>#if defined _LIBC || defined _GLIBCPP_USE_WCHAR_T</span><span class='preprocessor-if muted'>
+<span class='keyword extern'>extern</span> _IO_wint_t _IO_getwc (_IO_FILE *__fp);
+<span class='keyword extern'>extern</span> _IO_wint_t _IO_putwc (<span class='keyword wchar_t'>wchar_t</span> __wc, _IO_FILE *__fp);
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> _IO_fwide (_IO_FILE *__fp, <span class='keyword int'>int</span> __mode) __THROW;
+<span class='directive'># if __GNUC__ &gt;= 2</span>
+<span class='comment'>/* While compiling glibc we have to handle compatibility with very old
+   versions.  */</span>
+<span class='directive'>#  if defined _LIBC &amp;&amp; defined SHARED</span>
+<span class='directive'>#   include &lt;shlib-compat.h&gt;</span>
+<span class='directive'>#   if SHLIB_COMPAT (libc, GLIBC_2_0, GLIBC_2_1)</span>
+<span class='directive'>#    define _IO_fwide_maybe_incompatible \
+  (__builtin_expect (&amp;_IO_stdin_used == NULL, 0))</span>
+<span class='keyword extern'>extern</span> <span class='keyword const'>const</span> <span class='keyword int'>int</span> _IO_stdin_used;
+weak_extern (_IO_stdin_used);
+<span class='directive'>#   endif</span>
+<span class='directive'>#  endif</span>
+<span class='directive'>#  ifndef _IO_fwide_maybe_incompatible</span>
+<span class='directive'>#   define _IO_fwide_maybe_incompatible (0)</span>
+<span class='directive'>#  endif</span>
+<span class='comment'>/* A special optimized version of the function above.  It optimizes the
+   case of initializing an unoriented byte stream.  */</span>
+<span class='directive'>#  define _IO_fwide(__fp, __mode) \
+  ({ int __result = (__mode);						      \
+     if (__result &lt; 0 &amp;&amp; ! _IO_fwide_maybe_incompatible)		      \
+       {								      \
+	 if ((__fp)-&gt;_mode == 0)					      \
+	   /* We know that all we have to do is to set the flag.  */	      \
+	   (__fp)-&gt;_mode = -1;						      \
+	 __result = (__fp)-&gt;_mode;					      \
+       }								      \
+     else if (__builtin_constant_p (__mode) &amp;&amp; (__mode) == 0)		      \
+       __result = _IO_fwide_maybe_incompatible ? -1 : (__fp)-&gt;_mode;	      \
+     else								      \
+       __result = _IO_fwide (__fp, __result);				      \
+     __result; })</span>
+<span class='directive'># endif</span>
+
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> _IO_vfwscanf (_IO_FILE * __restrict, <span class='keyword const'>const</span> <span class='keyword wchar_t'>wchar_t</span> * __restrict,
+			 _IO_va_list, <span class='keyword int'>int</span> *__restrict);
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> _IO_vfwprintf (_IO_FILE *__restrict, <span class='keyword const'>const</span> <span class='keyword wchar_t'>wchar_t</span> *__restrict,
+			  _IO_va_list);
+<span class='keyword extern'>extern</span> _IO_ssize_t _IO_wpadn (_IO_FILE *, wint_t, _IO_ssize_t);
+<span class='keyword extern'>extern</span> <span class='keyword void'>void</span> _IO_free_wbackup_area (_IO_FILE *) __THROW;</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef __LDBL_COMPAT</span><span class='preprocessor-if muted'>
+<span class='directive'># include &lt;bits/libio-ldbl.h&gt;</span></span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef __cplusplus</span>
+}
+<span class='directive'>#endif</span>
+
+<span class='directive'>#endif /* _IO_STDIO_H */</span></span><span class='cl'></span></pre></div><script src="../../globals.js"></script><script src="../../static/jquery.min.js"></script><script src="../../static/bootstrap/js/bootstrap.min.js"></script><script src="../../static/bootstrap/js/dropdowns-enhancement.js"></script><script src="../../static/animated-modal/animatedModal.js"></script><script src="../../static/jquery.autocomplete.js"></script><script src="../../static/js.cookie.js"></script><script src="../../static/local.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-40501108-2', 'auto');ga('send', 'pageview');</script></body></html>

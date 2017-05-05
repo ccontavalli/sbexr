@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{project}}{{#project}} {{tag}} - {{/project}}{{curr_path}}</title>
+  {{>INCLUDE_CSS}}
+</head>
+
+<body>
+<div class="container-fluid">
+{{>INCLUDE_NAVBAR}}
+<div class="row">
+
+<div class="col-md-4">
+<table class="table table-hover table-condensed">
+{{#directories}}
+  <tr>
+    <th colspan="2">Directory</th>
+    <th>Files</th>
+  </tr>
+{{#directory}}
+  <tr>
+    <td width="20"><i class="glyphicon glyphicon-folder-open"></i></td>
+    <td><a href="{{href}}">{{name}}</a></td>
+    <td>{{size}}</td>
+  </tr>
+{{/directory}}
+{{#files}}
+  <tr>
+    <td colspan="3"></td>
+  </tr>
+{{/files}}
+{{/directories}}
+
+{{#files}}
+  <tr>
+    <th colspan="2">File</th>
+    <th>Size</th>
+  </tr>
+{{#file}}
+  <tr>
+    <td width="20">
+      {{#parsed}}<i title="Code - parsed & indexed" class="fa fa-code"></i>{{/parsed}}
+      {{#blob}}<i title="Binary blob - ignored" class="fa fa-ban"></i>{{/blob}}
+      {{#text}}<i title="Text data - indexed" class="fa fa-file-text-o"></i>{{/text}}
+      {{#media}}<i title="Media - download only" class="fa fa-download"></i>{{/media}}
+    </td>
+    <td><a href="{{href}}">{{name}}</a></td>
+    <td>{{size}}</td>
+  </tr>
+{{/file}}
+{{/files}}
+</table>
+</div>
+
+{{#index}}
+<div class="col-md-8">
+<h2>{{project}} {{tag}} - {{index_file}}</h2>
+<pre class='code'><span id='line-number'>{{#lines}}<i>{{line}}</i>{{/lines}}</span>{{code}}<span class='cl'></span></pre>
+</div>
+{{/index}}
+
+</div>
+</div>
+{{>INCLUDE_JS}}
+</body>
+</html>
+

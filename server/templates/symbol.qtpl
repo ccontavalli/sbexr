@@ -1,0 +1,96 @@
+{% import "github.com/ccontavalli/sbexr/server/structs" %}
+{% import "strings" %}
+{% code
+type SymbolPage struct {
+  BasePage
+  Symbol *structs.SymbolObject
+}
+%}
+
+{% stripspace %}
+{% func GetHumanLinkage(value int) %}
+  {% switch value %}
+    {% case 1 %}
+      local 
+    {% case 2 %}
+      local
+    {% case 3 %}
+      global
+    {% case 4 %}
+      global
+    {% default %}
+  {% endswitch %}
+{% endfunc %}
+{% endstripspace %}
+
+{% stripspace %}
+{% func GetHumanAccess(value int) %}
+  {% switch value %}
+    {% case 0 %}
+      public
+    {% case 1 %}
+      protected
+    {% case 2 %}
+      private
+    {% default %}
+  {% endswitch %}
+{% endfunc %}
+{% endstripspace %}
+
+{% stripspace %}
+{% func GetHumanKind(kind string) %}
+  {% if kind == "ParmVar" %}
+    function parameter
+  {% elseif kind == "Var" %}
+    variable
+  {% elseif kind == "CXXRecord" %}
+    struct or class
+  {% elseif kind == "CXXMethod" %}
+    method
+  {% elseif kind == "EnumConstant" %}
+    enum value
+  {% else %}
+    {%s strings.ToLower(kind) %}
+  {% endif %}
+{% endfunc %}
+{% endstripspace %}
+
+
+{% func (page *SymbolPage) AddProvider(provider *structs.SymbolProvider) %}
+  <a href="{%s provider.Href %}">{%s provider.Location %}</a>: {%s provider.Snippet %}
+{% endfunc %}
+
+{% collapsespace %}
+{% func (page *SymbolPage) Body() %}
+<h1>Symbol: {%s page.Symbol.Name %}</h1>
+
+<ul>
+{% for count, kindlinkage := range page.Symbol.Kinds %}
+  <h2 id="SL{%d count %}">{%= GetHumanKind(kindlinkage.Kind) %}{% space %}{%= GetHumanAccess(kindlinkage.Access) %}{% space %}{%= GetHumanLinkage(kindlinkage.Linkage) %}</h2>
+  
+  {% if len(kindlinkage.Decls) > 0 %}
+    <h3>Declared as a prototype...</h3>
+    <ul>
+    {% for _, provider := range kindlinkage.Decls %}
+      <li>{%= page.AddProvider(&provider) %}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+  {% if len(kindlinkage.Defs) > 0 %}
+    <h3>Defined...</h3>
+    <ul>
+    {% for _, provider := range kindlinkage.Defs %}
+      <li>{%= page.AddProvider(&provider) %}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endfor %}
+</ul>
+{% endfunc %}
+{% endcollapsespace %}
+
+{% stripspace %}
+{% func (page *SymbolPage) Title() %}
+  {%= page.BasePage.Title() %}symbol:{% space %}{%s page.Symbol.Name %}
+{% endfunc %}
+{% endstripspace %}

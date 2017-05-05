@@ -1,0 +1,17 @@
+*.o
+start
+massif*
+ast
+rewriter
+sbexr
+output/sources
+libs/*.o
+compile_commands.json
+.*.swp
+.*.swo
+output/*.json
+output/tree.txt
+output/globals.js
+indexes/
+examples/
+output/static/news.json

@@ -1,0 +1,117 @@
+  body { padding-top: 70px; background-color: white; }
+  .type { color: green}
+  .code { border-style: none; border-collapse:collapse; width:100%; }
+  .code { font-family: 'Monospace', monospace; font-size:10pt }
+  .code { line-height: 1.2em; background-color: transparent; z-index: 10; }
+
+#path li {
+  display: inline
+}
+#path {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+#path li:after {
+  content: "/"
+}
+
+#beta {
+  position: fixed;
+  bottom: 0px;
+  right: 10px;
+  opacity: 0.9;
+}
+
+#line-number {
+  float:left;
+  margin:0 1em 0 -1em;
+  border-right:1px solid;
+  border-right-color: #9E9E9E;
+  text-align:right;
+}
+#line-number i {
+  display:block;
+  padding:0 .5em 0 1em;
+  font-style: normal;
+  font-size: smaller;
+  color: #9E9E9E;
+}
+
+pre .cl {
+  display:block;
+  clear:both;
+}
+
+.js-highlight {
+  float: left; 
+  background-color: yellow;
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+}
+
+.js-prompt {
+  float: left;
+  position: fixed;
+  bottom: 0;
+  background: white;
+  width: 100%;
+}
+.correct-height {
+  height: 34px !important;
+}
+
+.autocomplete-suggestions { border: 1px solid #999; background-color: rgba(255, 255, 255, 0.9); overflow: auto; }
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+
+  .compound { display: inline-block; }
+  .compound:hover { border-left-style: solid; border-left-width: 2px; }
+  .compound.level-0:hover { margin-left:  -2px; border-left-color: yellow; }
+  .compound.level-1:hover { margin-left:  -4px; padding-left:  2px; border-left-color: green; }
+  .compound.level-2:hover { margin-left:  -6px; padding-left:  4px; border-left-color: orange; }
+  .compound.level-3:hover { margin-left:  -8px; padding-left:  6px; border-left-color: brown; }
+  .compound.level-4:hover { margin-left: -12px; padding-left:  8px; border-left-color: brown; }
+  .compound.level-5:hover { margin-left: -14px; padding-left: 10px; border-left-color: brown; }
+  .compound.level-6:hover { margin-left: -16px; padding-left: 12px; border-left-color: brown; }
+  .compound.level-7:hover { margin-left: -18px; padding-left: 14px; border-left-color: brown; }
+  .compound.level-8:hover { margin-left: -20px; padding-left: 16px; border-left-color: brown; }
+  .compound.level-9:hover { margin-left: -22px; padding-left: 18px; border-left-color: brown; }
+  .comment { color: #00C4FF; font-style: oblique }
+  .string { color: purple; }
+  .numeric { color: purple; }
+  .char { color: purple; }
+  .directive { color: #0400FF; }
+  .keyword { color: #4CAF50; }
+  a.decl:hover { text-decoration: none !important; }
+  /* Yellow highlighting of href targets */
+  *:target { animation: hilite 2.5s; }
+  @keyframes hilite {
+    0% {background: transparent;}
+    10% {background: #f8f99a;}
+    100% {background: transparent;}
+  }
+  /* HREF within the same page refer to elements
+   * with the id attribute. This trick makes those elements
+   * not appear at the top of the page when a link is followed,
+   * rather 75 pixel below, allowing for the navbar at the top
+   * not to hide content, while being nicer to use. */
+  *[id]:before { 
+    display: block; 
+    content: " "; 
+    margin-top: -75px; 
+    height: 75px; 
+    visibility: hidden; 
+    float: left;
+    z-index: 3;
+  }
+  .muted *, .muted span, .muted {
+    /* color: grey !important; */
+    opacity: 0.5 !important;
+    /* text-decoration: blink !important; */
+  }
+

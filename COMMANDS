@@ -1,0 +1,7 @@
+sg network "git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git"
+sg network "git pull"
+
+make mrproper
+make allmodconfig
+make -j4 all
+

@@ -1,0 +1,95 @@
+Find library containing symbol:
+
+cd /usr/lib/llvm-3.9/lib
+for file in `find . -type f -name '*.so' -o -name '*.a'`; do objdump -C -t "$file" |grep -v UND |grep clang::RewriteBuffer::write && echo "====== $file"; done;
+
+$ clang-3.8 -Xclang -ast-dump -fsyntax-only ./test.c |less -r
+
+Use:
+
+twitter typeahead.js instead of devbridge autocomplete plugin.
+twitter typeahead.js is unmaintained, consider corejavascript/typeahead.js instead.
+
+grantlee
+ctpp
+libwt
+libctemplate2
+libctemplate3
+
+indexes:
+
+go get github.com/google/codesearch/cmd/...
+  + regex search.
+  + index is about 100 Mb.
+  - requires access to the original source files.
+  - it's in the form of a tool, needs to be turned into a library
+
+
+SCORING
+=======
+- # of uses or references?
+- # of files that include header or definition?
+
+
+FUNCTION
+========
+- "link to body"
+
+- Comments on top
+- Prototype
+
+- link to body
+
+- Callers
+- Callees
+
+- is it called under lock?
+  does it lock any resource?
+
+- link to indexed files that contain the function name.
+
+
+TYPE
+====
+- "link to body"
+
+- if complex type, comment.
+- where it comes from
+  (eg, typedefs, auto, ...)
+- which functions modify it, with some context. (at least, top functions)
+  (private, protected, public)
+
+- which functions take it, with some context.
+
+- inheritance
+
+FOR FUNCTION POINTERS:
+=====================
+- which functions implement that interface?
+- which functions are assigned to that field?
+
+
+
+
+==========
+Each token / declaration / ... has a Location.
+
+Each location, has a place where the characters there have been typed. This is the SpellingLocation.
+
+Additionally, there is a location where this code is effectively running. This is the ExpansionLocation.
+
+Example:
+# define FOO extern "C" {  
+# define BAR };
+
+
+FOO  // ORIGINAL LOCATION AND EXPANSION LOCATION
+test
+BAR  // ORIGINAL LOCAITON AND EXPANSION LOCATION
+
+==== SEARCH PRIORITIZATION
+
+- local symbols (eg, same file and include unit as currently viewed file?)
+
+- perfect matches first (or matches with fewest extra characters?)
+- prefer most used functions

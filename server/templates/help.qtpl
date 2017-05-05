@@ -1,0 +1,38 @@
+{% code
+type HelpPage struct {
+  BasePage
+}
+%}
+
+{% func (page *HelpPage) Body() %}
+<div class="container-fluid" id="sbexr-help-data">
+
+<h4>KEY Bindings</h4>
+  <dl class="dl-horizontal">
+     <dt>ESC</dt><dd>CLOSE this help screen</dd>
+     <dt>?</dt><dd>Toggle the help screen</dd>
+     <dt>a</dt><dd>Toggle the about page</dd>
+  </dl>
+
+  <dl class="dl-horizontal">
+     <dt>j</dt><dd>Scroll down a few lines</dd>
+     <dt>k</dt><dd>Scroll up a few lines</dd>
+     <dt>g</dt><dd>Scroll to the top of the file</dd>
+     <dt>G</dt><dd>Scroll to the bottom of the file</dd>
+  </dl>
+
+  <dl class="dl-horizontal">
+     <dt>:</dt><dd>Go to the specified line number<br />(press :, type number, enter)</dd>
+     <dt>f</dt><dd>Go to the specified file<br />(press f, autocomplete, enter)</dd>
+     <dt>s</dt><dd>Find the specified symbol<br />(press s, autocomplete, enter)</dd>
+     <dt>t</dt><dd>Find the specified text<br />(press t, write terms, enter)</dd>
+  </dl>
+
+<h4>With your mouse</h4>
+  <dl class="dl-horizontal">
+   <dt>click</dt><dd>on objects or links to go to their best definition</dd>
+   <dt>drag</dt><dd>on objects or links to open a context menu</dd>
+  </dl>
+
+</div>
+{% endfunc %}

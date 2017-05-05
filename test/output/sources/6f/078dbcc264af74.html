@@ -1,0 +1,946 @@
+<!DOCTYPE html><html lang='en'><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>test output - /usr/include/stdio.h</title><link href="../../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"><link href="../../static/bootstrap/css/dropdowns-enhancement.min.css" rel="stylesheet"><link href="../../static/animated-modal/animate.min.css" rel="stylesheet"><link href="../../static/font-awesome/css/font-awesome.min.css" rel="stylesheet"><link href="../../static/style.css" rel="stylesheet"></head><body><div class="container-fluid"><div class="container"><nav class="navbar navbar-default navbar-fixed-top"><div class="container-fluid" id="navbar"><!-- Brand and toggle get grouped for better mobile display --><div class="navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><span class="navbar-brand" style="padding-top: 8px"><ol id="path" itemscope itemtype="http://schema.org/BreadcrumbList"><!-- ROOT DIRECTORY --><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../06/416cc91f3e3d90.html"><i itemprop="image" alt="root" class="glyphicon glyphicon-hdd" style="vertical-align: middle"></i>&nbsp;</a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../60/7abc7e1c17ae25.html"><span itemprop="name">usr</span></a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../19/901c5d9478e5ce.html"><span itemprop="name">include</span></a></li></ol>stdio.h</span></div><!-- Collect the nav links, forms, and other content for toggling --><!-- mostly taken from http://www.bootply.com/t7O3HSGlbc --><div class="collapse navbar-collapse" id="main-navbar"><div class="form-group" style="margin-top: 8px; margin-bottom: 0px;"><div class="input-group"><div class="input-group-btn"><button class="btn btn-default correct-height" data-label-placement><i class="glyphicon glyphicon-console data-label"></i></button><button data-toggle="dropdown" class="btn btn-default dropdown-toggle correct-height"><span class="caret"></span> </button><ul class="dropdown-menu"><li><input type="radio" id="sb-symbol" name="sb" value="symbol" checked><label for="sb-symbol"><i class="glyphicon glyphicon-console data-label"></i> Symbol</label></li><li><input type="radio" id="sb-file" name="sb" value="file"><label for="sb-file"><i class="glyphicon glyphicon-file data-label"></i> File</label></li><li><input type="radio" id="sb-text" name="sb" value="text"><label for="sb-text"><i class="glyphicon glyphicon-text-background data-label"></i> Text</label></li><li><input type="radio" id="sb-line" name="sb" value="line"><label for="sb-line"><i class="glyphicon glyphicon-indent-left data-label"></i> Line</label></li></ul></div><input type="text" name="search" id="searchbox-symbol" class="form-control" placeholder="Search symbol (std::list, list, kfree_skb, any full or partial variable/class/function/... name)"><input type="text" name="search" id="searchbox-file" class="form-control hidden" placeholder="Search file (/usr/include/alloca.h, alloca.h, any full or partial path)"><input type="text" name="search" id="searchbox-text" class="form-control hidden" placeholder="Search text (content of comments, strings, full text search over the source code)"><input type="text" name="search" id="searchbox-line" class="form-control hidden" placeholder="Go to line (53, 1120, just type the line number and enter)"><div class="input-group-btn"><div class="btn-group hidden" id="tag-menu"><button data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="tag-default"></button><ul class="dropdown-menu pull-center" id="tag-entries"></ul></div><a class="btn btn-default" href="../meta/about.html" type="button" id="sbexr-about"><i title="About this site" class="glyphicon glyphicon-info-sign"></i></a><a class="btn btn-default" href="../meta/help.html" type="button" id="sbexr-help"><i title="Help!!" class="glyphicon glyphicon-question-sign"></i></a></div></div></div></div><!-- /.navbar-collapse --></div><!-- /.container-fluid --></nav></div><pre class='code'><span id='line-number'><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>10</i><i>11</i><i>12</i><i>13</i><i>14</i><i>15</i><i>16</i><i>17</i><i>18</i><i>19</i><i>20</i><i>21</i><i>22</i><i>23</i><i>24</i><i>25</i><i>26</i><i>27</i><i>28</i><i>29</i><i>30</i><i>31</i><i>32</i><i>33</i><i>34</i><i>35</i><i>36</i><i>37</i><i>38</i><i>39</i><i>40</i><i>41</i><i>42</i><i>43</i><i>44</i><i>45</i><i>46</i><i>47</i><i>48</i><i>49</i><i>50</i><i>51</i><i>52</i><i>53</i><i>54</i><i>55</i><i>56</i><i>57</i><i>58</i><i>59</i><i>60</i><i>61</i><i>62</i><i>63</i><i>64</i><i>65</i><i>66</i><i>67</i><i>68</i><i>69</i><i>70</i><i>71</i><i>72</i><i>73</i><i>74</i><i>75</i><i>76</i><i>77</i><i>78</i><i>79</i><i>80</i><i>81</i><i>82</i><i>83</i><i>84</i><i>85</i><i>86</i><i>87</i><i>88</i><i>89</i><i>90</i><i>91</i><i>92</i><i>93</i><i>94</i><i>95</i><i>96</i><i>97</i><i>98</i><i>99</i><i>100</i><i>101</i><i>102</i><i>103</i><i>104</i><i>105</i><i>106</i><i>107</i><i>108</i><i>109</i><i>110</i><i>111</i><i>112</i><i>113</i><i>114</i><i>115</i><i>116</i><i>117</i><i>118</i><i>119</i><i>120</i><i>121</i><i>122</i><i>123</i><i>124</i><i>125</i><i>126</i><i>127</i><i>128</i><i>129</i><i>130</i><i>131</i><i>132</i><i>133</i><i>134</i><i>135</i><i>136</i><i>137</i><i>138</i><i>139</i><i>140</i><i>141</i><i>142</i><i>143</i><i>144</i><i>145</i><i>146</i><i>147</i><i>148</i><i>149</i><i>150</i><i>151</i><i>152</i><i>153</i><i>154</i><i>155</i><i>156</i><i>157</i><i>158</i><i>159</i><i>160</i><i>161</i><i>162</i><i>163</i><i>164</i><i>165</i><i>166</i><i>167</i><i>168</i><i>169</i><i>170</i><i>171</i><i>172</i><i>173</i><i>174</i><i>175</i><i>176</i><i>177</i><i>178</i><i>179</i><i>180</i><i>181</i><i>182</i><i>183</i><i>184</i><i>185</i><i>186</i><i>187</i><i>188</i><i>189</i><i>190</i><i>191</i><i>192</i><i>193</i><i>194</i><i>195</i><i>196</i><i>197</i><i>198</i><i>199</i><i>200</i><i>201</i><i>202</i><i>203</i><i>204</i><i>205</i><i>206</i><i>207</i><i>208</i><i>209</i><i>210</i><i>211</i><i>212</i><i>213</i><i>214</i><i>215</i><i>216</i><i>217</i><i>218</i><i>219</i><i>220</i><i>221</i><i>222</i><i>223</i><i>224</i><i>225</i><i>226</i><i>227</i><i>228</i><i>229</i><i>230</i><i>231</i><i>232</i><i>233</i><i>234</i><i>235</i><i>236</i><i>237</i><i>238</i><i>239</i><i>240</i><i>241</i><i>242</i><i>243</i><i>244</i><i>245</i><i>246</i><i>247</i><i>248</i><i>249</i><i>250</i><i>251</i><i>252</i><i>253</i><i>254</i><i>255</i><i>256</i><i>257</i><i>258</i><i>259</i><i>260</i><i>261</i><i>262</i><i>263</i><i>264</i><i>265</i><i>266</i><i>267</i><i>268</i><i>269</i><i>270</i><i>271</i><i>272</i><i>273</i><i>274</i><i>275</i><i>276</i><i>277</i><i>278</i><i>279</i><i>280</i><i>281</i><i>282</i><i>283</i><i>284</i><i>285</i><i>286</i><i>287</i><i>288</i><i>289</i><i>290</i><i>291</i><i>292</i><i>293</i><i>294</i><i>295</i><i>296</i><i>297</i><i>298</i><i>299</i><i>300</i><i>301</i><i>302</i><i>303</i><i>304</i><i>305</i><i>306</i><i>307</i><i>308</i><i>309</i><i>310</i><i>311</i><i>312</i><i>313</i><i>314</i><i>315</i><i>316</i><i>317</i><i>318</i><i>319</i><i>320</i><i>321</i><i>322</i><i>323</i><i>324</i><i>325</i><i>326</i><i>327</i><i>328</i><i>329</i><i>330</i><i>331</i><i>332</i><i>333</i><i>334</i><i>335</i><i>336</i><i>337</i><i>338</i><i>339</i><i>340</i><i>341</i><i>342</i><i>343</i><i>344</i><i>345</i><i>346</i><i>347</i><i>348</i><i>349</i><i>350</i><i>351</i><i>352</i><i>353</i><i>354</i><i>355</i><i>356</i><i>357</i><i>358</i><i>359</i><i>360</i><i>361</i><i>362</i><i>363</i><i>364</i><i>365</i><i>366</i><i>367</i><i>368</i><i>369</i><i>370</i><i>371</i><i>372</i><i>373</i><i>374</i><i>375</i><i>376</i><i>377</i><i>378</i><i>379</i><i>380</i><i>381</i><i>382</i><i>383</i><i>384</i><i>385</i><i>386</i><i>387</i><i>388</i><i>389</i><i>390</i><i>391</i><i>392</i><i>393</i><i>394</i><i>395</i><i>396</i><i>397</i><i>398</i><i>399</i><i>400</i><i>401</i><i>402</i><i>403</i><i>404</i><i>405</i><i>406</i><i>407</i><i>408</i><i>409</i><i>410</i><i>411</i><i>412</i><i>413</i><i>414</i><i>415</i><i>416</i><i>417</i><i>418</i><i>419</i><i>420</i><i>421</i><i>422</i><i>423</i><i>424</i><i>425</i><i>426</i><i>427</i><i>428</i><i>429</i><i>430</i><i>431</i><i>432</i><i>433</i><i>434</i><i>435</i><i>436</i><i>437</i><i>438</i><i>439</i><i>440</i><i>441</i><i>442</i><i>443</i><i>444</i><i>445</i><i>446</i><i>447</i><i>448</i><i>449</i><i>450</i><i>451</i><i>452</i><i>453</i><i>454</i><i>455</i><i>456</i><i>457</i><i>458</i><i>459</i><i>460</i><i>461</i><i>462</i><i>463</i><i>464</i><i>465</i><i>466</i><i>467</i><i>468</i><i>469</i><i>470</i><i>471</i><i>472</i><i>473</i><i>474</i><i>475</i><i>476</i><i>477</i><i>478</i><i>479</i><i>480</i><i>481</i><i>482</i><i>483</i><i>484</i><i>485</i><i>486</i><i>487</i><i>488</i><i>489</i><i>490</i><i>491</i><i>492</i><i>493</i><i>494</i><i>495</i><i>496</i><i>497</i><i>498</i><i>499</i><i>500</i><i>501</i><i>502</i><i>503</i><i>504</i><i>505</i><i>506</i><i>507</i><i>508</i><i>509</i><i>510</i><i>511</i><i>512</i><i>513</i><i>514</i><i>515</i><i>516</i><i>517</i><i>518</i><i>519</i><i>520</i><i>521</i><i>522</i><i>523</i><i>524</i><i>525</i><i>526</i><i>527</i><i>528</i><i>529</i><i>530</i><i>531</i><i>532</i><i>533</i><i>534</i><i>535</i><i>536</i><i>537</i><i>538</i><i>539</i><i>540</i><i>541</i><i>542</i><i>543</i><i>544</i><i>545</i><i>546</i><i>547</i><i>548</i><i>549</i><i>550</i><i>551</i><i>552</i><i>553</i><i>554</i><i>555</i><i>556</i><i>557</i><i>558</i><i>559</i><i>560</i><i>561</i><i>562</i><i>563</i><i>564</i><i>565</i><i>566</i><i>567</i><i>568</i><i>569</i><i>570</i><i>571</i><i>572</i><i>573</i><i>574</i><i>575</i><i>576</i><i>577</i><i>578</i><i>579</i><i>580</i><i>581</i><i>582</i><i>583</i><i>584</i><i>585</i><i>586</i><i>587</i><i>588</i><i>589</i><i>590</i><i>591</i><i>592</i><i>593</i><i>594</i><i>595</i><i>596</i><i>597</i><i>598</i><i>599</i><i>600</i><i>601</i><i>602</i><i>603</i><i>604</i><i>605</i><i>606</i><i>607</i><i>608</i><i>609</i><i>610</i><i>611</i><i>612</i><i>613</i><i>614</i><i>615</i><i>616</i><i>617</i><i>618</i><i>619</i><i>620</i><i>621</i><i>622</i><i>623</i><i>624</i><i>625</i><i>626</i><i>627</i><i>628</i><i>629</i><i>630</i><i>631</i><i>632</i><i>633</i><i>634</i><i>635</i><i>636</i><i>637</i><i>638</i><i>639</i><i>640</i><i>641</i><i>642</i><i>643</i><i>644</i><i>645</i><i>646</i><i>647</i><i>648</i><i>649</i><i>650</i><i>651</i><i>652</i><i>653</i><i>654</i><i>655</i><i>656</i><i>657</i><i>658</i><i>659</i><i>660</i><i>661</i><i>662</i><i>663</i><i>664</i><i>665</i><i>666</i><i>667</i><i>668</i><i>669</i><i>670</i><i>671</i><i>672</i><i>673</i><i>674</i><i>675</i><i>676</i><i>677</i><i>678</i><i>679</i><i>680</i><i>681</i><i>682</i><i>683</i><i>684</i><i>685</i><i>686</i><i>687</i><i>688</i><i>689</i><i>690</i><i>691</i><i>692</i><i>693</i><i>694</i><i>695</i><i>696</i><i>697</i><i>698</i><i>699</i><i>700</i><i>701</i><i>702</i><i>703</i><i>704</i><i>705</i><i>706</i><i>707</i><i>708</i><i>709</i><i>710</i><i>711</i><i>712</i><i>713</i><i>714</i><i>715</i><i>716</i><i>717</i><i>718</i><i>719</i><i>720</i><i>721</i><i>722</i><i>723</i><i>724</i><i>725</i><i>726</i><i>727</i><i>728</i><i>729</i><i>730</i><i>731</i><i>732</i><i>733</i><i>734</i><i>735</i><i>736</i><i>737</i><i>738</i><i>739</i><i>740</i><i>741</i><i>742</i><i>743</i><i>744</i><i>745</i><i>746</i><i>747</i><i>748</i><i>749</i><i>750</i><i>751</i><i>752</i><i>753</i><i>754</i><i>755</i><i>756</i><i>757</i><i>758</i><i>759</i><i>760</i><i>761</i><i>762</i><i>763</i><i>764</i><i>765</i><i>766</i><i>767</i><i>768</i><i>769</i><i>770</i><i>771</i><i>772</i><i>773</i><i>774</i><i>775</i><i>776</i><i>777</i><i>778</i><i>779</i><i>780</i><i>781</i><i>782</i><i>783</i><i>784</i><i>785</i><i>786</i><i>787</i><i>788</i><i>789</i><i>790</i><i>791</i><i>792</i><i>793</i><i>794</i><i>795</i><i>796</i><i>797</i><i>798</i><i>799</i><i>800</i><i>801</i><i>802</i><i>803</i><i>804</i><i>805</i><i>806</i><i>807</i><i>808</i><i>809</i><i>810</i><i>811</i><i>812</i><i>813</i><i>814</i><i>815</i><i>816</i><i>817</i><i>818</i><i>819</i><i>820</i><i>821</i><i>822</i><i>823</i><i>824</i><i>825</i><i>826</i><i>827</i><i>828</i><i>829</i><i>830</i><i>831</i><i>832</i><i>833</i><i>834</i><i>835</i><i>836</i><i>837</i><i>838</i><i>839</i><i>840</i><i>841</i><i>842</i><i>843</i><i>844</i><i>845</i><i>846</i><i>847</i><i>848</i><i>849</i><i>850</i><i>851</i><i>852</i><i>853</i><i>854</i><i>855</i><i>856</i><i>857</i><i>858</i><i>859</i><i>860</i><i>861</i><i>862</i><i>863</i><i>864</i><i>865</i><i>866</i><i>867</i><i>868</i><i>869</i><i>870</i><i>871</i><i>872</i><i>873</i><i>874</i><i>875</i><i>876</i><i>877</i><i>878</i><i>879</i><i>880</i><i>881</i><i>882</i><i>883</i><i>884</i><i>885</i><i>886</i><i>887</i><i>888</i><i>889</i><i>890</i><i>891</i><i>892</i><i>893</i><i>894</i><i>895</i><i>896</i><i>897</i><i>898</i><i>899</i><i>900</i><i>901</i><i>902</i><i>903</i><i>904</i><i>905</i><i>906</i><i>907</i><i>908</i><i>909</i><i>910</i><i>911</i><i>912</i><i>913</i><i>914</i><i>915</i><i>916</i><i>917</i><i>918</i><i>919</i><i>920</i><i>921</i><i>922</i><i>923</i><i>924</i><i>925</i><i>926</i><i>927</i><i>928</i><i>929</i><i>930</i><i>931</i><i>932</i><i>933</i><i>934</i><i>935</i><i>936</i><i>937</i><i>938</i><i>939</i><i>940</i><i>941</i><i>942</i><i>943</i><i>944</i><i>945</i><i>946</i></span><span itemscope itemtype="http://schema.org/SoftwareSourceCode"><meta itemprop="programmingLanguage" content="C" /><span class='comment'>/* Define ISO C stdio on top of C++ iostreams.
+   Copyright (C) 1991-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   &lt;http://www.gnu.org/licenses/&gt;.  */</span>
+
+<span class='comment'>/*
+ *	ISO C99 Standard: 7.19 Input/output	&lt;stdio.h&gt;
+ */</span>
+
+<span class='directive'>#ifndef _STDIO_H</span>
+
+<span class='directive'>#if !defined __need_FILE &amp;&amp; !defined __need___FILE</span>
+<span class='directive'># define _STDIO_H	1</span>
+<span class='directive'># include <a class='include' href='../08/80fafb6e566ce0.html'>&lt;features.h&gt;</a></span>
+
+__BEGIN_DECLS
+
+<span class='directive'># define __need_size_t</span>
+<span class='directive'># define __need_NULL</span>
+<span class='directive'># include <a class='include' href='../6a/9fd7d7b104ac25.html'>&lt;stddef.h&gt;</a></span>
+
+<span class='directive'># include <a class='include' href='../41/e28fc1cdef774c.html'>&lt;bits/types.h&gt;</a></span>
+<span class='directive'># define __need_FILE</span>
+<span class='directive'># define __need___FILE</span>
+<span class='directive'>#endif /* Don't need FILE.  */</span>
+
+
+<span class='directive'>#if !defined __FILE_defined &amp;&amp; defined __need_FILE</span>
+
+<span class='comment'>/* Define outside of namespace so the C++ is happy.  */</span>
+<span class='decl decl-CXXRecord' id='0002c0010002c008'><span class='keyword struct'>struct</span> _IO_FILE</span>;
+
+__BEGIN_NAMESPACE_STD
+<span class='comment'>/* The opaque type of streams.  This is the definition used elsewhere.  */</span>
+<span class='def def-Typedef' id='0003000100030019'><span class='keyword typedef'>typedef</span> <span class='keyword struct'>struct</span> _IO_FILE FILE</span>;
+__END_NAMESPACE_STD
+<span class='directive'>#if defined __USE_LARGEFILE64 || defined __USE_POSIX \
+    || defined __USE_ISOC99 || defined __USE_XOPEN \
+    || defined __USE_POSIX2</span>
+__USING_NAMESPACE_STD(FILE)
+<span class='directive'>#endif</span>
+
+<span class='directive'># define __FILE_defined	1</span>
+<span class='directive'>#endif /* FILE not defined.  */</span>
+<span class='directive'>#undef	__need_FILE</span>
+
+
+<span class='directive'>#if !defined ____FILE_defined &amp;&amp; defined __need___FILE</span>
+
+<span class='comment'>/* The opaque type of streams.  This is the definition used elsewhere.  */</span>
+<span class='def def-Typedef' id='0004000100040019'><span class='keyword typedef'>typedef</span> <span class='keyword struct'>struct</span> _IO_FILE __FILE</span>;
+
+<span class='directive'># define ____FILE_defined	1</span>
+<span class='directive'>#endif /* __FILE not defined.  */</span>
+<span class='directive'>#undef	__need___FILE</span>
+
+
+<span class='directive'>#ifdef	_STDIO_H</span>
+<span class='directive'>#define _STDIO_USES_IOSTREAM</span>
+
+<span class='directive'>#include <a class='include' href='../32/b7a89454949ee9.html'>&lt;libio.h&gt;</a></span>
+
+<span class='directive'>#if defined __USE_XOPEN || defined __USE_XOPEN2K8</span>
+<span class='directive'># ifdef __GNUC__</span>
+<span class='directive'>#  ifndef _VA_LIST_DEFINED</span>
+<span class='def def-Typedef' id='0004f0010004f014'><span class='keyword typedef'>typedef</span> _G_va_list va_list</span>;
+<span class='directive'>#   define _VA_LIST_DEFINED</span>
+<span class='directive'>#  endif</span>
+<span class='directive'># else</span><span class='preprocessor-if muted'>
+<span class='directive'>#  include &lt;stdarg.h&gt;</span></span>
+<span class='directive'># endif</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef __USE_XOPEN2K8</span>
+<span class='directive'># ifndef __off_t_defined</span>
+<span class='directive'># ifndef __USE_FILE_OFFSET64</span>
+<span class='def def-Typedef' id='0005a0010005a011'><span class='keyword typedef'>typedef</span> __off_t off_t</span>;
+<span class='directive'># else</span><span class='preprocessor-if muted'>
+<span class='keyword typedef'>typedef</span> __off64_t off_t;</span>
+<span class='directive'># endif</span>
+<span class='directive'># define __off_t_defined</span>
+<span class='directive'># endif</span>
+<span class='directive'># if defined __USE_LARGEFILE64 &amp;&amp; !defined __off64_t_defined</span>
+<span class='def def-Typedef' id='0006100100061013'><span class='keyword typedef'>typedef</span> __off64_t off64_t</span>;
+<span class='directive'># define __off64_t_defined</span>
+<span class='directive'># endif</span>
+
+<span class='directive'># ifndef __ssize_t_defined</span>
+<span class='def def-Typedef' id='0006600100066013'><span class='keyword typedef'>typedef</span> __ssize_t ssize_t</span>;
+<span class='directive'># define __ssize_t_defined</span>
+<span class='directive'># endif</span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* The type of the second argument to `fgetpos' and `fsetpos'.  */</span>
+__BEGIN_NAMESPACE_STD
+<span class='directive'>#ifndef __USE_FILE_OFFSET64</span>
+<span class='def def-Typedef' id='0006e0010006e013'><span class='keyword typedef'>typedef</span> _G_fpos_t fpos_t</span>;
+<span class='directive'>#else</span><span class='preprocessor-if muted'>
+<span class='keyword typedef'>typedef</span> _G_fpos64_t fpos_t;</span>
+<span class='directive'>#endif</span>
+__END_NAMESPACE_STD
+<span class='directive'>#ifdef __USE_LARGEFILE64</span>
+<span class='def def-Typedef' id='0007400100074015'><span class='keyword typedef'>typedef</span> _G_fpos64_t fpos64_t</span>;
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* The possibilities for the third argument to `setvbuf'.  */</span>
+<span class='directive'>#define _IOFBF 0		/* Fully buffered.  */</span>
+<span class='directive'>#define _IOLBF 1		/* Line buffered.  */</span>
+<span class='directive'>#define _IONBF 2		/* No buffering.  */</span>
+
+
+<span class='comment'>/* Default buffer size.  */</span>
+<span class='directive'>#ifndef BUFSIZ</span>
+<span class='directive'># define BUFSIZ _IO_BUFSIZ</span>
+<span class='directive'>#endif</span>
+
+
+<span class='comment'>/* End of file character.
+   Some things throughout the library rely on this being -1.  */</span>
+<span class='directive'>#ifndef EOF</span><span class='preprocessor-if muted'>
+<span class='directive'># define EOF (-1)</span></span>
+<span class='directive'>#endif</span>
+
+
+<span class='comment'>/* The possibilities for the third argument to `fseek'.
+   These values should not be changed.  */</span>
+<span class='directive'>#define SEEK_SET	0	/* Seek from beginning of file.  */</span>
+<span class='directive'>#define SEEK_CUR	1	/* Seek from current position.  */</span>
+<span class='directive'>#define SEEK_END	2	/* Seek from end of file.  */</span>
+<span class='directive'>#ifdef __USE_GNU</span>
+<span class='directive'># define SEEK_DATA	3	/* Seek to next data.  */</span>
+<span class='directive'># define SEEK_HOLE	4	/* Seek to next hole.  */</span>
+<span class='directive'>#endif</span>
+
+
+<span class='directive'>#if defined __USE_MISC || defined __USE_XOPEN</span>
+<span class='comment'>/* Default path prefix for `tempnam' and `tmpnam'.  */</span>
+<span class='directive'># define P_tmpdir	"/tmp"</span>
+<span class='directive'>#endif</span>
+
+
+<span class='comment'>/* Get the values:
+   L_tmpnam	How long an array of chars must be to be passed to `tmpnam'.
+   TMP_MAX	The minimum number of unique filenames generated by tmpnam
+		(and tempnam when it uses tmpnam's name space),
+		or tempnam (the two are separate).
+   L_ctermid	How long an array to pass to `ctermid'.
+   L_cuserid	How long an array to pass to `cuserid'.
+   FOPEN_MAX	Minimum number of files that can be open at once.
+   FILENAME_MAX	Maximum length of a filename.  */</span>
+<span class='directive'>#include <a class='include' href='../0c/a8a47b0c4f7800.html'>&lt;bits/stdio_lim.h&gt;</a></span>
+
+
+<span class='comment'>/* Standard streams.  */</span>
+<span class='decl decl-Var' id='000a8001000a8019'><span class='keyword extern'>extern</span> <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'><span class='keyword struct'>struct</span> _IO_FILE *</a>stdin</span>;		<span class='comment'>/* Standard input stream.  */</span>
+<span class='decl decl-Var' id='000a9001000a9019'><span class='keyword extern'>extern</span> <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'><span class='keyword struct'>struct</span> _IO_FILE *</a>stdout</span>;		<span class='comment'>/* Standard output stream.  */</span>
+<span class='decl decl-Var' id='000aa001000aa019'><span class='keyword extern'>extern</span> <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'><span class='keyword struct'>struct</span> _IO_FILE *</a>stderr</span>;		<span class='comment'>/* Standard error output stream.  */</span>
+<span class='comment'>/* C89/C99 say they're macros.  Make them happy.  */</span>
+<span class='directive'>#define stdin stdin</span>
+<span class='directive'>#define stdout stdout</span>
+<span class='directive'>#define stderr stderr</span>
+
+__BEGIN_NAMESPACE_STD
+<span class='comment'>/* Remove file FILENAME.  */</span>
+<span class='decl decl-Function' id='000b20010003c01b000b2001000b202c'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> remove (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__filename) __THROW</span>;
+<span class='comment'>/* Rename file OLD to NEW.  */</span>
+<span class='decl decl-Function' id='000b40010003c01b000b4001000b403a'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> rename (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__old, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__new) __THROW</span>;
+__END_NAMESPACE_STD
+
+<span class='directive'>#ifdef __USE_ATFILE</span>
+<span class='comment'>/* Rename file OLD relative to OLDFD to NEW relative to NEWFD.  */</span>
+<span class='decl decl-Function' id='000b90010003c01b000b9001000ba01b'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> renameat (<span class='keyword int'>int</span> __oldfd, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__old, <span class='keyword int'>int</span> __newfd,
+		     <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__new) __THROW</span>;
+<span class='directive'>#endif</span>
+
+__BEGIN_NAMESPACE_STD
+<span class='comment'>/* Create a temporary file and open it read/write.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='directive'>#ifndef __USE_FILE_OFFSET64</span>
+<span class='decl decl-Function' id='000c3001000c301b'><span class='keyword extern'>extern</span> <a class='return-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>tmpfile (<span class='keyword void'>void</span>)</span> __wur;
+<span class='directive'>#else</span><span class='preprocessor-if muted'>
+<span class='directive'># ifdef __REDIRECT</span>
+<span class='keyword extern'>extern</span> FILE *__REDIRECT (tmpfile, (<span class='keyword void'>void</span>), tmpfile64) __wur;
+<span class='directive'># else</span>
+<span class='directive'>#  define tmpfile tmpfile64</span>
+<span class='directive'># endif</span></span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef __USE_LARGEFILE64</span>
+<span class='decl decl-Function' id='000cd001000cd01d'><span class='keyword extern'>extern</span> <a class='return-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>tmpfile64 (<span class='keyword void'>void</span>)</span> __wur;
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* Generate a temporary filename.  */</span>
+<span class='decl decl-Function' id='000d10010003c01b000d1001000d1021'><span class='keyword extern'>extern</span> <span class='keyword char'>char</span> *tmpnam (<span class='keyword char'>char</span> *__s) __THROW</span> __wur;
+__END_NAMESPACE_STD
+
+<span class='directive'>#ifdef __USE_MISC</span>
+<span class='comment'>/* This is the reentrant variant of `tmpnam'.  The only difference is
+   that it does not allow S to be NULL.  */</span>
+<span class='decl decl-Function' id='000d70010003c01b000d7001000d7023'><span class='keyword extern'>extern</span> <span class='keyword char'>char</span> *tmpnam_r (<span class='keyword char'>char</span> *__s) __THROW</span> __wur;
+<span class='directive'>#endif</span>
+
+
+<span class='directive'>#if defined __USE_MISC || defined __USE_XOPEN</span>
+<span class='comment'>/* Generate a unique temporary filename using up to five characters of PFX
+   if it is not NULL.  The directory to put this file in is searched for
+   as follows: First the environment variable "TMPDIR" is checked.
+   If it contains the name of a writable directory, that directory is used.
+   If not and if DIR is not NULL, that value is checked.  If that fails,
+   P_tmpdir is tried and finally "/tmp".  The storage for the filename
+   is allocated by `malloc'.  */</span>
+<span class='decl decl-Function' id='000e3001000d303a000e3001000e400e'><span class='keyword extern'>extern</span> <span class='keyword char'>char</span> *tempnam (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__dir, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__pfx)
+     __THROW __attribute_malloc__</span> __wur;
+<span class='directive'>#endif</span>
+
+
+__BEGIN_NAMESPACE_STD
+<span class='comment'>/* Close STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='000ed001000ed022'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fclose (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span>;
+<span class='comment'>/* Flush STREAM, or all streams if STREAM is NULL.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='000f2001000f2022'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fflush (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span>;
+__END_NAMESPACE_STD
+
+<span class='directive'>#ifdef __USE_MISC</span>
+<span class='comment'>/* Faster versions when locking is not required.
+
+   This function is not part of POSIX and therefore no official
+   cancellation point.  But due to similarity with an POSIX interface
+   or due to the implementation it is a cancellation point and
+   therefore not marked with __THROW.  */</span>
+<span class='decl decl-Function' id='000fc001000fc02b'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fflush_unlocked (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span>;
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef __USE_GNU</span>
+<span class='comment'>/* Close all streams.
+
+   This function is not part of POSIX and therefore no official
+   cancellation point.  But due to similarity with an POSIX interface
+   or due to the implementation it is a cancellation point and
+   therefore not marked with __THROW.  */</span>
+<span class='decl decl-Function' id='001060010010601b'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fcloseall (<span class='keyword void'>void</span>)</span>;
+<span class='directive'>#endif</span>
+
+
+__BEGIN_NAMESPACE_STD
+<span class='directive'>#ifndef __USE_FILE_OFFSET64</span>
+<span class='comment'>/* Open a file and create a new stream for it.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0011000100111025'><span class='keyword extern'>extern</span> <a class='return-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>fopen (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __filename,
+		    <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __modes)</span> __wur;
+<span class='comment'>/* Open a file, replacing an existing stream with it.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0011600100118022'><span class='keyword extern'>extern</span> <a class='return-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>freopen (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __filename,
+		      <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __modes,
+		      <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream)</span> __wur;
+<span class='directive'>#else</span><span class='preprocessor-if muted'>
+<span class='directive'># ifdef __REDIRECT</span>
+<span class='keyword extern'>extern</span> FILE *__REDIRECT (fopen, (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __filename,
+				 <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __modes), fopen64)
+  __wur;
+<span class='keyword extern'>extern</span> FILE *__REDIRECT (freopen, (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __filename,
+				   <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __modes,
+				   FILE *__restrict __stream), freopen64)
+  __wur;
+<span class='directive'># else</span>
+<span class='directive'>#  define fopen fopen64</span>
+<span class='directive'>#  define freopen freopen64</span>
+<span class='directive'># endif</span></span>
+<span class='directive'>#endif</span>
+__END_NAMESPACE_STD
+<span class='directive'>#ifdef __USE_LARGEFILE64</span>
+<span class='decl decl-Function' id='001290010012a027'><span class='keyword extern'>extern</span> <a class='return-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>fopen64 (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __filename,
+		      <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __modes)</span> __wur;
+<span class='decl decl-Function' id='0012b0010012d01d'><span class='keyword extern'>extern</span> <a class='return-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>freopen64 (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __filename,
+			<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __modes,
+			<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream)</span> __wur;
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef	__USE_POSIX</span>
+<span class='comment'>/* Create a new stream that refers to an existing system file descriptor.  */</span>
+<span class='decl decl-Function' id='001320010003c01b0013200100132035'><span class='keyword extern'>extern</span> <a class='return-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>fdopen (<span class='keyword int'>int</span> __fd, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__modes) __THROW</span> __wur;
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef	__USE_GNU</span>
+<span class='comment'>/* Create a new stream that refers to the given magic cookie,
+   and uses the given functions for input and output.  */</span>
+<span class='decl decl-Function' id='001380010003c01b001380010013a02c'><span class='keyword extern'>extern</span> <a class='return-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>fopencookie (<span class='keyword void'>void</span> *__restrict __magic_cookie,
+			  <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __modes,
+			  <a class='declaration-uses' href='../32/b7a89454949ee9.html#0016c00900172001'>_IO_cookie_io_functions_t</a> __io_funcs) __THROW</span> __wur;
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef __USE_XOPEN2K8</span>
+<span class='comment'>/* Create a new stream that refers to a memory buffer.  */</span>
+<span class='decl decl-Function' id='0013f0010003c01b0013f00100140003'><span class='keyword extern'>extern</span> <a class='return-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>fmemopen (<span class='keyword void'>void</span> *__s, size_t __len, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__modes)
+  __THROW</span> __wur;
+
+<span class='comment'>/* Open a stream that writes into a malloc'd buffer that is expanded as
+   necessary.  *BUFLOC and *SIZELOC are updated with the buffer's location
+   and the number of characters written on fflush or fclose.  */</span>
+<span class='decl decl-Function' id='001450010003c01b0014500100145042'><span class='keyword extern'>extern</span> <a class='return-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>open_memstream (<span class='keyword char'>char</span> **__bufloc, size_t *__sizeloc) __THROW</span> __wur;
+<span class='directive'>#endif</span>
+
+
+__BEGIN_NAMESPACE_STD
+<span class='comment'>/* If BUF is NULL, make STREAM unbuffered.
+   Else make it use buffer BUF, of size BUFSIZ.  */</span>
+<span class='decl decl-Function' id='0014c0010003c01b0014c0010014c048'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> setbuf (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream, <span class='keyword char'>char</span> *__restrict __buf) __THROW</span>;
+<span class='comment'>/* Make STREAM use buffering mode MODE.
+   If BUF is not NULL, use N bytes of it for buffering;
+   else allocate an internal buffer N bytes long.  */</span>
+<span class='decl decl-Function' id='001500010003c01b0015000100151020'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> setvbuf (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream, <span class='keyword char'>char</span> *__restrict __buf,
+		    <span class='keyword int'>int</span> __modes, size_t __n) __THROW</span>;
+__END_NAMESPACE_STD
+
+<span class='directive'>#ifdef	__USE_MISC</span>
+<span class='comment'>/* If BUF is NULL, make STREAM unbuffered.
+   Else make it use SIZE bytes of BUF for buffering.  */</span>
+<span class='decl decl-Function' id='001570010003c01b0015700100158019'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> setbuffer (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream, <span class='keyword char'>char</span> *__restrict __buf,
+		       size_t __size) __THROW</span>;
+
+<span class='comment'>/* Make STREAM line-buffered.  */</span>
+<span class='decl decl-Function' id='0015b0010003c01b0015b0010015b029'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> setlinebuf (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream) __THROW</span>;
+<span class='directive'>#endif</span>
+
+
+__BEGIN_NAMESPACE_STD
+<span class='comment'>/* Write formatted output to STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='001640010016502b'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fprintf (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream,
+		    <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, ...)</span>;
+<span class='comment'>/* Write formatted output to stdout.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0016a0010016a038'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> printf (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, ...)</span>;
+<span class='comment'>/* Write formatted output to S.  */</span>
+<span class='decl decl-Function' id='0016c0010003d01d0016c0010016d02d'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> sprintf (<span class='keyword char'>char</span> *__restrict __s,
+		    <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, ...) __THROWNL</span>;
+
+<span class='comment'>/* Write formatted output to S from argument list ARG.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0017300100174018'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> vfprintf (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __s, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format,
+		     _G_va_list __arg)</span>;
+<span class='comment'>/* Write formatted output to stdout from argument list ARG.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0017900100179046'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> vprintf (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, _G_va_list __arg)</span>;
+<span class='comment'>/* Write formatted output to S from argument list ARG.  */</span>
+<span class='decl decl-Function' id='0017b0010003d01d0017b0010017c01a'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> vsprintf (<span class='keyword char'>char</span> *__restrict __s, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format,
+		     _G_va_list __arg) __THROWNL</span>;
+__END_NAMESPACE_STD
+
+<span class='directive'>#if defined __USE_ISOC99 || defined __USE_UNIX98</span>
+__BEGIN_NAMESPACE_C99
+<span class='comment'>/* Maximum chars of output to write in MAXLEN.  */</span>
+<span class='decl decl-Function' id='001820010018403e'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> snprintf (<span class='keyword char'>char</span> *__restrict __s, size_t __maxlen,
+		     <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, ...)
+     __THROWNL <span class='keyword __attribute__'>__attribute__</span> ((__format__ (__printf__, <span class='numeric'>3</span>, <span class='numeric'>4</span>)))</span>;
+
+<span class='decl decl-Function' id='001860010018803e'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> vsnprintf (<span class='keyword char'>char</span> *__restrict __s, size_t __maxlen,
+		      <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, _G_va_list __arg)
+     __THROWNL <span class='keyword __attribute__'>__attribute__</span> ((__format__ (__printf__, <span class='numeric'>3</span>, <span class='numeric'>0</span>)))</span>;
+__END_NAMESPACE_C99
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef __USE_GNU</span>
+<span class='comment'>/* Write formatted output to a string dynamically allocated with `malloc'.
+   Store the address of the string in *PTR.  */</span>
+<span class='decl decl-Function' id='0018f0010019103e'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> vasprintf (<span class='keyword char'>char</span> **__restrict __ptr, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __f,
+		      _G_va_list __arg)
+     __THROWNL <span class='keyword __attribute__'>__attribute__</span> ((__format__ (__printf__, <span class='numeric'>2</span>, <span class='numeric'>0</span>)))</span> __wur;
+<span class='decl decl-Function' id='001920010019403e'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __asprintf (<span class='keyword char'>char</span> **__restrict __ptr,
+		       <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __fmt, ...)
+     __THROWNL <span class='keyword __attribute__'>__attribute__</span> ((__format__ (__printf__, <span class='numeric'>2</span>, <span class='numeric'>3</span>)))</span> __wur;
+<span class='decl decl-Function' id='001950010019703e'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> asprintf (<span class='keyword char'>char</span> **__restrict __ptr,
+		     <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __fmt, ...)
+     __THROWNL <span class='keyword __attribute__'>__attribute__</span> ((__format__ (__printf__, <span class='numeric'>2</span>, <span class='numeric'>3</span>)))</span> __wur;
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef __USE_XOPEN2K8</span>
+<span class='comment'>/* Write formatted output to a file descriptor.  */</span>
+<span class='decl decl-Function' id='0019c0010019e034'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> vdprintf (<span class='keyword int'>int</span> __fd, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __fmt,
+		     _G_va_list __arg)
+     <span class='keyword __attribute__'>__attribute__</span> ((__format__ (__printf__, <span class='numeric'>2</span>, <span class='numeric'>0</span>)))</span>;
+<span class='decl decl-Function' id='0019f001001a0034'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> dprintf (<span class='keyword int'>int</span> __fd, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __fmt, ...)
+     <span class='keyword __attribute__'>__attribute__</span> ((__format__ (__printf__, <span class='numeric'>2</span>, <span class='numeric'>3</span>)))</span>;
+<span class='directive'>#endif</span>
+
+
+__BEGIN_NAMESPACE_STD
+<span class='comment'>/* Read formatted input from STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='001a9001001aa02a'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fscanf (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream,
+		   <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, ...)</span> __wur;
+<span class='comment'>/* Read formatted input from stdin.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='001af001001af037'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> scanf (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, ...)</span> __wur;
+<span class='comment'>/* Read formatted input from S.  */</span>
+<span class='decl decl-Function' id='001b10010003c01b001b1001001b202c'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> sscanf (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __s,
+		   <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, ...) __THROW</span>;
+
+<span class='directive'>#if defined __USE_ISOC99 &amp;&amp; !defined __USE_GNU \
+    &amp;&amp; (!defined __LDBL_COMPAT || !defined __REDIRECT) \
+    &amp;&amp; (defined __STRICT_ANSI__ || defined __USE_XOPEN2K)</span><span class='preprocessor-if muted'>
+<span class='directive'># ifdef __REDIRECT</span>
+<span class='comment'>/* For strict ISO C99 or POSIX compliance disallow %as, %aS and %a[
+   GNU extension which conflicts with valid %a followed by letter
+   s, S or [.  */</span>
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __REDIRECT (fscanf, (FILE *__restrict __stream,
+				<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, ...),
+		       __isoc99_fscanf) __wur;
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __REDIRECT (scanf, (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, ...),
+		       __isoc99_scanf) __wur;
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __REDIRECT_NTH (sscanf, (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __s,
+				    <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, ...),
+			   __isoc99_sscanf);
+<span class='directive'># else</span>
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __isoc99_fscanf (FILE *__restrict __stream,
+			    <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, ...) __wur;
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __isoc99_scanf (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, ...) __wur;
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __isoc99_sscanf (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __s,
+			    <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, ...) __THROW;
+<span class='directive'>#  define fscanf __isoc99_fscanf</span>
+<span class='directive'>#  define scanf __isoc99_scanf</span>
+<span class='directive'>#  define sscanf __isoc99_sscanf</span>
+<span class='directive'># endif</span></span>
+<span class='directive'>#endif</span>
+
+__END_NAMESPACE_STD
+
+<span class='directive'>#ifdef	__USE_ISOC99</span>
+__BEGIN_NAMESPACE_C99
+<span class='comment'>/* Read formatted input from S into argument list ARG.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='001d7001001d9033'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> vfscanf (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __s, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format,
+		    _G_va_list __arg)
+     <span class='keyword __attribute__'>__attribute__</span> ((__format__ (__scanf__, <span class='numeric'>2</span>, <span class='numeric'>0</span>)))</span> __wur;
+
+<span class='comment'>/* Read formatted input from stdin into argument list ARG.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='001df001001e0033'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> vscanf (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, _G_va_list __arg)
+     <span class='keyword __attribute__'>__attribute__</span> ((__format__ (__scanf__, <span class='numeric'>1</span>, <span class='numeric'>0</span>)))</span> __wur;
+
+<span class='comment'>/* Read formatted input from S into argument list ARG.  */</span>
+<span class='decl decl-Function' id='001e3001001e503b'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> vsscanf (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __s,
+		    <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, _G_va_list __arg)
+     __THROW <span class='keyword __attribute__'>__attribute__</span> ((__format__ (__scanf__, <span class='numeric'>2</span>, <span class='numeric'>0</span>)))</span>;
+
+<span class='directive'># if !defined __USE_GNU \
+     &amp;&amp; (!defined __LDBL_COMPAT || !defined __REDIRECT) \
+     &amp;&amp; (defined __STRICT_ANSI__ || defined __USE_XOPEN2K)</span><span class='preprocessor-if muted'>
+<span class='directive'>#  ifdef __REDIRECT</span>
+<span class='comment'>/* For strict ISO C99 or POSIX compliance disallow %as, %aS and %a[
+   GNU extension which conflicts with valid %a followed by letter
+   s, S or [.  */</span>
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __REDIRECT (vfscanf,
+		       (FILE *__restrict __s,
+			<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, _G_va_list __arg),
+		       __isoc99_vfscanf)
+     <span class='keyword __attribute__'>__attribute__</span> ((__format__ (__scanf__, <span class='numeric'>2</span>, <span class='numeric'>0</span>))) __wur;
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __REDIRECT (vscanf, (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format,
+				_G_va_list __arg), __isoc99_vscanf)
+     <span class='keyword __attribute__'>__attribute__</span> ((__format__ (__scanf__, <span class='numeric'>1</span>, <span class='numeric'>0</span>))) __wur;
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __REDIRECT_NTH (vsscanf,
+			   (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __s,
+			    <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format,
+			    _G_va_list __arg), __isoc99_vsscanf)
+     <span class='keyword __attribute__'>__attribute__</span> ((__format__ (__scanf__, <span class='numeric'>2</span>, <span class='numeric'>0</span>)));
+<span class='directive'>#  else</span>
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __isoc99_vfscanf (FILE *__restrict __s,
+			     <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format,
+			     _G_va_list __arg) __wur;
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __isoc99_vscanf (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format,
+			    _G_va_list __arg) __wur;
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __isoc99_vsscanf (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __s,
+			     <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format,
+			     _G_va_list __arg) __THROW;
+<span class='directive'>#   define vfscanf __isoc99_vfscanf</span>
+<span class='directive'>#   define vscanf __isoc99_vscanf</span>
+<span class='directive'>#   define vsscanf __isoc99_vsscanf</span>
+<span class='directive'>#  endif</span></span>
+<span class='directive'># endif</span>
+
+__END_NAMESPACE_C99
+<span class='directive'>#endif /* Use ISO C9x.  */</span>
+
+
+__BEGIN_NAMESPACE_STD
+<span class='comment'>/* Read a character from STREAM.
+
+   These functions are possible cancellation points and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0021300100213021'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fgetc (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span>;
+<span class='decl decl-Function' id='0021400100214020'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> getc (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span>;
+
+<span class='comment'>/* Read a character from stdin.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0021a0010021a019'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> getchar (<span class='keyword void'>void</span>)</span>;
+__END_NAMESPACE_STD
+
+<span class='comment'>/* The C standard explicitly says this is a macro, so we always do the
+   optimization for it.  */</span>
+<span class='directive'>#define getc(_fp) _IO_getc (_fp)</span>
+
+<span class='directive'>#ifdef __USE_POSIX</span>
+<span class='comment'>/* These are defined in POSIX.1:1996.
+
+   These functions are possible cancellation points and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0022600100226029'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> getc_unlocked (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span>;
+<span class='decl decl-Function' id='0022700100227022'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> getchar_unlocked (<span class='keyword void'>void</span>)</span>;
+<span class='directive'>#endif /* Use POSIX.  */</span>
+
+<span class='directive'>#ifdef __USE_MISC</span>
+<span class='comment'>/* Faster version when locking is not necessary.
+
+   This function is not part of POSIX and therefore no official
+   cancellation point.  But due to similarity with an POSIX interface
+   or due to the implementation it is a cancellation point and
+   therefore not marked with __THROW.  */</span>
+<span class='decl decl-Function' id='002310010023102a'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fgetc_unlocked (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span>;
+<span class='directive'>#endif /* Use MISC.  */</span>
+
+
+__BEGIN_NAMESPACE_STD
+<span class='comment'>/* Write a character to STREAM.
+
+   These functions are possible cancellation points and therefore not
+   marked with __THROW.
+
+   These functions is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0023d0010023d02a'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fputc (<span class='keyword int'>int</span> __c, <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span>;
+<span class='decl decl-Function' id='0023e0010023e029'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> putc (<span class='keyword int'>int</span> __c, <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span>;
+
+<span class='comment'>/* Write a character to stdout.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='002440010024401c'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> putchar (<span class='keyword int'>int</span> __c)</span>;
+__END_NAMESPACE_STD
+
+<span class='comment'>/* The C standard explicitly says this can be a macro,
+   so we always do the optimization for it.  */</span>
+<span class='directive'>#define putc(_ch, _fp) _IO_putc (_ch, _fp)</span>
+
+<span class='directive'>#ifdef __USE_MISC</span>
+<span class='comment'>/* Faster version when locking is not necessary.
+
+   This function is not part of POSIX and therefore no official
+   cancellation point.  But due to similarity with an POSIX interface
+   or due to the implementation it is a cancellation point and
+   therefore not marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0025200100252033'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fputc_unlocked (<span class='keyword int'>int</span> __c, <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span>;
+<span class='directive'>#endif /* Use MISC.  */</span>
+
+<span class='directive'>#ifdef __USE_POSIX</span>
+<span class='comment'>/* These are defined in POSIX.1:1996.
+
+   These functions are possible cancellation points and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0025a0010025a032'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> putc_unlocked (<span class='keyword int'>int</span> __c, <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span>;
+<span class='decl decl-Function' id='0025b0010025b025'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> putchar_unlocked (<span class='keyword int'>int</span> __c)</span>;
+<span class='directive'>#endif /* Use POSIX.  */</span>
+
+
+<span class='directive'>#if defined __USE_MISC \
+    || (defined __USE_XOPEN &amp;&amp; !defined __USE_XOPEN2K)</span>
+<span class='comment'>/* Get a word (int) from STREAM.  */</span>
+<span class='decl decl-Function' id='0026200100262020'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> getw (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span>;
+
+<span class='comment'>/* Write a word (int) to STREAM.  */</span>
+<span class='decl decl-Function' id='0026500100265029'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> putw (<span class='keyword int'>int</span> __w, <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span>;
+<span class='directive'>#endif</span>
+
+
+__BEGIN_NAMESPACE_STD
+<span class='comment'>/* Get a newline-terminated string of finite length from STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0026e0010026e04d'><span class='keyword extern'>extern</span> <span class='keyword char'>char</span> *fgets (<span class='keyword char'>char</span> *__restrict __s, <span class='keyword int'>int</span> __n, <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream)</span>
+     __wur;
+
+<span class='directive'>#if !defined __USE_ISOC11 \
+    || (defined __cplusplus &amp;&amp; __cplusplus &lt;= 201103L)</span>
+<span class='comment'>/* Get a newline-terminated string from stdin, removing the newline.
+   DO NOT USE THIS FUNCTION!!  There is no limit on how much it will read.
+
+   The function has been officially removed in ISO C11.  This opportunity
+   is used to also remove it from the GNU feature list.  It is now only
+   available when explicitly using an old ISO C, Unix, or POSIX standard.
+   GCC defines _GNU_SOURCE when building C++ code and the function is still
+   in C++11, so it is also available for C++.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0027e001000fe0420027e0010027e025'><span class='keyword extern'>extern</span> <span class='keyword char'>char</span> *gets (<span class='keyword char'>char</span> *__s) __wur __attribute_deprecated__</span>;
+<span class='directive'>#endif</span>
+__END_NAMESPACE_STD
+
+<span class='directive'>#ifdef __USE_GNU</span>
+<span class='comment'>/* This function does the same as `fgets' but does not lock the stream.
+
+   This function is not part of POSIX and therefore no official
+   cancellation point.  But due to similarity with an POSIX interface
+   or due to the implementation it is a cancellation point and
+   therefore not marked with __THROW.  */</span>
+<span class='decl decl-Function' id='002890010028a022'><span class='keyword extern'>extern</span> <span class='keyword char'>char</span> *fgets_unlocked (<span class='keyword char'>char</span> *__restrict __s, <span class='keyword int'>int</span> __n,
+			     <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream)</span> __wur;
+<span class='directive'>#endif</span>
+
+
+<span class='directive'>#ifdef	__USE_XOPEN2K8</span>
+<span class='comment'>/* Read up to (and including) a DELIMITER from STREAM into *LINEPTR
+   (and null-terminate it). *LINEPTR is a pointer returned from malloc (or
+   NULL), pointing to *N characters of space.  It is realloc'd as
+   necessary.  Returns the number of characters read (not including the
+   null terminator), or -1 on error or EOF.
+
+   These functions are not part of POSIX and therefore no official
+   cancellation point.  But due to similarity with an POSIX interface
+   or due to the implementation they are cancellation points and
+   therefore not marked with __THROW.  */</span>
+<span class='decl decl-Function' id='002990010029b024'><span class='keyword extern'>extern</span> _IO_ssize_t __getdelim (<span class='keyword char'>char</span> **__restrict __lineptr,
+			       size_t *__restrict __n, <span class='keyword int'>int</span> __delimiter,
+			       <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream)</span> __wur;
+<span class='decl decl-Function' id='0029c0010029e022'><span class='keyword extern'>extern</span> _IO_ssize_t getdelim (<span class='keyword char'>char</span> **__restrict __lineptr,
+			     size_t *__restrict __n, <span class='keyword int'>int</span> __delimiter,
+			     <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream)</span> __wur;
+
+<span class='comment'>/* Like `getdelim', but reads up to a newline.
+
+   This function is not part of POSIX and therefore no official
+   cancellation point.  But due to similarity with an POSIX interface
+   or due to the implementation it is a cancellation point and
+   therefore not marked with __THROW.  */</span>
+<span class='decl decl-Function' id='002a6001002a8021'><span class='keyword extern'>extern</span> _IO_ssize_t getline (<span class='keyword char'>char</span> **__restrict __lineptr,
+			    size_t *__restrict __n,
+			    <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream)</span> __wur;
+<span class='directive'>#endif</span>
+
+
+__BEGIN_NAMESPACE_STD
+<span class='comment'>/* Write a string to STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='002b1001002b1048'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fputs (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __s, <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream)</span>;
+
+<span class='comment'>/* Write a string, followed by a newline, to stdout.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='002b7001002b7021'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> puts (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__s)</span>;
+
+
+<span class='comment'>/* Push a character back onto the input buffer of STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='002be001002be02b'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> ungetc (<span class='keyword int'>int</span> __c, <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span>;
+
+
+<span class='comment'>/* Read chunks of generic data from STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='002c5001002c602d'><span class='keyword extern'>extern</span> size_t fread (<span class='keyword void'>void</span> *__restrict __ptr, size_t __size,
+		     size_t __n, <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream)</span> __wur;
+<span class='comment'>/* Write chunks of generic data to STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='002cb001002cc029'><span class='keyword extern'>extern</span> size_t fwrite (<span class='keyword const'>const</span> <span class='keyword void'>void</span> *__restrict __ptr, size_t __size,
+		      size_t __n, <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __s)</span>;
+__END_NAMESPACE_STD
+
+<span class='directive'>#ifdef __USE_GNU</span>
+<span class='comment'>/* This function does the same as `fputs' but does not lock the stream.
+
+   This function is not part of POSIX and therefore no official
+   cancellation point.  But due to similarity with an POSIX interface
+   or due to the implementation it is a cancellation point and
+   therefore not marked with __THROW.  */</span>
+<span class='decl decl-Function' id='002d6001002d7020'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fputs_unlocked (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __s,
+			   <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream)</span>;
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef __USE_MISC</span>
+<span class='comment'>/* Faster versions when locking is not necessary.
+
+   These functions are not part of POSIX and therefore no official
+   cancellation point.  But due to similarity with an POSIX interface
+   or due to the implementation they are cancellation points and
+   therefore not marked with __THROW.  */</span>
+<span class='decl decl-Function' id='002e1001002e202f'><span class='keyword extern'>extern</span> size_t fread_unlocked (<span class='keyword void'>void</span> *__restrict __ptr, size_t __size,
+			      size_t __n, <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream)</span> __wur;
+<span class='decl decl-Function' id='002e3001002e4030'><span class='keyword extern'>extern</span> size_t fwrite_unlocked (<span class='keyword const'>const</span> <span class='keyword void'>void</span> *__restrict __ptr, size_t __size,
+			       size_t __n, <a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream)</span>;
+<span class='directive'>#endif</span>
+
+
+__BEGIN_NAMESPACE_STD
+<span class='comment'>/* Seek to a certain position on STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='002ed001002ed03f'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fseek (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream, <span class='keyword long'>long</span> <span class='keyword int'>int</span> __off, <span class='keyword int'>int</span> __whence)</span>;
+<span class='comment'>/* Return the current position of STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='002f2001002f2026'><span class='keyword extern'>extern</span> <span class='keyword long'>long</span> <span class='keyword int'>int</span> ftell (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span> __wur;
+<span class='comment'>/* Rewind to the beginning of STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='002f7001002f7023'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> rewind (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span>;
+__END_NAMESPACE_STD
+
+<span class='comment'>/* The Single Unix Specification, Version 2, specifies an alternative,
+   more adequate interface for the two functions above which deal with
+   file offset.  `long int' is not the right type.  These definitions
+   are originally defined in the Large File Support API.  */</span>
+
+<span class='directive'>#if defined __USE_LARGEFILE || defined __USE_XOPEN2K</span>
+<span class='directive'># ifndef __USE_FILE_OFFSET64</span>
+<span class='comment'>/* Seek to a certain position on STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='003050010030503f'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fseeko (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream, __off_t __off, <span class='keyword int'>int</span> __whence)</span>;
+<span class='comment'>/* Return the current position of STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0030a0010030a026'><span class='keyword extern'>extern</span> __off_t ftello (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span> __wur;
+<span class='directive'># else</span><span class='preprocessor-if muted'>
+<span class='directive'>#  ifdef __REDIRECT</span>
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __REDIRECT (fseeko,
+		       (FILE *__stream, __off64_t __off, <span class='keyword int'>int</span> __whence),
+		       fseeko64);
+<span class='keyword extern'>extern</span> __off64_t __REDIRECT (ftello, (FILE *__stream), ftello64);
+<span class='directive'>#  else</span>
+<span class='directive'>#   define fseeko fseeko64</span>
+<span class='directive'>#   define ftello ftello64</span>
+<span class='directive'>#  endif</span></span>
+<span class='directive'># endif</span>
+<span class='directive'>#endif</span>
+
+__BEGIN_NAMESPACE_STD
+<span class='directive'>#ifndef __USE_FILE_OFFSET64</span>
+<span class='comment'>/* Get STREAM's position.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0031e0010031e048'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fgetpos (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream, <a class='declaration-uses' href='../f1/d5c5895ea25227.html#0001500900019001'>fpos_t *</a>__restrict __pos)</span>;
+<span class='comment'>/* Set STREAM's position.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0032300100323038'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fsetpos (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream, <span class='keyword const'>const</span> <a class='declaration-uses' href='../f1/d5c5895ea25227.html#0001500900019001'>fpos_t *</a>__pos)</span>;
+<span class='directive'>#else</span><span class='preprocessor-if muted'>
+<span class='directive'># ifdef __REDIRECT</span>
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __REDIRECT (fgetpos, (FILE *__restrict __stream,
+				 fpos_t *__restrict __pos), fgetpos64);
+<span class='keyword extern'>extern</span> <span class='keyword int'>int</span> __REDIRECT (fsetpos,
+		       (FILE *__stream, <span class='keyword const'>const</span> fpos_t *__pos), fsetpos64);
+<span class='directive'># else</span>
+<span class='directive'>#  define fgetpos fgetpos64</span>
+<span class='directive'>#  define fsetpos fsetpos64</span>
+<span class='directive'># endif</span></span>
+<span class='directive'>#endif</span>
+__END_NAMESPACE_STD
+
+<span class='directive'>#ifdef __USE_LARGEFILE64</span>
+<span class='decl decl-Function' id='0033200100332043'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fseeko64 (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream, __off64_t __off, <span class='keyword int'>int</span> __whence)</span>;
+<span class='decl decl-Function' id='003330010033302a'><span class='keyword extern'>extern</span> __off64_t ftello64 (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span> __wur;
+<span class='decl decl-Function' id='003340010033404c'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fgetpos64 (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__restrict __stream, <a class='declaration-uses' href='../f1/d5c5895ea25227.html#0001a0090001e001'>fpos64_t *</a>__restrict __pos)</span>;
+<span class='decl decl-Function' id='003350010033503c'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fsetpos64 (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream, <span class='keyword const'>const</span> <a class='declaration-uses' href='../f1/d5c5895ea25227.html#0001a0090001e001'>fpos64_t *</a>__pos)</span>;
+<span class='directive'>#endif</span>
+
+__BEGIN_NAMESPACE_STD
+<span class='comment'>/* Clear the error and EOF indicators for STREAM.  */</span>
+<span class='decl decl-Function' id='0033a0010003c01b0033a0010033a027'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> clearerr (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream) __THROW</span>;
+<span class='comment'>/* Return the EOF indicator for STREAM.  */</span>
+<span class='decl decl-Function' id='0033c0010003c01b0033c0010033c022'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> feof (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream) __THROW</span> __wur;
+<span class='comment'>/* Return the error indicator for STREAM.  */</span>
+<span class='decl decl-Function' id='0033e0010003c01b0033e0010033e024'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> ferror (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream) __THROW</span> __wur;
+__END_NAMESPACE_STD
+
+<span class='directive'>#ifdef __USE_MISC</span>
+<span class='comment'>/* Faster versions when locking is not required.  */</span>
+<span class='decl decl-Function' id='003430010003c01b0034300100343030'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> clearerr_unlocked (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream) __THROW</span>;
+<span class='decl decl-Function' id='003440010003c01b003440010034402b'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> feof_unlocked (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream) __THROW</span> __wur;
+<span class='decl decl-Function' id='003450010003c01b003450010034502d'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> ferror_unlocked (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream) __THROW</span> __wur;
+<span class='directive'>#endif</span>
+
+
+__BEGIN_NAMESPACE_STD
+<span class='comment'>/* Print a message describing the meaning of the value of errno.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0034e0010034e024'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> perror (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__s)</span>;
+__END_NAMESPACE_STD
+
+<span class='comment'>/* Provide the declarations for `sys_errlist' and `sys_nerr' if they
+   are available on this system.  Even if available, these variables
+   should not be used directly.  The `strerror' function provides
+   all the necessary functionality.  */</span>
+<span class='directive'>#include <a class='include' href='../b2/5867ddc3014e6a.html'>&lt;bits/sys_errlist.h&gt;</a></span>
+
+
+<span class='directive'>#ifdef	__USE_POSIX</span>
+<span class='comment'>/* Return the system file descriptor for STREAM.  */</span>
+<span class='decl decl-Function' id='0035a0010003c01b0035a0010035a024'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fileno (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream) __THROW</span> __wur;
+<span class='directive'>#endif /* Use POSIX.  */</span>
+
+<span class='directive'>#ifdef __USE_MISC</span>
+<span class='comment'>/* Faster version when locking is not required.  */</span>
+<span class='decl decl-Function' id='0035f0010003c01b0035f0010035f02d'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fileno_unlocked (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream) __THROW</span> __wur;
+<span class='directive'>#endif</span>
+
+
+<span class='directive'>#ifdef __USE_POSIX2</span>
+<span class='comment'>/* Create a new stream connected to a pipe running the given command.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='003680010036803f'><span class='keyword extern'>extern</span> <a class='return-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>popen (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__command, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__modes)</span> __wur;
+
+<span class='comment'>/* Close a stream opened by popen and return the status of its child.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</span>
+<span class='decl decl-Function' id='0036e0010036e022'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> pclose (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream)</span>;
+<span class='directive'>#endif</span>
+
+
+<span class='directive'>#ifdef	__USE_POSIX</span>
+<span class='comment'>/* Return the name of the controlling terminal.  */</span>
+<span class='decl decl-Function' id='003740010003c01b0037400100374022'><span class='keyword extern'>extern</span> <span class='keyword char'>char</span> *ctermid (<span class='keyword char'>char</span> *__s) __THROW</span>;
+<span class='directive'>#endif /* Use POSIX.  */</span>
+
+
+<span class='directive'>#ifdef __USE_XOPEN</span>
+<span class='comment'>/* Return the name of the current user.  */</span>
+<span class='decl decl-Function' id='0037a0010037a020'><span class='keyword extern'>extern</span> <span class='keyword char'>char</span> *cuserid (<span class='keyword char'>char</span> *__s)</span>;
+<span class='directive'>#endif /* Use X/Open, but not issue 6.  */</span>
+
+
+<span class='directive'>#ifdef	__USE_GNU</span>
+<span class='decl decl-CXXRecord' id='0037f0010037f008'><span class='keyword struct'>struct</span> obstack</span>;			<span class='comment'>/* See &lt;obstack.h&gt;.  */</span>
+
+<span class='comment'>/* Write formatted output to an obstack.  */</span>
+<span class='decl decl-Function' id='003820010038403e'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> obstack_printf (<a class='declaration-uses' href='../6f/078dbcc264af74.html#0037f0010037f008'><span class='keyword struct'>struct</span> obstack *</a>__restrict __obstack,
+			   <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, ...)
+     __THROWNL <span class='keyword __attribute__'>__attribute__</span> ((__format__ (__printf__, <span class='numeric'>2</span>, <span class='numeric'>3</span>)))</span>;
+<span class='decl decl-Function' id='003850010038803e'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> obstack_vprintf (<a class='declaration-uses' href='../6f/078dbcc264af74.html#0037f0010037f008'><span class='keyword struct'>struct</span> obstack *</a>__restrict __obstack,
+			    <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format,
+			    _G_va_list __args)
+     __THROWNL <span class='keyword __attribute__'>__attribute__</span> ((__format__ (__printf__, <span class='numeric'>2</span>, <span class='numeric'>0</span>)))</span>;
+<span class='directive'>#endif /* Use GNU.  */</span>
+
+
+<span class='directive'>#ifdef __USE_POSIX</span>
+<span class='comment'>/* These are defined in POSIX.1:1996.  */</span>
+
+<span class='comment'>/* Acquire ownership of STREAM.  */</span>
+<span class='decl decl-Function' id='003900010003c01b0039000100390028'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> flockfile (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream) __THROW</span>;
+
+<span class='comment'>/* Try to acquire ownership of STREAM but do not block if it is not
+   possible.  */</span>
+<span class='decl decl-Function' id='003940010003c01b003940010039402a'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> ftrylockfile (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream) __THROW</span> __wur;
+
+<span class='comment'>/* Relinquish the ownership granted for STREAM.  */</span>
+<span class='decl decl-Function' id='003970010003c01b003970010039702a'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> funlockfile (<a class='declaration-uses' href='../32/b7a89454949ee9.html#000f100100133001'>FILE *</a>__stream) __THROW</span>;
+<span class='directive'>#endif /* POSIX */</span>
+
+<span class='directive'>#if defined __USE_XOPEN &amp;&amp; !defined __USE_XOPEN2K &amp;&amp; !defined __USE_GNU</span><span class='preprocessor-if muted'>
+<span class='comment'>/* The X/Open standard requires some functions and variables to be
+   declared here which do not belong into this header.  But we have to
+   follow.  In GNU mode we don't do this nonsense.  */</span>
+<span class='directive'># define __need_getopt</span>
+<span class='directive'># include &lt;getopt.h&gt;</span></span>
+<span class='directive'>#endif	/* X/Open, but not issue 6 and not for GNU.  */</span>
+
+<span class='comment'>/* If we are compiling with optimizing read this file.  It contains
+   several optimizing inline functions and macros.  */</span>
+<span class='directive'>#ifdef __USE_EXTERN_INLINES</span><span class='preprocessor-if muted'>
+<span class='directive'># include &lt;bits/stdio.h&gt;</span></span>
+<span class='directive'>#endif</span>
+<span class='directive'>#if __USE_FORTIFY_LEVEL &gt; 0 &amp;&amp; defined __fortify_function</span><span class='preprocessor-if muted'>
+<span class='directive'># include &lt;bits/stdio2.h&gt;</span></span>
+<span class='directive'>#endif</span>
+<span class='directive'>#ifdef __LDBL_COMPAT</span><span class='preprocessor-if muted'>
+<span class='directive'># include &lt;bits/stdio-ldbl.h&gt;</span></span>
+<span class='directive'>#endif</span>
+
+__END_DECLS
+
+<span class='directive'>#endif /* &lt;stdio.h&gt; included.  */</span>
+
+<span class='directive'>#endif /* !_STDIO_H */</span></span><span class='cl'></span></pre></div><script src="../../globals.js"></script><script src="../../static/jquery.min.js"></script><script src="../../static/bootstrap/js/bootstrap.min.js"></script><script src="../../static/bootstrap/js/dropdowns-enhancement.js"></script><script src="../../static/animated-modal/animatedModal.js"></script><script src="../../static/jquery.autocomplete.js"></script><script src="../../static/js.cookie.js"></script><script src="../../static/local.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-40501108-2', 'auto');ga('send', 'pageview');</script></body></html>

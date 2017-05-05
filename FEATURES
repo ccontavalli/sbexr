@@ -1,0 +1,34 @@
+LXR:
+
+problems:
+
+  - "defined in file ..."
+    considers forward declarations as well
+    as real definitions.
+
+  - variable links
+    find all variables with the same name
+    does not understand scoping
+
+
+important features:
+
+  - understand scope of variables.
+    Specifically:
+      - function variables, show where that variable is used.
+      - struct attributes, show where that struct attribute is used.
+      - global variables, show where those globals are used.
+
+  - understand function pointers use and invocation.
+    Given a function pointer, is able to tell where that is invoked.
+    Or given a function pointer, is able to tell which functions it
+    may invoke.
+
+  - distinguishes between forward declarations and not.
+
+  - understands macros.
+
+  - can tell where a variable is modified.
+  
+  - syntax coloring.
+  - cut and paste without line numbers getting in the way.

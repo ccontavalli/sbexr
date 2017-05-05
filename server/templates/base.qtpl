@@ -1,0 +1,53 @@
+{% interface
+Page {
+  Body()
+  Title()
+  Path()
+}
+%}
+
+{% stripspace %}
+{% func PageTemplate(page Page) %}
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{%= page.Title() %}</title>
+  {%= AddCss() %}
+</head>
+
+<body>
+<div class="container-fluid">
+{%= AddNavBar(page) %}
+{%= AddFastJs() %}
+</div>
+<div class="container-fluid">
+{%= page.Body() %}
+</div>
+
+{%= AddSlowJs() %}
+</body>
+</html>
+{% endfunc %}
+{% endstripspace %}
+
+{% code type BasePage struct {
+  Project string
+  Tag string
+} %}
+{% func (page *BasePage) Body() %}NO BODY{% endfunc %}
+
+{% func (page *BasePage) Path() %}{% endfunc %}
+{% comment %}
+        {{#parent}}<a href="{{parent_href}}">{{parent_name}}</a>{{pseparator}}{{/parent}}{{curr_name}}
+{% endcomment %}
+{% stripspace %}
+{% func (page *BasePage) Title() %}
+  {% if page.Project != "" %}{%s page.Project %}{% space %}{% endif %}
+  {% if page.Tag != "" %}{%s page.Tag %}{% space %}{% endif %}
+  {% if page.Tag != "" || page.Project != "" %}-{% space %}{% endif %}
+{% endfunc %}
+{% endstripspace %}

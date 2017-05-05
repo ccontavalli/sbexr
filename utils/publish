@@ -1,0 +1,101 @@
+#!/usr/bin/python
+
+import collections
+import glob
+import grp
+import operator
+import os
+import re
+import subprocess
+import sys
+import tempfile
+import time
+import json
+import pprint
+
+NEWS_FILE_PATH="/opt/projects/clang/output/static/news.json"
+
+RunResult = collections.namedtuple("RunResult", ["status", "stdout", "stderr", "time"])
+def Run(args, **kwargs):
+  kwargs.setdefault("stderr", subprocess.PIPE)
+  kwargs.setdefault("stdout", subprocess.PIPE)
+
+  start = time.time()
+  process = subprocess.Popen(args, stdin=subprocess.PIPE,
+                             shell=isinstance(args, str), **kwargs)
+  sys.stderr.write("Running: %s %s" % (args, kwargs))
+  sys.stderr.flush()
+
+  stdout, stderr = process.communicate()
+  status = process.wait()
+  end = time.time()
+  sys.stderr.write(" %0.3fs\n" % (end - start))
+  sys.stderr.flush()
+
+  if status:
+    print >>sys.stderr, "FAILED:", kwargs, "\n"
+    if stdout:
+      print >>sys.stderr, "  stdout:", stdout.strip()
+    if stderr:
+      print >>sys.stderr, "  stderr:", stderr.strip()
+    print >>sys.stderr, "  status:", status
+  return RunResult(status, stdout, stderr, end - start)
+
+def GetGitNews():
+  result = Run(["git", "log", "--format=format:Date: %ct%n%w(4096, 4, 4)%+B%n"])
+  if result.status != 0:
+    raise RuntimeError("git log failed")
+
+  # news_mtime = 0
+  # if os.path.exists(NEWS_FILE_PATH):
+  #   news_mtime = int(os.path.getmtime(NEWS_FILE_PATH))
+
+  times = []
+  date_prefix = "Date: "
+  news_prefix = "news: "
+  git_mtime = None
+  mesage = ""
+  for line in result.stdout.split("\n"):
+    if line.startswith(date_prefix):
+      line = line[len(date_prefix):].strip()
+      git_mtime = int(line)
+      continue
+      
+    if line.startswith("    "):
+      line = line.strip()
+      if not line.startswith(news_prefix):
+        continue
+      line = line[len(news_prefix):].capitalize()
+      if line[-1] != '.':
+        line += '.'
+      event = {"time": git_mtime, "message": line}
+      times.append(event)
+  print "NEWS", pprint.pformat(list(reversed(times)), indent=2)
+  return times
+
+def UpdateNewsFile():
+  news = GetGitNews()
+
+  with open(NEWS_FILE_PATH, "w") as newsfile:
+    newsfile.write(json.dumps({"news": news}))
+
+def Transfer():
+  Run('rsync --exclude="indexes" --exclude="examples" --exclude="testindex" '
+      '--exclude="tree.txt" --exclude="*.o" --include="news.json" --exclude="*.json" '
+      '--exclude="output/sources/" --progress -avz -e ssh '
+      '/opt/projects/clang/ root@pertini:/opt/sbexr/sbexr', stdout=sys.stdout, stderr=sys.stderr)
+  Run('ssh root@pertini -- killall server')
+
+def UpdateBinaries():
+  Run("make", cwd="/opt/projects/clang/src")
+  Run("make", cwd="/opt/projects/clang/sitemap")
+  Run("make", cwd="/opt/projects/clang/server")
+
+def main():
+  UpdateBinaries()
+  UpdateNewsFile()
+  Transfer()
+
+if __name__ == "__main__":
+  # execute only if run as a script
+  main()

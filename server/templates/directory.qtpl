@@ -1,0 +1,61 @@
+{% code
+type DirectoryPage struct {
+  BasePage
+}
+%}
+
+{% func (page *DirectoryPage) Body() %}
+<div class="row">
+
+<div class="col-md-4">
+<table class="table table-hover table-condensed">
+{{#directories}}
+  <tr>
+    <th colspan="2">Directory</th>
+    <th>Files</th>
+  </tr>
+{{#directory}}
+  <tr>
+    <td width="20"><i class="glyphicon glyphicon-folder-open"></i></td>
+    <td><a href="{{href}}">{{name}}</a></td>
+    <td>{{size}}</td>
+  </tr>
+{{/directory}}
+{{#files}}
+  <tr>
+    <td colspan="3"></td>
+  </tr>
+{{/files}}
+{{/directories}}
+
+{{#files}}
+  <tr>
+    <th colspan="2">File</th>
+    <th>Size</th>
+  </tr>
+{{#file}}
+  <tr>
+    <td width="20">
+      {{#parsed}}<i title="Code - parsed & indexed" class="fa fa-code"></i>{{/parsed}}
+      {{#blob}}<i title="Binary blob - ignored" class="fa fa-ban"></i>{{/blob}}
+      {{#text}}<i title="Text data - indexed" class="fa fa-file-text-o"></i>{{/text}}
+      {{#media}}<i title="Media - download only" class="fa fa-download"></i>{{/media}}
+    </td>
+    <td><a href="{{href}}">{{name}}</a></td>
+    <td>{{size}}</td>
+  </tr>
+{{/file}}
+{{/files}}
+</table>
+</div>
+
+{{#index}}
+<div class="col-md-8">
+<h2>{{project}} {{tag}} - {{index_file}}</h2>
+<pre class='code'><span id='line-number'>{{#lines}}<span>{{line}}</span>{{/lines}}</span>{{code}}<span class='cl'></span></pre>
+</div>
+{{/index}}
+
+</div>
+</div>
+{% endfunc %}

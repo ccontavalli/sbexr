@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang='en'><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>test output - /usr/lib/clang/3.9.0/include/stdarg.h</title><link href="../../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"><link href="../../static/bootstrap/css/dropdowns-enhancement.min.css" rel="stylesheet"><link href="../../static/animated-modal/animate.min.css" rel="stylesheet"><link href="../../static/font-awesome/css/font-awesome.min.css" rel="stylesheet"><link href="../../static/style.css" rel="stylesheet"></head><body><div class="container-fluid"><div class="container"><nav class="navbar navbar-default navbar-fixed-top"><div class="container-fluid" id="navbar"><!-- Brand and toggle get grouped for better mobile display --><div class="navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><span class="navbar-brand" style="padding-top: 8px"><ol id="path" itemscope itemtype="http://schema.org/BreadcrumbList"><!-- ROOT DIRECTORY --><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../06/416cc91f3e3d90.html"><i itemprop="image" alt="root" class="glyphicon glyphicon-hdd" style="vertical-align: middle"></i>&nbsp;</a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../60/7abc7e1c17ae25.html"><span itemprop="name">usr</span></a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../56/20789ba73f1cfb.html"><span itemprop="name">lib</span></a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../2e/77cf54ab31ed42.html"><span itemprop="name">clang</span></a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../86/09322bb00871c1.html"><span itemprop="name">3.9.0</span></a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../4f/f0139f0ae9a426.html"><span itemprop="name">include</span></a></li></ol>stdarg.h</span></div><!-- Collect the nav links, forms, and other content for toggling --><!-- mostly taken from http://www.bootply.com/t7O3HSGlbc --><div class="collapse navbar-collapse" id="main-navbar"><div class="form-group" style="margin-top: 8px; margin-bottom: 0px;"><div class="input-group"><div class="input-group-btn"><button class="btn btn-default correct-height" data-label-placement><i class="glyphicon glyphicon-console data-label"></i></button><button data-toggle="dropdown" class="btn btn-default dropdown-toggle correct-height"><span class="caret"></span> </button><ul class="dropdown-menu"><li><input type="radio" id="sb-symbol" name="sb" value="symbol" checked><label for="sb-symbol"><i class="glyphicon glyphicon-console data-label"></i> Symbol</label></li><li><input type="radio" id="sb-file" name="sb" value="file"><label for="sb-file"><i class="glyphicon glyphicon-file data-label"></i> File</label></li><li><input type="radio" id="sb-text" name="sb" value="text"><label for="sb-text"><i class="glyphicon glyphicon-text-background data-label"></i> Text</label></li><li><input type="radio" id="sb-line" name="sb" value="line"><label for="sb-line"><i class="glyphicon glyphicon-indent-left data-label"></i> Line</label></li></ul></div><input type="text" name="search" id="searchbox-symbol" class="form-control" placeholder="Search symbol (std::list, list, kfree_skb, any full or partial variable/class/function/... name)"><input type="text" name="search" id="searchbox-file" class="form-control hidden" placeholder="Search file (/usr/include/alloca.h, alloca.h, any full or partial path)"><input type="text" name="search" id="searchbox-text" class="form-control hidden" placeholder="Search text (content of comments, strings, full text search over the source code)"><input type="text" name="search" id="searchbox-line" class="form-control hidden" placeholder="Go to line (53, 1120, just type the line number and enter)"><div class="input-group-btn"><div class="btn-group hidden" id="tag-menu"><button data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="tag-default"></button><ul class="dropdown-menu pull-center" id="tag-entries"></ul></div><a class="btn btn-default" href="../meta/about.html" type="button" id="sbexr-about"><i title="About this site" class="glyphicon glyphicon-info-sign"></i></a><a class="btn btn-default" href="../meta/help.html" type="button" id="sbexr-help"><i title="Help!!" class="glyphicon glyphicon-question-sign"></i></a></div></div></div></div><!-- /.navbar-collapse --></div><!-- /.container-fluid --></nav></div><pre class='code'><span id='line-number'><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>10</i><i>11</i><i>12</i><i>13</i><i>14</i><i>15</i><i>16</i><i>17</i><i>18</i><i>19</i><i>20</i><i>21</i><i>22</i><i>23</i><i>24</i><i>25</i><i>26</i><i>27</i><i>28</i><i>29</i><i>30</i><i>31</i><i>32</i><i>33</i><i>34</i><i>35</i><i>36</i><i>37</i><i>38</i><i>39</i><i>40</i><i>41</i><i>42</i><i>43</i><i>44</i><i>45</i><i>46</i><i>47</i><i>48</i><i>49</i><i>50</i><i>51</i><i>52</i></span><span itemscope itemtype="http://schema.org/SoftwareSourceCode"><meta itemprop="programmingLanguage" content="C" /><span class='comment'>/*===---- stdarg.h - Variable argument handling ----------------------------===
+ *
+ * Copyright (c) 2008 Eli Friedman
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ *===-----------------------------------------------------------------------===
+ */</span>
+
+<span class='directive'>#ifndef __STDARG_H</span>
+<span class='directive'>#define __STDARG_H</span>
+
+<span class='directive'>#ifndef _VA_LIST</span>
+<span class='def def-Typedef' id='0001e0010001e01b'><span class='keyword typedef'>typedef</span> __builtin_va_list va_list</span>;
+<span class='directive'>#define _VA_LIST</span>
+<span class='directive'>#endif</span>
+<span class='directive'>#define va_start(ap, param) __builtin_va_start(ap, param)</span>
+<span class='directive'>#define va_end(ap)          __builtin_va_end(ap)</span>
+<span class='directive'>#define va_arg(ap, type)    __builtin_va_arg(ap, type)</span>
+
+<span class='comment'>/* GCC always defines __va_copy, but does not define va_copy unless in c99 mode
+ * or -ansi is not specified, since it was not part of C90.
+ */</span>
+<span class='directive'>#define __va_copy(d,s) __builtin_va_copy(d,s)</span>
+
+<span class='directive'>#if __STDC_VERSION__ &gt;= 199901L || __cplusplus &gt;= 201103L || !defined(__STRICT_ANSI__)</span>
+<span class='directive'>#define va_copy(dest, src)  __builtin_va_copy(dest, src)</span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* Hack required to make standard headers work, at least on Ubuntu */</span>
+<span class='directive'>#ifndef __GNUC_VA_LIST</span>
+<span class='directive'>#define __GNUC_VA_LIST 1</span>
+<span class='directive'>#endif</span>
+<span class='def def-Typedef' id='000320010003201b'><span class='keyword typedef'>typedef</span> __builtin_va_list __gnuc_va_list</span>;
+
+<span class='directive'>#endif /* __STDARG_H */</span></span><span class='cl'></span></pre></div><script src="../../globals.js"></script><script src="../../static/jquery.min.js"></script><script src="../../static/bootstrap/js/bootstrap.min.js"></script><script src="../../static/bootstrap/js/dropdowns-enhancement.js"></script><script src="../../static/animated-modal/animatedModal.js"></script><script src="../../static/jquery.autocomplete.js"></script><script src="../../static/js.cookie.js"></script><script src="../../static/local.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-40501108-2', 'auto');ga('send', 'pageview');</script></body></html>

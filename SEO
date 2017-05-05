@@ -1,0 +1,26 @@
+Add meta tags:
+https://support.google.com/webmasters/answer/79812?hl=en
+
+DONE Add breadcrumbs:
+https://developers.google.com/search/docs/data-types/breadcrumbs
+
+DONE Create sitemap:
+ - USE XML, and specified time / date modified
+   https://developers.google.com/search/docs/guides/create-URLs
+   https://support.google.com/webmasters/answer/183668?hl=en&ref_topic=4581190
+
+Create list of functions?
+ - https://developers.google.com/search/docs/guides/mark-up-listings
+
+Add searchbox directly?
+ - https://developers.google.com/search/docs/guides/enhance-site#add-a-sitelinks-searchbox-for-your-site
+
+DONE Mark with structured data?
+ - https://schema.org/SoftwareSourceCode
+
+Mark with facebook opengraph?
+ - http://ogp.me/
+
+Search examples:
+  https://github.com/google/search-samples/
+
