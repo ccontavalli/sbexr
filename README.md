@@ -145,6 +145,8 @@ There are a few things in my TODO list that are relatively urgent:
      of sbexr, it generated simple ".json" files that required no API server to run
      on your hosting provider - and still provide full search functionality.
 
+   * Finish implementing full text search in source code. Almost there.
+
    * Write support for MACRO tracking and expansion.
 
    * Turn proof of concept lock tracking and function pointer analysis in
