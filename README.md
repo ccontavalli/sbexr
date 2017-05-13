@@ -68,20 +68,20 @@ The instructions below work on most debian derived systems.
 
 1. Install all the necessary dependencies:
 
-    # To build and compile the tool.
-    apt-get install build-essential
-    apt-get install libclang-3.9-dev
-    apt-get install llvm-3.9-dev
+       # To build and compile the tool.
+       apt-get install build-essential
+       apt-get install libclang-3.9-dev
+       apt-get install llvm-3.9-dev
 
-    # g++ >= 5 is fine. 6 is a good default.
-    apt-get install g++-6
+       # g++ >= 5 is fine. 6 is a good default.
+       apt-get install g++-6
 
-    apt-get install libsparsehash-dev
-    apt-get install libctemplate-dev
-    apt-get install rapidjson-dev
+       apt-get install libsparsehash-dev
+       apt-get install libctemplate-dev
+       apt-get install rapidjson-dev
 
-    # To build the search index and web server.
-    apt-get install golang
+       # To build the search index and web server.
+       apt-get install golang
 
 
 ## Using sbexr
