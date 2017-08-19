@@ -13,7 +13,8 @@ import time
 import json
 import pprint
 
-NEWS_FILE_PATH="/opt/projects/clang/output/static/news.json"
+BASE = "/opt/projects/sbexr"
+NEWS_FILE_PATH = os.path.join(BASE, "output/static/news.json")
 
 RunResult = collections.namedtuple("RunResult", ["status", "stdout", "stderr", "time"])
 def Run(args, **kwargs):
@@ -83,13 +84,13 @@ def Transfer():
   Run('rsync --exclude="indexes" --exclude="examples" --exclude="testindex" '
       '--exclude="tree.txt" --exclude="*.o" --include="news.json" --exclude="*.json" '
       '--exclude="output/sources/" --progress -avz -e ssh '
-      '/opt/projects/clang/ root@pertini:/opt/sbexr/sbexr', stdout=sys.stdout, stderr=sys.stderr)
+      '%s/ root@pertini:/opt/sbexr/sbexr' % BASE, stdout=sys.stdout, stderr=sys.stderr)
   Run('ssh root@pertini -- killall server')
 
 def UpdateBinaries():
-  Run("make", cwd="/opt/projects/clang/src")
-  Run("make", cwd="/opt/projects/clang/sitemap")
-  Run("make", cwd="/opt/projects/clang/server")
+  Run("make", cwd=os.path.join(BASE, "src"))
+  Run("make", cwd=os.path.join(BASE, "sitemap"))
+  Run("make", cwd=os.path.join(BASE, "server"))
 
 def main():
   UpdateBinaries()
