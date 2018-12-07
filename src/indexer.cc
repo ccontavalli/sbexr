@@ -158,6 +158,8 @@ void WriteJsonString(Writer* writer,
 
 class JsonWriter {
  public:
+  typedef char Ch;
+
   JsonWriter(std::ofstream* myfile) : myfile_(myfile) {}
   void Put(char c) { myfile_->put(c); }
   void PutN(char c, int n) {
