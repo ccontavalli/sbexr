@@ -20,7 +20,6 @@ var indexdir = flag.String("index-dir", "", "If specified, directory with indexe
 
 type Index struct {
 	Tree      db.TagSet
-	Symbol    db.TagSet
 	BinSymbol db.TagSet
 }
 
@@ -45,11 +44,9 @@ func init() {
 func Updater(index *Index) {
 	for {
 		index.Tree.Update()
-		index.Symbol.Update()
 		index.BinSymbol.Update()
 
 		index.Tree.AddHandlers()
-		index.Symbol.AddHandlers()
 		index.BinSymbol.AddHandlers()
 
 		//log.Printf("AFTER UPDATE %+v\n", index)

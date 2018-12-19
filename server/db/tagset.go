@@ -15,13 +15,19 @@ import (
         "github.com/NYTimes/gziphandler"
 )
 
-// A Tag contains the configurations that are common across all tags
-// of the source tree.
+// Represents a specific index for a specific Tag on disk.
+// For example, we will have a Tag for the index of symbols, of v1.0 of the linux kernel.
 type Tag struct {
+	// Indicates that the Tag has been registered with the http server.
 	Registered bool
+	// Protects access to Handler and Changed below.
 	Mutex      sync.RWMutex
+	// Last time a Change in the Tag was detected.
 	Changed    time.Time
 
+	// Object capable of handling a search request in this index.
+	// Handler can also implement the PageHandler interface, to serve
+	// details on a specific result returned. 
 	Handler ApiHandler
 }
 
@@ -43,6 +49,16 @@ type PageHandler interface {
 	HandlePage(w http.ResponseWriter, r *http.Request, data *TagData, m *sync.RWMutex)
 }
 
+// A TagSet represents a set of indexes, one per Tag, of a specific kind to serve via the web server.
+//
+// For example, let's say we have indexed 3 versions of the linux kernel with sbexr: v1.0, v2.0, v3.0.
+// The version has been used as a Tag. Each version will contain an index of the files in the source
+// tree, of the symbols, ...
+//
+// Name will be set to "symbol" or "tree", depending on the kind of index.
+// Tag is a map, using the Tag as the key (v1.0, v2.0, ...), and returning an object allowing to manage
+//   the specfic index at hand.
+// Handler is an object able to check if the TagSet has changed on disk, and able to reload it.
 type TagSet struct {
 	Name    string
 	Tag     map[string]*Tag
