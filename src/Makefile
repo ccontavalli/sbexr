@@ -1,10 +1,9 @@
-LIBS := $(shell llvm-config-3.9 --libs) -lctemplate
-CXXFLAGS := $(shell llvm-config-3.9 --cxxflags | sed -e 's/-gsplit-dwarf//g') -ggdb3 -O0
-LDFLAGS := $(shell llvm-config-3.9 --ldflags | sed -e 's/-gsplit-dwarf //g')
+LLVMVERSION := 8
+LLVMCONFIG := llvm-config-$(LLVMVERSION)
+LIBS := $(shell $(LLVMCONFIG) --libs) -lctemplate
+CXXFLAGS := $(shell $(LLVMCONFIG) --cxxflags | sed -e 's/-gsplit-dwarf//g') -ggdb3 -O0
+LDFLAGS := $(shell $(LLVMCONFIG) --ldflags | sed -e 's/-gsplit-dwarf //g')
 TIME := time --format='MEM: unshared process size=%D, average total=%K, max resident=%M\nTIME: total wall time=%e, user time=%U, kernel time=%S'
-
-#EXTRALIBS := -lLLVMSupport -lLLVMSystemZInfo -lLLVMBitReader -lLLVMBitWriter \
-#	     -lclangBasic -lclangParse -lclangLex -lclangDriver -lclangFormat -lclangFrontend
 
 EXTRALIBS := -lclangFrontend \
 	     -lclangParse \
@@ -25,7 +24,7 @@ EXTRALIBS := -lclangFrontend \
 all: sbexr
 
 sbexr: sbexr.o indexer.o renderer.o rewriter.h wrapping.o rewriter.o cache.o mempool.h mempool.o common.o common.h
-	$(CXX) -lclang-3.9 -lLLVM-3.9 $(CXXFLAGS) $(LDFLAGS) $(LIBS) $(LIBDIR) -o sbexr $^ $(EXTRALIBS)
+	$(CXX) -lclang-$(LLVMVERSION) -lLLVM-$(LLVMVERSION) $(CXXFLAGS) $(LDFLAGS) $(LIBS) $(LIBDIR) -o sbexr $^ $(EXTRALIBS)
 
 gen:
 	$(MAKE) clean && bear $(MAKE) && cp ./compile_commands.json .. && cd .. && $(TIME) ./src/sbexr --index=indexes -x "output|indexes" .
@@ -34,7 +33,7 @@ gen-only:
 	cd .. && $(TIME) ./src/sbexr -x "output|indexes" .
 
 test-gen: sbexr test-multi
-	cd ../test && rm -rf output/ && mkdir -p output && ln -sfT ../../output/static ./output/static && cp -a ../compile_commands.json ./ && \
+	cd ../test && rm -rf output/ && mkdir -p output && ln -sfT ../../output/static ./output/static && cp -a ../compile_commands.json ./ &&
 	    rm -rf indexes && mkdir indexes && $(TIME) ../src/sbexr --verbose --index=indexes -x "output|indexes" ./
 
 test-dump: test-dump-multi
@@ -52,12 +51,12 @@ clean-test:
 	$(MAKE) -C ../test clean
 
 dump:
-	clang-3.8 -Xclang -ast-dump -fsyntax-only $(CXXFLAGS) $(LIBS) $(LIBDIR) ./sbexr.cc
+	clang-$(LLVMVERSION) -Xclang -ast-dump -fsyntax-only $(CXXFLAGS) $(LIBS) $(LIBDIR) ./sbexr.cc
 
 .PHONY: server test format
 
 format:
-	clang-format-3.8 --style=google -i *.cc *.h
+	clang-format-$(LLVMVERSION) --style=google -i *.cc *.h
 
 test-server:
 	killall -TERM server || true

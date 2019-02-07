@@ -220,7 +220,7 @@ class Printer {
   })
 
   PRINT_FUNCTION(DeclStmt, v, {
-    PRINT_LOCATION(v, getStartLoc);
+    PRINT_LOCATION(v, getBeginLoc);
     PRINT_LOCATION(v, getEndLoc);
     if (v->isSingleDecl())
       PRINT_NAME_VALUE("size", 1);
@@ -309,7 +309,7 @@ class Printer {
     PRINT_LOCATION(v, getInnerLocStart);
     PRINT_LOCATION(v, getOuterLocStart);
     PRINT_RANGE(v, getSourceRange);
-    PRINT_LOCATION(v, getLocStart);
+    PRINT_LOCATION(v, getBeginLoc);
     PRINT_LOCATION(v, getTypeSpecStartLoc);
     PRINT_INT(v, getNumTemplateParameterLists);
 
@@ -330,8 +330,6 @@ class Printer {
     PRINT_LOCATION(v, getBeginLoc);
     PRINT_LOCATION(v, getEndLoc);
     PRINT_RANGE(v, getSourceRange);
-    PRINT_LOCATION(v, getLocStart);
-    PRINT_LOCATION(v, getLocEnd);
     PRINT_RANGE(v, getLocalSourceRange);
     PRINT_INT(v, getFullDataSize);
   });
@@ -440,8 +438,8 @@ class Printer {
     PRINT_BOOL(v, isReferenced);
 
     PRINT_RANGE(v, getSourceRange);
-    PRINT_LOCATION(v, getLocStart);
-    PRINT_LOCATION(v, getLocEnd);
+    PRINT_LOCATION(v, getBeginLoc);
+    PRINT_LOCATION(v, getEndLoc);
     PRINT_LOCATION(v, getLocation);
 
     PRINT_RECURSE_PTR(v, getDeclContext);

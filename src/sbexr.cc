@@ -397,7 +397,7 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
   bool TraverseDecl(Decl* decl) {
     if (!decl) return Base::TraverseDecl(decl);
 
-    auto* file = GetFileFor(decl->getLocStart());
+    auto* file = GetFileFor(decl->getBeginLoc());
     if (file && file->Rendered()) {
       if (gl_verbose)
         std::cerr << "FILE ALREADY PARSED " << TryPrint(decl) << std::endl;
@@ -642,7 +642,7 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 
     // Find location with start of column.
     const auto& sm = ci_->getSourceManager();
-    auto start = statement->getLocStart();
+    auto start = statement->getBeginLoc();
     auto fid = sm.getFileID(start);
 
     if (!start.isMacroID()) {
@@ -753,7 +753,8 @@ class PPTracker : public PPCallbacks {
                           StringRef FileName, bool IsAngled,
                           CharSourceRange filename_range, const FileEntry* File,
                           StringRef SearchPath, StringRef RelativePath,
-                          const clang::Module* Imported) override {
+                          const clang::Module* Imported,
+                          SrcMgr::CharacteristicKind FileType) override {
     if (!File || !ShouldProcess()) return;
 
     auto included_full_path = (SearchPath + "/" + RelativePath).str();
@@ -786,12 +787,13 @@ class PPTracker : public PPCallbacks {
   ///
   /// MD is released immediately following this callback.
   void MacroUndefined(const Token& MacroNameTok,
-                      const MacroDefinition& MD) override{};
+                      const MacroDefinition& MD,
+                      const MacroDirective *Undef) override{};
 
   /// \brief Hook called when a source range is skipped.
   /// \param Range The SourceRange that was skipped. The range begins at the
   /// \#if/\#else directive and ends after the \#endif/\#else directive.
-  void SourceRangeSkipped(SourceRange Range) override{};
+  void SourceRangeSkipped(SourceRange Range, SourceLocation endifloc) override{};
 
   /// \brief Hook called whenever an \#if is seen.
   /// \param Loc the source location of the directive.
@@ -1016,7 +1018,7 @@ std::unique_ptr<CompilerInstance> CreateCompilerInstance(
 
   LangOptions& lo = ci->getLangOpts();
   // Without this, does not recognize bool and wchar_t, and a few other errors.
-  CompilerInvocation::setLangDefaults(lo, IK_CXX,
+  CompilerInvocation::setLangDefaults(lo, InputKind(InputKind::CXX, InputKind::Source, false),
                                       llvm::Triple(ci->getTargetOpts().Triple),
                                       ci->getPreprocessorOpts());
 
@@ -1024,9 +1026,9 @@ std::unique_ptr<CompilerInstance> CreateCompilerInstance(
     std::vector<const char*> args;
     for (const auto& arg : argv) args.push_back(arg.c_str());
 
-    auto* invocation =
+    auto invocation =
         createInvocationFromCommandLine(args, &ci->getDiagnostics());
-    ci->setInvocation(invocation);
+    ci->setInvocation(std::move(invocation));
   } else {
     lo.CPlusPlus = 1;
   }
@@ -1120,6 +1122,10 @@ int main(int argc, const char** argv) {
     }
 
     const auto& allfiles = db->getAllFiles();
+    const auto& commands = db->getAllCompileCommands();
+    llvm::errs() << ">>> FILES TO PARSE: " << allfiles.size() << "\n";
+    llvm::errs() << ">>> COMMANDS TO RUN: " << commands.size() << "\n";
+
     for (const auto& file : allfiles) {
       if (!std::regex_search(file, filter)) continue;
 

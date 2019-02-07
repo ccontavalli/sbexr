@@ -126,7 +126,7 @@ inline FileRenderer::ParsedFile* FileCache::GetFileFor(const SourceManager& sm,
     return nullptr;
   }
 
-  const char* filename;
+  llvm::StringRef filename;
   if (cache->OrigEntry) {
     filename = cache->OrigEntry->getName();
   } else {
@@ -134,7 +134,7 @@ inline FileRenderer::ParsedFile* FileCache::GetFileFor(const SourceManager& sm,
   }
 
   // Very unfortunate... is there a better way? TODO
-  if (strcmp(filename, "<built-in>") == 0) return nullptr;
+  if (filename.equals("<built-in>")) return nullptr;
 
   last_sm_file_ = GetFileFor(filename);
   return last_sm_file_;

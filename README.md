@@ -70,8 +70,8 @@ The instructions below work on most debian derived systems.
 
        # To build and compile the tool.
        apt-get install build-essential
-       apt-get install libclang-3.9-dev
-       apt-get install llvm-3.9-dev
+       apt-get install libclang-8-dev
+       apt-get install llvm-8-dev
 
        # g++ >= 5 is fine. 6 is a good default.
        apt-get install g++-6
