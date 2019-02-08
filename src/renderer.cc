@@ -748,11 +748,11 @@ void AddTemplateCode(ctemplate::TemplateDictionary* dict,
     case FileRenderer::kFileParsed:
       file->type = FileRenderer::kFileGenerated;
       file->body = file->rewriter.Generate(file->path, file->body);
-    /* NO BREAK HERE */
+      /* NO BREAK HERE */
 
     case FileRenderer::kFileGenerated:
       add_line_numbers = true;
-    /* NO BREAK HERE */
+      /* NO BREAK HERE */
 
     case FileRenderer::kFileUnknown:
     case FileRenderer::kFileBinary:

@@ -105,15 +105,17 @@ cl::opt<bool> gl_verbose("verbose", cl::desc("Provide debug output."),
 cl::opt<int> gl_limit("limit", cl::desc("Limit the number of files processed."),
                       cl::cat(gl_category), cl::init(0));
 cl::opt<int> gl_snippet_limit(
-    "snippet-limit", cl::desc("Maximum number of characters captured in a "
-                              "snippet before or after the relevant text."),
+    "snippet-limit",
+    cl::desc("Maximum number of characters captured in a "
+             "snippet before or after the relevant text."),
     cl::cat(gl_category), cl::init(60));
 cl::opt<std::string> gl_output_cwd(
     "c", cl::desc("Path to strip from generated filenames."),
     cl::value_desc("directory"), cl::init(GetCwd()), cl::cat(gl_category));
 cl::opt<std::string> gl_index_dir(
-    "index", cl::desc("Directory where to output all generated indexes. Tag "
-                      "name is used to name files."),
+    "index",
+    cl::desc("Directory where to output all generated indexes. Tag "
+             "name is used to name files."),
     cl::value_desc("directory"), cl::cat(gl_category));
 cl::opt<std::string> gl_bear_filter_regex(
     "l",
@@ -269,8 +271,9 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
                         {"href", MakeIdLink(ntarget)}));
   }
 
-  template<typename UserT>
-  void RecordTypeUse(const UserT& user, const char* description, TagDecl* target) {
+  template <typename UserT>
+  void RecordTypeUse(const UserT& user, const char* description,
+                     TagDecl* target) {
     if (!target) return;
 
     const auto& ntarget = NormalizeSourceRange(target->getSourceRange());
@@ -420,11 +423,11 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 
   bool VisitDeclaratorDecl(DeclaratorDecl* v) {
     if (!v) return true;
-// Notes:
-// getName -> returns the name of the variable declared.
-// getTypeSourceInfo -> returns the original type declared in the source code
-// (eg, 'auto')
-// getType -> returns the type the variable is actually considered to be.
+      // Notes:
+      // getName -> returns the name of the variable declared.
+      // getTypeSourceInfo -> returns the original type declared in the source
+      // code (eg, 'auto') getType -> returns the type the variable is actually
+      // considered to be.
 
 #if 0
     auto decl = v->getCanonicalDecl();
@@ -618,9 +621,9 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 #endif
   bool VisitDeclStmt(DeclStmt* stmt) {
     if (gl_verbose) std::cerr << TryPrint(stmt) << std::endl;
-    
-    // The first declaration in the statement that has a type should link the type.
-    // Example:
+
+    // The first declaration in the statement that has a type should link the
+    // type. Example:
     //
     //   Point foo, *bar;
     //
@@ -630,7 +633,8 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
       auto* decldecl = dyn_cast<DeclaratorDecl>(decl);
       if (decldecl) {
         auto* rt = GetTagDeclForType(decldecl->getType());
-        LinkToType(decldecl->getTypeSourceInfo()->getTypeLoc(), "declaration", rt);
+        LinkToType(decldecl->getTypeSourceInfo()->getTypeLoc(), "declaration",
+                   rt);
         break;
       }
     }
@@ -786,14 +790,14 @@ class PPTracker : public PPCallbacks {
   /// \brief Hook called whenever a macro \#undef is seen.
   ///
   /// MD is released immediately following this callback.
-  void MacroUndefined(const Token& MacroNameTok,
-                      const MacroDefinition& MD,
-                      const MacroDirective *Undef) override{};
+  void MacroUndefined(const Token& MacroNameTok, const MacroDefinition& MD,
+                      const MacroDirective* Undef) override{};
 
   /// \brief Hook called when a source range is skipped.
   /// \param Range The SourceRange that was skipped. The range begins at the
   /// \#if/\#else directive and ends after the \#endif/\#else directive.
-  void SourceRangeSkipped(SourceRange Range, SourceLocation endifloc) override{};
+  void SourceRangeSkipped(SourceRange Range,
+                          SourceLocation endifloc) override{};
 
   /// \brief Hook called whenever an \#if is seen.
   /// \param Loc the source location of the directive.
@@ -1018,9 +1022,9 @@ std::unique_ptr<CompilerInstance> CreateCompilerInstance(
 
   LangOptions& lo = ci->getLangOpts();
   // Without this, does not recognize bool and wchar_t, and a few other errors.
-  CompilerInvocation::setLangDefaults(lo, InputKind(InputKind::CXX, InputKind::Source, false),
-                                      llvm::Triple(ci->getTargetOpts().Triple),
-                                      ci->getPreprocessorOpts());
+  CompilerInvocation::setLangDefaults(
+      lo, InputKind(InputKind::CXX, InputKind::Source, false),
+      llvm::Triple(ci->getTargetOpts().Triple), ci->getPreprocessorOpts());
 
   if (argv.size()) {
     std::vector<const char*> args;

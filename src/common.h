@@ -133,7 +133,7 @@ template <>
 inline string to_string<StringRef>(const StringRef& str) {
   return str.str();
 }
-}
+}  // namespace std
 
 template <typename ArrayT, typename SeparatorT>
 static inline std::string Join(const ArrayT& array, const SeparatorT& sep) {

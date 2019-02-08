@@ -118,7 +118,8 @@ std::string PrintLocation(const SourceManager& sm, FileCache* cache,
   return s.str();
 }
 
-#define PRINT_RECURSE_BASE(type, var) s << TryPrint(static_cast<const type*>(var), ctx, false)
+#define PRINT_RECURSE_BASE(type, var) \
+  s << TryPrint(static_cast<const type*>(var), ctx, false)
 #define PRINT_RECURSE(var) s << TryPrint(var, ctx, true)
 #define PRINT_RECURSE_TMP(base, method) \
   {                                     \
@@ -147,40 +148,42 @@ std::string PrintLocation(const SourceManager& sm, FileCache* cache,
 
 #define PRINT_RANGE_DIRECT(range) s << PrintLocation(*sm_, cache_, *range) + ","
 
-
 #define PRINT_NAME_VALUE(name, value) \
   s << (std::string(#name "=") + std::to_string(value) + ",")
 
-#define PRINT_BOOL(base, method) PRINT_NAME_VALUE(#method, ((base)->method() ? "=true" : "=false"))
+#define PRINT_BOOL(base, method) \
+  PRINT_NAME_VALUE(#method, ((base)->method() ? "=true" : "=false"))
 #define PRINT_STRING(base, method) PRINT_NAME_VALUE(#method, (base)->method())
 #define PRINT_INT(base, method) PRINT_NAME_VALUE(#method, (base)->method())
 
 #define PRINT_FUNCTION_BASE_BODY(type, variable, code) \
-  {                                               \
-    std::string output;                           \
-    raw_string_ostream s(output);                 \
-    code                                          \
-    s << "}";                                     \
-    return s.str();                               \
+  {                                                    \
+    std::string output;                                \
+    raw_string_ostream s(output);                      \
+    code s << "}";                                     \
+    return s.str();                                    \
   }
-#define PRINT_FUNCTION_BODY(type, variable, code) \
-  PRINT_FUNCTION_BASE_BODY(type, variable, { \
-    s << #type << "[" << static_cast<const void*>(variable) << "]" << "{"; \
-    if (variable) {                               \
+#define PRINT_FUNCTION_BODY(type, variable, code)                             \
+  PRINT_FUNCTION_BASE_BODY(type, variable, {                                  \
+    s << #type << "[" << static_cast<const void*>(variable) << "]"            \
+      << "{";                                                                 \
+    if (variable) {                                                           \
       if (!suppress || (ctx->printed.find(variable) == ctx->printed.end())) { \
-        ctx->printed.insert(variable); \
-        code                                        \
-      } else { \
-        s << "!DUP";                                \
-      } \
-    } else {                                      \
-      s << "!NULL";                               \
-    };  \
+        ctx->printed.insert(variable);                                        \
+        code                                                                  \
+      } else {                                                                \
+        s << "!DUP";                                                          \
+      }                                                                       \
+    } else {                                                                  \
+      s << "!NULL";                                                           \
+    };                                                                        \
   })
 
-#define PRINT_FUNCTION_PROTO(name, type, variable) std::string name(const type* variable, Context* ctx, bool suppress)
-#define PRINT_FUNCTION(type, variable, code) \
-  PRINT_FUNCTION_PROTO(TryPrint, type, variable) PRINT_FUNCTION_BODY(type, variable, code)
+#define PRINT_FUNCTION_PROTO(name, type, variable) \
+  std::string name(const type* variable, Context* ctx, bool suppress)
+#define PRINT_FUNCTION(type, variable, code)     \
+  PRINT_FUNCTION_PROTO(TryPrint, type, variable) \
+  PRINT_FUNCTION_BODY(type, variable, code)
 
 class Printer {
  private:

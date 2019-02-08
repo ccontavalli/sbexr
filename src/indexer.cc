@@ -222,7 +222,8 @@ void Indexer::OutputJsonIndex(const char* path, JsonFormat format) {
   auto symbols = MakeJsonArray(&writer);
 
   auto OutputProvider = [&writer, this, format](
-      const NameString& name, const Properties::Provider& provider) {
+                            const NameString& name,
+                            const Properties::Provider& provider) {
     auto jprovider = MakeJsonObject(&writer);
     if (name != provider.name) return;
 
@@ -494,7 +495,7 @@ void Indexer::OutputBinaryIndex(const char* path, const char* name) {
         detailoff += sizeof(kinddata);
 
         auto OutputProvider = [&detailoff, &detfile, &allfiles](
-            const Properties::Provider& provider) {
+                                  const Properties::Provider& provider) {
           const auto& fileit = allfiles.find(provider.location.file);
           FileOffsetT foffset = 0;
           if (fileit != allfiles.end()) {

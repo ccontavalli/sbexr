@@ -46,7 +46,7 @@ struct Tag {
   Tag(const Tag& other) = default;
 
   Tag(const char* tag, const std::string& attrs)
-    : tag(tag), attributes(attrs) {}
+      : tag(tag), attributes(attrs) {}
 
   void Drop() { attributes.Drop(); }
   bool operator==(const Tag& other) {
