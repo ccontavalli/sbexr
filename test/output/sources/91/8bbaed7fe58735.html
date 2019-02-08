@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang='en'><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>test output - /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h</title><link href="../../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"><link href="../../static/bootstrap/css/dropdowns-enhancement.min.css" rel="stylesheet"><link href="../../static/animated-modal/animate.min.css" rel="stylesheet"><link href="../../static/font-awesome/css/font-awesome.min.css" rel="stylesheet"><link href="../../static/style.css" rel="stylesheet"></head><body><div class="container-fluid"><div class="container"><nav class="navbar navbar-default navbar-fixed-top"><div class="container-fluid" id="navbar"><!-- Brand and toggle get grouped for better mobile display --><div class="navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><span class="navbar-brand" style="padding-top: 8px"><ol id="path" itemscope itemtype="http://schema.org/BreadcrumbList"><!-- ROOT DIRECTORY --><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../06/416cc91f3e3d90.html"><i itemprop="image" alt="root" class="glyphicon glyphicon-hdd" style="vertical-align: middle"></i>&nbsp;</a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../60/7abc7e1c17ae25.html"><span itemprop="name">usr</span></a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../19/901c5d9478e5ce.html"><span itemprop="name">include</span></a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../f0/212845f8a256c3.html"><span itemprop="name">x86_64-linux-gnu</span></a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../23/32e20e89ff3dae.html"><span itemprop="name">bits</span></a></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../50/6c0d28222dde39.html"><span itemprop="name">types</span></a></li></ol>struct_FILE.h</span></div><!-- Collect the nav links, forms, and other content for toggling --><!-- mostly taken from http://www.bootply.com/t7O3HSGlbc --><div class="collapse navbar-collapse" id="main-navbar"><div class="form-group" style="margin-top: 8px; margin-bottom: 0px;"><div class="input-group"><div class="input-group-btn"><button class="btn btn-default correct-height" data-label-placement><i class="glyphicon glyphicon-console data-label"></i></button><button data-toggle="dropdown" class="btn btn-default dropdown-toggle correct-height"><span class="caret"></span> </button><ul class="dropdown-menu"><li><input type="radio" id="sb-symbol" name="sb" value="symbol" checked><label for="sb-symbol"><i class="glyphicon glyphicon-console data-label"></i> Symbol</label></li><li><input type="radio" id="sb-file" name="sb" value="file"><label for="sb-file"><i class="glyphicon glyphicon-file data-label"></i> File</label></li><li><input type="radio" id="sb-text" name="sb" value="text"><label for="sb-text"><i class="glyphicon glyphicon-text-background data-label"></i> Text</label></li><li><input type="radio" id="sb-line" name="sb" value="line"><label for="sb-line"><i class="glyphicon glyphicon-indent-left data-label"></i> Line</label></li></ul></div><input type="text" name="search" id="searchbox-symbol" class="form-control" placeholder="Search symbol (std::list, list, kfree_skb, any full or partial variable/class/function/... name)"><input type="text" name="search" id="searchbox-file" class="form-control hidden" placeholder="Search file (/usr/include/alloca.h, alloca.h, any full or partial path)"><input type="text" name="search" id="searchbox-text" class="form-control hidden" placeholder="Search text (content of comments, strings, full text search over the source code)"><input type="text" name="search" id="searchbox-line" class="form-control hidden" placeholder="Go to line (53, 1120, just type the line number and enter)"><div class="input-group-btn"><div class="btn-group hidden" id="tag-menu"><button data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="tag-default"></button><ul class="dropdown-menu pull-center" id="tag-entries"></ul></div><a class="btn btn-default" href="../meta/about.html" type="button" id="sbexr-about"><i title="About this site" class="glyphicon glyphicon-info-sign"></i></a><a class="btn btn-default" href="../meta/help.html" type="button" id="sbexr-help"><i title="Help!!" class="glyphicon glyphicon-question-sign"></i></a></div></div></div></div><!-- /.navbar-collapse --></div><!-- /.container-fluid --></nav></div><pre class='code'><span id='line-number'><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>10</i><i>11</i><i>12</i><i>13</i><i>14</i><i>15</i><i>16</i><i>17</i><i>18</i><i>19</i><i>20</i><i>21</i><i>22</i><i>23</i><i>24</i><i>25</i><i>26</i><i>27</i><i>28</i><i>29</i><i>30</i><i>31</i><i>32</i><i>33</i><i>34</i><i>35</i><i>36</i><i>37</i><i>38</i><i>39</i><i>40</i><i>41</i><i>42</i><i>43</i><i>44</i><i>45</i><i>46</i><i>47</i><i>48</i><i>49</i><i>50</i><i>51</i><i>52</i><i>53</i><i>54</i><i>55</i><i>56</i><i>57</i><i>58</i><i>59</i><i>60</i><i>61</i><i>62</i><i>63</i><i>64</i><i>65</i><i>66</i><i>67</i><i>68</i><i>69</i><i>70</i><i>71</i><i>72</i><i>73</i><i>74</i><i>75</i><i>76</i><i>77</i><i>78</i><i>79</i><i>80</i><i>81</i><i>82</i><i>83</i><i>84</i><i>85</i><i>86</i><i>87</i><i>88</i><i>89</i><i>90</i><i>91</i><i>92</i><i>93</i><i>94</i><i>95</i><i>96</i><i>97</i><i>98</i><i>99</i><i>100</i><i>101</i><i>102</i><i>103</i><i>104</i><i>105</i><i>106</i><i>107</i><i>108</i><i>109</i><i>110</i><i>111</i><i>112</i><i>113</i><i>114</i><i>115</i><i>116</i><i>117</i><i>118</i><i>119</i><i>120</i></span><span itemscope itemtype="http://schema.org/SoftwareSourceCode"><meta itemprop="programmingLanguage" content="C" /><span class='comment'>/* Copyright (C) 1991-2018 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   &lt;http://www.gnu.org/licenses/&gt;.  */</span>
+
+<span class='directive'>#ifndef __struct_FILE_defined</span>
+<span class='directive'>#define __struct_FILE_defined 1</span>
+
+<span class='comment'>/* Caution: The contents of this file are not part of the official
+   stdio.h API.  However, much of it is part of the official *binary*
+   interface, and therefore cannot be changed.  */</span>
+
+<span class='directive'>#if defined _IO_USE_OLD_IO_FILE &amp;&amp; !defined _LIBC</span><span class='preprocessor-if muted'>
+<span class='directive'># error "_IO_USE_OLD_IO_FILE should only be defined when building libc itself"</span></span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#if defined _IO_lock_t_defined &amp;&amp; !defined _LIBC</span><span class='preprocessor-if muted'>
+<span class='directive'># error "_IO_lock_t_defined should only be defined when building libc itself"</span></span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#include <a class='include' href='../41/e28fc1cdef774c.html'>&lt;bits/types.h&gt;</a></span>
+
+<span class='keyword struct'>struct</span> _IO_FILE;
+<span class='decl decl-CXXRecord' id='0002400100024008'><span class='keyword struct'>struct</span> _IO_marker</span>;
+<span class='decl decl-CXXRecord' id='0002500100025008'><span class='keyword struct'>struct</span> _IO_codecvt</span>;
+<span class='decl decl-CXXRecord' id='0002600100026008'><span class='keyword struct'>struct</span> _IO_wide_data</span>;
+
+<span class='comment'>/* During the build of glibc itself, _IO_lock_t will already have been
+   defined by internal headers.  */</span>
+<span class='directive'>#ifndef _IO_lock_t_defined</span>
+<span class='def def-Typedef' id='0002b0010002b00e'><span class='keyword typedef'>typedef</span> <span class='keyword void'>void</span> _IO_lock_t</span>;
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* The tag name of this struct is _IO_FILE to preserve historic
+   C++ mangled names for functions taking FILE* arguments.
+   That name should not be used in new code.  */</span>
+<span class='def def-CXXRecord' id='0003100100063001'><span class='keyword struct'>struct</span> _IO_FILE
+{
+  <span class='def def-Field' id='0003300300033007'><span class='keyword int'>int</span> _flags</span>;		<span class='comment'>/* High-order word is _IO_MAGIC; rest is flags. */</span>
+
+  <span class='comment'>/* The following pointers correspond to the C++ streambuf protocol. */</span>
+  <span class='def def-Field' id='0003600300036009'><span class='keyword char'>char</span> *_IO_read_ptr</span>;	<span class='comment'>/* Current read pointer */</span>
+  <span class='def def-Field' id='0003700300037009'><span class='keyword char'>char</span> *_IO_read_end</span>;	<span class='comment'>/* End of get area. */</span>
+  <span class='def def-Field' id='0003800300038009'><span class='keyword char'>char</span> *_IO_read_base</span>;	<span class='comment'>/* Start of putback+get area. */</span>
+  <span class='def def-Field' id='0003900300039009'><span class='keyword char'>char</span> *_IO_write_base</span>;	<span class='comment'>/* Start of put area. */</span>
+  <span class='def def-Field' id='0003a0030003a009'><span class='keyword char'>char</span> *_IO_write_ptr</span>;	<span class='comment'>/* Current put pointer. */</span>
+  <span class='def def-Field' id='0003b0030003b009'><span class='keyword char'>char</span> *_IO_write_end</span>;	<span class='comment'>/* End of put area. */</span>
+  <span class='def def-Field' id='0003c0030003c009'><span class='keyword char'>char</span> *_IO_buf_base</span>;	<span class='comment'>/* Start of reserve area. */</span>
+  <span class='def def-Field' id='0003d0030003d009'><span class='keyword char'>char</span> *_IO_buf_end</span>;	<span class='comment'>/* End of reserve area. */</span>
+
+  <span class='comment'>/* The following fields are used to support backing up and undo. */</span>
+  <span class='def def-Field' id='0004000300040009'><span class='keyword char'>char</span> *_IO_save_base</span>; <span class='comment'>/* Pointer to start of non-current get area. */</span>
+  <span class='def def-Field' id='0004100300041009'><span class='keyword char'>char</span> *_IO_backup_base</span>;  <span class='comment'>/* Pointer to first valid character of backup area */</span>
+  <span class='def def-Field' id='0004200300042009'><span class='keyword char'>char</span> *_IO_save_end</span>; <span class='comment'>/* Pointer to end of non-current get area. */</span>
+
+  <span class='def def-Field' id='0004400300044016'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0002400100024008'><span class='keyword struct'>struct</span> _IO_marker *</a>_markers</span>;
+
+  <span class='def def-Field' id='0004600300046014'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'><span class='keyword struct'>struct</span> _IO_FILE *</a>_chain</span>;
+
+  <span class='def def-Field' id='0004800300048007'><span class='keyword int'>int</span> _fileno</span>;
+  <span class='def def-Field' id='0004900300049007'><span class='keyword int'>int</span> _flags2</span>;
+  <span class='def def-Field' id='0004a0030004a00b'>__off_t _old_offset</span>; <span class='comment'>/* This used to be _offset but it's too small.  */</span>
+
+  <span class='comment'>/* 1+column number of pbase(); 0 is unknown. */</span>
+  <span class='def def-Field' id='0004d0030004d012'><span class='keyword unsigned'>unsigned</span> <span class='keyword short'>short</span> _cur_column</span>;
+  <span class='def def-Field' id='0004e0030004e00f'><span class='keyword signed'>signed</span> <span class='keyword char'>char</span> _vtable_offset</span>;
+  <span class='def def-Field' id='0004f0030004f013'><span class='keyword char'>char</span> _shortbuf[<span class='numeric'>1</span>]</span>;
+
+  <span class='def def-Field' id='000510030005100f'>_IO_lock_t *_lock</span>;
+<span class='directive'>#ifdef _IO_USE_OLD_IO_FILE</span><span class='preprocessor-if muted'>
+};
+
+<span class='keyword struct'>struct</span> _IO_FILE_complete
+{
+  <span class='keyword struct'>struct</span> _IO_FILE _file;</span>
+<span class='directive'>#endif</span>
+  <span class='def def-Field' id='000590030005900d'>__off64_t _offset</span>;
+  <span class='comment'>/* Wide character stream stuff.  */</span>
+  <span class='def def-Field' id='0005b0030005b017'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0002500100025008'><span class='keyword struct'>struct</span> _IO_codecvt *</a>_codecvt</span>;
+  <span class='def def-Field' id='0005c0030005c019'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0002600100026008'><span class='keyword struct'>struct</span> _IO_wide_data *</a>_wide_data</span>;
+  <span class='def def-Field' id='0005d0030005d014'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'><span class='keyword struct'>struct</span> _IO_FILE *</a>_freeres_list</span>;
+  <span class='def def-Field' id='0005e0030005e009'><span class='keyword void'>void</span> *_freeres_buf</span>;
+  <span class='def def-Field' id='0005f0030005f00a'>size_t __pad5</span>;
+  <span class='def def-Field' id='0006000300060007'><span class='keyword int'>int</span> _mode</span>;
+  <span class='comment'>/* Make sure we don't get into trouble again.  */</span>
+  <span class='def def-Field' id='000620030006204a'><span class='keyword char'>char</span> _unused2[<span class='numeric'>15</span> * <span class='keyword sizeof'>sizeof</span> (<span class='keyword int'>int</span>) - <span class='numeric'>4</span> * <span class='keyword sizeof'>sizeof</span> (<span class='keyword void'>void</span> *) - <span class='keyword sizeof'>sizeof</span> (size_t)]</span>;
+}</span>;
+
+<span class='comment'>/* These macros are used by bits/stdio.h and internal headers.  */</span>
+<span class='directive'>#define __getc_unlocked_body(_fp)					\
+  (__glibc_unlikely ((_fp)-&gt;_IO_read_ptr &gt;= (_fp)-&gt;_IO_read_end)	\
+   ? __uflow (_fp) : *(unsigned char *) (_fp)-&gt;_IO_read_ptr++)</span>
+
+<span class='directive'>#define __putc_unlocked_body(_ch, _fp)					\
+  (__glibc_unlikely ((_fp)-&gt;_IO_write_ptr &gt;= (_fp)-&gt;_IO_write_end)	\
+   ? __overflow (_fp, (unsigned char) (_ch))				\
+   : (unsigned char) (*(_fp)-&gt;_IO_write_ptr++ = (_ch)))</span>
+
+<span class='directive'>#define _IO_EOF_SEEN 0x0010</span>
+<span class='directive'>#define __feof_unlocked_body(_fp) (((_fp)-&gt;_flags &amp; _IO_EOF_SEEN) != 0)</span>
+
+<span class='directive'>#define _IO_ERR_SEEN 0x0020</span>
+<span class='directive'>#define __ferror_unlocked_body(_fp) (((_fp)-&gt;_flags &amp; _IO_ERR_SEEN) != 0)</span>
+
+<span class='directive'>#define _IO_USER_LOCK 0x8000</span>
+<span class='comment'>/* Many more flag bits are defined internally.  */</span>
+
+<span class='directive'>#endif</span></span><span class='cl'></span></pre></div><script src="../../globals.js"></script><script src="../../static/jquery.min.js"></script><script src="../../static/bootstrap/js/bootstrap.min.js"></script><script src="../../static/bootstrap/js/dropdowns-enhancement.js"></script><script src="../../static/animated-modal/animatedModal.js"></script><script src="../../static/jquery.autocomplete.js"></script><script src="../../static/js.cookie.js"></script><script src="../../static/local.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-40501108-2', 'auto');ga('send', 'pageview');</script></body></html>

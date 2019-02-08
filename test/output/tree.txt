@@ -2,361 +2,411 @@
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:837:1-837:45
-    name: ferror_unlocked
-    snippet: extern int ferror_unlocked (FILE *__stream) __THROW __wur;
+    location: /usr/include/stdio.h:818:1-818:34
+    name: ctermid
+    snippet: extern char *ctermid (char *__s) __THROW;
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-0.h
-  used_count: 1:1 ok
+/usr/include/x86_64-linux-gnu/bits/types/FILE.h
+  used_count: 0:0 ok
   used by:
-    /opt/projects/clang/test/test-multiple-file-0.cc:85:29-85:29 1
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.h:35:3-35:35
-    name: Test::Do02
-    snippet: int Do02(void) { return Do01(); };
-    kind: CXXMethod
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-0.h
-  used_count: 1:1 ok
-  used by:
-    /opt/projects/clang/test/test-multiple-file-0.cc:82:3-82:3 1
-  declared_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.h:41:1-41:32
-    name: TestMore
-    snippet: extern void TestMore(Test* test);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/FILE.h:7:1-7:25
+    name: FILE
+    snippet: typedef struct _IO_FILE FILE;
+    kind: Typedef
+    linkage: 0
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:622:1-622:77
+    location: /usr/include/stdio.h:570:1-570:77
     name: fgets
     snippet: extern char *fgets (char *__restrict __s, int __n, FILE *__restrict __stream)
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:820:1-820:76
+    location: /usr/include/stdio.h:758:1-758:76
     name: fgetpos64
     snippet: extern int fgetpos64 (FILE *__restrict __stream, fpos64_t *__restrict __pos);
     kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-1.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.h:36:1-36:19
-    name: TestFunction
-    snippet: void TestFunction();
-    kind: Function
-    linkage: 4
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:13:1-17:1
-    name: TestFunction
-    snippet: void TestFunction() {
-    kind: Function
-    linkage: 4
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:919:1-919:42
-    name: funlockfile
-    snippet: extern void funlockfile (FILE *__stream) __THROW;
-    kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:689:1-689:72
+    location: /usr/include/stdio.h:347:1-347:74
+    name: vprintf
+    snippet: extern int vprintf (const char *__restrict __format, __gnuc_va_list __arg);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:632:1-632:72
     name: fputs
     snippet: extern int fputs (const char *__restrict __s, FILE *__restrict __stream);
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:798:1-798:72
+    location: /usr/include/stdio.h:737:1-737:72
     name: fgetpos
     snippet: extern int fgetpos (FILE *__restrict __stream, fpos_t *__restrict __pos);
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:377:1-377:70
-    name: vprintf
-    snippet: extern int vprintf (const char *__restrict __format, _G_va_list __arg);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-0.h
-  used_count: 1:1 ok
-  used by:
-    /opt/projects/clang/test/test-multiple-file-0.cc:85:15-85:15 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.h:34:3-34:30
-    name: Test::Do00
-    snippet: int Do00(void) { return 1; };
-    kind: CXXMethod
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-0.h
-  used_count: 1:1 ok
-  used by:
-    /opt/projects/clang/test/test-multiple-file-0.h:35:27-35:27 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.h:38:3-38:30
-    name: Test::Do01
-    snippet: int Do01(void) { return 2; }
-    kind: CXXMethod
-    linkage: 4
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:638:1-638:37
-    name: gets
-    snippet: extern char *gets (char *__s) __wur __attribute_deprecated__;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:818:1-818:67
+    location: /usr/include/stdio.h:756:1-756:67
     name: fseeko64
     snippet: extern int fseeko64 (FILE *__stream, __off64_t __off, int __whence);
     kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-0.h
-  used_count: 2:2 ok
-  used by:
-    /opt/projects/clang/test/test-multiple-file-0.cc:79:3-79:3 1
-    /opt/projects/clang/test/test-multiple-file-0.h:41:22-41:26 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.h:32:1-39:1
-    name: Test
-    snippet: class Test {
-    kind: CXXRecord
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-1.h
-  used_count: 1:1 ok
-  used by:
-    /opt/projects/clang/test/test-multiple-file-1.cc:25:15-25:19 1
-  declared_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.h:32:1-32:7
-    name: Test
-    snippet: class Test;
-    kind: CXXRecord
-    linkage: 4
-  defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-1.h
-  used_count: 1:1 ok
-  used by:
-    /opt/projects/clang/test/test-multiple-file-1.cc:16:33-16:33 1
-  declared_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.h:34:1-34:12
-    name: global_counter
-    snippet: extern int global_counter;
-    kind: Var
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:737:1-738:47
+    location: /usr/include/stdio.h:583:1-583:37
+    name: gets
+    snippet: extern char *gets (char *__s) __wur __attribute_deprecated__;
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:679:1-680:47
     name: fread_unlocked
     snippet: extern size_t fread_unlocked (void *__restrict __ptr, size_t __size,
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:709:1-710:45
+    location: /usr/include/stdio.h:652:1-653:45
     name: fread
     snippet: extern size_t fread (void *__restrict __ptr, size_t __size,
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:18:5-18:19
+    name: (anonymous struct)::(anonymous union)::__wch
+    snippet: __WINT_TYPE__ __wch;
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:19:5-19:18
+    name: (anonymous struct)::(anonymous union)::__wchb
+    snippet: char __wchb[4];
+    kind: Field
+    linkage: 6
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:252:1-252:43
-    name: fflush_unlocked
-    snippet: extern int fflush_unlocked (FILE *__stream);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:356:1-357:43
-    name: fprintf
-    snippet: extern int fprintf (FILE *__restrict __stream,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:425:1-426:42
-    name: fscanf
-    snippet: extern int fscanf (FILE *__restrict __stream,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:550:1-550:41
+    location: /usr/include/stdio.h:505:1-505:41
     name: getc_unlocked
     snippet: extern int getc_unlocked (FILE *__stream);
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:297:1-298:39
+    location: /usr/include/stdio.h:227:1-227:43
+    name: fflush_unlocked
+    snippet: extern int fflush_unlocked (FILE *__stream);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:270:1-271:39
     name: fopen64
     snippet: extern FILE *fopen64 (const char *__restrict __filename,
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:574:1-574:41
+    location: /usr/include/stdio.h:528:1-528:41
     name: putc
     snippet: extern int putc (int __c, FILE *__stream);
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:272:1-273:37
+    location: /usr/include/stdio.h:552:1-552:37
+    name: putchar_unlocked
+    snippet: extern int putchar_unlocked (int __c);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:246:1-247:37
     name: fopen
     snippet: extern FILE *fopen (const char *__restrict __filename,
     kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:561:1-561:42
-    name: fgetc_unlocked
-    snippet: extern int fgetc_unlocked (FILE *__stream);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:613:1-613:41
-    name: putw
-    snippet: extern int putw (int __w, FILE *__stream);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:237:1-237:34
-    name: fclose
-    snippet: extern int fclose (FILE *__stream);
-    kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/x86_64-linux-gnu/bits/types.h
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:183:1-183:15
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:212:1-212:13
+    name: __sig_atomic_t
+    snippet: typedef int __sig_atomic_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:506:1-506:34
+    name: getchar_unlocked
+    snippet: extern int getchar_unlocked (void);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:593:1-594:34
+    name: fgets_unlocked
+    snippet: extern char *fgets_unlocked (char *__restrict __s, int __n,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:492:1-492:32
+    name: getc
+    snippet: extern int getc (FILE *__stream);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:252:1-254:34
+    name: freopen
+    snippet: extern FILE *freopen (const char *__restrict __filename,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:366:1-368:62
+    name: vasprintf
+    snippet: extern int vasprintf (char **__restrict __ptr, const char *__restrict __f,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:369:1-371:62
+    name: __asprintf
+    snippet: extern int __asprintf (char **__restrict __ptr,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:213:1-213:34
+    name: fclose
+    snippet: extern int fclose (FILE *__stream);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:372:1-374:62
+    name: asprintf
+    snippet: extern int asprintf (char **__restrict __ptr,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:559:1-559:32
+    name: getw
+    snippet: extern int getw (FILE *__stream);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:15:3-15:7
+    name: (anonymous struct)::__count
+    snippet: int __count;
+    kind: Field
+    linkage: 6
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:354:1-356:62
+    name: snprintf
+    snippet: extern int snprintf (char *__restrict __s, size_t __maxlen,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:201:1-201:15
     name: __caddr_t
     snippet: typedef char *__caddr_t;
     kind: Typedef
     linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:207:1-207:23
+    name: __socklen_t
+    snippet: __STD_TYPE __U32_TYPE __socklen_t;
+    kind: Typedef
+    linkage: 0
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:531:1-531:33
+    location: /usr/include/stdio.h:391:1-392:42
+    name: fscanf
+    snippet: extern int fscanf (FILE *__restrict __stream,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:382:1-383:52
+    name: dprintf
+    snippet: extern int dprintf (int __fd, const char *__restrict __fmt, ...)
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:543:1-543:51
+    name: fputc_unlocked
+    snippet: extern int fputc_unlocked (int __c, FILE *__stream);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:491:1-491:33
     name: fgetc
     snippet: extern int fgetc (FILE *__stream);
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h
+  used_count: 1:1 ok
   used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:242:1-242:34
-    name: fflush
-    snippet: extern int fflush (FILE *__stream);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:386:1-388:62
-    name: snprintf
-    snippet: extern int snprintf (char *__restrict __s, size_t __maxlen,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
+    /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:16:3-16:3 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:16:3-20:3
+    name: (anonymous struct)::(anonymous)
+    snippet: union
+    kind: CXXRecord
+    linkage: 6
 /usr/include/x86_64-linux-gnu/bits/types.h
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:182:1-182:19
-    name: __qaddr_t
-    snippet: typedef __quad_t *__qaddr_t;
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:166:1-166:29
+    name: __clockid_t
+    snippet: __STD_TYPE __CLOCKID_T_TYPE __clockid_t;
     kind: Typedef
     linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h
+  used_count: 2:2 ok
+  used by:
+    /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:13:3-13:3 1
+    /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:13:3-13:3 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:13:9-21:1
+    name: (anonymous)
+    snippet: typedef struct
+    kind: CXXRecord
+    linkage: 6
 /usr/include/x86_64-linux-gnu/bits/types.h
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:181:1-181:19
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:200:1-200:19
     name: __loff_t
     snippet: typedef __off64_t __loff_t;	/* Type of file sizes and offsets (LFS).  */
     kind: Typedef
@@ -366,9 +416,139 @@
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:52:1-52:18
-    name: __quad_t
-    snippet: typedef long int __quad_t;
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:145:1-145:25
+    name: __gid_t
+    snippet: __STD_TYPE __GID_T_TYPE __gid_t;	/* Type of group identifications.  */
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:13:1-21:3
+    name: __mbstate_t
+    snippet: typedef struct
+    kind: Typedef
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:154:1-154:27
+    name: __clock_t
+    snippet: __STD_TYPE __CLOCK_T_TYPE __clock_t;	/* Type of CPU usage counts.  */
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:153:1-153:26
+    name: __fsid_t
+    snippet: __STD_TYPE __FSID_T_TYPE __fsid_t;	/* Type of file system IDs.  */
+    kind: Typedef
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:172:1-172:29
+    name: __blksize_t
+    snippet: __STD_TYPE __BLKSIZE_T_TYPE __blksize_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:16:3-20:5
+    name: (anonymous struct)::__value
+    snippet: union
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:51:1-51:18
+    name: __int_least8_t
+    snippet: typedef __int8_t __int_least8_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:178:1-178:30
+    name: __blkcnt64_t
+    snippet: __STD_TYPE __BLKCNT64_T_TYPE __blkcnt64_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:194:1-194:33
+    name: __syscall_slong_t
+    snippet: __STD_TYPE __SYSCALL_SLONG_TYPE __syscall_slong_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:186:1-186:32
+    name: __fsfilcnt64_t
+    snippet: __STD_TYPE __FSFILCNT64_T_TYPE __fsfilcnt64_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:189:1-189:28
+    name: __fsword_t
+    snippet: __STD_TYPE __FSWORD_T_TYPE __fsword_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:163:1-163:25
+    name: __key_t
+    snippet: __STD_TYPE __KEY_T_TYPE __key_t;	/* Type of an IPC key.  */
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:181:1-181:30
+    name: __fsblkcnt_t
+    snippet: __STD_TYPE __FSBLKCNT_T_TYPE __fsblkcnt_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:196:1-196:33
+    name: __syscall_ulong_t
+    snippet: __STD_TYPE __SYSCALL_ULONG_TYPE __syscall_ulong_t;
     kind: Typedef
     linkage: 0
 /usr/include/x86_64-linux-gnu/bits/types.h
@@ -386,9 +566,294 @@
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:54:1-54:20
+    name: __uint_least16_t
+    snippet: typedef __uint16_t __uint_least16_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:183:1-183:29
+    name: tmpfile64
+    snippet: extern FILE *tmpfile64 (void) __wur;
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:534:1-534:28
+    name: putchar
+    snippet: extern int putchar (int __c);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:298:1-298:66
+    name: open_memstream
+    snippet: extern FILE *open_memstream (char **__bufloc, size_t *__sizeloc) __THROW __wur;
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:173:1-173:27
+    name: tmpfile
+    snippet: extern FILE *tmpfile (void) __wur;
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:147:1-147:27
+    name: __ino64_t
+    snippet: __STD_TYPE __INO64_T_TYPE __ino64_t;	/* Type of file serial numbers (LFS).*/
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:314:1-315:25
+    name: setbuffer
+    snippet: extern void setbuffer (FILE *__restrict __stream, char *__restrict __buf,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:272:1-274:29
+    name: freopen64
+    snippet: extern FILE *freopen64 (const char *__restrict __filename,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:39:1-39:28
+    name: __uint16_t
+    snippet: typedef unsigned short int __uint16_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:187:1-187:33
+    name: tmpnam
+    snippet: extern char *tmpnam (char *__s) __THROW __wur;
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:185:1-185:30
+    name: __fsfilcnt_t
+    snippet: __STD_TYPE __FSFILCNT_T_TYPE __fsfilcnt_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:334:1-335:45
+    name: sprintf
+    snippet: extern int sprintf (char *__restrict __s,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types/__FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:5:1-5:25
+    name: __FILE
+    snippet: typedef struct _IO_FILE __FILE;
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:399:1-400:44
+    name: sscanf
+    snippet: extern int sscanf (const char *__restrict __s,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:158:1-158:26
+    name: __time_t
+    snippet: __STD_TYPE __TIME_T_TYPE __time_t;	/* Seconds since the Epoch.  */
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types/__FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 3:3 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/FILE.h:4:1-4:8
+    name: _IO_FILE
+    snippet: struct _IO_FILE;
+    kind: CXXRecord
+    linkage: 6
+    location: /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:4:1-4:8
+    name: _IO_FILE
+    snippet: struct _IO_FILE;
+    kind: CXXRecord
+    linkage: 6
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:35:1-35:8
+    name: _IO_FILE
+    snippet: struct _IO_FILE;
+    kind: CXXRecord
+    linkage: 6
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:49:1-99:1
+    name: _IO_FILE
+    snippet: struct _IO_FILE
+    kind: CXXRecord
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:31:1-31:28
+    name: __u_short
+    snippet: typedef unsigned short int __u_short;
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
     location: /usr/include/x86_64-linux-gnu/bits/types.h:40:1-40:20
     name: __int32_t
     snippet: typedef signed int __int32_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:304:1-304:72
+    name: setbuf
+    snippet: extern void setbuf (FILE *__restrict __stream, char *__restrict __buf) __THROW;
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:32:1-32:22
+    name: __u_int
+    snippet: typedef unsigned int __u_int;
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:204:1-204:25
+    name: __intptr_t
+    snippet: __STD_TYPE __SWORD_TYPE __intptr_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:157:1-157:24
+    name: __id_t
+    snippet: __STD_TYPE __ID_T_TYPE __id_t;		/* General type for IDs.  */
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:162:1-162:27
+    name: __daddr_t
+    snippet: __STD_TYPE __DADDR_T_TYPE __daddr_t;	/* The type of a disk address.  */
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:155:1-155:26
+    name: __rlim_t
+    snippet: __STD_TYPE __RLIM_T_TYPE __rlim_t;	/* Type for resource measurement.  */
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:192:1-192:35
+    name: tmpnam_r
+    snippet: extern char *tmpnam_r (char *__s) __THROW __wur;
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:153:12-153:12
+    name: (anonymous)
+    snippet: __STD_TYPE __FSID_T_TYPE __fsid_t;	/* Type of file system IDs.  */
+    kind: CXXRecord
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:160:1-160:31
+    name: __suseconds_t
+    snippet: __STD_TYPE __SUSECONDS_T_TYPE __suseconds_t; /* Signed count of microseconds.  */
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:56:1-56:20
+    name: __uint_least32_t
+    snippet: typedef __uint32_t __uint_least32_t;
     kind: Typedef
     linkage: 0
 /usr/include/x86_64-linux-gnu/bits/types.h
@@ -406,9 +871,9 @@
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:133:1-133:25
-    name: __pid_t
-    snippet: __STD_TYPE __PID_T_TYPE __pid_t;	/* Type of process identifications.  */
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:41:1-41:22
+    name: __uint32_t
+    snippet: typedef unsigned int __uint32_t;
     kind: Typedef
     linkage: 0
 /usr/include/x86_64-linux-gnu/bits/types.h
@@ -416,119 +881,29 @@
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:186:1-186:25
-    name: __intptr_t
-    snippet: __STD_TYPE __SWORD_TYPE __intptr_t;
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:146:1-146:25
+    name: __ino_t
+    snippet: __STD_TYPE __INO_T_TYPE __ino_t;	/* Type of file serial numbers.  */
     kind: Typedef
     linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:318:1-318:41
+    name: setlinebuf
+    snippet: extern void setlinebuf (FILE *__stream) __THROW;
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
 /usr/include/x86_64-linux-gnu/bits/types.h
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:135:1-135:27
-    name: __clock_t
-    snippet: __STD_TYPE __CLOCK_T_TYPE __clock_t;	/* Type of CPU usage counts.  */
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:143:1-143:27
-    name: __daddr_t
-    snippet: __STD_TYPE __DADDR_T_TYPE __daddr_t;	/* The type of a disk address.  */
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:139:1-139:26
-    name: __time_t
-    snippet: __STD_TYPE __TIME_T_TYPE __time_t;	/* Seconds since the Epoch.  */
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:170:1-170:28
-    name: __fsword_t
-    snippet: __STD_TYPE __FSWORD_T_TYPE __fsword_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:144:1-144:25
-    name: __key_t
-    snippet: __STD_TYPE __KEY_T_TYPE __key_t;	/* Type of an IPC key.  */
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:140:1-140:30
-    name: __useconds_t
-    snippet: __STD_TYPE __USECONDS_T_TYPE __useconds_t; /* Count of microseconds.  */
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:177:1-177:33
-    name: __syscall_ulong_t
-    snippet: __STD_TYPE __SYSCALL_ULONG_TYPE __syscall_ulong_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:32:1-32:22
-    name: __u_int
-    snippet: typedef unsigned int __u_int;
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:43:1-43:25
-    name: __int64_t
-    snippet: typedef signed long int __int64_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:39:1-39:28
-    name: __uint16_t
-    snippet: typedef unsigned short int __uint16_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:172:1-172:27
-    name: __ssize_t
-    snippet: __STD_TYPE __SSIZE_T_TYPE __ssize_t; /* Type of a byte count, or error.  */
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:169:1-169:27
+    name: __timer_t
+    snippet: __STD_TYPE __TIMER_T_TYPE __timer_t;
     kind: Typedef
     linkage: 0
 /usr/include/x86_64-linux-gnu/bits/types.h
@@ -541,44 +916,74 @@
     snippet: typedef signed short int __int16_t;
     kind: Typedef
     linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/stdio.h:52:1-52:24
+    name: va_list
+    snippet: typedef __gnuc_va_list va_list;
+    kind: Typedef
+    linkage: 0
 /usr/include/x86_64-linux-gnu/bits/types.h
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:41:1-41:22
-    name: __uint32_t
-    snippet: typedef unsigned int __uint32_t;
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:55:1-55:19
+    name: __int_least32_t
+    snippet: typedef __int32_t __int_least32_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:62:1-62:18
+    name: __quad_t
+    snippet: typedef long int __quad_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:159:1-159:30
+    name: __useconds_t
+    snippet: __STD_TYPE __USECONDS_T_TYPE __useconds_t; /* Count of microseconds.  */
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:58:1-58:20
+    name: __uint_least64_t
+    snippet: typedef __uint64_t __uint_least64_t;
     kind: Typedef
     linkage: 0
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
-  declared_count: 2:2 ok
-    location: /usr/include/libio.h:144:21-144:28
-    name: _IO_FILE
-    snippet: struct _IO_FILE;
-    kind: CXXRecord
-    linkage: 4
-    location: /usr/include/stdio.h:44:1-44:8
-    name: _IO_FILE
-    snippet: struct _IO_FILE;
-    kind: CXXRecord
-    linkage: 4
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:241:1-307:1
-    name: _IO_FILE
-    snippet: struct _IO_FILE {
-    kind: CXXRecord
-    linkage: 4
-/usr/include/x86_64-linux-gnu/bits/types.h
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:237:1-237:27
+    name: fcloseall
+    snippet: extern int fcloseall (void);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:138:1-138:24
-    name: __id_t
-    snippet: __STD_TYPE __ID_T_TYPE __id_t;		/* General type for IDs.  */
+    location: /usr/include/stdio.h:84:1-84:18
+    name: fpos_t
+    snippet: typedef __fpos_t fpos_t;
     kind: Typedef
     linkage: 0
 /usr/include/x86_64-linux-gnu/bits/types.h
@@ -586,9 +991,29 @@
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:150:1-150:27
-    name: __timer_t
-    snippet: __STD_TYPE __TIMER_T_TYPE __timer_t;
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:150:1-150:25
+    name: __off_t
+    snippet: __STD_TYPE __OFF_T_TYPE __off_t;	/* Type of file sizes and offsets.  */
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:218:1-218:34
+    name: fflush
+    snippet: extern int fflush (FILE *__stream);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:191:1-191:27
+    name: __ssize_t
+    snippet: __STD_TYPE __SSIZE_T_TYPE __ssize_t; /* Type of a byte count, or error.  */
     kind: Typedef
     linkage: 0
 /usr/include/x86_64-linux-gnu/bits/types.h
@@ -596,9 +1021,69 @@
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:129:1-129:26
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:148:1-148:26
     name: __mode_t
     snippet: __STD_TYPE __MODE_T_TYPE __mode_t;	/* Type of file attribute bitmasks.  */
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:434:1-436:51
+    name: vfscanf
+    snippet: extern int vfscanf (FILE *__restrict __s, const char *__restrict __format,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:156:1-156:28
+    name: __rlim64_t
+    snippet: __STD_TYPE __RLIM64_T_TYPE __rlim64_t;	/* Type for resource measurement (LFS).  */
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:52:1-52:19
+    name: __uint_least8_t
+    snippet: typedef __uint8_t __uint_least8_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:71:1-71:18
+    name: __intmax_t
+    snippet: typedef long int __intmax_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/stdio.h:63:1-63:17
+    name: off_t
+    snippet: typedef __off_t off_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:182:1-182:32
+    name: __fsblkcnt64_t
+    snippet: __STD_TYPE __FSBLKCNT64_T_TYPE __fsblkcnt64_t;
     kind: Typedef
     linkage: 0
 /usr/include/x86_64-linux-gnu/bits/types.h
@@ -611,144 +1096,151 @@
     snippet: typedef unsigned char __uint8_t;
     kind: Typedef
     linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:31:1-31:28
-    name: __u_short
-    snippet: typedef unsigned short int __u_short;
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:126:1-126:25
-    name: __gid_t
-    snippet: __STD_TYPE __GID_T_TYPE __gid_t;	/* Type of group identifications.  */
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:159:1-159:30
-    name: __blkcnt64_t
-    snippet: __STD_TYPE __BLKCNT64_T_TYPE __blkcnt64_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:128:1-128:27
-    name: __ino64_t
-    snippet: __STD_TYPE __INO64_T_TYPE __ino64_t;	/* Type of file serial numbers (LFS).*/
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:167:1-167:32
-    name: __fsfilcnt64_t
-    snippet: __STD_TYPE __FSFILCNT64_T_TYPE __fsfilcnt64_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:147:1-147:29
-    name: __clockid_t
-    snippet: __STD_TYPE __CLOCKID_T_TYPE __clockid_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:137:1-137:28
-    name: __rlim64_t
-    snippet: __STD_TYPE __RLIM64_T_TYPE __rlim64_t;	/* Type for resource measurement (LFS).  */
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:134:12-134:12
-    name: (anonymous struct)::__val
-    snippet: __STD_TYPE __FSID_T_TYPE __fsid_t;	/* Type of file system IDs.  */
-    kind: Field
-    linkage: 4
 /usr/include/stdio.h
-  used_count: 0:0 ok
+  used_count: 7:7 ok
   used by:
+    /opt/projects/sbexr/test/include-all.h:35:3-35:3 1
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:83:3-83:3 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:16:3-16:3 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:15:3-15:3 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:42:3-42:3 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:43:3-43:3 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:44:3-44:3 1
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:347:1-347:41
-    name: setlinebuf
-    snippet: extern void setlinebuf (FILE *__stream) __THROW;
+    location: /usr/include/stdio.h:332:1-332:56
+    name: printf
+    snippet: extern int printf (const char *__restrict __format, ...);
     kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:332:1-332:72
-    name: setbuf
-    snippet: extern void setbuf (FILE *__restrict __stream, char *__restrict __buf) __THROW;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/stdio.h:48:1-48:25
-    name: FILE
-    snippet: typedef struct _IO_FILE FILE;
-    kind: Typedef
-    linkage: 0
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:209:1-209:33
-    name: tmpnam
-    snippet: extern char *tmpnam (char *__s) __THROW __wur;
-    kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/x86_64-linux-gnu/bits/types.h
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:134:12-134:12
-    name: (anonymous)
-    snippet: __STD_TYPE __FSID_T_TYPE __fsid_t;	/* Type of file system IDs.  */
-    kind: CXXRecord
-    linkage: 4
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:43:1-43:25
+    name: __int64_t
+    snippet: typedef signed long int __int64_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:700:1-700:35
+    name: rewind
+    snippet: extern void rewind (FILE *__stream);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:149:1-149:27
+    name: __nlink_t
+    snippet: __STD_TYPE __NLINK_T_TYPE __nlink_t;	/* Type of file link counts.  */
+    kind: Typedef
+    linkage: 0
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/stdio.h:64:1-64:25
-    name: __FILE
-    snippet: typedef struct _IO_FILE __FILE;
+    location: /usr/include/stdio.h:70:1-70:19
+    name: off64_t
+    snippet: typedef __off64_t off64_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:341:1-342:28
+    name: vfprintf
+    snippet: extern int vfprintf (FILE *__restrict __s, const char *__restrict __format,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:146:1-146:44
+    name: remove
+    snippet: extern int remove (const char *__filename) __THROW;
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:358:1-360:62
+    name: vsnprintf
+    snippet: extern int vsnprintf (char *__restrict __s, size_t __maxlen,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:53:1-53:19
+    name: __int_least16_t
+    snippet: typedef __int16_t __int_least16_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:516:1-516:42
+    name: fgetc_unlocked
+    snippet: extern int fgetc_unlocked (FILE *__stream);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:137:1-137:14
+    name: stdin
+    snippet: extern FILE *stdin;		/* Standard input stream.  */
+    kind: Var
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:204:1-205:14
+    name: tempnam
+    snippet: extern char *tempnam (const char *__dir, const char *__pfx)
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h:31:1-31:39
+    name: _sys_errlist
+    snippet: extern const char *const _sys_errlist[];
+    kind: Var
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/stdio.h:89:1-89:20
+    name: fpos64_t
+    snippet: typedef __fpos64_t fpos64_t;
     kind: Typedef
     linkage: 0
 /usr/include/x86_64-linux-gnu/bits/types.h
@@ -756,41 +1248,162 @@
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:141:1-141:31
-    name: __suseconds_t
-    snippet: __STD_TYPE __SUSECONDS_T_TYPE __suseconds_t; /* Signed count of microseconds.  */
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:162:1-162:30
-    name: __fsblkcnt_t
-    snippet: __STD_TYPE __FSBLKCNT_T_TYPE __fsblkcnt_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:124:1-124:25
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:143:1-143:25
     name: __dev_t
     snippet: __STD_TYPE __DEV_T_TYPE __dev_t;	/* Type of device numbers.  */
     kind: Typedef
     linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:349:1-350:30
+    name: vsprintf
+    snippet: extern int vsprintf (char *__restrict __s, const char *__restrict __format,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
 /usr/include/x86_64-linux-gnu/bits/types.h
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:163:1-163:32
-    name: __fsblkcnt64_t
-    snippet: __STD_TYPE __FSBLKCNT64_T_TYPE __fsblkcnt64_t;
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:151:1-151:27
+    name: __off64_t
+    snippet: __STD_TYPE __OFF64_T_TYPE __off64_t;	/* Type of file sizes and offsets (LFS).  */
     kind: Typedef
     linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:279:1-279:53
+    name: fdopen
+    snippet: extern FILE *fdopen (int __fd, const char *__modes) __THROW __wur;
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:442:1-443:51
+    name: vscanf
+    snippet: extern int vscanf (const char *__restrict __format, __gnuc_va_list __arg)
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:177:1-177:28
+    name: __blkcnt_t
+    snippet: __STD_TYPE __BLKCNT_T_TYPE __blkcnt_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:690:1-690:63
+    name: fseek
+    snippet: extern int fseek (FILE *__stream, long int __off, int __whence);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:681:1-682:48
+    name: fwrite_unlocked
+    snippet: extern size_t fwrite_unlocked (const void *__restrict __ptr, size_t __size,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:153:12-153:12
+    name: (anonymous struct)::__val
+    snippet: __STD_TYPE __FSID_T_TYPE __fsid_t;	/* Type of file system IDs.  */
+    kind: Field
+    linkage: 6
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:138:1-138:14
+    name: stdout
+    snippet: extern FILE *stdout;		/* Standard output stream.  */
+    kind: Var
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:446:1-448:59
+    name: vsscanf
+    snippet: extern int vsscanf (const char *__restrict __s,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/stdio.h:77:1-77:19
+    name: ssize_t
+    snippet: typedef __ssize_t ssize_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h:26:1-26:12
+    name: sys_nerr
+    snippet: extern int sys_nerr;
+    kind: Var
+    linkage: 6
+  defined_count: 0:0 ok
+/opt/projects/sbexr/test/test-multiple-file-0.h
+  used_count: 1:1 ok
+  used by:
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:82:3-82:3 1
+  declared_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.h:41:1-41:32
+    name: TestMore
+    snippet: extern void TestMore(Test* test);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:152:1-152:25
+    name: __pid_t
+    snippet: __STD_TYPE __PID_T_TYPE __pid_t;	/* Type of process identifications.  */
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:308:1-309:32
+    name: setvbuf
+    snippet: extern int setvbuf (FILE *__restrict __stream, char *__restrict __buf,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
 /usr/include/x86_64-linux-gnu/bits/types.h
   used_count: 0:0 ok
   used by:
@@ -801,179 +1414,133 @@
     snippet: typedef unsigned long int __uint64_t;
     kind: Typedef
     linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
+/opt/projects/sbexr/test/test-multiple-file-0.h
+  used_count: 1:1 ok
   used by:
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:85:29-85:29 1
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:134:1-134:26
-    name: __fsid_t
-    snippet: __STD_TYPE __FSID_T_TYPE __fsid_t;	/* Type of file system IDs.  */
-    kind: Typedef
-    linkage: 4
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:153:1-153:29
-    name: __blksize_t
-    snippet: __STD_TYPE __BLKSIZE_T_TYPE __blksize_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:158:1-158:28
-    name: __blkcnt_t
-    snippet: __STD_TYPE __BLKCNT_T_TYPE __blkcnt_t;
-    kind: Typedef
-    linkage: 0
+    location: /opt/projects/sbexr/test/test-multiple-file-0.h:35:3-35:35
+    name: Test::Do02
+    snippet: int Do02(void) { return Do01(); };
+    kind: CXXMethod
+    linkage: 6
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:227:1-228:14
-    name: tempnam
-    snippet: extern char *tempnam (const char *__dir, const char *__pfx)
+    location: /usr/include/stdio.h:812:1-812:34
+    name: pclose
+    snippet: extern int pclose (FILE *__stream);
     kind: Function
-    linkage: 4
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:551:1-551:50
+    name: putc_unlocked
+    snippet: extern int putc_unlocked (int __c, FILE *__stream);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:668:1-669:32
+    name: fputs_unlocked
+    snippet: extern int fputs_unlocked (const char *__restrict __s,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:713:1-713:63
+    name: fseeko
+    snippet: extern int fseeko (FILE *__stream, __off_t __off, int __whence);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:832:1-834:62
+    name: obstack_printf
+    snippet: extern int obstack_printf (struct obstack *__restrict __obstack,
+    kind: Function
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/x86_64-linux-gnu/bits/types.h
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:166:1-166:30
-    name: __fsfilcnt_t
-    snippet: __STD_TYPE __FSFILCNT_T_TYPE __fsfilcnt_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:175:1-175:33
-    name: __syscall_slong_t
-    snippet: __STD_TYPE __SYSCALL_SLONG_TYPE __syscall_slong_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:127:1-127:25
-    name: __ino_t
-    snippet: __STD_TYPE __INO_T_TYPE __ino_t;	/* Type of file serial numbers.  */
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:57:1-57:19
+    name: __int_least64_t
+    snippet: typedef __int64_t __int_least64_t;
     kind: Typedef
     linkage: 0
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:371:1-372:24
-    name: vfprintf
-    snippet: extern int vfprintf (FILE *__restrict __s, const char *__restrict __format,
+    location: /usr/include/stdio.h:759:1-759:60
+    name: fsetpos64
+    snippet: extern int fsetpos64 (FILE *__stream, const fpos64_t *__pos);
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:53:1-53:27
-    name: __u_quad_t
-    snippet: typedef unsigned long int __u_quad_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/stdio.h:90:1-90:17
-    name: off_t
-    snippet: typedef __off_t off_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/stdio.h:116:1-116:21
-    name: fpos64_t
-    snippet: typedef _G_fpos64_t fpos64_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/stdio.h:79:1-79:20
-    name: va_list
-    snippet: typedef _G_va_list va_list;
-    kind: Typedef
-    linkage: 0
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/stdio.h:97:1-97:19
-    name: off64_t
-    snippet: typedef __off64_t off64_t;
-    kind: Typedef
-    linkage: 0
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:603:1-603:37
-    name: putchar_unlocked
-    snippet: extern int putchar_unlocked (int __c);
+    location: /usr/include/stdio.h:326:1-327:43
+    name: fprintf
+    snippet: extern int fprintf (FILE *__restrict __stream,
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:189:1-189:23
-    name: __socklen_t
-    snippet: __STD_TYPE __U32_TYPE __socklen_t;
-    kind: Typedef
-    linkage: 0
 /usr/include/stdio.h
-  used_count: 7:7 ok
+  used_count: 0:0 ok
   used by:
-    /opt/projects/clang/test/include-all.h:35:3-35:3 1
-    /opt/projects/clang/test/test-multiple-file-0.cc:83:3-83:3 1
-    /opt/projects/clang/test/test-multiple-file-1.cc:16:3-16:3 1
-    /opt/projects/clang/test/test-multiple-file-1.cc:15:3-15:3 1
-    /opt/projects/clang/test/test-multiple-file-1.cc:42:3-42:3 1
-    /opt/projects/clang/test/test-multiple-file-1.cc:43:3-43:3 1
-    /opt/projects/clang/test/test-multiple-file-1.cc:44:3-44:3 1
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:362:1-362:56
-    name: printf
-    snippet: extern int printf (const char *__restrict __format, ...);
+    location: /usr/include/stdio.h:527:1-527:42
+    name: fputc
+    snippet: extern int fputc (int __c, FILE *__stream);
     kind: Function
-    linkage: 4
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:562:1-562:41
+    name: putw
+    snippet: extern int putw (int __w, FILE *__stream);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:285:1-287:40
+    name: fopencookie
+    snippet: extern FILE *fopencookie (void *__restrict __magic_cookie,
+    kind: Function
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/x86_64-linux-gnu/bits/types.h
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:125:1-125:25
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:144:1-144:25
     name: __uid_t
     snippet: __STD_TYPE __UID_T_TYPE __uid_t;	/* Type of user identifications.  */
     kind: Typedef
@@ -982,11 +1549,11 @@
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:336:1-337:32
-    name: setvbuf
-    snippet: extern int setvbuf (FILE *__restrict __stream, char *__restrict __buf,
+    location: /usr/include/stdio.h:498:1-498:25
+    name: getchar
+    snippet: extern int getchar (void);
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/x86_64-linux-gnu/bits/types.h
   used_count: 0:0 ok
@@ -998,457 +1565,75 @@
     snippet: typedef unsigned long int __u_long;
     kind: Typedef
     linkage: 0
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:136:1-136:26
-    name: __rlim_t
-    snippet: __STD_TYPE __RLIM_T_TYPE __rlim_t;	/* Type for resource measurement.  */
-    kind: Typedef
-    linkage: 0
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:405:1-407:62
-    name: asprintf
-    snippet: extern int asprintf (char **__restrict __ptr,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:602:1-602:50
-    name: putc_unlocked
-    snippet: extern int putc_unlocked (int __c, FILE *__stream);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:821:1-821:60
-    name: fsetpos64
-    snippet: extern int fsetpos64 (FILE *__stream, const fpos64_t *__pos);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:205:1-205:29
-    name: tmpfile64
-    snippet: extern FILE *tmpfile64 (void) __wur;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:580:1-580:28
-    name: putchar
-    snippet: extern int putchar (int __c);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:178:1-178:44
-    name: remove
-    snippet: extern int remove (const char *__filename) __THROW;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:665:1-667:36
-    name: __getdelim
-    snippet: extern _IO_ssize_t __getdelim (char **__restrict __lineptr,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:131:1-131:25
-    name: __off_t
-    snippet: __STD_TYPE __OFF_T_TYPE __off_t;	/* Type of file sizes and offsets.  */
-    kind: Typedef
-    linkage: 0
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:278:1-280:34
-    name: freopen
-    snippet: extern FILE *freopen (const char *__restrict __filename,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:130:1-130:27
-    name: __nlink_t
-    snippet: __STD_TYPE __NLINK_T_TYPE __nlink_t;	/* Type of file link counts.  */
-    kind: Typedef
-    linkage: 0
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:412:1-414:52
+    location: /usr/include/stdio.h:379:1-381:52
     name: vdprintf
     snippet: extern int vdprintf (int __fd, const char *__restrict __fmt,
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:471:1-473:51
-    name: vfscanf
-    snippet: extern int vfscanf (FILE *__restrict __s, const char *__restrict __format,
+    location: /usr/include/stdio.h:865:1-865:35
+    name: __overflow
+    snippet: extern int __overflow (FILE *, int);
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:299:1-301:29
-    name: freopen64
-    snippet: extern FILE *freopen64 (const char *__restrict __filename,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
+/opt/projects/sbexr/test/test-multiple-file-1.cc
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/stdio.h:102:1-102:19
-    name: ssize_t
-    snippet: typedef __ssize_t ssize_t;
-    kind: Typedef
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:26:3-26:9
+    name: ab
+    snippet: Point ab, ac, ad;
+    kind: Var
     linkage: 0
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:306:1-306:53
-    name: fdopen
-    snippet: extern FILE *fdopen (int __fd, const char *__modes) __THROW __wur;
+    location: /usr/include/stdio.h:638:1-638:33
+    name: puts
+    snippet: extern int puts (const char *__s);
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:483:1-485:59
-    name: vsscanf
-    snippet: extern int vsscanf (const char *__restrict __s,
+    location: /usr/include/stdio.h:824:1-824:32
+    name: cuserid
+    snippet: extern char *cuserid (char *__s);
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:168:1-168:25
-    name: stdin
-    snippet: extern struct _IO_FILE *stdin;		/* Standard input stream.  */
-    kind: Var
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:754:1-754:38
-    name: ftell
-    snippet: extern long int ftell (FILE *__stream) __wur;
+    location: /usr/include/stdio.h:806:1-806:63
+    name: popen
+    snippet: extern FILE *popen (const char *__command, const char *__modes) __wur;
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:803:1-803:56
-    name: fsetpos
-    snippet: extern int fsetpos (FILE *__stream, const fpos_t *__pos);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:431:1-431:55
-    name: scanf
-    snippet: extern int scanf (const char *__restrict __format, ...) __wur;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:759:1-759:35
-    name: rewind
-    snippet: extern void rewind (FILE *__stream);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/x86_64-linux-gnu/bits/types.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/types.h:132:1-132:27
-    name: __off64_t
-    snippet: __STD_TYPE __OFF64_T_TYPE __off64_t;	/* Type of file sizes and offsets (LFS).  */
-    kind: Typedef
-    linkage: 0
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/stdio.h:110:1-110:19
-    name: fpos_t
-    snippet: typedef _G_fpos_t fpos_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:479:1-480:51
-    name: vscanf
-    snippet: extern int vscanf (const char *__restrict __format, _G_va_list __arg)
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:180:1-180:58
-    name: rename
-    snippet: extern int rename (const char *__old, const char *__new) __THROW;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:390:1-392:62
-    name: vsnprintf
-    snippet: extern int vsnprintf (char *__restrict __s, size_t __maxlen,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:169:1-169:25
-    name: stdout
-    snippet: extern struct _IO_FILE *stdout;		/* Standard output stream.  */
-    kind: Var
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:573:1-573:42
-    name: fputc
-    snippet: extern int fputc (int __c, FILE *__stream);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:715:1-716:41
-    name: fwrite
-    snippet: extern size_t fwrite (const void *__restrict __ptr, size_t __size,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/x86_64-linux-gnu/bits/sys_errlist.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h:27:1-27:38
-    name: sys_errlist
-    snippet: extern const char *const sys_errlist[];
-    kind: Var
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/x86_64-linux-gnu/bits/sys_errlist.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h:31:1-31:39
-    name: _sys_errlist
-    snippet: extern const char *const _sys_errlist[];
-    kind: Var
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:778:1-778:38
-    name: ftello
-    snippet: extern __off_t ftello (FILE *__stream) __wur;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-1.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:20:1-20:16
-    name: punt
-    snippet: typedef POINT* punt;
-    kind: Typedef
-    linkage: 0
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:364:1-365:45
-    name: sprintf
-    snippet: extern int sprintf (char *__restrict __s,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 2:2 ok
-  used by:
-    /usr/include/stdio.h:898:28-898:43 1
-    /usr/include/stdio.h:901:29-901:44 1
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:895:1-895:8
-    name: obstack
-    snippet: struct obstack;			/* See <obstack.h>.  */
-    kind: CXXRecord
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:319:1-320:3
-    name: fmemopen
-    snippet: extern FILE *fmemopen (void *__s, size_t __len, const char *__modes)
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:594:1-594:51
-    name: fputc_unlocked
-    snippet: extern int fputc_unlocked (int __c, FILE *__stream);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:170:1-170:25
+    location: /usr/include/stdio.h:139:1-139:14
     name: stderr
-    snippet: extern struct _IO_FILE *stderr;		/* Standard error output stream.  */
+    snippet: extern FILE *stderr;		/* Standard error output stream.  */
     kind: Var
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:749:1-749:63
-    name: fseek
-    snippet: extern int fseek (FILE *__stream, long int __off, int __whence);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:399:1-401:62
-    name: vasprintf
-    snippet: extern int vasprintf (char **__restrict __ptr, const char *__restrict __f,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/lib/clang/3.9.0/include/stdarg.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/lib/clang/3.9.0/include/stdarg.h:30:1-30:27
-    name: va_list
-    snippet: typedef __builtin_va_list va_list;
-    kind: Typedef
-    linkage: 0
-/usr/lib/clang/3.9.0/include/stdarg.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/lib/clang/3.9.0/include/stdarg.h:50:1-50:27
-    name: __gnuc_va_list
-    snippet: typedef __builtin_va_list __gnuc_va_list;
-    kind: Typedef
-    linkage: 0
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:819:1-819:42
-    name: ftello64
-    snippet: extern __off64_t ftello64 (FILE *__stream) __wur;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/x86_64-linux-gnu/bits/sys_errlist.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h:26:1-26:12
-    name: sys_nerr
-    snippet: extern int sys_nerr;
-    kind: Var
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
   used_count: 0:0 ok
@@ -1458,208 +1643,26 @@
     name: _sys_nerr
     snippet: extern int _sys_nerr;
     kind: Var
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:379:1-380:26
-    name: vsprintf
-    snippet: extern int vsprintf (char *__restrict __s, const char *__restrict __format,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-1.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:22:1-22:17
-    name: <using-directive>
-    snippet: using namespace test;
-    kind: UsingDirective
-    linkage: 0
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:215:1-215:35
-    name: tmpnam_r
-    snippet: extern char *tmpnam_r (char *__s) __THROW __wur;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:846:1-846:36
-    name: perror
-    snippet: extern void perror (const char *__s);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:415:1-416:52
-    name: dprintf
-    snippet: extern int dprintf (int __fd, const char *__restrict __fmt, ...)
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:551:1-551:34
-    name: getchar_unlocked
-    snippet: extern int getchar_unlocked (void);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:678:1-680:33
-    name: getline
-    snippet: extern _IO_ssize_t getline (char **__restrict __lineptr,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:532:1-532:32
-    name: getc
-    snippet: extern int getc (FILE *__stream);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:739:1-740:48
-    name: fwrite_unlocked
-    snippet: extern size_t fwrite_unlocked (const void *__restrict __ptr, size_t __size,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:402:1-404:62
-    name: __asprintf
-    snippet: extern int __asprintf (char **__restrict __ptr,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-1.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:7:1-11:1
-    name: test
-    snippet: namespace test {
-    kind: Namespace
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-1.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:27:3-27:27
-    name: p4
-    snippet: Point p0, p1, p2, *p3, *p4;
-    kind: Var
-    linkage: 0
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:702:1-702:43
-    name: ungetc
-    snippet: extern int ungetc (int __c, FILE *__stream);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-1.cc
-  used_count: 3:3 ok
-  used by:
-    /opt/projects/clang/test/test-multiple-file-1.cc:44:38-44:38 1
-    /opt/projects/clang/test/test-multiple-file-1.cc:44:44-44:44 1
-    /opt/projects/clang/test/test-multiple-file-1.cc:44:50-44:50 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:9:3-9:11
-    name: test::Point::x
-    snippet: int x = 0, y = 0;
-    kind: Field
-    linkage: 4
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:343:1-344:25
-    name: setbuffer
-    snippet: extern void setbuffer (FILE *__restrict __stream, char *__restrict __buf,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-1.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:39:3-39:15
-    name: test3
-    snippet: test::Point test3;
-    kind: Var
-    linkage: 0
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:538:1-538:25
-    name: getchar
-    snippet: extern int getchar (void);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-1.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:26:3-26:9
-    name: ab
-    snippet: Point ab, ac, ad;
-    kind: Var
-    linkage: 0
-/opt/projects/clang/test/test-multiple-file-1.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:9:3-9:18
-    name: test::Point::y
-    snippet: int x = 0, y = 0;
-    kind: Field
-    linkage: 4
-/opt/projects/clang/test/include-all.h
+/opt/projects/sbexr/test/test-multiple-file-1.cc
   used_count: 1:1 ok
   used by:
-    /opt/projects/clang/test/include-all.h:35:18-35:18 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:43:38-43:38 1
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /opt/projects/clang/test/include-all.h:34:34-34:38
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:25:15-25:21
+    name: test
+    snippet: void TestMore(Test* test) {
+    kind: ParmVar
+    linkage: 0
+/opt/projects/sbexr/test/include-all.h
+  used_count: 1:1 ok
+  used by:
+    /opt/projects/sbexr/test/include-all.h:35:18-35:18 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/include-all.h:34:34-34:38
     name: value
     snippet: static inline void IncludedByAll(int value) {
     kind: ParmVar
@@ -1668,266 +1671,398 @@
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:649:1-650:34
-    name: fgets_unlocked
-    snippet: extern char *fgets_unlocked (char *__restrict __s, int __n,
+    location: /usr/include/stdio.h:148:1-148:58
+    name: rename
+    snippet: extern int rename (const char *__old, const char *__new) __THROW;
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:695:1-695:33
-    name: puts
-    snippet: extern int puts (const char *__s);
+    location: /usr/include/stdio.h:757:1-757:42
+    name: ftello64
+    snippet: extern __off64_t ftello64 (FILE *__stream) __wur;
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:610:1-610:32
-    name: getw
-    snippet: extern int getw (FILE *__stream);
+    location: /usr/include/stdio.h:658:1-659:41
+    name: fwrite
+    snippet: extern size_t fwrite (const void *__restrict __ptr, size_t __size,
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:773:1-773:63
-    name: fseeko
-    snippet: extern int fseeko (FILE *__stream, __off_t __off, int __whence);
+    location: /usr/include/stdio.h:397:1-397:55
+    name: scanf
+    snippet: extern int scanf (const char *__restrict __format, ...) __wur;
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
+/opt/projects/sbexr/test/test-multiple-file-0.h
+  used_count: 2:2 ok
   used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:898:1-900:62
-    name: obstack_printf
-    snippet: extern int obstack_printf (struct obstack *__restrict __obstack,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-1.cc
-  used_count: 0:0 ok
-  used by:
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:79:3-79:3 1
+    /opt/projects/sbexr/test/test-multiple-file-0.h:41:22-41:26 1
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:26:3-26:17
-    name: ad
-    snippet: Point ab, ac, ad;
-    kind: Var
-    linkage: 0
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:325:1-325:66
-    name: open_memstream
-    snippet: extern FILE *open_memstream (char **__bufloc, size_t *__sizeloc) __THROW __wur;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-1.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:33:3-33:8
-    name: foffa
-    snippet: punt foffa;
-    kind: Var
-    linkage: 0
-/opt/projects/clang/test/test-multiple-file-1.cc
-  used_count: 1:1 ok
-  used by:
-    /opt/projects/clang/test/test-multiple-file-1.cc:44:35-44:35 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:27:3-27:9
-    name: p0
-    snippet: Point p0, p1, p2, *p3, *p4;
-    kind: Var
-    linkage: 0
-/opt/projects/clang/test/test-multiple-file-1.cc
-  used_count: 13:9 bad
-  used by:
-    /opt/projects/clang/test/test-multiple-file-1.cc:28:10-28:37 1
-    /opt/projects/clang/test/test-multiple-file-1.cc:29:32-29:37 1
-    /opt/projects/clang/test/test-multiple-file-1.cc:26:3-26:3 3
-    /opt/projects/clang/test/test-multiple-file-1.cc:27:3-27:3 3
-    /opt/projects/clang/test/test-multiple-file-1.cc:27:3-27:21 1
-    /opt/projects/clang/test/test-multiple-file-1.cc:27:3-27:26 1
-    /opt/projects/clang/test/test-multiple-file-1.cc:33:3-33:3 1
-    /opt/projects/clang/test/test-multiple-file-1.cc:36:3-36:7 1
-    /opt/projects/clang/test/test-multiple-file-1.cc:39:3-39:9 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:8:1-10:1
-    name: test::Point
-    snippet: struct Point {
+    location: /opt/projects/sbexr/test/test-multiple-file-0.h:32:1-39:1
+    name: Test
+    snippet: class Test {
     kind: CXXRecord
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-1.cc
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:63:1-63:27
+    name: __u_quad_t
+    snippet: typedef unsigned long int __u_quad_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:622:1-624:52
+    name: getline
+    snippet: extern __ssize_t getline (char **__restrict __lineptr,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:781:1-781:36
+    name: perror
+    snippet: extern void perror (const char *__s);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/opt/projects/sbexr/test/test-multiple-file-1.h
   used_count: 1:1 ok
   used by:
-    /opt/projects/clang/test/test-multiple-file-1.cc:43:38-43:38 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:25:15-25:21
-    name: test
-    snippet: void TestMore(Test* test) {
-    kind: ParmVar
-    linkage: 0
-/opt/projects/clang/test/test-multiple-file-1.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:27:3-27:22
-    name: p3
-    snippet: Point p0, p1, p2, *p3, *p4;
-    kind: Var
-    linkage: 0
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:25:15-25:19 1
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:668:1-670:34
-    name: getdelim
-    snippet: extern _IO_ssize_t getdelim (char **__restrict __lineptr,
-    kind: Function
-    linkage: 4
+    location: /opt/projects/sbexr/test/test-multiple-file-1.h:32:1-32:7
+    name: Test
+    snippet: class Test;
+    kind: CXXRecord
+    linkage: 6
   defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-1.cc
-  used_count: 1:1 ok
-  used by:
-    /opt/projects/clang/test/test-multiple-file-1.cc:44:47-44:47 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:27:3-27:17
-    name: p2
-    snippet: Point p0, p1, p2, *p3, *p4;
-    kind: Var
-    linkage: 0
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:726:1-727:32
-    name: fputs_unlocked
-    snippet: extern int fputs_unlocked (const char *__restrict __s,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:872:1-872:63
-    name: popen
-    snippet: extern FILE *popen (const char *__command, const char *__modes) __wur;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:858:1-858:36
-    name: fileno
-    snippet: extern int fileno (FILE *__stream) __THROW __wur;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:185:1-186:27
-    name: renameat
-    snippet: extern int renameat (int __oldfd, const char *__old, int __newfd,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-1.cc
+/opt/projects/sbexr/test/test-multiple-file-1.cc
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:28:3-28:39
-    name: fuffa
-    snippet: static POINT __attribute__((used))* fuffa;
-    kind: Var
-    linkage: 0
-/opt/projects/clang/test/test-multiple-file-1.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:26:3-26:13
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:26:3-26:13
     name: ac
     snippet: Point ab, ac, ad;
     kind: Var
     linkage: 0
-/opt/projects/clang/test/test-multiple-file-1.cc
+/opt/projects/sbexr/test/test-multiple-file-1.cc
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:36:3-36:9
-    name: foffa2
-    snippet: punt* foffa2;
-    kind: Var
-    linkage: 0
-/opt/projects/clang/test/include-all.h
-  used_count: 5:5 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:9:3-9:18
+    name: test::Point::y
+    snippet: int x = 0, y = 0;
+    kind: Field
+    linkage: 6
+/opt/projects/sbexr/test/test-multiple-file-1.cc
+  used_count: 3:3 ok
   used by:
-    /opt/projects/clang/test/test-multiple-file-0.cc:74:3-74:3 1
-    /opt/projects/clang/test/test-multiple-file-0.cc:84:3-84:3 1
-    /opt/projects/clang/test/test-multiple-file-0.cc:80:3-80:3 1
-    /opt/projects/clang/test/test-multiple-file-1.cc:14:3-14:3 1
-    /opt/projects/clang/test/test-multiple-file-1.cc:41:3-41:3 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:44:38-44:38 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:44:44-44:44 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:44:50-44:50 1
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /opt/projects/clang/test/include-all.h:34:1-36:1
-    name: IncludedByAll
-    snippet: static inline void IncludedByAll(int value) {
-    kind: Function
-    linkage: 1
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:878:1-878:34
-    name: pclose
-    snippet: extern int pclose (FILE *__stream);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:890:1-890:32
-    name: cuserid
-    snippet: extern char *cuserid (char *__s);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-1.cc
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:9:3-9:11
+    name: test::Point::x
+    snippet: int x = 0, y = 0;
+    kind: Field
+    linkage: 6
+/opt/projects/sbexr/test/test-multiple-file-1.h
   used_count: 1:1 ok
   used by:
-    /opt/projects/clang/test/test-multiple-file-1.cc:44:41-44:41 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:16:33-16:33 1
+  declared_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-1.h:34:1-34:12
+    name: global_counter
+    snippet: extern int global_counter;
+    kind: Var
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/clang/8.0.0/include/stddef.h
+  used_count: 0:0 ok
+  used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:27:3-27:13
+    location: /usr/include/clang/8.0.0/include/stddef.h:62:1-62:23
+    name: size_t
+    snippet: typedef __SIZE_TYPE__ size_t;
+    kind: Typedef
+    linkage: 0
+/opt/projects/sbexr/test/test-multiple-file-1.cc
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:28:3-28:39
+    name: fuffa
+    snippet: static POINT __attribute__((used))* fuffa;
+    kind: Var
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:152:1-153:27
+    name: renameat
+    snippet: extern int renameat (int __oldfd, const char *__old, int __newfd,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/opt/projects/sbexr/test/test-multiple-file-1.cc
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:22:1-22:17
+    name: <using-directive>
+    snippet: using namespace test;
+    kind: UsingDirective
+    linkage: 0
+/opt/projects/sbexr/test/test-multiple-file-1.cc
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:20:1-20:16
+    name: punt
+    snippet: typedef POINT* punt;
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:645:1-645:43
+    name: ungetc
+    snippet: extern int ungetc (int __c, FILE *__stream);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:742:1-742:56
+    name: fsetpos
+    snippet: extern int fsetpos (FILE *__stream, const fpos_t *__pos);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:609:1-611:55
+    name: __getdelim
+    snippet: extern __ssize_t __getdelim (char **__restrict __lineptr,
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/opt/projects/sbexr/test/test-multiple-file-1.cc
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:7:1-11:1
+    name: test
+    snippet: namespace test {
+    kind: Namespace
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types.h:72:1-72:27
+    name: __uintmax_t
+    snippet: typedef unsigned long int __uintmax_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:695:1-695:38
+    name: ftell
+    snippet: extern long int ftell (FILE *__stream) __wur;
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:13:3-13:15
+    name: _G_fpos64_t::__state
+    snippet: __mbstate_t __state;
+    kind: Field
+    linkage: 6
+/opt/projects/sbexr/test/test-multiple-file-1.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-1.h:36:1-36:19
+    name: TestFunction
+    snippet: void TestFunction();
+    kind: Function
+    linkage: 6
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:13:1-17:1
+    name: TestFunction
+    snippet: void TestFunction() {
+    kind: Function
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:12:3-12:13
+    name: _G_fpos64_t::__pos
+    snippet: __off64_t __pos;
+    kind: Field
+    linkage: 6
+/opt/projects/sbexr/test/test-multiple-file-1.cc
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:27:3-27:27
+    name: p4
+    snippet: Point p0, p1, p2, *p3, *p4;
+    kind: Var
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:10:1-14:3
+    name: __fpos64_t
+    snippet: typedef struct _G_fpos64_t
+    kind: Typedef
+    linkage: 0
+/opt/projects/sbexr/test/test-multiple-file-1.cc
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:26:3-26:17
+    name: ad
+    snippet: Point ab, ac, ad;
+    kind: Var
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h
+  used_count: 2:2 ok
+  used by:
+    /usr/include/stdio.h:758:50-758:59 1
+    /usr/include/stdio.h:759:45-759:54 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:10:9-14:1
+    name: _G_fpos64_t
+    snippet: typedef struct _G_fpos64_t
+    kind: CXXRecord
+    linkage: 6
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:292:1-293:3
+    name: fmemopen
+    snippet: extern FILE *fmemopen (void *__s, size_t __len, const char *__modes)
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h:27:1-27:38
+    name: sys_errlist
+    snippet: extern const char *const sys_errlist[];
+    kind: Var
+    linkage: 6
+  defined_count: 0:0 ok
+/opt/projects/sbexr/test/test-multiple-file-0.h
+  used_count: 1:1 ok
+  used by:
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:85:15-85:15 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.h:34:3-34:30
+    name: Test::Do00
+    snippet: int Do00(void) { return 1; };
+    kind: CXXMethod
+    linkage: 6
+/opt/projects/sbexr/test/test-multiple-file-0.h
+  used_count: 1:1 ok
+  used by:
+    /opt/projects/sbexr/test/test-multiple-file-0.h:35:27-35:27 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.h:38:3-38:30
+    name: Test::Do01
+    snippet: int Do01(void) { return 2; }
+    kind: CXXMethod
+    linkage: 6
+/usr/include/stdio.h
+  used_count: 2:2 ok
+  used by:
+    /usr/include/stdio.h:832:28-832:43 1
+    /usr/include/stdio.h:835:29-835:44 1
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:829:1-829:8
+    name: obstack
+    snippet: struct obstack;			/* See <obstack.h>.  */
+    kind: CXXRecord
+    linkage: 6
+  defined_count: 0:0 ok
+/opt/projects/sbexr/test/test-multiple-file-1.cc
+  used_count: 1:1 ok
+  used by:
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:44:47-44:47 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:27:3-27:17
+    name: p2
+    snippet: Point p0, p1, p2, *p3, *p4;
+    kind: Var
+    linkage: 0
+/opt/projects/sbexr/test/test-multiple-file-1.cc
+  used_count: 1:1 ok
+  used by:
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:44:41-44:41 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:27:3-27:13
     name: p1
     snippet: Point p0, p1, p2, *p3, *p4;
     kind: Var
@@ -1936,48 +2071,74 @@
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:312:1-314:44
-    name: fopencookie
-    snippet: extern FILE *fopencookie (void *__restrict __magic_cookie,
+    location: /usr/include/stdio.h:612:1-614:53
+    name: getdelim
+    snippet: extern __ssize_t getdelim (char **__restrict __lineptr,
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-1.cc
+/opt/projects/sbexr/test/test-multiple-file-1.cc
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:25:1-45:1
-    name: TestMore
-    snippet: void TestMore(Test* test) {
-    kind: Function
-    linkage: 4
-/usr/include/libio.h
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:27:3-27:22
+    name: p3
+    snippet: Point p0, p1, p2, *p3, *p4;
+    kind: Var
+    linkage: 0
+/usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/libio.h:463:1-463:58
-    name: _IO_padn
-    snippet: extern _IO_ssize_t _IO_padn (_IO_FILE *, int, _IO_ssize_t);
+    location: /usr/include/stdio.h:718:1-718:38
+    name: ftello
+    snippet: extern __off_t ftello (FILE *__stream) __wur;
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
+/opt/projects/sbexr/test/test-multiple-file-1.cc
+  used_count: 1:1 ok
   used by:
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:376:1-377:56
-    name: _IO_cookie_init
-    snippet: extern void _IO_cookie_init (struct _IO_cookie_file *__cfile, int __read_write,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-1.cc
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:44:35-44:35 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:27:3-27:9
+    name: p0
+    snippet: Point p0, p1, p2, *p3, *p4;
+    kind: Var
+    linkage: 0
+/opt/projects/sbexr/test/test-multiple-file-1.cc
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-1.cc:29:3-29:39
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:33:3-33:8
+    name: foffa
+    snippet: punt foffa;
+    kind: Var
+    linkage: 0
+/opt/projects/sbexr/test/include-all.h
+  used_count: 5:5 ok
+  used by:
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:74:3-74:3 1
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:84:3-84:3 1
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:80:3-80:3 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:14:3-14:3 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:41:3-41:3 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/include-all.h:34:1-36:1
+    name: IncludedByAll
+    snippet: static inline void IncludedByAll(int value) {
+    kind: Function
+    linkage: 1
+/opt/projects/sbexr/test/test-multiple-file-1.cc
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:29:3-29:39
     name: fuffa2
     snippet: static __attribute__((used)) POINT* fuffa2;
     kind: Var
@@ -1986,1427 +2147,1021 @@
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:195:1-195:27
-    name: tmpfile
-    snippet: extern FILE *tmpfile (void) __wur;
+    location: /usr/include/stdio.h:164:1-165:50
+    name: renameat2
+    snippet: extern int renameat2 (int __oldfd, const char *__old, int __newfd,
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:464:1-464:60
-    name: _IO_sgetn
-    snippet: extern _IO_size_t _IO_sgetn (_IO_FILE *, void *, _IO_size_t);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:467:1-467:61
-    name: _IO_seekpos
-    snippet: extern _IO_off64_t _IO_seekpos (_IO_FILE *, _IO_off64_t, int);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:371:1-371:35
-    name: cookie_io_functions_t
-    snippet: typedef _IO_cookie_io_functions_t cookie_io_functions_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:459:1-460:32
-    name: _IO_vfscanf
-    snippet: extern int _IO_vfscanf (_IO_FILE * __restrict, const char * __restrict,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:385:1-385:35
-    name: __underflow
-    snippet: extern int __underflow (_IO_FILE *);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:387:1-387:39
-    name: __overflow
-    snippet: extern int __overflow (_IO_FILE *, int);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:429:1-429:36
-    name: _IO_getc
-    snippet: extern int _IO_getc (_IO_FILE *__fp);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:353:1-353:42
-    name: __io_close_fn
-    snippet: typedef int __io_close_fn (void *__cookie);
-    kind: Typedef
-    linkage: 0
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:434:1-434:44
-    name: _IO_peekc_locked
-    snippet: extern int _IO_peekc_locked (_IO_FILE *__fp);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:430:1-430:45
-    name: _IO_putc
-    snippet: extern int _IO_putc (int __c, _IO_FILE *__fp);
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:274:3-274:18
-    name: _IO_FILE::_cur_column
-    snippet: unsigned short _cur_column;
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:276:3-276:19
-    name: _IO_FILE::_shortbuf
-    snippet: char _shortbuf[1];
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:341:1-342:16
-    name: __io_write_fn
-    snippet: typedef __ssize_t __io_write_fn (void *__cookie, const char *__buf,
-    kind: Typedef
-    linkage: 0
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:366:3-366:17
-    name: (anonymous struct)::read
-    snippet: __io_read_fn *read;		/* Read bytes.  */
-    kind: Field
-    linkage: 4
-/usr/include/wchar.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/wchar.h:92:5-92:18
-    name: (anonymous struct)::(anonymous union)::__wchb
-    snippet: char __wchb[4];
-    kind: Field
-    linkage: 4
-/usr/include/wchar.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/wchar.h:88:5-88:19
-    name: (anonymous struct)::(anonymous union)::__wch
-    snippet: __WINT_TYPE__ __wch;
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:158:3-158:20
-    name: _IO_marker::_sbuf
-    snippet: struct _IO_FILE *_sbuf;
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:157:3-157:22
-    name: _IO_marker::_next
-    snippet: struct _IO_marker *_next;
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:359:1-359:23
-    name: cookie_write_function_t
-    snippet: typedef __io_write_fn cookie_write_function_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:469:1-469:47
-    name: _IO_free_backup_area
-    snippet: extern void _IO_free_backup_area (_IO_FILE *) __THROW;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:260:3-260:22
-    name: _IO_FILE::_markers
-    snippet: struct _IO_marker *_markers;
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:361:1-361:23
-    name: cookie_close_function_t
-    snippet: typedef __io_close_fn cookie_close_function_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:262:3-262:20
-    name: _IO_FILE::_chain
-    snippet: struct _IO_FILE *_chain;
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:368:3-368:17
-    name: (anonymous struct)::seek
-    snippet: __io_seek_fn *seek;		/* Seek/tell file position.  */
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:358:1-358:22
-    name: cookie_read_function_t
-    snippet: typedef __io_read_fn cookie_read_function_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:315:1-315:29
-    name: _IO_2_1_stdin_
-    snippet: extern struct _IO_FILE_plus _IO_2_1_stdin_;
-    kind: Var
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:316:1-316:29
-    name: _IO_2_1_stdout_
-    snippet: extern struct _IO_FILE_plus _IO_2_1_stdout_;
-    kind: Var
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/wchar.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/wchar.h:84:3-84:7
-    name: (anonymous struct)::__count
-    snippet: int __count;
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:178:3-178:3
-    name: __codecvt_result::__codecvt_ok
-    snippet: __codecvt_ok,
-    kind: EnumConstant
-    linkage: 4
-/usr/include/wchar.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/wchar.h:85:3-93:5
-    name: (anonymous struct)::__value
-    snippet: union
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 2:2 ok
-  used by:
-    /usr/include/libio.h:157:3-157:21 1
-    /usr/include/libio.h:260:3-260:21 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:156:1-173:1
-    name: _IO_marker
-    snippet: struct _IO_marker {
-    kind: CXXRecord
-    linkage: 4
-/usr/include/wchar.h
-  used_count: 1:1 ok
-  used by:
-    /usr/include/wchar.h:85:3-85:3 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/wchar.h:85:3-93:3
-    name: (anonymous struct)::(anonymous)
-    snippet: union
-    kind: CXXRecord
-    linkage: 4
-/usr/include/wchar.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/wchar.h:82:1-94:3
-    name: __mbstate_t
-    snippet: typedef struct
-    kind: Typedef
-    linkage: 4
-/usr/include/wchar.h
-  used_count: 2:2 ok
-  used by:
-    /usr/include/_G_config.h:24:3-24:3 1
-    /usr/include/_G_config.h:29:3-29:3 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/wchar.h:82:9-94:1
-    name: (anonymous)
-    snippet: typedef struct
-    kind: CXXRecord
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:162:3-162:7
-    name: _IO_marker::_pos
-    snippet: int _pos;
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 92:92 ok
-  used by:
-    /usr/include/libio.h:158:3-158:19 1
-    /usr/include/libio.h:262:3-262:19 1
-    /usr/include/libio.h:385:25-385:34 1
-    /usr/include/libio.h:386:21-386:30 1
-    /usr/include/libio.h:387:24-387:33 1
-    /usr/include/libio.h:429:22-429:31 1
-    /usr/include/libio.h:430:31-430:40 1
-    /usr/include/libio.h:431:22-431:31 1
-    /usr/include/libio.h:432:24-432:33 1
-    /usr/include/libio.h:434:30-434:39 1
-    /usr/include/libio.h:440:28-440:37 1
-    /usr/include/libio.h:441:30-441:39 1
-    /usr/include/libio.h:442:30-442:39 1
-    /usr/include/libio.h:459:25-459:34 1
-    /usr/include/libio.h:461:26-461:35 1
-    /usr/include/libio.h:463:30-463:39 1
-    /usr/include/libio.h:464:30-464:39 1
-    /usr/include/libio.h:466:33-466:42 1
-    /usr/include/libio.h:467:33-467:42 1
-    /usr/include/libio.h:469:35-469:44 1
-    /usr/include/stdio.h:168:8-168:24 1
-    /usr/include/stdio.h:169:8-169:24 1
-    /usr/include/stdio.h:170:8-170:24 1
-    /usr/include/stdio.h:195:8-195:13 1
-    /usr/include/stdio.h:205:8-205:13 1
-    /usr/include/stdio.h:237:20-237:25 1
-    /usr/include/stdio.h:242:20-242:25 1
-    /usr/include/stdio.h:252:29-252:34 1
-    /usr/include/stdio.h:272:8-272:13 1
-    /usr/include/stdio.h:278:8-278:13 1
-    /usr/include/stdio.h:280:9-280:14 1
-    /usr/include/stdio.h:297:8-297:13 1
-    /usr/include/stdio.h:299:8-299:13 1
-    /usr/include/stdio.h:301:4-301:9 1
-    /usr/include/stdio.h:306:8-306:13 1
-    /usr/include/stdio.h:312:8-312:13 1
-    /usr/include/stdio.h:319:8-319:13 1
-    /usr/include/stdio.h:325:8-325:13 1
-    /usr/include/stdio.h:332:21-332:26 1
-    /usr/include/stdio.h:336:21-336:26 1
-    /usr/include/stdio.h:343:24-343:29 1
-    /usr/include/stdio.h:347:25-347:30 1
-    /usr/include/stdio.h:356:21-356:26 1
-    /usr/include/stdio.h:371:22-371:27 1
-    /usr/include/stdio.h:425:20-425:25 1
-    /usr/include/stdio.h:471:21-471:26 1
-    /usr/include/stdio.h:531:19-531:24 1
-    /usr/include/stdio.h:532:18-532:23 1
-    /usr/include/stdio.h:550:27-550:32 1
-    /usr/include/stdio.h:561:28-561:33 1
-    /usr/include/stdio.h:573:28-573:33 1
-    /usr/include/stdio.h:574:27-574:32 1
-    /usr/include/stdio.h:594:37-594:42 1
-    /usr/include/stdio.h:602:36-602:41 1
-    /usr/include/stdio.h:610:18-610:23 1
-    /usr/include/stdio.h:613:27-613:32 1
-    /usr/include/stdio.h:622:52-622:57 1
-    /usr/include/stdio.h:650:9-650:14 1
-    /usr/include/stdio.h:667:11-667:16 1
-    /usr/include/stdio.h:670:9-670:14 1
-    /usr/include/stdio.h:680:8-680:13 1
-    /usr/include/stdio.h:689:47-689:52 1
-    /usr/include/stdio.h:702:29-702:34 1
-    /usr/include/stdio.h:710:20-710:25 1
-    /usr/include/stdio.h:716:21-716:26 1
-    /usr/include/stdio.h:727:7-727:12 1
-    /usr/include/stdio.h:738:22-738:27 1
-    /usr/include/stdio.h:740:23-740:28 1
-    /usr/include/stdio.h:749:19-749:24 1
-    /usr/include/stdio.h:754:24-754:29 1
-    /usr/include/stdio.h:759:21-759:26 1
-    /usr/include/stdio.h:773:20-773:25 1
-    /usr/include/stdio.h:778:24-778:29 1
-    /usr/include/stdio.h:798:21-798:26 1
-    /usr/include/stdio.h:803:21-803:26 1
-    /usr/include/stdio.h:818:22-818:27 1
-    /usr/include/stdio.h:819:28-819:33 1
-    /usr/include/stdio.h:820:23-820:28 1
-    /usr/include/stdio.h:821:23-821:28 1
-    /usr/include/stdio.h:826:23-826:28 1
-    /usr/include/stdio.h:828:18-828:23 1
-    /usr/include/stdio.h:830:20-830:25 1
-    /usr/include/stdio.h:835:32-835:37 1
-    /usr/include/stdio.h:836:27-836:32 1
-    /usr/include/stdio.h:837:29-837:34 1
-    /usr/include/stdio.h:858:20-858:25 1
-    /usr/include/stdio.h:863:29-863:34 1
-    /usr/include/stdio.h:872:8-872:13 1
-    /usr/include/stdio.h:878:20-878:25 1
-    /usr/include/stdio.h:912:24-912:29 1
-    /usr/include/stdio.h:916:26-916:31 1
-    /usr/include/stdio.h:919:26-919:31 1
-  declared_count: 0:0 ok
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:144:1-144:8
-    name: _IO_jump_t
-    snippet: struct _IO_jump_t;  struct _IO_FILE;
-    kind: CXXRecord
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:253:3-253:9
-    name: _IO_FILE::_IO_buf_base
-    snippet: char* _IO_buf_base;	/* Start of reserve area. */
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:150:1-150:14
-    name: _IO_lock_t
-    snippet: typedef void _IO_lock_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:176:1-182:1
-    name: __codecvt_result
-    snippet: enum __codecvt_result
-    kind: Enum
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:247:3-247:9
-    name: _IO_FILE::_IO_read_ptr
-    snippet: char* _IO_read_ptr;	/* Current read pointer */
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:242:3-242:7
-    name: _IO_FILE::_flags
-    snippet: int _flags;		/* High-order word is _IO_MAGIC; rest is flags. */
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:179:3-179:3
-    name: __codecvt_result::__codecvt_partial
-    snippet: __codecvt_partial,
-    kind: EnumConstant
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:248:3-248:9
-    name: _IO_FILE::_IO_read_end
-    snippet: char* _IO_read_end;	/* End of get area. */
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:270:3-270:13
-    name: _IO_FILE::_old_offset
-    snippet: _IO_off_t _old_offset; /* This used to be _offset but it's too small.  */
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:275:3-275:15
-    name: _IO_FILE::_vtable_offset
-    snippet: signed char _vtable_offset;
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:264:3-264:7
-    name: _IO_FILE::_fileno
-    snippet: int _fileno;
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:252:3-252:9
-    name: _IO_FILE::_IO_write_end
-    snippet: char* _IO_write_end;	/* End of put area. */
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:180:3-180:3
-    name: __codecvt_result::__codecvt_error
-    snippet: __codecvt_error,
-    kind: EnumConstant
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:280:3-280:15
-    name: _IO_FILE::_lock
-    snippet: _IO_lock_t *_lock;
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:360:1-360:22
-    name: cookie_seek_function_t
-    snippet: typedef __io_seek_fn cookie_seek_function_t;
-    kind: Typedef
-    linkage: 0
-/usr/include/libio.h
-  used_count: 3:3 ok
-  used by:
-    /usr/include/libio.h:315:8-315:15 1
-    /usr/include/libio.h:316:8-316:15 1
-    /usr/include/libio.h:317:8-317:15 1
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:313:1-313:8
-    name: _IO_FILE_plus
-    snippet: struct _IO_FILE_plus;
-    kind: CXXRecord
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:249:3-249:9
-    name: _IO_FILE::_IO_read_base
-    snippet: char* _IO_read_base;	/* Start of putback+get area. */
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:317:1-317:29
-    name: _IO_2_1_stderr_
-    snippet: extern struct _IO_FILE_plus _IO_2_1_stderr_;
-    kind: Var
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:289:3-289:15
-    name: _IO_FILE::_offset
-    snippet: _IO_off64_t _offset;
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:181:3-181:3
-    name: __codecvt_result::__codecvt_noconv
-    snippet: __codecvt_noconv
-    kind: EnumConstant
-    linkage: 4
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:901:1-904:62
+    location: /usr/include/stdio.h:846:1-846:40
+    name: flockfile
+    snippet: extern void flockfile (FILE *__stream) __THROW;
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:835:1-838:62
     name: obstack_vprintf
     snippet: extern int obstack_vprintf (struct obstack *__restrict __obstack,
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
+/opt/projects/sbexr/test/test-multiple-file-1.cc
+  used_count: 13:9 bad
   used by:
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:461:1-462:16
-    name: _IO_vfprintf
-    snippet: extern int _IO_vfprintf (_IO_FILE *__restrict, const char *__restrict,
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:28:10-28:37 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:29:32-29:37 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:26:3-26:3 3
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:27:3-27:3 3
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:27:3-27:21 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:27:3-27:26 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:33:3-33:3 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:36:3-36:7 1
+    /opt/projects/sbexr/test/test-multiple-file-1.cc:39:3-39:9 1
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/libio.h:250:3-250:9
-    name: _IO_FILE::_IO_write_base
-    snippet: char* _IO_write_base;	/* Start of put area. */
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:268:3-268:7
-    name: _IO_FILE::_flags2
-    snippet: int _flags2;
-    kind: Field
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-0.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:35:3-35:7
-    name: Double::mydouble
-    snippet: int mydouble;
-    kind: Field
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-0.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:67:1-68:29
-    name: FuncNoNamedArgs
-    snippet: int FuncNoNamedArgs(
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:302:3-302:10
-    name: _IO_FILE::__pad5
-    snippet: size_t __pad5;
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:364:1-370:3
-    name: _IO_cookie_io_functions_t
-    snippet: typedef struct
-    kind: Typedef
-    linkage: 4
-/usr/include/libio.h
-  used_count: 1:1 ok
-  used by:
-    /usr/include/libio.h:376:30-376:53 1
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:373:1-373:8
-    name: _IO_cookie_file
-    snippet: struct _IO_cookie_file;
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:8:1-10:1
+    name: test::Point
+    snippet: struct Point {
     kind: CXXRecord
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
+    linkage: 6
+/opt/projects/sbexr/test/test-multiple-file-1.cc
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/libio.h:254:3-254:9
-    name: _IO_FILE::_IO_buf_end
-    snippet: char* _IO_buf_end;	/* End of reserve area. */
-    kind: Field
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-0.cc
-  used_count: 1:1 ok
-  used by:
-    /opt/projects/clang/test/test-multiple-file-0.cc:49:5-49:12 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:34:1-37:1
-    name: Double
-    snippet: struct Double {
-    kind: CXXRecord
-    linkage: 4
-/usr/include/libio.h
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:36:3-36:9
+    name: foffa2
+    snippet: punt* foffa2;
+    kind: Var
+    linkage: 0
+/opt/projects/sbexr/test/test-multiple-file-1.cc
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/libio.h:303:3-303:7
-    name: _IO_FILE::_mode
-    snippet: int _mode;
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:39:3-39:15
+    name: test3
+    snippet: test::Point test3;
+    kind: Var
+    linkage: 0
+/opt/projects/sbexr/test/test-multiple-file-1.cc
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-1.cc:25:1-45:1
+    name: TestMore
+    snippet: void TestMore(Test* test) {
+    kind: Function
+    linkage: 6
+/usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/libio.h:386:1-386:31
-    name: __uflow
-    snippet: extern int __uflow (_IO_FILE *);
+    location: /usr/include/stdio.h:763:1-763:39
+    name: clearerr
+    snippet: extern void clearerr (FILE *__stream) __THROW;
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:262:1-262:27
-    name: fcloseall
-    snippet: extern int fcloseall (void);
+    location: /usr/include/stdio.h:765:1-765:34
+    name: feof
+    snippet: extern int feof (FILE *__stream) __THROW __wur;
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-0.cc
-  used_count: 1:1 ok
-  used by:
-    /opt/projects/clang/test/test-multiple-file-0.cc:58:22-58:22 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:48:5-48:19
-    name: Nfs::(anonymous union)::fusingle
-    snippet: struct Single fusingle;
-    kind: Field
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-0.cc
-  used_count: 2:2 ok
-  used by:
-    /opt/projects/clang/test/test-multiple-file-0.cc:48:5-48:12 1
-    /opt/projects/clang/test/test-multiple-file-0.cc:53:15-53:28 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:38:1-40:1
-    name: Single
-    snippet: struct Single {
-    kind: CXXRecord
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-0.cc
-  used_count: 2:2 ok
-  used by:
-    /opt/projects/clang/test/test-multiple-file-0.cc:74:3-74:3 1
-    /opt/projects/clang/test/test-multiple-file-0.cc:75:10-75:10 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:73:23-73:27
-    name: foo
-    snippet: int FuncWithNamedArgs(int foo, const char* bar) {
-    kind: ParmVar
-    linkage: 0
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:251:3-251:9
-    name: _IO_FILE::_IO_write_ptr
-    snippet: char* _IO_write_ptr;	/* Current put pointer. */
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
+/usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/libio.h:431:1-431:38
-    name: _IO_feof
-    snippet: extern int _IO_feof (_IO_FILE *__fp) __THROW;
+    location: /usr/include/stdio.h:850:1-850:42
+    name: ftrylockfile
+    snippet: extern int ftrylockfile (FILE *__stream) __THROW __wur;
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-0.cc
+/usr/include/stdio.h
   used_count: 0:0 ok
   used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:47:3-50:3
-    name: Nfs::(anonymous)
-    snippet: union {
-    kind: CXXRecord
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:367:3-367:18
-    name: (anonymous struct)::write
-    snippet: __io_write_fn *write;		/* Write bytes.  */
-    kind: Field
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-0.cc
-  used_count: 2:2 ok
-  used by:
-    /opt/projects/clang/test/test-multiple-file-0.cc:57:12-57:22 1
-    /opt/projects/clang/test/test-multiple-file-0.cc:71:9-71:19 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:46:1-51:1
-    name: Nfs
-    snippet: struct Nfs {
-    kind: CXXRecord
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-0.cc
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:767:1-767:36
+    name: ferror
+    snippet: extern int ferror (FILE *__stream) __THROW __wur;
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/opt/projects/sbexr/test/test-multiple-file-0.cc
   used_count: 1:1 ok
   used by:
-    /opt/projects/clang/test/test-multiple-file-0.cc:75:17-75:17 1
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:75:17-75:17 1
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:73:32-73:44
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:73:32-73:44
     name: bar
     snippet: int FuncWithNamedArgs(int foo, const char* bar) {
     kind: ParmVar
     linkage: 0
-/opt/projects/clang/test/test-multiple-file-0.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:78:10-78:14
-    name: argc
-    snippet: int main(int argc, const char** argv) {
-    kind: ParmVar
-    linkage: 0
-/opt/projects/clang/test/test-multiple-file-0.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:32:1-32:5
-    name: global_counter
-    snippet: int global_counter;
-    kind: Var
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-0.cc
+/opt/projects/sbexr/test/test-multiple-file-0.cc
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:66:1-66:41
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:66:1-66:41
     name: FuncWithNamedArgs
     snippet: int FuncWithNamedArgs(int foo, char* bar);
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:256:3-256:9
-    name: _IO_FILE::_IO_save_base
-    snippet: char *_IO_save_base; /* Pointer to start of non-current get area. */
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 2:2 ok
-  used by:
-    /usr/include/libio.h:377:25-377:25 1
-    /usr/include/stdio.h:314:6-314:6 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:364:9-370:1
-    name: (anonymous)
-    snippet: typedef struct
-    kind: CXXRecord
-    linkage: 4
-/usr/include/libio.h
+/usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/libio.h:432:1-432:40
-    name: _IO_ferror
-    snippet: extern int _IO_ferror (_IO_FILE *__fp) __THROW;
+    location: /usr/include/stdio.h:853:1-853:42
+    name: funlockfile
+    snippet: extern void funlockfile (FILE *__stream) __THROW;
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-0.cc
-  used_count: 1:1 ok
+/usr/include/stdio.h
+  used_count: 0:0 ok
   used by:
-    /opt/projects/clang/test/test-multiple-file-0.cc:58:17-58:17 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:57:12-57:24
-    name: nfs
-    snippet: int Mytest(struct Nfs* nfs) {
-    kind: ParmVar
-    linkage: 0
-/opt/projects/clang/test/test-multiple-file-0.cc
-  used_count: 1:1 ok
-  used by:
-    /opt/projects/clang/test/test-multiple-file-0.cc:54:26-54:26 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:53:15-53:30
-    name: single
-    snippet: bool MySingle(struct Single* single) {
-    kind: ParmVar
-    linkage: 0
-/usr/include/libio.h
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:771:1-771:48
+    name: clearerr_unlocked
+    snippet: extern void clearerr_unlocked (FILE *__stream) __THROW;
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/opt/projects/sbexr/test/test-multiple-file-0.cc
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/libio.h:369:3-369:18
-    name: (anonymous struct)::close
-    snippet: __io_close_fn *close;		/* Close file.  */
-    kind: Field
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-0.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:78:20-78:33
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:78:20-78:33
     name: argv
     snippet: int main(int argc, const char** argv) {
     kind: ParmVar
     linkage: 0
-/usr/include/libio.h
+/usr/include/clang/8.0.0/include/stdarg.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/clang/8.0.0/include/stdarg.h:30:1-30:27
+    name: va_list
+    snippet: typedef __builtin_va_list va_list;
+    kind: Typedef
+    linkage: 0
+/usr/include/clang/8.0.0/include/stdarg.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/clang/8.0.0/include/stdarg.h:48:1-48:27
+    name: __gnuc_va_list
+    snippet: typedef __builtin_va_list __gnuc_va_list;
+    kind: Typedef
+    linkage: 0
+/opt/projects/sbexr/test/test-multiple-file-0.cc
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/libio.h:466:1-466:66
-    name: _IO_seekoff
-    snippet: extern _IO_off64_t _IO_seekoff (_IO_FILE *, _IO_off64_t, int, int);
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:67:1-68:29
+    name: FuncNoNamedArgs
+    snippet: int FuncNoNamedArgs(
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
+/opt/projects/sbexr/test/test-multiple-file-0.cc
+  used_count: 1:1 ok
+  used by:
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:54:26-54:26 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:53:15-53:30
+    name: single
+    snippet: bool MySingle(struct Single* single) {
+    kind: ParmVar
+    linkage: 0
+/opt/projects/sbexr/test/test-multiple-file-0.cc
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:64:1-65:30
+    name: CheckArgs
+    snippet: int CheckArgs(
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/opt/projects/sbexr/test/test-multiple-file-0.cc
+  used_count: 1:1 ok
+  used by:
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:58:17-58:17 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:57:12-57:24
+    name: nfs
+    snippet: int Mytest(struct Nfs* nfs) {
+    kind: ParmVar
+    linkage: 0
+/opt/projects/sbexr/test/test-multiple-file-0.cc
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:70:1-71:24
+    name: CheckMyArgs
+    snippet: int CheckMyArgs(
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/opt/projects/sbexr/test/test-multiple-file-0.cc
+  used_count: 2:2 ok
+  used by:
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:74:3-74:3 1
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:75:10-75:10 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:73:23-73:27
+    name: foo
+    snippet: int FuncWithNamedArgs(int foo, const char* bar) {
+    kind: ParmVar
+    linkage: 0
+/opt/projects/sbexr/test/test-multiple-file-0.cc
+  used_count: 1:1 ok
+  used by:
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:58:22-58:22 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:48:5-48:19
+    name: Nfs::(anonymous union)::fusingle
+    snippet: struct Single fusingle;
+    kind: Field
+    linkage: 6
+/opt/projects/sbexr/test/test-multiple-file-0.cc
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:49:5-49:19
+    name: Nfs::(anonymous union)::fudouble
+    snippet: struct Double fudouble;
+    kind: Field
+    linkage: 6
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:433:1-434:44
-    name: sscanf
-    snippet: extern int sscanf (const char *__restrict __s,
+    location: /usr/include/stdio.h:772:1-772:43
+    name: feof_unlocked
+    snippet: extern int feof_unlocked (FILE *__stream) __THROW __wur;
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/usr/include/libio.h
+/opt/projects/sbexr/test/test-multiple-file-0.cc
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/libio.h:257:3-257:9
-    name: _IO_FILE::_IO_backup_base
-    snippet: char *_IO_backup_base;  /* Pointer to first valid character of backup area */
-    kind: Field
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-0.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:39:3-39:9
-    name: Single::mysingle
-    snippet: float mysingle;
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:350:1-350:70
-    name: __io_seek_fn
-    snippet: typedef int __io_seek_fn (void *__cookie, _IO_off64_t *__pos, int __w);
-    kind: Typedef
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:78:10-78:14
+    name: argc
+    snippet: int main(int argc, const char** argv) {
+    kind: ParmVar
     linkage: 0
-/opt/projects/clang/test/test-multiple-file-0.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:64:1-65:30
-    name: CheckArgs
-    snippet: int CheckArgs(
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:440:1-440:40
-    name: _IO_flockfile
-    snippet: extern void _IO_flockfile (_IO_FILE *) __THROW;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:305:3-305:74
-    name: _IO_FILE::_unused2
-    snippet: char _unused2[15 * sizeof (int) - 4 * sizeof (void *) - sizeof (size_t)];
-    kind: Field
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-0.cc
-  used_count: 1:1 ok
-  used by:
-    /opt/projects/clang/test/test-multiple-file-0.cc:58:7-58:7 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:53:1-55:1
-    name: MySingle
-    snippet: bool MySingle(struct Single* single) {
-    kind: Function
-    linkage: 4
-/usr/lib/clang/3.9.0/include/stddef.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/lib/clang/3.9.0/include/stddef.h:62:1-62:23
-    name: size_t
-    snippet: typedef __SIZE_TYPE__ size_t;
-    kind: Typedef
-    linkage: 0
-/opt/projects/clang/test/test-multiple-file-0.cc
+/opt/projects/sbexr/test/test-multiple-file-0.cc
   used_count: 3:3 ok
   used by:
-    /opt/projects/clang/test/test-multiple-file-0.cc:82:13-82:13 1
-    /opt/projects/clang/test/test-multiple-file-0.cc:85:10-85:10 1
-    /opt/projects/clang/test/test-multiple-file-0.cc:85:24-85:24 1
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:82:13-82:13 1
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:85:10-85:10 1
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:85:24-85:24 1
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:79:3-79:8
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:79:3-79:8
     name: test
     snippet: Test test;
     kind: Var
     linkage: 0
-/usr/include/libio.h
+/opt/projects/sbexr/test/test-multiple-file-0.cc
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/libio.h:333:1-333:77
-    name: __io_read_fn
-    snippet: typedef __ssize_t __io_read_fn (void *__cookie, char *__buf, size_t __nbytes);
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:39:3-39:9
+    name: Single::mysingle
+    snippet: float mysingle;
+    kind: Field
+    linkage: 6
+/opt/projects/sbexr/test/test-multiple-file-0.cc
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:32:1-32:5
+    name: global_counter
+    snippet: int global_counter;
+    kind: Var
+    linkage: 6
+/opt/projects/sbexr/test/test-multiple-file-0.cc
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:35:3-35:7
+    name: Double::mydouble
+    snippet: int mydouble;
+    kind: Field
+    linkage: 6
+/opt/projects/sbexr/test/test-multiple-file-0.cc
+  used_count: 1:1 ok
+  used by:
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:49:5-49:12 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:34:1-37:1
+    name: Double
+    snippet: struct Double {
+    kind: CXXRecord
+    linkage: 6
+/opt/projects/sbexr/test/test-multiple-file-0.cc
+  used_count: 2:2 ok
+  used by:
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:48:5-48:12 1
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:53:15-53:28 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:38:1-40:1
+    name: Single
+    snippet: struct Single {
+    kind: CXXRecord
+    linkage: 6
+/opt/projects/sbexr/test/test-multiple-file-0.cc
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:47:3-50:3
+    name: Nfs::(anonymous)
+    snippet: union {
+    kind: CXXRecord
+    linkage: 6
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:864:1-864:27
+    name: __uflow
+    snippet: extern int __uflow (FILE *);
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:79:3-79:19
+    name: _IO_FILE::_shortbuf
+    snippet: char _shortbuf[1];
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:77:3-77:18
+    name: _IO_FILE::_cur_column
+    snippet: unsigned short _cur_column;
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:70:3-70:20
+    name: _IO_FILE::_chain
+    snippet: struct _IO_FILE *_chain;
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:91:3-91:23
+    name: _IO_FILE::_codecvt
+    snippet: struct _IO_codecvt *_codecvt;
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:68:3-68:22
+    name: _IO_FILE::_markers
+    snippet: struct _IO_marker *_markers;
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:92:3-92:25
+    name: _IO_FILE::_wide_data
+    snippet: struct _IO_wide_data *_wide_data;
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:93:3-93:20
+    name: _IO_FILE::_freeres_list
+    snippet: struct _IO_FILE *_freeres_list;
+    kind: Field
+    linkage: 6
+/opt/projects/sbexr/test/test-multiple-file-0.cc
+  used_count: 2:2 ok
+  used by:
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:57:12-57:22 1
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:71:9-71:19 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:46:1-51:1
+    name: Nfs
+    snippet: struct Nfs {
+    kind: CXXRecord
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 76:76 ok
+  used by:
+    /usr/include/stdio.h:137:8-137:13 1
+    /usr/include/stdio.h:138:8-138:13 1
+    /usr/include/stdio.h:139:8-139:13 1
+    /usr/include/stdio.h:173:8-173:13 1
+    /usr/include/stdio.h:183:8-183:13 1
+    /usr/include/stdio.h:213:20-213:25 1
+    /usr/include/stdio.h:218:20-218:25 1
+    /usr/include/stdio.h:227:29-227:34 1
+    /usr/include/stdio.h:246:8-246:13 1
+    /usr/include/stdio.h:252:8-252:13 1
+    /usr/include/stdio.h:254:9-254:14 1
+    /usr/include/stdio.h:270:8-270:13 1
+    /usr/include/stdio.h:272:8-272:13 1
+    /usr/include/stdio.h:274:4-274:9 1
+    /usr/include/stdio.h:279:8-279:13 1
+    /usr/include/stdio.h:285:8-285:13 1
+    /usr/include/stdio.h:292:8-292:13 1
+    /usr/include/stdio.h:298:8-298:13 1
+    /usr/include/stdio.h:304:21-304:26 1
+    /usr/include/stdio.h:308:21-308:26 1
+    /usr/include/stdio.h:314:24-314:29 1
+    /usr/include/stdio.h:318:25-318:30 1
+    /usr/include/stdio.h:326:21-326:26 1
+    /usr/include/stdio.h:341:22-341:27 1
+    /usr/include/stdio.h:391:20-391:25 1
+    /usr/include/stdio.h:434:21-434:26 1
+    /usr/include/stdio.h:491:19-491:24 1
+    /usr/include/stdio.h:492:18-492:23 1
+    /usr/include/stdio.h:505:27-505:32 1
+    /usr/include/stdio.h:516:28-516:33 1
+    /usr/include/stdio.h:527:28-527:33 1
+    /usr/include/stdio.h:528:27-528:32 1
+    /usr/include/stdio.h:543:37-543:42 1
+    /usr/include/stdio.h:551:36-551:41 1
+    /usr/include/stdio.h:559:18-559:23 1
+    /usr/include/stdio.h:562:27-562:32 1
+    /usr/include/stdio.h:570:52-570:57 1
+    /usr/include/stdio.h:594:9-594:14 1
+    /usr/include/stdio.h:611:30-611:35 1
+    /usr/include/stdio.h:614:28-614:33 1
+    /usr/include/stdio.h:624:27-624:32 1
+    /usr/include/stdio.h:632:47-632:52 1
+    /usr/include/stdio.h:645:29-645:34 1
+    /usr/include/stdio.h:653:20-653:25 1
+    /usr/include/stdio.h:659:21-659:26 1
+    /usr/include/stdio.h:669:7-669:12 1
+    /usr/include/stdio.h:680:22-680:27 1
+    /usr/include/stdio.h:682:23-682:28 1
+    /usr/include/stdio.h:690:19-690:24 1
+    /usr/include/stdio.h:695:24-695:29 1
+    /usr/include/stdio.h:700:21-700:26 1
+    /usr/include/stdio.h:713:20-713:25 1
+    /usr/include/stdio.h:718:24-718:29 1
+    /usr/include/stdio.h:737:21-737:26 1
+    /usr/include/stdio.h:742:21-742:26 1
+    /usr/include/stdio.h:756:22-756:27 1
+    /usr/include/stdio.h:757:28-757:33 1
+    /usr/include/stdio.h:758:23-758:28 1
+    /usr/include/stdio.h:759:23-759:28 1
+    /usr/include/stdio.h:763:23-763:28 1
+    /usr/include/stdio.h:765:18-765:23 1
+    /usr/include/stdio.h:767:20-767:25 1
+    /usr/include/stdio.h:771:32-771:37 1
+    /usr/include/stdio.h:772:27-772:32 1
+    /usr/include/stdio.h:773:29-773:34 1
+    /usr/include/stdio.h:792:20-792:25 1
+    /usr/include/stdio.h:797:29-797:34 1
+    /usr/include/stdio.h:806:8-806:13 1
+    /usr/include/stdio.h:812:20-812:25 1
+    /usr/include/stdio.h:846:24-846:29 1
+    /usr/include/stdio.h:850:26-850:31 1
+    /usr/include/stdio.h:853:26-853:31 1
+    /usr/include/stdio.h:864:21-864:26 1
+    /usr/include/stdio.h:865:24-865:29 1
+    /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:70:3-70:19 1
+    /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:93:3-93:19 1
+  declared_count: 0:0 ok
+  defined_count: 0:0 ok
+/opt/projects/sbexr/test/test-multiple-file-0.cc
+  used_count: 1:1 ok
+  used by:
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:58:7-58:7 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:53:1-55:1
+    name: MySingle
+    snippet: bool MySingle(struct Single* single) {
+    kind: Function
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:51:3-51:7
+    name: _IO_FILE::_flags
+    snippet: int _flags;		/* High-order word is _IO_MAGIC; rest is flags. */
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:72:3-72:7
+    name: _IO_FILE::_fileno
+    snippet: int _fileno;
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:54:3-54:9
+    name: _IO_FILE::_IO_read_ptr
+    snippet: char *_IO_read_ptr;	/* Current read pointer */
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:55:3-55:9
+    name: _IO_FILE::_IO_read_end
+    snippet: char *_IO_read_end;	/* End of get area. */
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 1:1 ok
+  used by:
+    /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:68:3-68:21 1
+  declared_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:36:1-36:8
+    name: _IO_marker
+    snippet: struct _IO_marker;
+    kind: CXXRecord
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:56:3-56:9
+    name: _IO_FILE::_IO_read_base
+    snippet: char *_IO_read_base;	/* Start of putback+get area. */
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 1:1 ok
+  used by:
+    /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:91:3-91:22 1
+  declared_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:37:1-37:8
+    name: _IO_codecvt
+    snippet: struct _IO_codecvt;
+    kind: CXXRecord
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:74:3-74:11
+    name: _IO_FILE::_old_offset
+    snippet: __off_t _old_offset; /* This used to be _offset but it's too small.  */
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:57:3-57:9
+    name: _IO_FILE::_IO_write_base
+    snippet: char *_IO_write_base;	/* Start of put area. */
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:43:1-43:14
+    name: _IO_lock_t
+    snippet: typedef void _IO_lock_t;
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:10:1-14:3
+    name: __fpos_t
+    snippet: typedef struct _G_fpos_t
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:78:3-78:15
+    name: _IO_FILE::_vtable_offset
+    snippet: signed char _vtable_offset;
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h
+  used_count: 2:2 ok
+  used by:
+    /usr/include/stdio.h:737:48-737:55 1
+    /usr/include/stdio.h:742:43-742:50 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:10:9-14:1
+    name: _G_fpos_t
+    snippet: typedef struct _G_fpos_t
+    kind: CXXRecord
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 1:1 ok
+  used by:
+    /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:92:3-92:24 1
+  declared_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:38:1-38:8
+    name: _IO_wide_data
+    snippet: struct _IO_wide_data;
+    kind: CXXRecord
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:81:3-81:15
+    name: _IO_FILE::_lock
+    snippet: _IO_lock_t *_lock;
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:73:3-73:7
+    name: _IO_FILE::_flags2
+    snippet: int _flags2;
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:89:3-89:13
+    name: _IO_FILE::_offset
+    snippet: __off64_t _offset;
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:58:3-58:9
+    name: _IO_FILE::_IO_write_ptr
+    snippet: char *_IO_write_ptr;	/* Current put pointer. */
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:12:3-12:11
+    name: _G_fpos_t::__pos
+    snippet: __off_t __pos;
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:95:3-95:10
+    name: _IO_FILE::__pad5
+    snippet: size_t __pad5;
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:96:3-96:7
+    name: _IO_FILE::_mode
+    snippet: int _mode;
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:13:3-13:15
+    name: _G_fpos_t::__state
+    snippet: __mbstate_t __state;
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:59:3-59:9
+    name: _IO_FILE::_IO_write_end
+    snippet: char *_IO_write_end;	/* End of put area. */
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:60:3-60:9
+    name: _IO_FILE::_IO_buf_base
+    snippet: char *_IO_buf_base;	/* Start of reserve area. */
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:45:1-45:78
+    name: cookie_seek_function_t
+    snippet: typedef int cookie_seek_function_t (void *__cookie, __off64_t *__pos, int __w);
     kind: Typedef
     linkage: 0
 /usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/stdio.h:863:1-863:45
-    name: fileno_unlocked
-    snippet: extern int fileno_unlocked (FILE *__stream) __THROW __wur;
+    location: /usr/include/stdio.h:773:1-773:45
+    name: ferror_unlocked
+    snippet: extern int ferror_unlocked (FILE *__stream) __THROW __wur;
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/libio.h:441:1-441:42
-    name: _IO_funlockfile
-    snippet: extern void _IO_funlockfile (_IO_FILE *) __THROW;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-0.cc
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:57:1-61:1
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:61:3-61:9
+    name: _IO_FILE::_IO_buf_end
+    snippet: char *_IO_buf_end;	/* End of reserve area. */
+    kind: Field
+    linkage: 6
+/opt/projects/sbexr/test/test-multiple-file-0.cc
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:57:1-61:1
     name: Mytest
     snippet: int Mytest(struct Nfs* nfs) {
     kind: Function
-    linkage: 4
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:826:1-826:39
-    name: clearerr
-    snippet: extern void clearerr (FILE *__stream) __THROW;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/libio.h:258:3-258:9
-    name: _IO_FILE::_IO_save_end
-    snippet: char *_IO_save_end; /* Pointer to end of non-current get area. */
-    kind: Field
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-0.cc
+    location: /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:36:1-37:59
+    name: cookie_write_function_t
+    snippet: typedef __ssize_t cookie_write_function_t (void *__cookie, const char *__buf,
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h
   used_count: 0:0 ok
   used by:
-  declared_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:70:1-71:24
-    name: CheckMyArgs
-    snippet: int CheckMyArgs(
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-0.cc
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:27:1-28:58
+    name: cookie_read_function_t
+    snippet: typedef __ssize_t cookie_read_function_t (void *__cookie, char *__buf,
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:64:3-64:9
+    name: _IO_FILE::_IO_save_base
+    snippet: char *_IO_save_base; /* Pointer to start of non-current get area. */
+    kind: Field
+    linkage: 6
+/opt/projects/sbexr/test/test-multiple-file-0.cc
   used_count: 1:1 ok
   used by:
-    /opt/projects/clang/test/test-multiple-file-0.cc:85:38-85:38 1
+    /opt/projects/sbexr/test/test-multiple-file-0.cc:85:38-85:38 1
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:73:1-76:1
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:73:1-76:1
     name: FuncWithNamedArgs
     snippet: int FuncWithNamedArgs(int foo, const char* bar) {
     kind: Function
-    linkage: 4
-/usr/include/libio.h
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:48:1-48:52
+    name: cookie_close_function_t
+    snippet: typedef int cookie_close_function_t (void *__cookie);
+    kind: Typedef
+    linkage: 0
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:65:3-65:9
+    name: _IO_FILE::_IO_backup_base
+    snippet: char *_IO_backup_base;  /* Pointer to first valid character of backup area */
+    kind: Field
+    linkage: 6
+/usr/include/stdio.h
   used_count: 0:0 ok
   used by:
   declared_count: 1:1 ok
-    location: /usr/include/libio.h:442:1-442:42
-    name: _IO_ftrylockfile
-    snippet: extern int _IO_ftrylockfile (_IO_FILE *) __THROW;
+    location: /usr/include/stdio.h:792:1-792:36
+    name: fileno
+    snippet: extern int fileno (FILE *__stream) __THROW __wur;
     kind: Function
-    linkage: 4
+    linkage: 6
   defined_count: 0:0 ok
-/opt/projects/clang/test/test-multiple-file-0.cc
+/opt/projects/sbexr/test/test-multiple-file-0.cc
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:49:5-49:19
-    name: Nfs::(anonymous union)::fudouble
-    snippet: struct Double fudouble;
-    kind: Field
-    linkage: 4
-/usr/include/libio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/libio.h:297:3-297:9
-    name: _IO_FILE::__pad1
-    snippet: void *__pad1;
-    kind: Field
-    linkage: 4
-/opt/projects/clang/test/test-multiple-file-0.cc
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /opt/projects/clang/test/test-multiple-file-0.cc:78:1-86:1
+    location: /opt/projects/sbexr/test/test-multiple-file-0.cc:78:1-86:1
     name: main
     snippet: int main(int argc, const char** argv) {
     kind: Function
-    linkage: 4
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:828:1-828:34
-    name: feof
-    snippet: extern int feof (FILE *__stream) __THROW __wur;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/libio.h:298:3-298:9
-    name: _IO_FILE::__pad2
-    snippet: void *__pad2;
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:66:3-66:9
+    name: _IO_FILE::_IO_save_end
+    snippet: char *_IO_save_end; /* Pointer to end of non-current get area. */
     kind: Field
-    linkage: 4
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:884:1-884:34
-    name: ctermid
-    snippet: extern char *ctermid (char *__s) __THROW;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/libio.h:299:3-299:9
-    name: _IO_FILE::__pad3
-    snippet: void *__pad3;
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:98:3-98:74
+    name: _IO_FILE::_unused2
+    snippet: char _unused2[15 * sizeof (int) - 4 * sizeof (void *) - sizeof (size_t)];
     kind: Field
-    linkage: 4
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:830:1-830:36
-    name: ferror
-    snippet: extern int ferror (FILE *__stream) __THROW __wur;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/libio.h
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/libio.h:300:3-300:9
-    name: _IO_FILE::__pad4
-    snippet: void *__pad4;
+    location: /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:57:3-57:27
+    name: _IO_cookie_io_functions_t::read
+    snippet: cookie_read_function_t *read;		/* Read bytes.  */
     kind: Field
-    linkage: 4
-/usr/include/stdio.h
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h
   used_count: 0:0 ok
   used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:912:1-912:40
-    name: flockfile
-    snippet: extern void flockfile (FILE *__stream) __THROW;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:835:1-835:48
-    name: clearerr_unlocked
-    snippet: extern void clearerr_unlocked (FILE *__stream) __THROW;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:836:1-836:43
-    name: feof_unlocked
-    snippet: extern int feof_unlocked (FILE *__stream) __THROW __wur;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/_G_config.h
-  used_count: 2:2 ok
-  used by:
-    /usr/include/stdio.h:798:48-798:55 1
-    /usr/include/stdio.h:803:43-803:50 1
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/_G_config.h:21:9-25:1
-    name: (anonymous)
-    snippet: typedef struct
+    location: /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:59:3-59:27
+    name: _IO_cookie_io_functions_t::seek
+    snippet: cookie_seek_function_t *seek;		/* Seek/tell file position.  */
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:58:3-58:28
+    name: _IO_cookie_io_functions_t::write
+    snippet: cookie_write_function_t *write;	/* Write bytes.  */
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:94:3-94:9
+    name: _IO_FILE::_freeres_buf
+    snippet: void *_freeres_buf;
+    kind: Field
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:60:3-60:28
+    name: _IO_cookie_io_functions_t::close
+    snippet: cookie_close_function_t *close;	/* Close file.  */
+    kind: Field
+    linkage: 6
+/usr/include/stdio.h
+  used_count: 0:0 ok
+  used by:
+  declared_count: 1:1 ok
+    location: /usr/include/stdio.h:797:1-797:45
+    name: fileno_unlocked
+    snippet: extern int fileno_unlocked (FILE *__stream) __THROW __wur;
+    kind: Function
+    linkage: 6
+  defined_count: 0:0 ok
+/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h
+  used_count: 1:1 ok
+  used by:
+    /usr/include/stdio.h:287:6-287:6 1
+  declared_count: 0:0 ok
+  defined_count: 1:1 ok
+    location: /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:55:9-61:1
+    name: _IO_cookie_io_functions_t
+    snippet: typedef struct _IO_cookie_io_functions_t
     kind: CXXRecord
-    linkage: 4
-/usr/include/_G_config.h
-  used_count: 2:2 ok
-  used by:
-    /usr/include/stdio.h:820:50-820:59 1
-    /usr/include/stdio.h:821:45-821:54 1
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/_G_config.h:26:9-30:1
-    name: (anonymous)
-    snippet: typedef struct
-    kind: CXXRecord
-    linkage: 4
-/usr/include/_G_config.h
+    linkage: 6
+/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h
   used_count: 0:0 ok
   used by:
   declared_count: 0:0 ok
   defined_count: 1:1 ok
-    location: /usr/include/_G_config.h:26:1-30:3
-    name: _G_fpos64_t
-    snippet: typedef struct
+    location: /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:55:1-61:3
+    name: cookie_io_functions_t
+    snippet: typedef struct _IO_cookie_io_functions_t
     kind: Typedef
-    linkage: 4
-/usr/include/_G_config.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/_G_config.h:21:1-25:3
-    name: _G_fpos_t
-    snippet: typedef struct
-    kind: Typedef
-    linkage: 4
-/usr/include/_G_config.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/_G_config.h:23:3-23:11
-    name: (anonymous struct)::__pos
-    snippet: __off_t __pos;
-    kind: Field
-    linkage: 4
-/usr/include/stdio.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 1:1 ok
-    location: /usr/include/stdio.h:916:1-916:42
-    name: ftrylockfile
-    snippet: extern int ftrylockfile (FILE *__stream) __THROW __wur;
-    kind: Function
-    linkage: 4
-  defined_count: 0:0 ok
-/usr/include/_G_config.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/_G_config.h:28:3-28:13
-    name: (anonymous struct)::__pos
-    snippet: __off64_t __pos;
-    kind: Field
-    linkage: 4
-/usr/include/_G_config.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/_G_config.h:24:3-24:15
-    name: (anonymous struct)::__state
-    snippet: __mbstate_t __state;
-    kind: Field
-    linkage: 4
-/usr/include/_G_config.h
-  used_count: 0:0 ok
-  used by:
-  declared_count: 0:0 ok
-  defined_count: 1:1 ok
-    location: /usr/include/_G_config.h:29:3-29:15
-    name: (anonymous struct)::__state
-    snippet: __mbstate_t __state;
-    kind: Field
-    linkage: 4
+    linkage: 0

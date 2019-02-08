@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang='en'><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>test output - test-clang.html</title><link href="../../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"><link href="../../static/bootstrap/css/dropdowns-enhancement.min.css" rel="stylesheet"><link href="../../static/animated-modal/animate.min.css" rel="stylesheet"><link href="../../static/font-awesome/css/font-awesome.min.css" rel="stylesheet"><link href="../../static/style.css" rel="stylesheet"></head><body><div class="container-fluid"><div class="container"><nav class="navbar navbar-default navbar-fixed-top"><div class="container-fluid" id="navbar"><!-- Brand and toggle get grouped for better mobile display --><div class="navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><span class="navbar-brand" style="padding-top: 8px"><ol id="path" itemscope itemtype="http://schema.org/BreadcrumbList"><!-- ROOT DIRECTORY --><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="../be/e2916b98dcf1fc.html"><i itemprop="image" alt="root" class="glyphicon glyphicon-hdd" style="vertical-align: middle"></i>&nbsp;</a></li></ol>test-clang.html</span></div><!-- Collect the nav links, forms, and other content for toggling --><!-- mostly taken from http://www.bootply.com/t7O3HSGlbc --><div class="collapse navbar-collapse" id="main-navbar"><div class="form-group" style="margin-top: 8px; margin-bottom: 0px;"><div class="input-group"><div class="input-group-btn"><button class="btn btn-default correct-height" data-label-placement><i class="glyphicon glyphicon-console data-label"></i></button><button data-toggle="dropdown" class="btn btn-default dropdown-toggle correct-height"><span class="caret"></span> </button><ul class="dropdown-menu"><li><input type="radio" id="sb-symbol" name="sb" value="symbol" checked><label for="sb-symbol"><i class="glyphicon glyphicon-console data-label"></i> Symbol</label></li><li><input type="radio" id="sb-file" name="sb" value="file"><label for="sb-file"><i class="glyphicon glyphicon-file data-label"></i> File</label></li><li><input type="radio" id="sb-text" name="sb" value="text"><label for="sb-text"><i class="glyphicon glyphicon-text-background data-label"></i> Text</label></li><li><input type="radio" id="sb-line" name="sb" value="line"><label for="sb-line"><i class="glyphicon glyphicon-indent-left data-label"></i> Line</label></li></ul></div><input type="text" name="search" id="searchbox-symbol" class="form-control" placeholder="Search symbol (std::list, list, kfree_skb, any full or partial variable/class/function/... name)"><input type="text" name="search" id="searchbox-file" class="form-control hidden" placeholder="Search file (/usr/include/alloca.h, alloca.h, any full or partial path)"><input type="text" name="search" id="searchbox-text" class="form-control hidden" placeholder="Search text (content of comments, strings, full text search over the source code)"><input type="text" name="search" id="searchbox-line" class="form-control hidden" placeholder="Go to line (53, 1120, just type the line number and enter)"><div class="input-group-btn"><div class="btn-group hidden" id="tag-menu"><button data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="tag-default"></button><ul class="dropdown-menu pull-center" id="tag-entries"></ul></div><a class="btn btn-default" href="../meta/about.html" type="button" id="sbexr-about"><i title="About this site" class="glyphicon glyphicon-info-sign"></i></a><a class="btn btn-default" href="../meta/help.html" type="button" id="sbexr-help"><i title="Help!!" class="glyphicon glyphicon-question-sign"></i></a></div></div></div></div><!-- /.navbar-collapse --></div><!-- /.container-fluid --></nav></div><pre class='code'><span id='line-number'><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>10</i><i>11</i><i>12</i><i>13</i><i>14</i><i>15</i><i>16</i><i>17</i><i>18</i><i>19</i><i>20</i><i>21</i><i>22</i><i>23</i><i>24</i><i>25</i><i>26</i><i>27</i><i>28</i><i>29</i><i>30</i><i>31</i><i>32</i><i>33</i><i>34</i><i>35</i><i>36</i><i>37</i><i>38</i><i>39</i><i>40</i><i>41</i><i>42</i><i>43</i><i>44</i><i>45</i><i>46</i><i>47</i><i>48</i><i>49</i><i>50</i><i>51</i><i>52</i><i>53</i><i>54</i><i>55</i><i>56</i><i>57</i><i>58</i><i>59</i><i>60</i><i>61</i><i>62</i><i>63</i><i>64</i><i>65</i><i>66</i><i>67</i><i>68</i><i>69</i><i>70</i><i>71</i><i>72</i><i>73</i><i>74</i><i>75</i><i>76</i><i>77</i><i>78</i><i>79</i><i>80</i><i>81</i><i>82</i><i>83</i><i>84</i></span><span itemscope itemtype="http://schema.org/SoftwareSourceCode"><meta itemprop="programmingLanguage" content="C" />&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;test.c&lt;/title&gt;
+&lt;style type="text/css"&gt;
+ body { color:#000000; background-color:#ffffff }
+ body { font-family:Helvetica, sans-serif; font-size:10pt }
+ h1 { font-size:14pt }
+ .code { border-collapse:collapse; width:100%; }
+ .code { font-family: "Monospace", monospace; font-size:10pt }
+ .code { line-height: 1.2em }
+ .comment { color: green; font-style: oblique }
+ .keyword { color: blue }
+ .string_literal { color: red }
+ .directive { color: darkmagenta }
+ .expansion { display: none; }
+ .macro:hover .expansion { display: block; border: 2px solid #FF0000; padding: 2px; background-color:#FFF0F0; font-weight: normal;   -webkit-border-radius:5px;  -webkit-box-shadow:1px 1px 7px #000; position: absolute; top: -1em; left:10em; z-index: 1 } 
+ .macro { color: darkmagenta; background-color:LemonChiffon; position: relative }
+ .num { width:2.5em; padding-right:2ex; background-color:#eeeeee }
+ .num { text-align:right; font-size:8pt }
+ .num { color:#444444 }
+ .line { padding-left: 1ex; border-left: 3px solid #ccc }
+ .line { white-space: pre }
+ .msg { -webkit-box-shadow:1px 1px 7px #000 }
+ .msg { -webkit-border-radius:5px }
+ .msg { font-family:Helvetica, sans-serif; font-size:8pt }
+ .msg { float:left }
+ .msg { padding:0.25em 1ex 0.25em 1ex }
+ .msg { margin-top:10px; margin-bottom:10px }
+ .msg { font-weight:bold }
+ .msg { max-width:60em; word-wrap: break-word; white-space: pre-wrap }
+ .msgT { padding:0x; spacing:0x }
+ .msgEvent { background-color:#fff8b4; color:#000000 }
+ .msgControl { background-color:#bbbbbb; color:#000000 }
+ .mrange { background-color:#dfddf3 }
+ .mrange { border-bottom:1px solid #6F9DBE }
+ .PathIndex { font-weight: bold; padding:0px 5px; margin-right:5px; }
+ .PathIndex { -webkit-border-radius:8px }
+ .PathIndexEvent { background-color:#bfba87 }
+ .PathIndexControl { background-color:#8c8c8c }
+ .PathNav a { text-decoration:none; font-size: larger }
+ .CodeInsertionHint { font-weight: bold; background-color: #10dd10 }
+ .CodeRemovalHint { background-color:#de1010 }
+ .CodeRemovalHint { border-bottom:1px solid #6F9DBE }
+ table.simpletable {
+   padding: 5px;
+   font-size:12pt;
+   margin:20px;
+   border-collapse: collapse; border-spacing: 0px;
+ }
+ td.rowname {
+   text-align:right; font-weight:bold; color:#444444;
+   padding-right:2ex; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;&lt;table class="code"&gt;
+&lt;tr&gt;&lt;td class="num" id="LN1"&gt;1&lt;/td&gt;&lt;td class="line"&gt;&lt;span class='directive'&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN2"&gt;2&lt;/td&gt;&lt;td class="line"&gt; &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN3"&gt;3&lt;/td&gt;&lt;td class="line"&gt;&lt;span class='directive'&gt;# define &lt;span class='macro'&gt;TEST(foo)&lt;span class='expansion'&gt;if (foo) { printf("foo"); }&lt;/span&gt;&lt;/span&gt; if (foo) { printf("foo"); }&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN4"&gt;4&lt;/td&gt;&lt;td class="line"&gt; &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN5"&gt;5&lt;/td&gt;&lt;td class="line"&gt;&lt;span class='keyword'&gt;int&lt;/span&gt; test() {&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN6"&gt;6&lt;/td&gt;&lt;td class="line"&gt;  printf(&lt;span class='string_literal'&gt;"this is a test"&lt;/span&gt;);&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN7"&gt;7&lt;/td&gt;&lt;td class="line"&gt; &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN8"&gt;8&lt;/td&gt;&lt;td class="line"&gt;  {&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN9"&gt;9&lt;/td&gt;&lt;td class="line"&gt;    &lt;span class='keyword'&gt;int&lt;/span&gt; a = 9;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN10"&gt;10&lt;/td&gt;&lt;td class="line"&gt;    printf(&lt;span class='string_literal'&gt;"this is another test: %d"&lt;/span&gt;, a);&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN11"&gt;11&lt;/td&gt;&lt;td class="line"&gt; &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN12"&gt;12&lt;/td&gt;&lt;td class="line"&gt;  }&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN13"&gt;13&lt;/td&gt;&lt;td class="line"&gt; &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN14"&gt;14&lt;/td&gt;&lt;td class="line"&gt;  &lt;span class='keyword'&gt;return&lt;/span&gt; 3;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN15"&gt;15&lt;/td&gt;&lt;td class="line"&gt;}&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN16"&gt;16&lt;/td&gt;&lt;td class="line"&gt; &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN17"&gt;17&lt;/td&gt;&lt;td class="line"&gt;&lt;span class='comment'&gt;// This is a pre-existing comment.&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN18"&gt;18&lt;/td&gt;&lt;td class="line"&gt;&lt;span class='keyword'&gt;int&lt;/span&gt; main(&lt;span class='keyword'&gt;void&lt;/span&gt;) {&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN19"&gt;19&lt;/td&gt;&lt;td class="line"&gt;  &lt;span class='keyword'&gt;int&lt;/span&gt; value = 12;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN20"&gt;20&lt;/td&gt;&lt;td class="line"&gt;  &lt;span class='keyword'&gt;if&lt;/span&gt; (1) { value = test();&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN21"&gt;21&lt;/td&gt;&lt;td class="line"&gt;    &lt;span class='keyword'&gt;if&lt;/span&gt; (value &amp;gt; 5) {&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN22"&gt;22&lt;/td&gt;&lt;td class="line"&gt;      printf(&lt;span class='string_literal'&gt;"this is a second test"&lt;/span&gt;);&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN23"&gt;23&lt;/td&gt;&lt;td class="line"&gt;    }&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN24"&gt;24&lt;/td&gt;&lt;td class="line"&gt;  }&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN25"&gt;25&lt;/td&gt;&lt;td class="line"&gt;  &lt;span class='macro'&gt;TEST(value)&lt;span class='expansion'&gt;if (value) { printf("foo"); }&lt;/span&gt;&lt;/span&gt;;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN26"&gt;26&lt;/td&gt;&lt;td class="line"&gt;  &lt;span class='keyword'&gt;return&lt;/span&gt; 0;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="num" id="LN27"&gt;27&lt;/td&gt;&lt;td class="line"&gt;}&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;
+</span><span class='cl'></span></pre></div><script src="../../globals.js"></script><script src="../../static/jquery.min.js"></script><script src="../../static/bootstrap/js/bootstrap.min.js"></script><script src="../../static/bootstrap/js/dropdowns-enhancement.js"></script><script src="../../static/animated-modal/animatedModal.js"></script><script src="../../static/jquery.autocomplete.js"></script><script src="../../static/js.cookie.js"></script><script src="../../static/local.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-40501108-2', 'auto');ga('send', 'pageview');</script></body></html>
