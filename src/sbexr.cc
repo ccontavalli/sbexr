@@ -1059,15 +1059,11 @@ std::unique_ptr<CompilerInstance> CreateCompilerInstance(
   // PPCallbacks -> to track all includes and similar.
 
   Preprocessor& pp = ci->getPreprocessor();
-  HeaderSearch& hs = pp.getHeaderSearchInfo();
-
-  for (auto& inc : {"/usr/lib/clang/3.9.0/include", "/usr/include",
-                    "/usr/include/x86_64-linux-gnu/", "/usr/include/c++/5/",
-                    "/usr/include/x86_64-linux-gnu/c++/5"}) {
-    auto dir = file_mgr.getDirectory(StringRef(inc), true);
-
-    DirectoryLookup lookup(dir, SrcMgr::CharacteristicKind::C_System, false);
-    hs.AddSearchPath(lookup, true);
+  if (gl_verbose) {
+    const auto& hs = pp.getHeaderSearchInfo();
+    for (auto sd = hs.system_dir_begin(); sd != hs.system_dir_end(); ++sd) {
+      llvm::errs() << "+ HEADER SEARCH DIR: " << sd->getName() << "\n";
+    }
   }
 
   pp.getBuiltinInfo().initializeBuiltins(pp.getIdentifierTable(),
@@ -1116,7 +1112,7 @@ int main(int argc, const char** argv) {
 
   {
     auto db = CompilationDatabase::loadFromDirectory(gl_input_dir, error);
-    if (!error.empty()) {
+    if (db == nullptr) {
       llvm::errs() << "ERROR " << error << "\n";
       return 2;
     }
