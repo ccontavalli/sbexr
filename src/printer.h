@@ -211,16 +211,14 @@ class Printer {
   std::string Print(const TypeT* v) PRINT_FUNCTION_BASE_BODY(TypeT, v, {
     Context context;
     return Print(v, &context, false);
-  })
+  });
 
   template <typename TypeT>
-  PRINT_FUNCTION_PROTO(Print, TypeT, v) PRINT_FUNCTION_BASE_BODY(TypeT, v, {
-    s << "DUMPING "
-      << PrintLocation(*sm_, cache_,
-                       GetSourceRange(*v))
-      << ":";
+  PRINT_FUNCTION_PROTO(Print, TypeT, v)
+  PRINT_FUNCTION_BASE_BODY(TypeT, v, {
+    s << "DUMPING " << PrintLocation(*sm_, cache_, GetSourceRange(*v)) << ":";
     PRINT_RECURSE(v);
-  })
+  });
 
   PRINT_FUNCTION(DeclStmt, v, {
     PRINT_LOCATION(v, getBeginLoc);
@@ -229,7 +227,7 @@ class Printer {
       PRINT_NAME_VALUE("size", 1);
     else
       PRINT_NAME_VALUE("size", v->getDeclGroup().getDeclGroup().size());
-  })
+  });
 
   PRINT_FUNCTION(TagDecl, v, {
     PRINT_RANGE(v, getBraceRange);
