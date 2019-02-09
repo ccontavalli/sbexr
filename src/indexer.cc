@@ -28,11 +28,7 @@
 
 #include "indexer.h"
 
-#include <rapidjson/prettywriter.h>
-#include <rapidjson/stringbuffer.h>
-#include <rapidjson/writer.h>
-
-namespace json = rapidjson;
+#include "json-helpers.h"
 
 const char _kIndexString[] = "Generic";
 const char _kSnippetString[] = "Snippet";
@@ -108,54 +104,6 @@ void Indexer::RecordDeclares(const SourceManager& sm,
 }
 void Indexer::OutputJsonIndex() { OutputJsonIndex("output/all-symbols.json"); }
 
-template <typename Writer>
-class JsonArray {
- public:
-  JsonArray(Writer* writer) : writer_(writer) { writer->StartArray(); }
-  ~JsonArray() { writer_->EndArray(); }
-
- private:
-  Writer* writer_;
-};
-template <typename Writer>
-inline JsonArray<Writer> MakeJsonArray(Writer* writer) {
-  return JsonArray<Writer>(writer);
-}
-
-template <typename Writer>
-class JsonObject {
- public:
-  JsonObject(Writer* writer, const char* key = nullptr) : writer_(writer) {
-    writer->StartObject();
-    if (key) writer->Key(key);
-  }
-  ~JsonObject() { writer_->EndObject(); }
-
- private:
-  Writer* writer_;
-};
-template <typename Writer>
-inline JsonObject<Writer> MakeJsonObject(Writer* writer,
-                                         const char* key = nullptr) {
-  return JsonObject<Writer>(writer, key);
-}
-
-template <typename Writer>
-void WriteJsonString(Writer* writer, const std::string& str,
-                     Indexer::JsonFormat format) {
-  writer->String(str.c_str(), str.length());
-}
-
-template <typename Writer, typename Base, typename Offset, const char* Id>
-void WriteJsonString(Writer* writer,
-                     const ConstStringBase<Base, Offset, Id>& str,
-                     Indexer::JsonFormat format) {
-  if (format == Indexer::kJsonBinaryStrings)
-    writer->Uint(str.GetOffset());
-  else
-    writer->String(str.data(), str.size());
-}
-
 class JsonWriter {
  public:
   typedef char Ch;
@@ -182,7 +130,7 @@ void OutputPool(const char* path, const MemPoolT& mempool) {
   myfile.write(storage.data(), storage.size());
 }
 
-void Indexer::OutputJsonIndex(const char* path, JsonFormat format) {
+void Indexer::OutputJsonIndex(const char* path) {
   struct LinkageKind {
     bool operator<(const LinkageKind& other) const {
       bool klower = kind < other.kind;
@@ -218,25 +166,23 @@ void Indexer::OutputJsonIndex(const char* path, JsonFormat format) {
   JsonWriter outputter(&myfile);
   json::PrettyWriter<JsonWriter> writer(outputter);
 
-  auto data = MakeJsonObject(&writer, "data");
-  auto symbols = MakeJsonArray(&writer);
+  auto data = MakeJsonObject(&writer);
+  auto symbols = MakeJsonArray(&writer, "data");
 
-  auto OutputProvider = [&writer, this, format](
-                            const NameString& name,
-                            const Properties::Provider& provider) {
+  auto OutputProvider = [&writer, this](const NameString& name,
+                                        const Properties::Provider& provider) {
     auto jprovider = MakeJsonObject(&writer);
     if (name != provider.name) return;
 
     writer.Key("href");
-    WriteJsonString(&writer, ObjIdToLink(provider.location), format);
+    WriteJsonString(&writer, ObjIdToLink(provider.location));
 
     writer.Key("location");
     WriteJsonString(&writer,
-                    cache_->GetUserPath(std::to_string(provider.location)),
-                    format);
+                    cache_->GetUserPath(std::to_string(provider.location)));
 
     writer.Key("snippet");
-    WriteJsonString(&writer, provider.snippet, format);
+    WriteJsonString(&writer, provider.snippet);
   };
 
   for (const auto& objit : locations) {
@@ -246,7 +192,7 @@ void Indexer::OutputJsonIndex(const char* path, JsonFormat format) {
     auto symbol = MakeJsonObject(&writer);
 
     writer.Key("name");
-    WriteJsonString(&writer, objname, format);
+    WriteJsonString(&writer, objname);
 
     writer.Key("kinds");
     auto jlinkkinds = MakeJsonArray(&writer);
@@ -258,7 +204,7 @@ void Indexer::OutputJsonIndex(const char* path, JsonFormat format) {
       auto jlinkkind = MakeJsonObject(&writer);
 
       writer.Key("kind");
-      WriteJsonString(&writer, linkkind.kind, format);
+      WriteJsonString(&writer, linkkind.kind);
       writer.Key("linkage");
       writer.Uint(linkkind.linkage);
       if (linkkind.access != 255 && linkkind.access != AS_none) {
@@ -565,7 +511,7 @@ void Indexer::OutputBinaryIndex(const char* path, const char* name) {
   // Output this one last as the server uses its timestamp to determine
   // when to re-load the index.
   const auto& jsonfile = JoinPath({path, basename + ".json"});
-  OutputJsonIndex(jsonfile.c_str(), kJsonBinaryStrings);
+  OutputJsonIndex(jsonfile.c_str());
 }
 
 void Indexer::OutputTree() {

@@ -168,11 +168,7 @@ class Indexer {
   void OutputTree();
 
   void OutputJsonIndex();
-  enum JsonFormat {
-    kJsonAllText,
-    kJsonBinaryStrings,
-  };
-  void OutputJsonIndex(const char* path, JsonFormat format = kJsonAllText);
+  void OutputJsonIndex(const char* path);
 
   void OutputBinaryIndex(const char* path, const char* name);
 
