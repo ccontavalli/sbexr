@@ -45,4 +45,3 @@ func CaseContains(base, tofind []byte) bool {
 
 	return false
 }
-

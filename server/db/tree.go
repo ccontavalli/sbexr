@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"strings"
 	"time"
+	"path/filepath"
 )
 
 type TreeData struct {
@@ -16,9 +17,9 @@ type TreeObject struct {
 	Parent string `json:"parent,omitempty"`
 }
 
-func LoadJsonTree(fullname string) (ApiHandler, error) {
+func LoadJsonTree(root, tag string) (ApiHandler, error) {
 	var symbol TreeData
-	err := LoadJson(fullname, &symbol)
+	err := LoadJson(filepath.Join(root, "index." + tag + ".files.json"), &symbol)
 	return &symbol, err
 }
 

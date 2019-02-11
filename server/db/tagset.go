@@ -3,6 +3,7 @@ package db
 import (
 	"encoding/json"
 	"flag"
+	"github.com/NYTimes/gziphandler"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -12,7 +13,6 @@ import (
 	"sync"
 	"sync/atomic"
 	"time"
-        "github.com/NYTimes/gziphandler"
 )
 
 // Represents a specific index for a specific Tag on disk.
@@ -21,13 +21,13 @@ type Tag struct {
 	// Indicates that the Tag has been registered with the http server.
 	Registered bool
 	// Protects access to Handler and Changed below.
-	Mutex      sync.RWMutex
+	Mutex sync.RWMutex
 	// Last time a Change in the Tag was detected.
-	Changed    time.Time
+	Changed time.Time
 
 	// Object capable of handling a search request in this index.
 	// Handler can also implement the PageHandler interface, to serve
-	// details on a specific result returned. 
+	// details on a specific result returned.
 	Handler ApiHandler
 }
 
@@ -57,7 +57,7 @@ type PageHandler interface {
 //
 // Name will be set to "symbol" or "tree", depending on the kind of index.
 // Tag is a map, using the Tag as the key (v1.0, v2.0, ...), and returning an object allowing to manage
-//   the specfic index at hand.
+// the specfic index at hand.
 // Handler is an object able to check if the TagSet has changed on disk, and able to reload it.
 type TagSet struct {
 	Name    string
@@ -133,7 +133,7 @@ func (tagset *TagSet) AddHandler(k string, v *Tag) {
 			http.Handle(url, gziphandler.GzipHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 				phandler.HandlePage(w, r, data, &v.Mutex)
 			})))
-			log.Printf("WAITING FOR QUERIES ON %s\n", url)
+			log.Printf("WAITING FOR PAGE QUERIES ON %s\n", url)
 		}
 		v.Registered = true
 	}
@@ -161,129 +161,60 @@ func NewTagSet(name string, handler TagSetHandler) TagSet {
 	return TagSet{name, make(map[string]*Tag), handler}
 }
 
-type TagSetLoader func(filename string) (ApiHandler, error)
-
-type SpreadTagSet struct {
-	filename string
-	paths    []string
-	loader   TagSetLoader
-}
-
-func NewSpreadTagSetHandler(filename string, paths []string, loader TagSetLoader) *SpreadTagSet {
-	ts := SpreadTagSet{}
-	ts.filename = filename
-	ts.paths = paths
-	ts.loader = loader
-
-	return &ts
-}
-
-func (this *SpreadTagSet) Update(tag map[string]*Tag) {
-	for _, start := range this.paths {
-		content, err := ioutil.ReadDir(start)
-		if err != nil {
-			log.Printf("SKIPPING %s: %s\n", start, err)
-			continue
-		}
-		for _, directory := range content {
-			if !directory.IsDir() {
-				continue
-			}
-
-			fullname := path.Join(start, directory.Name(), this.filename)
-			info, err := os.Stat(fullname)
-			if err != nil {
-				continue
-			}
-
-			t := tag[directory.Name()]
-			if t == nil || info.ModTime().After(t.Changed) {
-				handler, err := this.loader(fullname)
-				if err != nil {
-					log.Printf("SKIPPING %s: %s\n", fullname, err)
-					continue
-				}
-
-				if t == nil {
-					t = &Tag{}
-					t.Handler = handler
-
-					tag[directory.Name()] = t
-				} else {
-					t.Mutex.Lock()
-					t.Handler.Delete()
-					t.Handler = handler
-					t.Mutex.Unlock()
-				}
-				t.Changed = info.ModTime()
-			}
-		}
-	}
-}
+type TagSetLoader func(root, tag string) (ApiHandler, error)
 
 type SingleDirTagSet struct {
-	paths  []string
+	path   string
 	loader TagSetLoader
+	sentinel string
 }
 
-func NewSingleDirTagSetHandler(paths []string, loader TagSetLoader) *SingleDirTagSet {
-	ts := SingleDirTagSet{}
-	ts.paths = paths
-	ts.loader = loader
-
-	return &ts
+func NewSingleDirTagSetHandler(path, sentinel string, loader TagSetLoader) *SingleDirTagSet {
+	return &SingleDirTagSet{path, loader, sentinel}
 }
 
 func (this *SingleDirTagSet) Update(tag map[string]*Tag) {
-	for _, start := range this.paths {
-		content, err := ioutil.ReadDir(start)
-		if err != nil {
-			log.Printf("SKIPPING %s: %s\n", start, err)
+	content, err := ioutil.ReadDir(this.path)
+	if err != nil {
+		log.Printf("SKIPPING %s: %s\n", this.path, err)
+		return
+	}
+	for _, file := range content {
+		if file.IsDir() {
 			continue
 		}
-		for _, file := range content {
-			if file.IsDir() {
-				continue
-			}
 
-			filename := file.Name()
-			if !strings.HasPrefix(filename, "index.") {
-				continue
-			}
-			if !strings.HasSuffix(filename, ".json") {
-				continue
-			}
+		filename := file.Name()
+		noprefix := strings.TrimPrefix(filename, "index.")
+		tagname := strings.TrimSuffix(noprefix, this.sentinel)
+		if tagname == noprefix || noprefix == filename {
+			continue
+		}
 
-			tagname := filename
-			tagname = strings.TrimPrefix(tagname, "index.")
-			tagname = strings.TrimSuffix(tagname, ".json")
+		fullname := path.Join(this.path, filename)
+		info, err := os.Stat(fullname)
+		if err != nil {
+			continue
+		}
 
-			fullname := path.Join(start, filename)
-			info, err := os.Stat(fullname)
+		t := tag[tagname]
+		if t == nil || info.ModTime().After(t.Changed) {
+			handler, err := this.loader(this.path, tagname)
 			if err != nil {
+				log.Printf("SKIPPING %s[%s]: %s\n", fullname, tagname, err)
 				continue
 			}
 
-			t := tag[tagname]
-			if t == nil || info.ModTime().After(t.Changed) {
-				handler, err := this.loader(fullname)
-				if err != nil {
-					log.Printf("SKIPPING %s[%s]: %s\n", fullname, tagname, err)
-					continue
-				}
-
-				if t == nil {
-					t = &Tag{}
-					t.Handler = handler
-
-					tag[tagname] = t
-				} else {
-					t.Mutex.Lock()
-					t.Handler = handler
-					t.Mutex.Unlock()
-				}
-				t.Changed = info.ModTime()
+			if t == nil {
+				t = &Tag{}
+				t.Handler = handler
+				tag[tagname] = t
+			} else {
+				t.Mutex.Lock()
+				t.Handler = handler
+				t.Mutex.Unlock()
 			}
+			t.Changed = info.ModTime()
 		}
 	}
 }

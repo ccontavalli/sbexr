@@ -8,7 +8,14 @@ update-templates:
 	cd templates && ~/gopath/bin/qtc
 
 testindex: all
-	./server --root=../test/ --index-dir=./testindex --listen=:10000 ../test/
+	make -C ../src test-gen
+	./server --root=../test/ --index-dir=../test/indexes --listen=:10000 ../test/output
 
 clean:
 	rm -f server
+
+format:
+	go fmt
+	cd db && go fmt
+	cd structs && go fmt
+	

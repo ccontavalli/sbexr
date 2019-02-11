@@ -16,6 +16,7 @@ import (
 	"syscall"
 	"time"
 	"unsafe"
+	"path/filepath"
 )
 
 // #include "../../src/cindex.h"
@@ -87,23 +88,25 @@ func mmapFile(f *os.File) ([]byte, error) {
 	return data[:size], nil
 }
 
-func LoadCompactBinary(jsonfile string) (*CompactBinarySymbolData, error) {
+func LoadSymbols(root, tag string) (ApiHandler, error) {
 	var symbol CompactBinarySymbolData
 
-	detailsfile := strings.TrimSuffix(jsonfile, ".json") + ".details"
+	basefile := filepath.Join(root, "index." + tag)
+
+	detailsfile := basefile + ".details"
 	details, err := mmap(detailsfile)
 	if err != nil {
 		return nil, err
 	}
 
-	symbolsfile := strings.TrimSuffix(jsonfile, ".json") + ".symbol-details"
+	symbolsfile := basefile + ".symbol-details"
 	symbols, err := mmap(symbolsfile)
 	if err != nil {
 		munmap(details)
 		return nil, err
 	}
 
-	snippetsfile := strings.TrimSuffix(jsonfile, ".json") + ".snippets"
+	snippetsfile := basefile + ".snippets"
 	snippets, err := mmap(snippetsfile)
 	if err != nil {
 		munmap(details)
@@ -111,7 +114,7 @@ func LoadCompactBinary(jsonfile string) (*CompactBinarySymbolData, error) {
 		return nil, err
 	}
 
-	stringsfile := strings.TrimSuffix(jsonfile, ".json") + ".strings"
+	stringsfile := basefile + ".strings"
 	stringmap, err := mmap(stringsfile)
 	if err != nil {
 		munmap(details)
@@ -120,7 +123,7 @@ func LoadCompactBinary(jsonfile string) (*CompactBinarySymbolData, error) {
 		return nil, err
 	}
 
-	filesfile := strings.TrimSuffix(jsonfile, ".json") + ".files"
+	filesfile := basefile + ".files"
 	files, err := mmap(filesfile)
 	if err != nil {
 		munmap(details)
@@ -130,7 +133,7 @@ func LoadCompactBinary(jsonfile string) (*CompactBinarySymbolData, error) {
 		return nil, err
 	}
 
-	hashesfile := strings.TrimSuffix(jsonfile, ".json") + ".hash-details"
+	hashesfile := basefile + ".hash-details"
 	hashes, err := mmap(hashesfile)
 	if err != nil {
 		munmap(details)
@@ -151,30 +154,30 @@ func LoadCompactBinary(jsonfile string) (*CompactBinarySymbolData, error) {
 	symbol.minoffsets = make([]uint32, 0, 1024)
 
 	minindex := 0
-        err = symbol.ForEachSymbol(0, func (_ *SymbolNameToDetails, offset uint32, name []byte) {
+	err = symbol.ForEachSymbol(0, func(_ *SymbolNameToDetails, offset uint32, name []byte) {
 		for ; minindex <= len(name); minindex++ {
 			// log.Printf("FOR LEN %d MIN OFFSET %d LEN %d\n", minindex, offset, len(symbol.minoffsets))
 			symbol.minoffsets = append(symbol.minoffsets, offset)
 		}
-        })
+	})
 
-        if err != nil {
-          return nil, err
-        }
+	if err != nil {
+		return nil, err
+	}
 	return &symbol, nil
 }
 
-func (data *CompactBinarySymbolData) ForEachSymbol(offset uint32, process func (*SymbolNameToDetails, uint32, []byte)) error {
+func (data *CompactBinarySymbolData) ForEachSymbol(offset uint32, process func(*SymbolNameToDetails, uint32, []byte)) error {
 	for offset < uint32(len(data.symbols)) {
 		symbol, newoffset, name, err := data.GetSymbolName(C.NameOffsetT(offset))
-                if err != nil {
-                  return err
-                }
+		if err != nil {
+			return err
+		}
 
-                process(symbol, offset, name)
-                offset = newoffset
+		process(symbol, offset, name)
+		offset = newoffset
 	}
-        return nil
+	return nil
 }
 
 func (data *CompactBinarySymbolData) Delete() {
@@ -311,7 +314,6 @@ func min(a, b uint32) uint32 {
 	return b
 }
 
-
 func (data *CompactBinarySymbolData) HandleSearch(resp http.ResponseWriter, query *JsonRequest) (interface{}, *Stats) {
 	stats := Stats{}
 
@@ -381,22 +383,8 @@ func (data *CompactBinarySymbolData) HandleSearch(resp http.ResponseWriter, quer
 	return result, &stats
 }
 
-func LoadSymbols(jsonfile string) (ApiHandler, error) {
-	if !strings.HasSuffix(jsonfile, ".json") {
-		return nil, fmt.Errorf("jsonfile must end in .json")
-	}
-
-	detailsfile := strings.TrimSuffix(jsonfile, ".json") + ".details"
-	_, err := os.Stat(detailsfile)
-	if err != nil {
-		return nil, err
-	}
-
-	return LoadCompactBinary(jsonfile)
-}
-
 func (data *CompactBinarySymbolData) GetSymbolName(offset C.NameOffsetT) (*SymbolNameToDetails, uint32, []byte, error) {
-        pool := data.symbols
+	pool := data.symbols
 
 	if uintptr(offset)+C.sizeof_SymbolNameToDetails >= uintptr(len(pool)) {
 		return nil, 0, []byte{}, fmt.Errorf("GetSymbolName: invalid offset %d, overflows %d", offset, len(pool))

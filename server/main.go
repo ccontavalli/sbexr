@@ -2,10 +2,10 @@ package main
 
 import (
 	"flag"
+	"github.com/ccontavalli/sbexr/server/db"
 	"log"
 	"net/http"
 	"net/http/fcgi"
-        "github.com/ccontavalli/sbexr/server/db"
 	"runtime"
 	"time"
 )
@@ -23,16 +23,11 @@ type Index struct {
 	BinSymbol db.TagSet
 }
 
-func NewIndex() Index {
+func NewIndex(indexroot string) Index {
 	index := Index{}
 
-	index.Tree = db.NewTagSet("tree", db.NewSpreadTagSetHandler("tree.json", flag.Args(), db.LoadJsonTree))
-
-	if len(*indexdir) > 0 {
-		index.BinSymbol = db.NewTagSet("symbol", db.NewSingleDirTagSetHandler([]string{*indexdir}, db.LoadSymbols))
-	} else {
-		panic("--index-dir must be specified")
-	}
+	index.Tree = db.NewTagSet("tree", db.NewSingleDirTagSetHandler(indexroot, ".files.json", db.LoadJsonTree))
+	index.BinSymbol = db.NewTagSet("symbol", db.NewSingleDirTagSetHandler(indexroot, ".symbols.json", db.LoadSymbols))
 
 	return index
 }
@@ -49,12 +44,6 @@ func Updater(index *Index) {
 		index.Tree.AddHandlers()
 		index.BinSymbol.AddHandlers()
 
-		//log.Printf("AFTER UPDATE %+v\n", index)
-		//for key, value := range index.Symbol.Tag {
-		//      log.Printf("  SYMBOLS %+v, %+v\n", key, value)
-		//}
-
-		// FIXME: set more aggressive goals.
 		runtime.GC()
 		time.Sleep(10 * time.Second)
 	}
@@ -62,8 +51,11 @@ func Updater(index *Index) {
 
 func main() {
 	flag.Parse()
+	if len(*indexdir) <= 0 {
+		log.Fatal("Must supply flag --index-dir - to match the one used with sbexr")
+	}
 
-	index := NewIndex()
+	index := NewIndex(*indexdir)
 	go Updater(&index)
 
 	if *root != "" {
