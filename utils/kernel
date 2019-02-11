@@ -166,7 +166,7 @@ def CreateRunTree(binary, directory):
 def PrepareOutputDir(run, tag):
   tree_dir = tempfile.mkdtemp(prefix="build-", suffix="-" + tag, dir=TMP_TREE)
   if (Run(["ln", "-Tfs", tree_dir, os.path.join(run, "output")]).status or
-      Run(["cp", "-a", os.path.join(BINARY_TREE, "output", "static"), os.path.join(tree_dir, "static")]).status):
+      Run(["cp", "-a", os.path.join(BINARY_TREE, "static"), os.path.join(tree_dir, "static")]).status):
     raise BuildError("Could not prepare output directory")
   return tree_dir
 

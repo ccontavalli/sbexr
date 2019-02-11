@@ -14,7 +14,7 @@ import json
 import pprint
 
 BASE = "/opt/projects/sbexr"
-NEWS_FILE_PATH = os.path.join(BASE, "output/static/news.json")
+NEWS_FILE_PATH = os.path.join(BASE, "static/news.json")
 
 RunResult = collections.namedtuple("RunResult", ["status", "stdout", "stderr", "time"])
 def Run(args, **kwargs):
