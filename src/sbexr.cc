@@ -1198,8 +1198,8 @@ int main(int argc, const char** argv) {
   }
 
   std::cerr << ">>> GENERATING INDEX" << std::endl;
-  indexer.OutputTree();
-  indexer.OutputJsonIndex();
+  // indexer.OutputTree();
+  // indexer.OutputJsonIndex();
   if (!gl_index_dir.empty())
     indexer.OutputBinaryIndex(gl_index_dir.c_str(), gl_tag.c_str());
   indexer.Clear();
@@ -1208,21 +1208,26 @@ int main(int argc, const char** argv) {
 
   std::cerr << ">>> EMBEDDING FILES" << std::endl;
   renderer.ScanTree(gl_input_dir);
-  renderer.OutputTree();
-  renderer.OutputJTree();
+  renderer.OutputFiles();
+  renderer.OutputJFiles();
   renderer.OutputOther();
-  renderer.OutputJsonIndex();
+  renderer.OutputJOther();
+  renderer.OutputJsonTree();
   MemoryPrinter::OutputStats();
 
-  const auto& index = MakeMetaPath("index.html");
+  const auto& index = MakeMetaPath("indexdir");
   if (!MakeDirs(index, 0777)) {
     std::cerr << "FAILED TO MAKE DIRS " << index << std::endl;
   } else {
     const auto* dir = renderer.GetDirectoryFor(gl_input_dir);
-    const auto& entry = dir->HtmlPath();
-    unlink(index.c_str());
-    symlink(entry.c_str(), index.c_str());
-    std::cerr << ">>> ENTRY POINT " << index << " aka " << entry << std::endl;
+    for (const char* extension : {".html", ".jhtml"}) {
+      const auto& entry = dir->HtmlPath(extension);
+      const auto& index = MakeMetaPath("index") + extension;
+
+      unlink(index.c_str());
+      symlink(entry.c_str(), index.c_str());
+      std::cerr << ">>> ENTRY POINT " << index << " aka " << entry << std::endl;
+    }
   }
 
   return 0;

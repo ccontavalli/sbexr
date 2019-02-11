@@ -65,7 +65,9 @@ class FileRenderer {
     bool Rendered() { return type != kFileUnknown; }
     bool Preprocessed() { return preprocessed; }
 
-    std::string SourcePath(const char* lextension = nullptr) const { return MakeSourcePath(hash, lextension ? lextension : extension); }
+    std::string SourcePath(const char* lextension = nullptr) const {
+      return MakeSourcePath(hash, lextension ? lextension : extension);
+    }
     std::string HtmlPath() const { return MakeHtmlPath(hash, extension); }
 
     ParsedDirectory* parent = nullptr;
@@ -96,8 +98,12 @@ class FileRenderer {
                       : "/"),
           hash(hash_value(path)) {}
 
-    std::string SourcePath(const char* extension = ".html") const { return MakeSourcePath(hash, extension); }
-    std::string HtmlPath() const { return MakeHtmlPath(hash); }
+    std::string SourcePath(const char* extension = ".html") const {
+      return MakeSourcePath(hash, extension);
+    }
+    std::string HtmlPath(const char* extension = ".html") const {
+      return MakeHtmlPath(hash, extension);
+    }
 
     ParsedDirectory* parent = nullptr;
     std::string name;
@@ -125,11 +131,13 @@ class FileRenderer {
                   Preprocessor& pp);
   void ScanTree(const std::string& path);
 
-  void OutputTree();
-  bool OutputJTree();
+  void OutputFiles();
+  bool OutputJFiles();
 
   void OutputOther();
-  void OutputJsonIndex();
+  void OutputJOther();
+
+  void OutputJsonTree();
 
  private:
   void RawHighlight(FileID parsing_fid, Preprocessor& pp, ParsedFile* file);

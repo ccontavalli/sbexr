@@ -413,7 +413,7 @@ void FileRenderer::RenderFile(const SourceManager& sm, ParsedFile* file,
   file->body = FormatSource(pp, fid, file);
 }
 
-void FileRenderer::OutputTree() {
+void FileRenderer::OutputFiles() {
   std::deque<ParsedDirectory*> to_output({&absolute_root_});
   while (!to_output.empty()) {
     auto* node = to_output.front();
@@ -426,7 +426,7 @@ void FileRenderer::OutputTree() {
   }
 }
 
-bool FileRenderer::OutputJTree() {
+bool FileRenderer::OutputJFiles() {
   std::deque<ParsedDirectory*> to_output({&absolute_root_});
   while (!to_output.empty()) {
     auto* node = to_output.front();
@@ -435,9 +435,9 @@ bool FileRenderer::OutputJTree() {
     }
 
     to_output.pop_front();
-    for (auto& element : node->files) { 
+    for (auto& element : node->files) {
       if (!OutputJFile(*node, &element.second)) {
-         llvm::errs() << "ERROR: Could not output file " << element.second.name;
+        llvm::errs() << "ERROR: Could not output file " << element.second.name;
       }
     }
     for (auto& element : node->directories)
@@ -459,6 +459,16 @@ void AddSubTemplates(ctemplate::TemplateDictionary* dict) {
   dict->AddIncludeDictionary("INCLUDE_CSS")->SetFilename("templates/css.html");
   dict->AddIncludeDictionary("INCLUDE_JS")
       ->SetFilename("templates/javascript.html");
+}
+
+void FileRenderer::OutputJOther() {
+  std::ofstream myfile;
+  myfile.open("output/globals.json");
+  json::OStreamWrapper osw(myfile);
+  json::Writer<json::OStreamWrapper> writer(osw);
+  auto jdata = MakeJsonObject(&writer);
+
+  OutputJNavbar(&writer, "", "", nullptr, nullptr);
 }
 
 void FileRenderer::OutputOther() {
@@ -499,7 +509,7 @@ void FileRenderer::OutputOther() {
   }
 }
 
-void FileRenderer::OutputJsonIndex() {
+void FileRenderer::OutputJsonTree() {
   std::ofstream myfile;
   myfile.open("output/tree.json");
   myfile << "{" << std::endl;
@@ -794,7 +804,8 @@ void AddTemplateCode(ctemplate::TemplateDictionary* dict,
   return;
 }
 
-bool FileRenderer::OutputJFile(const ParsedDirectory& parent, ParsedFile* file) {
+bool FileRenderer::OutputJFile(const ParsedDirectory& parent,
+                               ParsedFile* file) {
   const auto& path = file->SourcePath(".jhtml");
   std::cerr << "GENERATING JFILE " << file->path << " " << path << std::endl;
   if (!MakeDirs(path, 0777)) {
@@ -812,13 +823,13 @@ bool FileRenderer::OutputJFile(const ParsedDirectory& parent, ParsedFile* file) 
     return true;
   }
 
-    myfile.open(path);
+  myfile.open(path);
   {
-  json::OStreamWrapper osw(myfile);
-  json::Writer<json::OStreamWrapper> writer(osw);
+    json::OStreamWrapper osw(myfile);
+    json::Writer<json::OStreamWrapper> writer(osw);
 
-  auto jdata = MakeJsonObject(&writer);
-  OutputJNavbar(&writer, file->name, file->path, nullptr, &parent);
+    auto jdata = MakeJsonObject(&writer);
+    OutputJNavbar(&writer, file->name, file->path, nullptr, &parent);
   }
 
   AddJHtmlSeparator(&myfile);
