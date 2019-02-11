@@ -29,6 +29,8 @@
 #ifndef JSON_HELPERS_H
 #define JSON_HELPERS_H
 
+#include "mempool.h"
+
 #include <rapidjson/ostreamwrapper.h>
 #include <rapidjson/prettywriter.h>
 #include <rapidjson/stringbuffer.h>
@@ -95,6 +97,10 @@ template <typename Writer>
 void WriteJsonKeyValue(Writer* writer, const char* key, int value) {
   writer->Key(key);
   writer->Uint(value);
+}
+
+inline void AddJHtmlSeparator(std::ostream* stream) {
+  (*stream) << "\n---\n";
 }
 
 #endif /* JSON_HELPERS_H */

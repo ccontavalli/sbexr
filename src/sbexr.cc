@@ -1209,6 +1209,8 @@ int main(int argc, const char** argv) {
   std::cerr << ">>> EMBEDDING FILES" << std::endl;
   renderer.ScanTree(gl_input_dir);
   renderer.OutputTree();
+  renderer.OutputJTree();
+  renderer.OutputOther();
   renderer.OutputJsonIndex();
   MemoryPrinter::OutputStats();
 

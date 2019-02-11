@@ -31,6 +31,7 @@
 
 #include "base.h"
 #include "common.h"
+#include "json-helpers.h"
 #include "rewriter.h"
 
 #include <ctemplate/template.h>
@@ -64,7 +65,7 @@ class FileRenderer {
     bool Rendered() { return type != kFileUnknown; }
     bool Preprocessed() { return preprocessed; }
 
-    std::string SourcePath() const { return MakeSourcePath(hash, extension); }
+    std::string SourcePath(const char* lextension = nullptr) const { return MakeSourcePath(hash, lextension ? lextension : extension); }
     std::string HtmlPath() const { return MakeHtmlPath(hash, extension); }
 
     ParsedDirectory* parent = nullptr;
@@ -95,7 +96,7 @@ class FileRenderer {
                       : "/"),
           hash(hash_value(path)) {}
 
-    std::string SourcePath() const { return MakeSourcePath(hash); }
+    std::string SourcePath(const char* extension = ".html") const { return MakeSourcePath(hash, extension); }
     std::string HtmlPath() const { return MakeHtmlPath(hash); }
 
     ParsedDirectory* parent = nullptr;
@@ -125,14 +126,25 @@ class FileRenderer {
   void ScanTree(const std::string& path);
 
   void OutputTree();
+  bool OutputJTree();
+
+  void OutputOther();
   void OutputJsonIndex();
 
  private:
-  void OutputOther();
   void RawHighlight(FileID parsing_fid, Preprocessor& pp, ParsedFile* file);
   void OutputFile(const ParsedDirectory& dir, ParsedFile* file);
   void OutputDirectory(ParsedDirectory* dir);
+
+  bool OutputJFile(const ParsedDirectory& dir, ParsedFile* file);
+  bool OutputJDirectory(ParsedDirectory* dir);
+
   bool ReadFile(ParsedFile* file);
+
+  void OutputJNavbar(json::Writer<json::OStreamWrapper>* writer,
+                     const std::string& name, const std::string& path,
+                     const FileRenderer::ParsedDirectory* current,
+                     const FileRenderer::ParsedDirectory* parent);
 
   void AddNavbarTemplates(ctemplate::TemplateDictionary* dict,
                           const std::string& name, const std::string& path,

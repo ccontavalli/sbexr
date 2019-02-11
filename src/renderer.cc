@@ -27,8 +27,10 @@
 // policies, either expressed or implied, of Carlo Contavalli.
 
 #include "renderer.h"
+#include "json-helpers.h"
 #include "wrapping.h"
 
+// DEPRECATE once we remove the template expansion logic.
 cl::list<std::string> gl_index_files(
     "i",
     cl::desc("Possible names of files to use when showing a directory index."),
@@ -51,6 +53,7 @@ cl::opt<std::string> gl_tag(
     "t", cl::desc("Tag to use when querying the symbols / tree database."),
     cl::value_desc("tag"), cl::init("output"), cl::cat(gl_category));
 
+// TODO: remove this class as soon as we stop using templates.
 class FileEmitter final : public ctemplate::ExpandEmitter {
  public:
   FileEmitter(std::ofstream* stream) : stream_(stream) {}
@@ -423,6 +426,26 @@ void FileRenderer::OutputTree() {
   }
 }
 
+bool FileRenderer::OutputJTree() {
+  std::deque<ParsedDirectory*> to_output({&absolute_root_});
+  while (!to_output.empty()) {
+    auto* node = to_output.front();
+    if (!OutputJDirectory(node)) {
+      llvm::errs() << "ERROR: Could not output directory " << node->name;
+    }
+
+    to_output.pop_front();
+    for (auto& element : node->files) { 
+      if (!OutputJFile(*node, &element.second)) {
+         llvm::errs() << "ERROR: Could not output file " << element.second.name;
+      }
+    }
+    for (auto& element : node->directories)
+      to_output.emplace_back(&element.second);
+  }
+  return true;
+}
+
 std::string FileRenderer::GetNormalizedPath(const std::string& filename) {
   if (filename.empty()) return "<invalid-file>";
   ParsedDirectory* directory;
@@ -431,6 +454,7 @@ std::string FileRenderer::GetNormalizedPath(const std::string& filename) {
   return file->path;
 }
 
+// TODO deprecated once we switch to .jhtml format.
 void AddSubTemplates(ctemplate::TemplateDictionary* dict) {
   dict->AddIncludeDictionary("INCLUDE_CSS")->SetFilename("templates/css.html");
   dict->AddIncludeDictionary("INCLUDE_JS")
@@ -476,8 +500,6 @@ void FileRenderer::OutputOther() {
 }
 
 void FileRenderer::OutputJsonIndex() {
-  OutputOther();
-
   std::ofstream myfile;
   myfile.open("output/tree.json");
   myfile << "{" << std::endl;
@@ -772,34 +794,59 @@ void AddTemplateCode(ctemplate::TemplateDictionary* dict,
   return;
 }
 
-void FileRenderer::OutputFile(const ParsedDirectory& parent, ParsedFile* file) {
-  const auto& path = file->SourcePath();
-  std::cerr << "GENERATING FILE " << file->path << " " << path << std::endl;
+bool FileRenderer::OutputJFile(const ParsedDirectory& parent, ParsedFile* file) {
+  const auto& path = file->SourcePath(".jhtml");
+  std::cerr << "GENERATING JFILE " << file->path << " " << path << std::endl;
   if (!MakeDirs(path, 0777)) {
     std::cerr << "FAILED TO MAKE DIRS" << std::endl;
-    assert(false && "FAILED TO CREATE DIRS");
+    return false;
   }
-
-  if (file->type == kFileMedia) {
-    std::ofstream myfile;
-    myfile.open(path);
-    myfile.write(file->body.c_str(), file->body.size());
-    return;
-  }
-
-  ctemplate::TemplateDictionary dict("FILE");
-  AddSubTemplates(&dict);
-  AddNavbarTemplates(&dict, file->name, file->path, nullptr, &parent);
-  dict.SetTemplateGlobalValue("curr_path", ToTemplate(GetUserPath(file->path)));
-
-  std::string code;
-  AddTemplateCode(&dict, file, &code);
 
   std::ofstream myfile;
-  myfile.open(path);
-  FileEmitter emitter(&myfile);
-  ctemplate::ExpandTemplate("templates/source.html",
-                            ctemplate::STRIP_WHITESPACE, &dict, &emitter);
+  if (file->type == kFileMedia) {
+    // We need to maintain the original extension in this case.
+    const auto& path = file->SourcePath();
+    myfile.open(path);
+    // TODO: use hard links, fall back to copy.
+    myfile.write(file->body.c_str(), file->body.size());
+    return true;
+  }
+
+    myfile.open(path);
+  {
+  json::OStreamWrapper osw(myfile);
+  json::Writer<json::OStreamWrapper> writer(osw);
+
+  auto jdata = MakeJsonObject(&writer);
+  OutputJNavbar(&writer, file->name, file->path, nullptr, &parent);
+  }
+
+  AddJHtmlSeparator(&myfile);
+  switch (file->type) {
+    case FileRenderer::kFileHtml:
+      myfile << html::EscapeText(file->body);
+      break;
+
+    case FileRenderer::kFilePrintable:
+    case FileRenderer::kFileUtf8:
+    case FileRenderer::kFileUnknown:
+    case FileRenderer::kFileBinary:
+      myfile << file->body;
+      break;
+
+    case FileRenderer::kFileParsed:
+      file->type = FileRenderer::kFileGenerated;
+      file->body = file->rewriter.Generate(file->path, file->body);
+      /* NO BREAK HERE */
+
+    case FileRenderer::kFileGenerated:
+      myfile << file->body;
+      break;
+    case FileRenderer::kFileMedia:
+      abort();
+      break;
+  }
+  return true;
 }
 
 std::string GetSuffixedValue(int64_t uv, std::array<const char*, 5> suffixes) {
@@ -834,6 +881,152 @@ std::string GetSuffixedValue(int64_t uv, std::array<const char*, 5> suffixes) {
   retval.resize(n);
 
   return retval;
+}
+
+void FileRenderer::OutputFile(const ParsedDirectory& parent, ParsedFile* file) {
+  const auto& path = file->SourcePath();
+  std::cerr << "GENERATING FILE " << file->path << " " << path << std::endl;
+  if (!MakeDirs(path, 0777)) {
+    std::cerr << "FAILED TO MAKE DIRS" << std::endl;
+    assert(false && "FAILED TO CREATE DIRS");
+  }
+
+  if (file->type == kFileMedia) {
+    std::ofstream myfile;
+    myfile.open(path);
+    myfile.write(file->body.c_str(), file->body.size());
+    return;
+  }
+
+  ctemplate::TemplateDictionary dict("FILE");
+  AddSubTemplates(&dict);
+  AddNavbarTemplates(&dict, file->name, file->path, nullptr, &parent);
+  dict.SetTemplateGlobalValue("curr_path", ToTemplate(GetUserPath(file->path)));
+
+  std::string code;
+  AddTemplateCode(&dict, file, &code);
+
+  std::ofstream myfile;
+  myfile.open(path);
+  FileEmitter emitter(&myfile);
+  ctemplate::ExpandTemplate("templates/source.html",
+                            ctemplate::STRIP_WHITESPACE, &dict, &emitter);
+}
+
+void FileRenderer::OutputJNavbar(json::Writer<json::OStreamWrapper>* writer,
+                                 const std::string& name,
+                                 const std::string& path,
+                                 const FileRenderer::ParsedDirectory* current,
+                                 const FileRenderer::ParsedDirectory* parent) {
+  // Build stack of parent directories, and find root.
+  const FileRenderer::ParsedDirectory* root = relative_root_;
+  static std::deque<const FileRenderer::ParsedDirectory*> stack;
+  for (const auto* cursor = current ? current : parent;
+       cursor && cursor != root; cursor = cursor->parent) {
+    if (!cursor->parent) {
+      root = cursor;
+      break;
+    }
+    if (cursor != current) stack.push_back(cursor);
+  }
+
+  WriteJsonKeyValue(writer, "name", name);
+  WriteJsonKeyValue(writer, "path", GetUserPath(path));
+  WriteJsonKeyValue(writer, "root", root->HtmlPath());
+  WriteJsonKeyValue(writer, "project", gl_project_name);
+  WriteJsonKeyValue(writer, "tag", gl_tag);
+
+  {
+    auto parents = MakeJsonArray(writer, "parents");
+    while (!stack.empty()) {
+      const auto* cursor = stack.back();
+      stack.pop_back();
+
+      auto parent = MakeJsonObject(writer);
+      WriteJsonKeyValue(writer, "name", cursor->name);
+      WriteJsonKeyValue(writer, "href", cursor->HtmlPath());
+    }
+  }
+}
+
+bool FileRenderer::OutputJDirectory(ParsedDirectory* dir) {
+  const auto& path = dir->SourcePath(".jhtml");
+  std::cerr << "GENERATING JDIR " << dir->path << " " << path << std::endl;
+  if (!MakeDirs(path, 0777)) {
+    std::cerr << "FAILED TO MAKE DIRS" << std::endl;
+    return false;
+  }
+
+  // FIXME: path is probably wrong, needs to be mangled to be jhtml.
+  std::ofstream myfile;
+  myfile.open(path);
+  json::OStreamWrapper osw(myfile);
+  json::Writer<json::OStreamWrapper> writer(osw);
+
+  auto jdata = MakeJsonObject(&writer);
+  OutputJNavbar(&writer, dir->name, dir->path, dir, dir->parent);
+
+  std::string code;
+  if (!dir->files.empty()) {
+    auto files = MakeJsonArray(&writer, "files");
+    for (const auto& it : dir->files) {
+      auto& filename = it.first;
+      auto& descriptor = it.second;
+      auto file = MakeJsonObject(&writer);
+
+      WriteJsonKeyValue(&writer, "name", filename);
+      writer.Key("type");
+      switch (descriptor.type) {
+        case kFileMedia:
+          WriteJsonString(&writer, "media");
+          break;
+
+        case kFileUtf8:
+        case kFilePrintable:
+        case kFileHtml:
+          WriteJsonString(&writer, "text");
+          break;
+
+        case kFileParsed:
+        case kFileGenerated:
+          WriteJsonString(&writer, "parsed");
+          break;
+
+        case kFileUnknown:
+        case kFileBinary:
+          WriteJsonString(&writer, "blob");
+          break;
+      }
+
+      WriteJsonKeyValue(&writer, "href", descriptor.HtmlPath());
+      WriteJsonKeyValue(&writer, "mtime", ctime(&descriptor.mtime));
+      WriteJsonKeyValue(&writer, "size", GetHumanValue(descriptor.size));
+    }
+  }
+
+  if (!dir->directories.empty() ||
+      (dir->parent && dir != &absolute_root_ && dir != relative_root_)) {
+    auto dirs = MakeJsonArray(&writer, "files");
+
+    if (dir->parent && dir != &absolute_root_ && dir != relative_root_) {
+      auto obj = MakeJsonObject(&writer);
+
+      WriteJsonKeyValue(&writer, "href", dir->parent->HtmlPath());
+      WriteJsonKeyValue(&writer, "size", dir->parent->files.size());
+      WriteJsonKeyValue(&writer, "name", "..");
+    }
+
+    for (const auto& it : dir->directories) {
+      auto& name = it.first;
+      auto& descriptor = it.second;
+      auto obj = MakeJsonObject(&writer);
+
+      WriteJsonKeyValue(&writer, "href", descriptor.HtmlPath());
+      WriteJsonKeyValue(&writer, "size", descriptor.files.size());
+      WriteJsonKeyValue(&writer, "name", name);
+    }
+  }
+  return true;
 }
 
 void FileRenderer::OutputDirectory(ParsedDirectory* dir) {
