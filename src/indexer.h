@@ -165,11 +165,7 @@ class Indexer {
                        const clang::SourceRange& target,
                        const std::string& exception);
 
-  void OutputTree();
-
-  void OutputJsonIndex();
   void OutputJsonIndex(const char* path);
-
   void OutputBinaryIndex(const char* path, const char* name);
 
   void Clear() {

@@ -137,7 +137,7 @@ class FileRenderer {
   void OutputOther();
   void OutputJOther();
 
-  void OutputJsonTree();
+  void OutputJsonTree(const char* path, const char* tag);
 
  private:
   void RawHighlight(FileID parsing_fid, Preprocessor& pp, ParsedFile* file);

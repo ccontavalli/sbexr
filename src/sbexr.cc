@@ -116,7 +116,7 @@ cl::opt<std::string> gl_index_dir(
     "index",
     cl::desc("Directory where to output all generated indexes. Tag "
              "name is used to name files."),
-    cl::value_desc("directory"), cl::cat(gl_category));
+    cl::value_desc("directory"), cl::cat(gl_category), cl::Required);
 cl::opt<std::string> gl_bear_filter_regex(
     "l",
     cl::desc(
@@ -1198,10 +1198,7 @@ int main(int argc, const char** argv) {
   }
 
   std::cerr << ">>> GENERATING INDEX" << std::endl;
-  // indexer.OutputTree();
-  // indexer.OutputJsonIndex();
-  if (!gl_index_dir.empty())
-    indexer.OutputBinaryIndex(gl_index_dir.c_str(), gl_tag.c_str());
+  indexer.OutputBinaryIndex(gl_index_dir.c_str(), gl_tag.c_str());
   indexer.Clear();
 
   MemoryPrinter::OutputStats();
@@ -1212,7 +1209,7 @@ int main(int argc, const char** argv) {
   renderer.OutputJFiles();
   renderer.OutputOther();
   renderer.OutputJOther();
-  renderer.OutputJsonTree();
+  renderer.OutputJsonTree(gl_index_dir.c_str(), gl_tag.c_str());
   MemoryPrinter::OutputStats();
 
   const auto& index = MakeMetaPath("indexdir");

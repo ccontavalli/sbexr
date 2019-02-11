@@ -102,7 +102,6 @@ void Indexer::RecordDeclares(const SourceManager& sm,
                                     Id(cache_, sm, declarer), name, snippet,
                                     kind, access, linkage);
 }
-void Indexer::OutputJsonIndex() { OutputJsonIndex("output/all-symbols.json"); }
 
 class JsonWriter {
  public:
@@ -247,7 +246,7 @@ void Indexer::OutputJsonIndex(const char* path) {
   }
 }
 
-void Indexer::OutputBinaryIndex(const char* path, const char* name) {
+void Indexer::OutputBinaryIndex(const char* path, const char* tag) {
   struct LinkageKind {
     bool operator<(const LinkageKind& other) const {
       if (kind != other.kind) return kind < other.kind;
@@ -322,7 +321,7 @@ void Indexer::OutputBinaryIndex(const char* path, const char* name) {
         return first.first < second.first;
       });
 
-  std::string basename = name ? std::string("index.") + name : "index";
+  std::string basename = tag ? std::string("index.") + tag : "index";
 
   // Output list of files.
   {
@@ -510,89 +509,8 @@ void Indexer::OutputBinaryIndex(const char* path, const char* name) {
   // - .json file with integers instead of strings
   // Output this one last as the server uses its timestamp to determine
   // when to re-load the index.
-  const auto& jsonfile = JoinPath({path, basename + ".json"});
+  const auto& jsonfile = JoinPath({path, basename + ".symbols.json"});
   OutputJsonIndex(jsonfile.c_str());
-}
-
-void Indexer::OutputTree() {
-  std::ofstream myfile;
-  myfile.open("output/tree.txt", std::ofstream::out | std::ofstream::trunc |
-                                     std::ofstream::binary);
-
-  auto PrintProvider = [&myfile](const Properties::Provider& data) {
-    myfile << "    location: " << data.location << std::endl;
-    myfile << "    name: " << data.name << std::endl;
-    myfile << "    snippet: " << data.snippet << std::endl;
-    myfile << "    kind: " << data.kind << std::endl;
-    myfile << "    linkage: " << data.linkage << std::endl;
-  };
-
-  for (const auto& objit : index_) {
-    const auto& objid = objit.first;
-    const auto& objdata = objit.second;
-
-    struct UserCount {
-      const Properties::User* user = nullptr;
-      int count = 0;
-    };
-    {
-      std::map<Id, UserCount> users;
-      for (const auto& user : objdata.users) {
-        auto& element = users[user.location];
-        element.count += 1;
-        element.user = &user;
-      }
-
-      myfile << (objid.file ? objid.file->path.c_str() : "(unset)")
-             << std::endl;
-      myfile << "  used_count: " << objdata.users.size() << ":" << users.size()
-             << ((users.size() == objdata.users.size()) ? " ok" : " bad")
-             << std::endl;
-      myfile << "  used by:" << std::endl;
-      for (const auto& userit : users) {
-        const auto& location = userit.first;
-        const auto& usercount = userit.second;
-        myfile << "    " << location << " " << usercount.count << std::endl;
-      }
-    }
-
-    struct ProviderCount {
-      const Properties::Provider* provider = nullptr;
-      int count = 0;
-    };
-    std::map<Id, ProviderCount> decls, defs;
-    size_t declscount = 0, defscount = 0;
-    for (const auto& provider : objdata.providers) {
-      auto& tousem =
-          (provider.flags & Properties::kFlagDefinition ? defs : decls);
-      auto& tousec =
-          (provider.flags & Properties::kFlagDefinition ? defscount
-                                                        : declscount);
-      auto& element = tousem[provider.location];
-
-      tousec += 1;
-      element.count += 1;
-      element.provider = &provider;
-    }
-
-    myfile << "  declared_count: " << declscount << ":" << decls.size()
-           << ((decls.size() == declscount) ? " ok" : " bad") << std::endl;
-    for (const auto& it : decls) {
-      const auto& data = it.second;
-      PrintProvider(*data.provider);
-    }
-
-    myfile << "  defined_count: " << defscount << ":" << defs.size()
-           << ((defs.size() == defscount) ? " ok" : " bad") << std::endl;
-    for (const auto& it : defs) {
-      const auto& data = it.second;
-      PrintProvider(*data.provider);
-    }
-
-    for (const auto& exception : objdata.exceptions) {
-      myfile << "  exception:" << exception << std::endl;
-    }
-  }
 }
 
 ObjectId MakeObjectId(const SourceManager& sm, const SourceRange& location) {

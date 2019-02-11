@@ -465,9 +465,8 @@ void FileRenderer::OutputJOther() {
   std::ofstream myfile;
   myfile.open("output/globals.json");
   json::OStreamWrapper osw(myfile);
-  json::Writer<json::OStreamWrapper> writer(osw);
+  json::PrettyWriter<json::OStreamWrapper> writer(osw);
   auto jdata = MakeJsonObject(&writer);
-
   OutputJNavbar(&writer, "", "", nullptr, nullptr);
 }
 
@@ -509,15 +508,20 @@ void FileRenderer::OutputOther() {
   }
 }
 
-void FileRenderer::OutputJsonTree() {
+void FileRenderer::OutputJsonTree(const char* path, const char* tag) {
+  std::string basename = tag ? std::string("index.") + tag : "index";
+  const auto& filepath = JoinPath({path, basename + ".files.json"});
+
   std::ofstream myfile;
-  myfile.open("output/tree.json");
-  myfile << "{" << std::endl;
-  myfile << "  \"data\": [" << std::endl;
+  myfile.open(filepath);
+  json::OStreamWrapper osw(myfile);
+  json::PrettyWriter<json::OStreamWrapper> writer(osw);
+
+  auto jdata = MakeJsonObject(&writer);
+  auto files = MakeJsonArray(&writer, "data");
 
   // TODO: root is not output.
   std::deque<const ParsedDirectory*> to_output({&absolute_root_});
-  int i = 0;
   while (!to_output.empty()) {
     auto* node = to_output.front();
     to_output.pop_front();
@@ -526,23 +530,21 @@ void FileRenderer::OutputJsonTree() {
       const ParsedDirectory* parent = node->parent;
       const ParsedDirectory& current = *node;
 
-      if (i++) myfile << "," << std::endl;
+      auto dir = MakeJsonObject(&writer);
+      WriteJsonKeyValue(&writer, "dir", GetUserPath(current.path));
+      WriteJsonKeyValue(&writer, "href", current.HtmlPath());
 
-      myfile << "    {\"dir\": \""
-             << html::EscapeText(GetUserPath(current.path)) << "\", ";
-      if (parent) myfile << "\"parent\": \"" << parent->HtmlPath() << "\", ";
-      myfile << "\"href\": \"" << current.HtmlPath() << "\"}";
+      if (parent) WriteJsonKeyValue(&writer, "parent", parent->HtmlPath());
     }
 
     for (auto& element : node->files) {
       const ParsedDirectory& parent = *node;
       const ParsedFile& file = element.second;
 
-      if (i++) myfile << "," << std::endl;
-      myfile << "    {\"file\": \"" << html::EscapeText(GetUserPath(file.path))
-             << "\", ";
-      myfile << "\"parent\": \"" << parent.HtmlPath() << "\", ";
-      myfile << "\"href\": \"" << file.HtmlPath() << "\"}";
+      auto dfile = MakeJsonObject(&writer);
+      WriteJsonKeyValue(&writer, "file", GetUserPath(file.path));
+      WriteJsonKeyValue(&writer, "parent", parent.HtmlPath());
+      WriteJsonKeyValue(&writer, "href", file.HtmlPath());
     }
 
     for (auto& element : node->directories) {
@@ -550,8 +552,6 @@ void FileRenderer::OutputJsonTree() {
       to_output.emplace_back(&current);
     }
   }
-
-  myfile << "\n]}" << std::endl;
 }
 
 void FileRenderer::RawHighlight(FileID parsing_fid, Preprocessor& pp,
@@ -968,7 +968,6 @@ bool FileRenderer::OutputJDirectory(ParsedDirectory* dir) {
     return false;
   }
 
-  // FIXME: path is probably wrong, needs to be mangled to be jhtml.
   std::ofstream myfile;
   myfile.open(path);
   json::OStreamWrapper osw(myfile);
