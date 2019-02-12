@@ -4,14 +4,19 @@ import (
 	"flag"
 	"github.com/ccontavalli/goutils/misc"
 	"github.com/ccontavalli/sbexr/server/db"
+	"github.com/gorilla/handlers"
+	"gopkg.in/natefinch/lumberjack.v2"
 	"log"
 	"net/http"
 	"net/http/fcgi"
+	"os"
 	"runtime"
 	"time"
+	"io"
+	"path/filepath"
 )
 
-import _ "net/http/pprof"
+//import _ "net/http/pprof"
 
 const kMaxResults = 30
 
@@ -19,10 +24,9 @@ var listen = flag.String("listen", "", "Address to listen on - if unspecified, u
 var indexdir = flag.String("index-dir", "", "Directory with indexes to load.")
 var webroot = flag.String("web-root", "", "Directory with pages to serve.")
 var indexfiles = misc.MultiString("web-index-files", []string{
-	"NEWS", "README", "README.md",
-	"00-INDEX", "CHANGES", "Changes",
-	"ChangeLog", "changelog", "Kconfig",
-}, "Files to display when rendering a directory.")
+	"NEWS", "README", "README.md", "00-INDEX", "CHANGES",
+	"Changes", "ChangeLog", "changelog", "Kconfig"}, "Files to display when rendering a directory.")
+var logdir = flag.String("logdir", "", "Where to keep logs. If not specified, stdout/stderr are used.")
 
 type Index struct {
 	Tree      db.TagSet
@@ -67,6 +71,26 @@ func main() {
 		log.Fatal("Must supply flag --webroot - to match the one used with sbexr")
 	}
 
+	var writer io.Writer
+	writer = os.Stdout
+	if *logdir != "" {
+		log.SetOutput(&lumberjack.Logger{
+			Filename: filepath.Join(*logdir, "errors.log"),
+			MaxSize: 500,
+			MaxBackups: 12,
+			MaxAge: 30,
+			Compress: true,
+		})
+	  	writer = &lumberjack.Logger{
+			Filename: filepath.Join(*logdir, "access.log"),
+			MaxSize: 500,
+			MaxBackups: 12,
+			MaxAge: 30,
+			Compress: true,
+		}
+	}
+
+
 	index := NewIndex(*indexdir, *webroot)
 	go Updater(&index)
 
@@ -76,7 +100,7 @@ func main() {
 
 	var err error
 	if *listen != "" {
-		err = http.ListenAndServe(*listen, nil) // set listen port
+		err = http.ListenAndServe(*listen, handlers.LoggingHandler(writer, handlers.CompressHandler(http.DefaultServeMux))) // set listen port
 	} else {
 		err = fcgi.Serve(nil, nil)
 	}
