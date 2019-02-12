@@ -33,7 +33,7 @@ gen-only:
 	cd .. && $(TIME) ./src/sbexr -x "output|indexes" .
 
 test-gen: sbexr test-multi
-	cd ../test && rm -rf output/ && mkdir -p output && ln -sfT ../../static ./static && cp -a ../compile_commands.json ./ && \
+	cd ../test && rm -rf output/ && mkdir -p output && ln -sfT ../static ./static && cp -a ../compile_commands.json ./ && \
 	    rm -rf indexes && mkdir indexes && $(TIME) ../src/sbexr --verbose --index=indexes -x "output|indexes" ./
 
 test-dump: test-dump-multi

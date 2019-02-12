@@ -14,5 +14,5 @@ output/tree.txt
 output/globals.js
 indexes/
 examples/
-output/static/news.json
+static/news.json
 src/tags
