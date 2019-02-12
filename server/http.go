@@ -47,12 +47,27 @@ func ReadJhtmlFile(fpath string, jheader interface{}) ([]byte, error) {
 
 var kSourceRoot = "/sources/"
 
+func findFile(files []structs.JFile, name string) int {
+	for i, file := range files {
+		if file.Name == name {
+			return i
+		}
+	}
+	return -1
+}
+
 func getIndex(root, upath string, dir structs.JDir) []byte {
 	var index structs.JFile
-	for _, file := range dir.Files {
-		if misc.ArrayStringIndex(*indexfiles, file.Name) >= 0 && (file.Type == "text" || file.Type != "parsed") && file.Href != "" {
-			index = file
-			break
+	for _, file := range *indexfiles {
+		found := findFile(dir.Files, file)
+		if found < 0 {
+			continue
+		}
+
+		entry := dir.Files[found]
+		if (entry.Type == "text" || entry.Type == "parsed") && entry.Href != "" {
+		  index = entry
+		  break
 		}
 	}
 	if index.Name == "" || index.Href == "" {
