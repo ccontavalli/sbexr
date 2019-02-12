@@ -83,7 +83,7 @@ def UpdateNewsFile():
 def Transfer():
   Run('rsync --exclude="indexes" --exclude="examples" --exclude="testindex" '
       '--exclude="tree.txt" --exclude="*.o" --include="news.json" --exclude="*.json" '
-      '--exclude="output/sources/" --progress -avz -e ssh '
+      '--exclude="output/sources/" --progress -avz --delete -e ssh '
       '%s/ root@pertini:/opt/sbexr/sbexr' % BASE, stdout=sys.stdout, stderr=sys.stderr)
   Run('ssh root@pertini -- killall server')
 
