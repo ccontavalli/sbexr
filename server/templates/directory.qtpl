@@ -59,9 +59,8 @@ type DirectoryPage struct {
 
 {% if len(page.Index) > 0 %}
 <div class="col-md-8">
-{%z page.Index %}
-<h2>{{project}} {{tag}} - {{index_file}}</h2>
-<pre class='code'><span id='line-number'>{{#lines}}<span>{{line}}</span>{{/lines}}</span>{{code}}<span class='cl'></span></pre>
+<h2>{%s page.Project %} {%s page.Tag %} - {%s page.Name %}</h2>
+<pre class='code'><span id='line-number'></span>{%z= page.Index %}<span class='cl'></span></pre>
 </div>
 {% endif %}
 

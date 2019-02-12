@@ -59,8 +59,8 @@ func TestHandlers(t *testing.T) {
 	index := NewIndex("../test/indexes", "../test")
 	assert.NotNil(index)
 
-	t.Logf("tagmap %+v", index.Sources.tags)
-	assert.Equal(1, len(index.Sources.tags))
+	t.Logf("tagmap %+v", index.Sources.tagsmap)
+	assert.Equal(1, len(index.Sources.tagsmap))
 
 	resp := httptest.NewRecorder()
 	req, err := http.NewRequest("GET", "/foo/bar.html", nil)
@@ -88,9 +88,9 @@ func TestHandlers(t *testing.T) {
 	assert.Regexp("\"test\"", string(body))
 	assert.Regexp("\"[^\"]*../.*\\.html\"", string(body))
 
-	root := strings.TrimPrefix(index.Sources.tags["output"].Root, "../")
+	root := strings.TrimPrefix(index.Sources.tagsmap["output"].Root, "../")
 	root = strings.TrimSuffix(root, path.Ext(root))
-	for _, url := range []string{"meta/about", "meta/about.html", "meta/help", "meta/help.html", "meta/help.jhtml", root, root + ".html", root + ".jhtml"} {
+	for _, url := range []string{"meta/", "meta/index.html", "meta/index.jhtml", "meta/about", "meta/about.html", "meta/help", "meta/help.html", "meta/help.jhtml", root, root + ".html", root + ".jhtml"} {
 		url = "/output/sources/" + url
 		t.Logf("TESTING URL: %s", url)
 

@@ -9,4 +9,4 @@ type SourcePage struct {
 
 {% func (page *SourcePage) GetPath() %}{%= GetParentsPath(&page.JDir.JNavData) %}{% endfunc %}
 {% func (page *SourcePage) GetTitle() %}{%= GetJnavTitle(&page.JDir.JNavData) %}{% endfunc %}
-{% func (page *SourcePage) GetBody() %}{%z= page.Content %}{% endfunc %}
+{% func (page *SourcePage) GetBody() %}<pre class='code'><span id='line-number'></span>{%z= page.Content%}<span class='cl'></span></pre>{% endfunc %}

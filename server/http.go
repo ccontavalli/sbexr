@@ -18,7 +18,8 @@ import (
 
 type SourceServer struct {
 	root     string
-	tags     map[string]structs.JNavData
+	tagsmap  map[string]structs.JNavData
+	tagslist []string
 	tagslock sync.RWMutex
 }
 
@@ -58,7 +59,9 @@ func getIndex(root, upath string, dir structs.JDir) []byte {
 		return []byte{}
 	}
 
-	indexpath := path.Join(root, upath, index.Href)
+	indexpath := path.Join(root, path.Dir(upath), index.Href)
+	indexpath = strings.TrimSuffix(indexpath, path.Ext(indexpath))
+
 	var jdir structs.JDir
 	content, err := ReadJhtmlFile(indexpath+".jhtml", &jdir)
 	if err != nil {
@@ -70,49 +73,57 @@ func getIndex(root, upath string, dir structs.JDir) []byte {
 func (ss *SourceServer) getTagData(upath string, sources int) structs.JNavData {
 	tag := path.Base(upath[:sources])
 	ss.tagslock.RLock()
-	tdata := ss.tags[tag]
+	tdata := ss.tagsmap[tag]
+	tlist := ss.tagslist
 	ss.tagslock.RUnlock()
+
+	tdata.Tag = tag
+	tdata.Tags = tlist
 	return tdata
 }
 
 func (ss *SourceServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	upath := path.Clean(r.URL.Path)
+	upath := misc.CleanPreserveSlash(r.URL.Path)
 
 	sources := strings.Index(upath, kSourceRoot)
-	log.Printf("sources: %s - %d", upath, sources)
 	if sources < 0 {
 		http.ServeFile(w, r, filepath.Join(ss.root, filepath.Clean(upath)))
 		return
 	}
 
+	tagdata := ss.getTagData(upath, sources)
 	subpath := upath[sources+len(kSourceRoot):]
-	log.Printf("subpath: %s - %d", subpath, sources)
 	if subpath == "meta/globals.js" {
-		templates.WriteGlobalsJs(w, ss.getTagData(upath, sources))
+		templates.WriteGlobalsJs(w, tagdata)
 		return
 	}
 
 	extension := path.Ext(subpath)
 	subpath = strings.TrimSuffix(subpath, extension)
 	if subpath == "meta/about" {
-		aboutpage := &templates.AboutPage{templates.BasePage(ss.getTagData(upath, sources))}
+		aboutpage := &templates.AboutPage{templates.BasePage(tagdata)}
 		templates.WritePageTemplate(w, aboutpage)
 		return
 	}
 	if subpath == "meta/help" {
-		helppage := &templates.HelpPage{templates.BasePage(ss.getTagData(upath, sources))}
+		helppage := &templates.HelpPage{templates.BasePage(tagdata)}
 		templates.WritePageTemplate(w, helppage)
 		return
 	}
+	if subpath == "meta" {
+		http.Redirect(w, r, upath+"/", http.StatusMovedPermanently)
+		return
+	}
+	if subpath == "meta/" {
+		upath = upath + "index"
+	}
 
 	cpath := filepath.Join(ss.root, strings.TrimSuffix(upath, extension))
-	log.Printf("cpath: %s - %s (%s)\n", cpath, extension, upath)
 	// Pseudo code:
 	// 1) try to read jhtml file, and corresponding json.
-	var jdir structs.JDir
+	jdir := structs.JDir{JNavData: tagdata}
 	content, err := ReadJhtmlFile(cpath+".jhtml", &jdir)
 	if err != nil {
-		log.Printf("jhtml failed for %s - %s %#v\n", upath, cpath, err)
 		_, ispatherror := err.(*os.PathError)
 		if !ispatherror {
 			http.Error(w, "CORRUPTED FILE", http.StatusInternalServerError)
@@ -141,11 +152,11 @@ func (ss *SourceServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func (ss *SourceServer) Update() {
 	list, err := ioutil.ReadDir(ss.root)
 	if err != nil {
-		// FIXME: logging!
+		log.Printf("DIR: %s - could not read root \n", ss.root)
 		return
 	}
 
-	newtags := make(map[string]structs.JNavData)
+	newtagsmap := make(map[string]structs.JNavData)
 	for _, dir := range list {
 		if !dir.IsDir() {
 			continue
@@ -153,7 +164,6 @@ func (ss *SourceServer) Update() {
 		globals := filepath.Join(ss.root, dir.Name(), "sources", "meta", "globals.json")
 		data, err := ioutil.ReadFile(globals)
 		if err != nil {
-			log.Printf("DIR: %s - skipped, no readable globals.json - %s (%s)\n", dir.Name(), err, globals)
 			continue
 		}
 
@@ -161,20 +171,21 @@ func (ss *SourceServer) Update() {
 		err = json.Unmarshal(data, &gdata)
 		if err != nil {
 			log.Printf("DIR: %s - does not have a valid globals.json - %s (%s)\n", dir.Name(), err, globals)
-			// FIXME: logging!
 			continue
 		}
-		newtags[dir.Name()] = gdata
+		newtagsmap[dir.Name()] = gdata
 	}
 
+	newtagslist := misc.StringKeysOrPanic(newtagsmap)
+
 	ss.tagslock.Lock()
-	ss.tags = newtags
+	ss.tagsmap = newtagsmap
+	ss.tagslist = newtagslist
 	ss.tagslock.Unlock()
 }
 
 func NewSourceServer(path string) *SourceServer {
 	ss := SourceServer{root: path}
 	ss.Update()
-
 	return &ss
 }

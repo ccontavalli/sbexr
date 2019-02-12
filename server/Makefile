@@ -10,8 +10,8 @@ update-templates:
 test-index:
 	make -C ../src test-gen 2>/dev/null >/dev/null
 
-test-run: test-index all
-	./server --web-root=../test/output/ --index-dir=../test/indexes --listen=:10000
+test-run: test test-index all
+	./server --web-root=../test --index-dir=../test/indexes --listen=:10000
 
 test: test-index all
 	go test

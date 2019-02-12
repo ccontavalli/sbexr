@@ -1,13 +1,14 @@
+{% stripspace %}
 {% func AddFastJs() %}
   <script src="../../sources/meta/globals.js"></script>
   <script src="../../optional.js"></script>
-  <script src="../../static/jquery.min.js"></script>
-  <script src="../../static/bootstrap/js/bootstrap.min.js"></script>
-  <script src="../../static/bootstrap/js/dropdowns-enhancement.js"></script>
-  <script src="../../static/animated-modal/animatedModal.js"></script>
-  <script src="../../static/jquery.autocomplete.js"></script>
-  <script src="../../static/js.cookie.js"></script>
-  <script src="../../static/local.js"></script>
+  <script src="../../../static/jquery.min.js"></script>
+  <script src="../../../static/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../../../static/bootstrap/js/dropdowns-enhancement.js"></script>
+  <script src="../../../static/animated-modal/animatedModal.js"></script>
+  <script src="../../../static/jquery.autocomplete.js"></script>
+  <script src="../../../static/js.cookie.js"></script>
+  <script src="../../../static/local.js"></script>
 {% endfunc %}
 
 {% func AddSlowJs() %}
@@ -21,3 +22,4 @@
     ga('send', 'pageview');
   </script>
 {% endfunc %}
+{% endstripspace %}

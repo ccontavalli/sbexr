@@ -1,5 +1,7 @@
 {% import "github.com/ccontavalli/sbexr/server/structs" %}
+{% collapsespace %}
 {% func GlobalsJs(data structs.JNavData) %}
 var globalTag = "{%s data.Tag %}";
 var globalProject = "{%s data.Project %}";
-var globalRoot = "{%s data.Root %}";{% endfunc %}
+var globalRoot = "{%s data.Root %}";
+var globalServerTags = [{% for _, tag := range data.Tags %}"{%j tag %}",{% endfor %}];{% endfunc %}{% endcollapsespace %}
