@@ -1038,6 +1038,8 @@ std::unique_ptr<CompilerInstance> CreateCompilerInstance(
   }
 
   lo.CommentOpts.ParseAllComments = true;
+  lo.SpellChecking = false;
+
   // Initialize target info with the default triple for our platform.
   auto target_options = std::make_shared<::clang::TargetOptions>();
   target_options->Triple = llvm::sys::getDefaultTargetTriple();
