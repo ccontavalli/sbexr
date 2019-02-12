@@ -1,0 +1,122 @@
+{"name":"struct_FILE.h","path":"/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h","root":"../06/416cc91f3e3d90.html","project":"test","tag":"output","parents":[{"name":"usr","href":"../60/7abc7e1c17ae25.html"},{"name":"include","href":"../19/901c5d9478e5ce.html"},{"name":"x86_64-linux-gnu","href":"../f0/212845f8a256c3.html"},{"name":"bits","href":"../23/32e20e89ff3dae.html"},{"name":"types","href":"../50/6c0d28222dde39.html"}]}
+---
+<span class='comment'>/* Copyright (C) 1991-2018 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   &lt;http://www.gnu.org/licenses/&gt;.  */</span>
+
+<span class='directive'>#ifndef __struct_FILE_defined</span>
+<span class='directive'>#define __struct_FILE_defined 1</span>
+
+<span class='comment'>/* Caution: The contents of this file are not part of the official
+   stdio.h API.  However, much of it is part of the official *binary*
+   interface, and therefore cannot be changed.  */</span>
+
+<span class='directive'>#if defined _IO_USE_OLD_IO_FILE &amp;&amp; !defined _LIBC</span><span class='preprocessor-if muted'>
+<span class='directive'># error "_IO_USE_OLD_IO_FILE should only be defined when building libc itself"</span></span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#if defined _IO_lock_t_defined &amp;&amp; !defined _LIBC</span><span class='preprocessor-if muted'>
+<span class='directive'># error "_IO_lock_t_defined should only be defined when building libc itself"</span></span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#include <a class='include' href='../41/e28fc1cdef774c.html'>&lt;bits/types.h&gt;</a></span>
+
+<span class='keyword struct'>struct</span> _IO_FILE;
+<span class='decl decl-CXXRecord' id='0002400100024008'><span class='keyword struct'>struct</span> _IO_marker</span>;
+<span class='decl decl-CXXRecord' id='0002500100025008'><span class='keyword struct'>struct</span> _IO_codecvt</span>;
+<span class='decl decl-CXXRecord' id='0002600100026008'><span class='keyword struct'>struct</span> _IO_wide_data</span>;
+
+<span class='comment'>/* During the build of glibc itself, _IO_lock_t will already have been
+   defined by internal headers.  */</span>
+<span class='directive'>#ifndef _IO_lock_t_defined</span>
+<span class='def def-Typedef' id='0002b0010002b00e'><span class='keyword typedef'>typedef</span> <span class='keyword void'>void</span> _IO_lock_t</span>;
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* The tag name of this struct is _IO_FILE to preserve historic
+   C++ mangled names for functions taking FILE* arguments.
+   That name should not be used in new code.  */</span>
+<span class='def def-CXXRecord' id='0003100100063001'><span class='keyword struct'>struct</span> _IO_FILE
+{
+  <span class='def def-Field' id='0003300300033007'><span class='keyword int'>int</span> _flags</span>;		<span class='comment'>/* High-order word is _IO_MAGIC; rest is flags. */</span>
+
+  <span class='comment'>/* The following pointers correspond to the C++ streambuf protocol. */</span>
+  <span class='def def-Field' id='0003600300036009'><span class='keyword char'>char</span> *_IO_read_ptr</span>;	<span class='comment'>/* Current read pointer */</span>
+  <span class='def def-Field' id='0003700300037009'><span class='keyword char'>char</span> *_IO_read_end</span>;	<span class='comment'>/* End of get area. */</span>
+  <span class='def def-Field' id='0003800300038009'><span class='keyword char'>char</span> *_IO_read_base</span>;	<span class='comment'>/* Start of putback+get area. */</span>
+  <span class='def def-Field' id='0003900300039009'><span class='keyword char'>char</span> *_IO_write_base</span>;	<span class='comment'>/* Start of put area. */</span>
+  <span class='def def-Field' id='0003a0030003a009'><span class='keyword char'>char</span> *_IO_write_ptr</span>;	<span class='comment'>/* Current put pointer. */</span>
+  <span class='def def-Field' id='0003b0030003b009'><span class='keyword char'>char</span> *_IO_write_end</span>;	<span class='comment'>/* End of put area. */</span>
+  <span class='def def-Field' id='0003c0030003c009'><span class='keyword char'>char</span> *_IO_buf_base</span>;	<span class='comment'>/* Start of reserve area. */</span>
+  <span class='def def-Field' id='0003d0030003d009'><span class='keyword char'>char</span> *_IO_buf_end</span>;	<span class='comment'>/* End of reserve area. */</span>
+
+  <span class='comment'>/* The following fields are used to support backing up and undo. */</span>
+  <span class='def def-Field' id='0004000300040009'><span class='keyword char'>char</span> *_IO_save_base</span>; <span class='comment'>/* Pointer to start of non-current get area. */</span>
+  <span class='def def-Field' id='0004100300041009'><span class='keyword char'>char</span> *_IO_backup_base</span>;  <span class='comment'>/* Pointer to first valid character of backup area */</span>
+  <span class='def def-Field' id='0004200300042009'><span class='keyword char'>char</span> *_IO_save_end</span>; <span class='comment'>/* Pointer to end of non-current get area. */</span>
+
+  <span class='def def-Field' id='0004400300044016'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0002400100024008'><span class='keyword struct'>struct</span> _IO_marker *</a>_markers</span>;
+
+  <span class='def def-Field' id='0004600300046014'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'><span class='keyword struct'>struct</span> _IO_FILE *</a>_chain</span>;
+
+  <span class='def def-Field' id='0004800300048007'><span class='keyword int'>int</span> _fileno</span>;
+  <span class='def def-Field' id='0004900300049007'><span class='keyword int'>int</span> _flags2</span>;
+  <span class='def def-Field' id='0004a0030004a00b'>__off_t _old_offset</span>; <span class='comment'>/* This used to be _offset but it's too small.  */</span>
+
+  <span class='comment'>/* 1+column number of pbase(); 0 is unknown. */</span>
+  <span class='def def-Field' id='0004d0030004d012'><span class='keyword unsigned'>unsigned</span> <span class='keyword short'>short</span> _cur_column</span>;
+  <span class='def def-Field' id='0004e0030004e00f'><span class='keyword signed'>signed</span> <span class='keyword char'>char</span> _vtable_offset</span>;
+  <span class='def def-Field' id='0004f0030004f013'><span class='keyword char'>char</span> _shortbuf[<span class='numeric'>1</span>]</span>;
+
+  <span class='def def-Field' id='000510030005100f'>_IO_lock_t *_lock</span>;
+<span class='directive'>#ifdef _IO_USE_OLD_IO_FILE</span><span class='preprocessor-if muted'>
+};
+
+<span class='keyword struct'>struct</span> _IO_FILE_complete
+{
+  <span class='keyword struct'>struct</span> _IO_FILE _file;</span>
+<span class='directive'>#endif</span>
+  <span class='def def-Field' id='000590030005900d'>__off64_t _offset</span>;
+  <span class='comment'>/* Wide character stream stuff.  */</span>
+  <span class='def def-Field' id='0005b0030005b017'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0002500100025008'><span class='keyword struct'>struct</span> _IO_codecvt *</a>_codecvt</span>;
+  <span class='def def-Field' id='0005c0030005c019'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0002600100026008'><span class='keyword struct'>struct</span> _IO_wide_data *</a>_wide_data</span>;
+  <span class='def def-Field' id='0005d0030005d014'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'><span class='keyword struct'>struct</span> _IO_FILE *</a>_freeres_list</span>;
+  <span class='def def-Field' id='0005e0030005e009'><span class='keyword void'>void</span> *_freeres_buf</span>;
+  <span class='def def-Field' id='0005f0030005f00a'>size_t __pad5</span>;
+  <span class='def def-Field' id='0006000300060007'><span class='keyword int'>int</span> _mode</span>;
+  <span class='comment'>/* Make sure we don't get into trouble again.  */</span>
+  <span class='def def-Field' id='000620030006204a'><span class='keyword char'>char</span> _unused2[<span class='numeric'>15</span> * <span class='keyword sizeof'>sizeof</span> (<span class='keyword int'>int</span>) - <span class='numeric'>4</span> * <span class='keyword sizeof'>sizeof</span> (<span class='keyword void'>void</span> *) - <span class='keyword sizeof'>sizeof</span> (size_t)]</span>;
+}</span>;
+
+<span class='comment'>/* These macros are used by bits/stdio.h and internal headers.  */</span>
+<span class='directive'>#define __getc_unlocked_body(_fp)					\
+  (__glibc_unlikely ((_fp)-&gt;_IO_read_ptr &gt;= (_fp)-&gt;_IO_read_end)	\
+   ? __uflow (_fp) : *(unsigned char *) (_fp)-&gt;_IO_read_ptr++)</span>
+
+<span class='directive'>#define __putc_unlocked_body(_ch, _fp)					\
+  (__glibc_unlikely ((_fp)-&gt;_IO_write_ptr &gt;= (_fp)-&gt;_IO_write_end)	\
+   ? __overflow (_fp, (unsigned char) (_ch))				\
+   : (unsigned char) (*(_fp)-&gt;_IO_write_ptr++ = (_ch)))</span>
+
+<span class='directive'>#define _IO_EOF_SEEN 0x0010</span>
+<span class='directive'>#define __feof_unlocked_body(_fp) (((_fp)-&gt;_flags &amp; _IO_EOF_SEEN) != 0)</span>
+
+<span class='directive'>#define _IO_ERR_SEEN 0x0020</span>
+<span class='directive'>#define __ferror_unlocked_body(_fp) (((_fp)-&gt;_flags &amp; _IO_ERR_SEEN) != 0)</span>
+
+<span class='directive'>#define _IO_USER_LOCK 0x8000</span>
+<span class='comment'>/* Many more flag bits are defined internally.  */</span>
+
+<span class='directive'>#endif</span>

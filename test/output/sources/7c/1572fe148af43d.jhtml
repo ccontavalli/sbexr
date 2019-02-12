@@ -1,0 +1,88 @@
+{"name":"test-multiple-file-0.cc","path":"test-multiple-file-0.cc","root":"../be/e2916b98dcf1fc.html","project":"test","tag":"output","parents":[]}
+---
+<span class='comment'>// Copyright (c) 2013 Carlo Contavalli (ccontavalli@gmail.com).</span>
+<span class='comment'>// All rights reserved.</span>
+<span class='comment'>// </span>
+<span class='comment'>// Redistribution and use in source and binary forms, with or without</span>
+<span class='comment'>// modification, are permitted provided that the following conditions are met:</span>
+<span class='comment'>// </span>
+<span class='comment'>//    1. Redistributions of source code must retain the above copyright notice,</span>
+<span class='comment'>//    this list of conditions and the following disclaimer.</span>
+<span class='comment'>// </span>
+<span class='comment'>//    2. Redistributions in binary form must reproduce the above copyright</span>
+<span class='comment'>//    notice, this list of conditions and the following disclaimer in the</span>
+<span class='comment'>//    documentation and/or other materials provided with the distribution.</span>
+<span class='comment'>// </span>
+<span class='comment'>// THIS SOFTWARE IS PROVIDED BY Carlo Contavalli ''AS IS'' AND ANY EXPRESS OR</span>
+<span class='comment'>// IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF</span>
+<span class='comment'>// MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO</span>
+<span class='comment'>// EVENT SHALL Carlo Contavalli OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,</span>
+<span class='comment'>// INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span>
+<span class='comment'>// (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<span class='comment'>// LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span>
+<span class='comment'>// ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span>
+<span class='comment'>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF</span>
+<span class='comment'>// THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<span class='comment'>// </span>
+<span class='comment'>// The views and conclusions contained in the software and documentation are</span>
+<span class='comment'>// those of the authors and should not be interpreted as representing official</span>
+<span class='comment'>// policies, either expressed or implied, of Carlo Contavalli.</span>
+
+<span class='directive'>#include <a class='include' href='../e0/389d8d16166a86.html'>"test-multiple-file-0.h"</a></span>
+<span class='directive'>#include <a class='include' href='../bc/764de7984141e0.html'>"include-all.h"</a></span>
+
+<span class='def def-Var' id='0002000100020005'><span class='keyword int'>int</span> global_counter</span>;
+
+<span class='def def-CXXRecord' id='0002200100025001'><span class='keyword struct'>struct</span> Double {
+  <span class='def def-Field' id='0002300300023007'><span class='keyword int'>int</span> mydouble</span>;
+
+}</span>;
+<span class='def def-CXXRecord' id='0002600100028001'><span class='keyword struct'>struct</span> Single {
+  <span class='def def-Field' id='0002700300027009'><span class='keyword float'>float</span> mysingle</span>;
+}</span>;
+
+<span class='comment'>// The anaonymous union will cause any expression</span>
+<span class='comment'>// accessing one of the elements to have 2 MemberExpr:</span>
+<span class='comment'>// 1 to access the field</span>
+<span class='comment'>// 1 to access the anonymous union itself</span>
+<span class='def def-CXXRecord' id='0002e00100033001'><span class='keyword struct'>struct</span> Nfs {
+  <span class='def def-CXXRecord' id='0002f00300032003'><span class='keyword union'>union</span> {
+    <span class='def def-Field' id='0003000500030013'><a class='declaration-uses' href='../7c/1572fe148af43d.html#0002600100028001'><span class='keyword struct'>struct</span> Single</a> fusingle</span>;
+    <span class='def def-Field' id='0003100500031013'><a class='declaration-uses' href='../7c/1572fe148af43d.html#0002200100025001'><span class='keyword struct'>struct</span> Double</a> fudouble</span>;
+  }</span>;
+}</span>;
+
+<span class='def def-Function' id='0003500100037001'><span class='keyword bool'>bool</span> MySingle(<span class='def def-ParmVar' id='0003500f0003501e'><a class='declaration-uses' href='../7c/1572fe148af43d.html#0002600100028001'><span class='keyword struct'>struct</span> Single*</a> single</span>) {
+  <span class='keyword return'>return</span> (<span class='keyword long'>long</span> <span class='keyword long'>long</span> <span class='keyword int'>int</span>)(<a class='variable-uses' href='../7c/1572fe148af43d.html#0003500f0003501e'>single</a>) % <span class='numeric'>2</span>;
+}</span>
+
+<span class='def def-Function' id='000390010003d001'><span class='keyword int'>int</span> Mytest(<span class='def def-ParmVar' id='0003900c00039018'><a class='declaration-uses' href='../7c/1572fe148af43d.html#0002e00100033001'><span class='keyword struct'>struct</span> Nfs*</a> nfs</span>) {
+  <span class='keyword if'>if</span> (<a class='variable-uses' href='../7c/1572fe148af43d.html#0003500100037001'>MySingle</a>(&amp;<a class='variable-uses' href='../7c/1572fe148af43d.html#0003900c00039018'>nfs</a>-&gt;<a class='expression-uses' href='../7c/1572fe148af43d.html#0003000500030013'>fusingle</a>))
+    <span class='keyword return'>return</span> <span class='numeric'>0</span>;
+  <span class='keyword return'>return</span> <span class='numeric'>10</span>;
+}</span>
+
+
+<span class='decl decl-Function' id='000400010004101e'><span class='keyword int'>int</span> CheckArgs(
+  <span class='keyword int'>int</span> test, <span class='keyword const'>const</span> <span class='keyword char'>char</span>* value)</span>;
+<span class='decl decl-Function' id='0004200100042029'><span class='keyword int'>int</span> FuncWithNamedArgs(<span class='keyword int'>int</span> foo, <span class='keyword char'>char</span>* bar)</span>;
+<span class='decl decl-Function' id='000430010004401d'><span class='keyword int'>int</span> FuncNoNamedArgs(
+  <span class='keyword int'>int</span>, <span class='keyword char'>char</span>*, <span class='keyword bool'>bool</span> CheckArgs)</span>;
+
+<span class='decl decl-Function' id='0004600100047018'><span class='keyword int'>int</span> CheckMyArgs(
+  <span class='keyword const'>const</span> <a class='declaration-uses' href='../7c/1572fe148af43d.html#0002e00100033001'><span class='keyword struct'>struct</span> Nfs&amp;</a> nfs)</span>;
+
+<span class='def def-Function' id='000490010004c001'><span class='keyword int'>int</span> FuncWithNamedArgs(<span class='def def-ParmVar' id='000490170004901b'><span class='keyword int'>int</span> foo</span>, <span class='def def-ParmVar' id='000490200004902c'><span class='keyword const'>const</span> <span class='keyword char'>char</span>* bar</span>) {
+  <a class='variable-uses' href='../bc/764de7984141e0.html#0002200100024001'><a class='variable-uses' href='../7c/1572fe148af43d.html#000490170004901b'>MACRO</a></a>(foo);
+  <span class='keyword return'>return</span> <a class='variable-uses' href='../7c/1572fe148af43d.html#000490170004901b'>foo</a> * *<a class='variable-uses' href='../7c/1572fe148af43d.html#000490200004902c'>bar</a> + <span class='numeric'>2</span>;
+}</span>
+
+<span class='def def-Function' id='0004e00100056001'><span class='keyword int'>int</span> main(<span class='def def-ParmVar' id='0004e00a0004e00e'><span class='keyword int'>int</span> argc</span>, <span class='def def-ParmVar' id='0004e0140004e021'><span class='keyword const'>const</span> <span class='keyword char'>char</span>** argv</span>) {
+  <span class='def def-Var' id='0004f0030004f008'><a class='declaration-uses' href='../e0/389d8d16166a86.html#0002000100027001'>Test</a> test</span>;
+  <a class='variable-uses' href='../bc/764de7984141e0.html#0002200100024001'>IncludedByAll</a>(<span class='numeric'>8</span>);
+
+  <a class='variable-uses' href='../e0/389d8d16166a86.html#0002900100029020'>TestMore</a>(&amp;<a class='variable-uses' href='../7c/1572fe148af43d.html#0004f0030004f008'>test</a>);
+  <a class='variable-uses' href='../6f/078dbcc264af74.html#0014c0010014c038'>MACROP</a>(<span class='string'>"this is a test\n"</span>);
+  <a class='variable-uses' href='../bc/764de7984141e0.html#0002200100024001'>MACRO</a>(<span class='numeric'>12</span>);
+  <span class='keyword return'>return</span> <a class='variable-uses' href='../7c/1572fe148af43d.html#0004f0030004f008'>test</a>.<a class='expression-uses' href='../e0/389d8d16166a86.html#000220030002201e'>Do00</a>() + <a class='variable-uses' href='../7c/1572fe148af43d.html#0004f0030004f008'>test</a>.<a class='expression-uses' href='../e0/389d8d16166a86.html#0002300300023023'>Do02</a>() + <a class='variable-uses' href='../7c/1572fe148af43d.html#000490010004c001'>FuncWithNamedArgs</a>(<span class='numeric'>3</span>, <span class='string'>"sbexr"</span>);
+}</span>

@@ -1,0 +1,34 @@
+{"name":"sys_errlist.h","path":"/usr/include/x86_64-linux-gnu/bits/sys_errlist.h","root":"../06/416cc91f3e3d90.html","project":"test","tag":"output","parents":[{"name":"usr","href":"../60/7abc7e1c17ae25.html"},{"name":"include","href":"../19/901c5d9478e5ce.html"},{"name":"x86_64-linux-gnu","href":"../f0/212845f8a256c3.html"},{"name":"bits","href":"../23/32e20e89ff3dae.html"}]}
+---
+<span class='comment'>/* Declare sys_errlist and sys_nerr, or don't.  Compatibility (do) version.
+   Copyright (C) 2002-2018 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   &lt;http://www.gnu.org/licenses/&gt;.  */</span>
+
+<span class='directive'>#ifndef _STDIO_H</span><span class='preprocessor-if muted'>
+<span class='directive'># error "Never include &lt;bits/sys_errlist.h&gt; directly; use &lt;stdio.h&gt; instead."</span></span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* sys_errlist and sys_nerr are deprecated.  Use strerror instead.  */</span>
+
+<span class='directive'>#ifdef  __USE_MISC</span>
+<span class='decl decl-Var' id='0001a0010001a00c'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> sys_nerr</span>;
+<span class='decl decl-Var' id='0001b0010001b026'><span class='keyword extern'>extern</span> <span class='keyword const'>const</span> <span class='keyword char'>char</span> *<span class='keyword const'>const</span> sys_errlist[]</span>;
+<span class='directive'>#endif</span>
+<span class='directive'>#ifdef  __USE_GNU</span>
+<span class='decl decl-Var' id='0001e0010001e00c'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> _sys_nerr</span>;
+<span class='decl decl-Var' id='0001f0010001f027'><span class='keyword extern'>extern</span> <span class='keyword const'>const</span> <span class='keyword char'>char</span> *<span class='keyword const'>const</span> _sys_errlist[]</span>;
+<span class='directive'>#endif</span>

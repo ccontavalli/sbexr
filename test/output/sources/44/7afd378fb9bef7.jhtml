@@ -1,0 +1,53 @@
+{"name":"stdarg.h","path":"/usr/include/clang/8.0.0/include/stdarg.h","root":"../06/416cc91f3e3d90.html","project":"test","tag":"output","parents":[{"name":"usr","href":"../60/7abc7e1c17ae25.html"},{"name":"include","href":"../19/901c5d9478e5ce.html"},{"name":"clang","href":"../0a/9de303fcf49f53.html"},{"name":"8.0.0","href":"../be/b21853bfd529ee.html"},{"name":"include","href":"../81/d9c49f99af3d0a.html"}]}
+---
+<span class='comment'>/*===---- stdarg.h - Variable argument handling ----------------------------===
+ *
+ * Copyright (c) 2008 Eli Friedman
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ *===-----------------------------------------------------------------------===
+ */</span>
+
+<span class='directive'>#ifndef __STDARG_H</span>
+<span class='directive'>#define __STDARG_H</span>
+
+<span class='directive'>#ifndef _VA_LIST</span>
+<span class='def def-Typedef' id='0001e0010001e01b'><span class='keyword typedef'>typedef</span> __builtin_va_list va_list</span>;
+<span class='directive'>#define _VA_LIST</span>
+<span class='directive'>#endif</span>
+<span class='directive'>#define va_start(ap, param) __builtin_va_start(ap, param)</span>
+<span class='directive'>#define va_end(ap)          __builtin_va_end(ap)</span>
+<span class='directive'>#define va_arg(ap, type)    __builtin_va_arg(ap, type)</span>
+
+<span class='comment'>/* GCC always defines __va_copy, but does not define va_copy unless in c99 mode
+ * or -ansi is not specified, since it was not part of C90.
+ */</span>
+<span class='directive'>#define __va_copy(d,s) __builtin_va_copy(d,s)</span>
+
+<span class='directive'>#if __STDC_VERSION__ &gt;= 199901L || __cplusplus &gt;= 201103L || !defined(__STRICT_ANSI__)</span>
+<span class='directive'>#define va_copy(dest, src)  __builtin_va_copy(dest, src)</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifndef __GNUC_VA_LIST</span>
+<span class='directive'>#define __GNUC_VA_LIST 1</span>
+<span class='def def-Typedef' id='000300010003001b'><span class='keyword typedef'>typedef</span> __builtin_va_list __gnuc_va_list</span>;
+<span class='directive'>#endif</span>
+
+<span class='directive'>#endif /* __STDARG_H */</span>

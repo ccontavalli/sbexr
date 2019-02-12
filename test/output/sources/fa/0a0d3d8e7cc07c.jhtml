@@ -1,0 +1,18 @@
+{"name":"__fpos64_t.h","path":"/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h","root":"../06/416cc91f3e3d90.html","project":"test","tag":"output","parents":[{"name":"usr","href":"../60/7abc7e1c17ae25.html"},{"name":"include","href":"../19/901c5d9478e5ce.html"},{"name":"x86_64-linux-gnu","href":"../f0/212845f8a256c3.html"},{"name":"bits","href":"../23/32e20e89ff3dae.html"},{"name":"types","href":"../50/6c0d28222dde39.html"}]}
+---
+<span class='directive'>#ifndef _____fpos64_t_defined</span>
+<span class='directive'>#define _____fpos64_t_defined 1</span>
+
+<span class='directive'>#include <a class='include' href='../41/e28fc1cdef774c.html'>&lt;bits/types.h&gt;</a></span>
+<span class='directive'>#include <a class='include' href='../57/27d4eb0ac27416.html'>&lt;bits/types/__mbstate_t.h&gt;</a></span>
+
+<span class='comment'>/* The tag name of this struct is _G_fpos64_t to preserve historic
+   C++ mangled names for functions taking fpos_t and/or fpos64_t
+   arguments.  That name should not be used in new code.  */</span>
+<span class='def def-Typedef' id='0000a0010000e003'><span class='keyword typedef'>typedef</span> <span class='def def-CXXRecord' id='0000a0090000e001'><span class='keyword struct'>struct</span> _G_fpos64_t
+{
+  <span class='def def-Field' id='0000c0030000c00d'>__off64_t __pos</span>;
+  <span class='def def-Field' id='0000d0030000d00f'><a class='declaration-uses' href='../57/27d4eb0ac27416.html#0000d00900015001'>__mbstate_t</a> __state</span>;
+}</span> __fpos64_t</span>;
+
+<span class='directive'>#endif</span>

@@ -1,0 +1,218 @@
+{"name":"types.h","path":"/usr/include/x86_64-linux-gnu/bits/types.h","root":"../06/416cc91f3e3d90.html","project":"test","tag":"output","parents":[{"name":"usr","href":"../60/7abc7e1c17ae25.html"},{"name":"include","href":"../19/901c5d9478e5ce.html"},{"name":"x86_64-linux-gnu","href":"../f0/212845f8a256c3.html"},{"name":"bits","href":"../23/32e20e89ff3dae.html"}]}
+---
+<span class='comment'>/* bits/types.h -- definitions of __*_t types underlying *_t types.
+   Copyright (C) 2002-2018 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   &lt;http://www.gnu.org/licenses/&gt;.  */</span>
+
+<span class='comment'>/*
+ * Never include this file directly; use &lt;sys/types.h&gt; instead.
+ */</span>
+
+<span class='directive'>#ifndef	_BITS_TYPES_H</span>
+<span class='directive'>#define	_BITS_TYPES_H	1</span>
+
+<span class='directive'>#include <a class='include' href='../08/80fafb6e566ce0.html'>&lt;features.h&gt;</a></span>
+<span class='directive'>#include <a class='include' href='../fd/cacc45a9906e85.html'>&lt;bits/wordsize.h&gt;</a></span>
+
+<span class='comment'>/* Convenience types.  */</span>
+<span class='def def-Typedef' id='0001e0010001e017'><span class='keyword typedef'>typedef</span> <span class='keyword unsigned'>unsigned</span> <span class='keyword char'>char</span> __u_char</span>;
+<span class='def def-Typedef' id='0001f0010001f01c'><span class='keyword typedef'>typedef</span> <span class='keyword unsigned'>unsigned</span> <span class='keyword short'>short</span> <span class='keyword int'>int</span> __u_short</span>;
+<span class='def def-Typedef' id='0002000100020016'><span class='keyword typedef'>typedef</span> <span class='keyword unsigned'>unsigned</span> <span class='keyword int'>int</span> __u_int</span>;
+<span class='def def-Typedef' id='000210010002101b'><span class='keyword typedef'>typedef</span> <span class='keyword unsigned'>unsigned</span> <span class='keyword long'>long</span> <span class='keyword int'>int</span> __u_long</span>;
+
+<span class='comment'>/* Fixed-size types, underlying types depend on word size and compiler.  */</span>
+<span class='def def-Typedef' id='0002400100024015'><span class='keyword typedef'>typedef</span> <span class='keyword signed'>signed</span> <span class='keyword char'>char</span> __int8_t</span>;
+<span class='def def-Typedef' id='0002500100025017'><span class='keyword typedef'>typedef</span> <span class='keyword unsigned'>unsigned</span> <span class='keyword char'>char</span> __uint8_t</span>;
+<span class='def def-Typedef' id='000260010002601a'><span class='keyword typedef'>typedef</span> <span class='keyword signed'>signed</span> <span class='keyword short'>short</span> <span class='keyword int'>int</span> __int16_t</span>;
+<span class='def def-Typedef' id='000270010002701c'><span class='keyword typedef'>typedef</span> <span class='keyword unsigned'>unsigned</span> <span class='keyword short'>short</span> <span class='keyword int'>int</span> __uint16_t</span>;
+<span class='def def-Typedef' id='0002800100028014'><span class='keyword typedef'>typedef</span> <span class='keyword signed'>signed</span> <span class='keyword int'>int</span> __int32_t</span>;
+<span class='def def-Typedef' id='0002900100029016'><span class='keyword typedef'>typedef</span> <span class='keyword unsigned'>unsigned</span> <span class='keyword int'>int</span> __uint32_t</span>;
+<span class='directive'>#if __WORDSIZE == 64</span>
+<span class='def def-Typedef' id='0002b0010002b019'><span class='keyword typedef'>typedef</span> <span class='keyword signed'>signed</span> <span class='keyword long'>long</span> <span class='keyword int'>int</span> __int64_t</span>;
+<span class='def def-Typedef' id='0002c0010002c01b'><span class='keyword typedef'>typedef</span> <span class='keyword unsigned'>unsigned</span> <span class='keyword long'>long</span> <span class='keyword int'>int</span> __uint64_t</span>;
+<span class='directive'>#else</span><span class='preprocessor-if muted'>
+<span class='keyword __extension__'>__extension__</span> <span class='keyword typedef'>typedef</span> <span class='keyword signed'>signed</span> <span class='keyword long'>long</span> <span class='keyword long'>long</span> <span class='keyword int'>int</span> __int64_t;
+<span class='keyword __extension__'>__extension__</span> <span class='keyword typedef'>typedef</span> <span class='keyword unsigned'>unsigned</span> <span class='keyword long'>long</span> <span class='keyword long'>long</span> <span class='keyword int'>int</span> __uint64_t;</span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* Smallest types with at least a given width.  */</span>
+<span class='def def-Typedef' id='0003300100033012'><span class='keyword typedef'>typedef</span> __int8_t __int_least8_t</span>;
+<span class='def def-Typedef' id='0003400100034013'><span class='keyword typedef'>typedef</span> __uint8_t __uint_least8_t</span>;
+<span class='def def-Typedef' id='0003500100035013'><span class='keyword typedef'>typedef</span> __int16_t __int_least16_t</span>;
+<span class='def def-Typedef' id='0003600100036014'><span class='keyword typedef'>typedef</span> __uint16_t __uint_least16_t</span>;
+<span class='def def-Typedef' id='0003700100037013'><span class='keyword typedef'>typedef</span> __int32_t __int_least32_t</span>;
+<span class='def def-Typedef' id='0003800100038014'><span class='keyword typedef'>typedef</span> __uint32_t __uint_least32_t</span>;
+<span class='def def-Typedef' id='0003900100039013'><span class='keyword typedef'>typedef</span> __int64_t __int_least64_t</span>;
+<span class='def def-Typedef' id='0003a0010003a014'><span class='keyword typedef'>typedef</span> __uint64_t __uint_least64_t</span>;
+
+<span class='comment'>/* quad_t is also 64 bits.  */</span>
+<span class='directive'>#if __WORDSIZE == 64</span>
+<span class='def def-Typedef' id='0003e0010003e012'><span class='keyword typedef'>typedef</span> <span class='keyword long'>long</span> <span class='keyword int'>int</span> __quad_t</span>;
+<span class='def def-Typedef' id='0003f0010003f01b'><span class='keyword typedef'>typedef</span> <span class='keyword unsigned'>unsigned</span> <span class='keyword long'>long</span> <span class='keyword int'>int</span> __u_quad_t</span>;
+<span class='directive'>#else</span><span class='preprocessor-if muted'>
+<span class='keyword __extension__'>__extension__</span> <span class='keyword typedef'>typedef</span> <span class='keyword long'>long</span> <span class='keyword long'>long</span> <span class='keyword int'>int</span> __quad_t;
+<span class='keyword __extension__'>__extension__</span> <span class='keyword typedef'>typedef</span> <span class='keyword unsigned'>unsigned</span> <span class='keyword long'>long</span> <span class='keyword long'>long</span> <span class='keyword int'>int</span> __u_quad_t;</span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* Largest integral types.  */</span>
+<span class='directive'>#if __WORDSIZE == 64</span>
+<span class='def def-Typedef' id='0004700100047012'><span class='keyword typedef'>typedef</span> <span class='keyword long'>long</span> <span class='keyword int'>int</span> __intmax_t</span>;
+<span class='def def-Typedef' id='000480010004801b'><span class='keyword typedef'>typedef</span> <span class='keyword unsigned'>unsigned</span> <span class='keyword long'>long</span> <span class='keyword int'>int</span> __uintmax_t</span>;
+<span class='directive'>#else</span><span class='preprocessor-if muted'>
+<span class='keyword __extension__'>__extension__</span> <span class='keyword typedef'>typedef</span> <span class='keyword long'>long</span> <span class='keyword long'>long</span> <span class='keyword int'>int</span> __intmax_t;
+<span class='keyword __extension__'>__extension__</span> <span class='keyword typedef'>typedef</span> <span class='keyword unsigned'>unsigned</span> <span class='keyword long'>long</span> <span class='keyword long'>long</span> <span class='keyword int'>int</span> __uintmax_t;</span>
+<span class='directive'>#endif</span>
+
+
+<span class='comment'>/* The machine-dependent file &lt;bits/typesizes.h&gt; defines __*_T_TYPE
+   macros for each of the OS types we define below.  The definitions
+   of those macros must use the following macros for underlying types.
+   We define __S&lt;SIZE&gt;_TYPE and __U&lt;SIZE&gt;_TYPE for the signed and unsigned
+   variants of each of the following integer types on this machine.
+
+	16		-- "natural" 16-bit type (always short)
+	32		-- "natural" 32-bit type (always int)
+	64		-- "natural" 64-bit type (long or long long)
+	LONG32		-- 32-bit type, traditionally long
+	QUAD		-- 64-bit type, always long long
+	WORD		-- natural type of __WORDSIZE bits (int or long)
+	LONGWORD	-- type of __WORDSIZE bits, traditionally long
+
+   We distinguish WORD/LONGWORD, 32/LONG32, and 64/QUAD so that the
+   conventional uses of `long' or `long long' type modifiers match the
+   types we define, even when a less-adorned type would be the same size.
+   This matters for (somewhat) portably writing printf/scanf formats for
+   these types, where using the appropriate l or ll format modifiers can
+   make the typedefs and the formats match up across all GNU platforms.  If
+   we used `long' when it's 64 bits where `long long' is expected, then the
+   compiler would warn about the formats not matching the argument types,
+   and the programmer changing them to shut up the compiler would break the
+   program's portability.
+
+   Here we assume what is presently the case in all the GCC configurations
+   we support: long long is always 64 bits, long is always word/address size,
+   and int is always 32 bits.  */</span>
+
+<span class='directive'>#define	__S16_TYPE		short int</span>
+<span class='directive'>#define __U16_TYPE		unsigned short int</span>
+<span class='directive'>#define	__S32_TYPE		int</span>
+<span class='directive'>#define __U32_TYPE		unsigned int</span>
+<span class='directive'>#define __SLONGWORD_TYPE	long int</span>
+<span class='directive'>#define __ULONGWORD_TYPE	unsigned long int</span>
+<span class='directive'>#if __WORDSIZE == 32</span><span class='preprocessor-if muted'>
+<span class='directive'># define __SQUAD_TYPE		__quad_t</span>
+<span class='directive'># define __UQUAD_TYPE		__u_quad_t</span>
+<span class='directive'># define __SWORD_TYPE		int</span>
+<span class='directive'># define __UWORD_TYPE		unsigned int</span>
+<span class='directive'># define __SLONG32_TYPE		long int</span>
+<span class='directive'># define __ULONG32_TYPE		unsigned long int</span>
+<span class='directive'># define __S64_TYPE		__quad_t</span>
+<span class='directive'># define __U64_TYPE		__u_quad_t</span>
+<span class='comment'>/* We want __extension__ before typedef's that use nonstandard base types
+   such as `long long' in C89 mode.  */</span>
+<span class='directive'># define __STD_TYPE		__extension__ typedef</span></span>
+<span class='directive'>#elif __WORDSIZE == 64</span>
+<span class='directive'># define __SQUAD_TYPE		long int</span>
+<span class='directive'># define __UQUAD_TYPE		unsigned long int</span>
+<span class='directive'># define __SWORD_TYPE		long int</span>
+<span class='directive'># define __UWORD_TYPE		unsigned long int</span>
+<span class='directive'># define __SLONG32_TYPE		int</span>
+<span class='directive'># define __ULONG32_TYPE		unsigned int</span>
+<span class='directive'># define __S64_TYPE		long int</span>
+<span class='directive'># define __U64_TYPE		unsigned long int</span>
+<span class='comment'>/* No need to mark the typedef with __extension__.   */</span>
+<span class='directive'># define __STD_TYPE		typedef</span>
+<span class='directive'>#else</span><span class='preprocessor-if muted'>
+<span class='directive'># error</span></span>
+<span class='directive'>#endif</span>
+<span class='directive'>#include <a class='include' href='../44/abbd7f05c3bb64.html'>&lt;bits/typesizes.h&gt;</a>	/* Defines __*_T_TYPE macros.  */</span>
+
+
+<span class='def def-Typedef' id='000880160008f0190008f0010008f019'>__STD_TYPE __DEV_T_TYPE __dev_t</span>;	<span class='comment'>/* Type of device numbers.  */</span>
+<span class='def def-Typedef' id='00088016000900190009000100090019'>__STD_TYPE __UID_T_TYPE __uid_t</span>;	<span class='comment'>/* Type of user identifications.  */</span>
+<span class='def def-Typedef' id='00088016000910190009100100091019'>__STD_TYPE __GID_T_TYPE __gid_t</span>;	<span class='comment'>/* Type of group identifications.  */</span>
+<span class='def def-Typedef' id='00088016000920190009200100092019'>__STD_TYPE __INO_T_TYPE __ino_t</span>;	<span class='comment'>/* Type of file serial numbers.  */</span>
+<span class='def def-Typedef' id='000880160009301b000930010009301b'>__STD_TYPE __INO64_T_TYPE __ino64_t</span>;	<span class='comment'>/* Type of file serial numbers (LFS).*/</span>
+<span class='def def-Typedef' id='000880160009401a000940010009401a'>__STD_TYPE __MODE_T_TYPE __mode_t</span>;	<span class='comment'>/* Type of file attribute bitmasks.  */</span>
+<span class='def def-Typedef' id='000880160009501b000950010009501b'>__STD_TYPE __NLINK_T_TYPE __nlink_t</span>;	<span class='comment'>/* Type of file link counts.  */</span>
+<span class='def def-Typedef' id='00088016000960190009600100096019'>__STD_TYPE __OFF_T_TYPE __off_t</span>;	<span class='comment'>/* Type of file sizes and offsets.  */</span>
+<span class='def def-Typedef' id='000880160009701b000970010009701b'>__STD_TYPE __OFF64_T_TYPE __off64_t</span>;	<span class='comment'>/* Type of file sizes and offsets (LFS).  */</span>
+<span class='def def-Typedef' id='00088016000980190009800100098019'>__STD_TYPE __PID_T_TYPE __pid_t</span>;	<span class='comment'>/* Type of process identifications.  */</span>
+<span class='def def-Typedef' id='000880160009901a000990010009901a'>__STD_TYPE <span class='def def-CXXRecord' id='000480180004802f0009900c0009900c'><span class='def def-Field' id='000480210004802c0009900c0009900c'>__FSID_T_TYPE</span></span> __fsid_t</span>;	<span class='comment'>/* Type of file system IDs.  */</span>
+<span class='def def-Typedef' id='000880160009a01b0009a0010009a01b'>__STD_TYPE __CLOCK_T_TYPE __clock_t</span>;	<span class='comment'>/* Type of CPU usage counts.  */</span>
+<span class='def def-Typedef' id='000880160009b01a0009b0010009b01a'>__STD_TYPE __RLIM_T_TYPE __rlim_t</span>;	<span class='comment'>/* Type for resource measurement.  */</span>
+<span class='def def-Typedef' id='000880160009c01c0009c0010009c01c'>__STD_TYPE __RLIM64_T_TYPE __rlim64_t</span>;	<span class='comment'>/* Type for resource measurement (LFS).  */</span>
+<span class='def def-Typedef' id='000880160009d0180009d0010009d018'>__STD_TYPE __ID_T_TYPE __id_t</span>;		<span class='comment'>/* General type for IDs.  */</span>
+<span class='def def-Typedef' id='000880160009e01a0009e0010009e01a'>__STD_TYPE __TIME_T_TYPE __time_t</span>;	<span class='comment'>/* Seconds since the Epoch.  */</span>
+<span class='def def-Typedef' id='000880160009f01e0009f0010009f01e'>__STD_TYPE __USECONDS_T_TYPE __useconds_t</span>; <span class='comment'>/* Count of microseconds.  */</span>
+<span class='def def-Typedef' id='00088016000a001f000a0001000a001f'>__STD_TYPE __SUSECONDS_T_TYPE __suseconds_t</span>; <span class='comment'>/* Signed count of microseconds.  */</span>
+
+<span class='def def-Typedef' id='00088016000a201b000a2001000a201b'>__STD_TYPE __DADDR_T_TYPE __daddr_t</span>;	<span class='comment'>/* The type of a disk address.  */</span>
+<span class='def def-Typedef' id='00088016000a3019000a3001000a3019'>__STD_TYPE __KEY_T_TYPE __key_t</span>;	<span class='comment'>/* Type of an IPC key.  */</span>
+
+<span class='comment'>/* Clock ID used in clock and timer functions.  */</span>
+<span class='def def-Typedef' id='00088016000a601d000a6001000a601d'>__STD_TYPE __CLOCKID_T_TYPE __clockid_t</span>;
+
+<span class='comment'>/* Timer ID returned by `timer_create'.  */</span>
+<span class='def def-Typedef' id='00088016000a901b000a9001000a901b'>__STD_TYPE __TIMER_T_TYPE __timer_t</span>;
+
+<span class='comment'>/* Type to represent block size.  */</span>
+<span class='def def-Typedef' id='00088016000ac01d000ac001000ac01d'>__STD_TYPE __BLKSIZE_T_TYPE __blksize_t</span>;
+
+<span class='comment'>/* Types from the Large File Support interface.  */</span>
+
+<span class='comment'>/* Type to count number of disk blocks.  */</span>
+<span class='def def-Typedef' id='00088016000b101c000b1001000b101c'>__STD_TYPE __BLKCNT_T_TYPE __blkcnt_t</span>;
+<span class='def def-Typedef' id='00088016000b201e000b2001000b201e'>__STD_TYPE __BLKCNT64_T_TYPE __blkcnt64_t</span>;
+
+<span class='comment'>/* Type to count file system blocks.  */</span>
+<span class='def def-Typedef' id='00088016000b501e000b5001000b501e'>__STD_TYPE __FSBLKCNT_T_TYPE __fsblkcnt_t</span>;
+<span class='def def-Typedef' id='00088016000b6020000b6001000b6020'>__STD_TYPE __FSBLKCNT64_T_TYPE __fsblkcnt64_t</span>;
+
+<span class='comment'>/* Type to count file system nodes.  */</span>
+<span class='def def-Typedef' id='00088016000b901e000b9001000b901e'>__STD_TYPE __FSFILCNT_T_TYPE __fsfilcnt_t</span>;
+<span class='def def-Typedef' id='00088016000ba020000ba001000ba020'>__STD_TYPE __FSFILCNT64_T_TYPE __fsfilcnt64_t</span>;
+
+<span class='comment'>/* Type of miscellaneous file system fields.  */</span>
+<span class='def def-Typedef' id='00088016000bd01c000bd001000bd01c'>__STD_TYPE __FSWORD_T_TYPE __fsword_t</span>;
+
+<span class='def def-Typedef' id='00088016000bf01b000bf001000bf01b'>__STD_TYPE __SSIZE_T_TYPE __ssize_t</span>; <span class='comment'>/* Type of a byte count, or error.  */</span>
+
+<span class='comment'>/* Signed long type used in system calls.  */</span>
+<span class='def def-Typedef' id='00088016000c2021000c2001000c2021'>__STD_TYPE __SYSCALL_SLONG_TYPE __syscall_slong_t</span>;
+<span class='comment'>/* Unsigned long type used in system calls.  */</span>
+<span class='def def-Typedef' id='00088016000c4021000c4001000c4021'>__STD_TYPE __SYSCALL_ULONG_TYPE __syscall_ulong_t</span>;
+
+<span class='comment'>/* These few don't really vary by system, they always correspond
+   to one of the other defined types.  */</span>
+<span class='def def-Typedef' id='000c8001000c8013'><span class='keyword typedef'>typedef</span> __off64_t __loff_t</span>;	<span class='comment'>/* Type of file sizes and offsets (LFS).  */</span>
+<span class='def def-Typedef' id='000c9001000c900f'><span class='keyword typedef'>typedef</span> <span class='keyword char'>char</span> *__caddr_t</span>;
+
+<span class='comment'>/* Duplicates info from stdint.h but this is used in unistd.h.  */</span>
+<span class='def def-Typedef' id='00088016000cc019000cc001000cc019'>__STD_TYPE __SWORD_TYPE __intptr_t</span>;
+
+<span class='comment'>/* Duplicate info from sys/socket.h.  */</span>
+<span class='def def-Typedef' id='00088016000cf017000cf001000cf017'>__STD_TYPE __U32_TYPE __socklen_t</span>;
+
+<span class='comment'>/* C99: An integer type that can be accessed as an atomic entity,
+   even in the presence of asynchronous interrupts.
+   It is not currently necessary for this to be machine-specific.  */</span>
+<span class='def def-Typedef' id='000d4001000d400d'><span class='keyword typedef'>typedef</span> <span class='keyword int'>int</span> __sig_atomic_t</span>;
+
+<span class='directive'>#undef __STD_TYPE</span>
+
+<span class='directive'>#endif /* bits/types.h */</span>

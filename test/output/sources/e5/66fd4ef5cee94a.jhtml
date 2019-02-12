@@ -1,0 +1,40 @@
+{"name":"test-multiple-file-1.h","path":"test-multiple-file-1.h","root":"../be/e2916b98dcf1fc.html","project":"test","tag":"output","parents":[]}
+---
+<span class='comment'>// Copyright (c) 2013,2014 Carlo Contavalli (ccontavalli@gmail.com).</span>
+<span class='comment'>// All rights reserved.</span>
+<span class='comment'>// </span>
+<span class='comment'>// Redistribution and use in source and binary forms, with or without</span>
+<span class='comment'>// modification, are permitted provided that the following conditions are met:</span>
+<span class='comment'>// </span>
+<span class='comment'>//    1. Redistributions of source code must retain the above copyright notice,</span>
+<span class='comment'>//    this list of conditions and the following disclaimer.</span>
+<span class='comment'>// </span>
+<span class='comment'>//    2. Redistributions in binary form must reproduce the above copyright</span>
+<span class='comment'>//    notice, this list of conditions and the following disclaimer in the</span>
+<span class='comment'>//    documentation and/or other materials provided with the distribution.</span>
+<span class='comment'>// </span>
+<span class='comment'>// THIS SOFTWARE IS PROVIDED BY Carlo Contavalli ''AS IS'' AND ANY EXPRESS OR</span>
+<span class='comment'>// IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF</span>
+<span class='comment'>// MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO</span>
+<span class='comment'>// EVENT SHALL Carlo Contavalli OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,</span>
+<span class='comment'>// INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span>
+<span class='comment'>// (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<span class='comment'>// LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span>
+<span class='comment'>// ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span>
+<span class='comment'>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF</span>
+<span class='comment'>// THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<span class='comment'>// </span>
+<span class='comment'>// The views and conclusions contained in the software and documentation are</span>
+<span class='comment'>// those of the authors and should not be interpreted as representing official</span>
+<span class='comment'>// policies, either expressed or implied, of Carlo Contavalli.</span>
+
+<span class='directive'>#ifndef TEST_MULTIPLE_FILE_1_H</span>
+<span class='directive'># define TEST_MULTIPLE_FILE_1_H</span>
+
+<span class='decl decl-CXXRecord' id='0002000100020007'><span class='keyword class'>class</span> Test</span>;
+
+<span class='decl decl-Var' id='000220010002200c'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> global_counter</span>;
+
+<span class='decl decl-Function' id='0002400100024013'><span class='keyword void'>void</span> TestFunction()</span>;
+
+<span class='directive'>#endif /* TEST_MULTIPLE_FILE_1_H */</span>

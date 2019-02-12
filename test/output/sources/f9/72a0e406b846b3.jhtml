@@ -1,0 +1,65 @@
+{"name":"cookie_io_functions_t.h","path":"/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h","root":"../06/416cc91f3e3d90.html","project":"test","tag":"output","parents":[{"name":"usr","href":"../60/7abc7e1c17ae25.html"},{"name":"include","href":"../19/901c5d9478e5ce.html"},{"name":"x86_64-linux-gnu","href":"../f0/212845f8a256c3.html"},{"name":"bits","href":"../23/32e20e89ff3dae.html"},{"name":"types","href":"../50/6c0d28222dde39.html"}]}
+---
+<span class='comment'>/* Copyright (C) 1991-2018 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   &lt;http://www.gnu.org/licenses/&gt;.  */</span>
+
+<span class='directive'>#ifndef __cookie_io_functions_t_defined</span>
+<span class='directive'>#define __cookie_io_functions_t_defined 1</span>
+
+<span class='directive'>#include <a class='include' href='../41/e28fc1cdef774c.html'>&lt;bits/types.h&gt;</a></span>
+
+<span class='comment'>/* Functions to do I/O and file management for a stream.  */</span>
+
+<span class='comment'>/* Read NBYTES bytes from COOKIE into a buffer pointed to by BUF.
+   Return number of bytes read.  */</span>
+<span class='def def-Typedef' id='0001b0010001c03a'><span class='keyword typedef'>typedef</span> __ssize_t cookie_read_function_t (<span class='keyword void'>void</span> *__cookie, <span class='keyword char'>char</span> *__buf,
+                                          size_t __nbytes)</span>;
+
+<span class='comment'>/* Write NBYTES bytes pointed to by BUF to COOKIE.  Write all NBYTES bytes
+   unless there is an error.  Return number of bytes written.  If
+   there is an error, return 0 and do not write anything.  If the file
+   has been opened for append (__mode.__append set), then set the file
+   pointer to the end of the file and then do the write; if not, just
+   write at the current file pointer.  */</span>
+<span class='def def-Typedef' id='000240010002503b'><span class='keyword typedef'>typedef</span> __ssize_t cookie_write_function_t (<span class='keyword void'>void</span> *__cookie, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__buf,
+                                           size_t __nbytes)</span>;
+
+<span class='comment'>/* Move COOKIE's file position to *POS bytes from the
+   beginning of the file (if W is SEEK_SET),
+   the current position (if W is SEEK_CUR),
+   or the end of the file (if W is SEEK_END).
+   Set *POS to the new file position.
+   Returns zero if successful, nonzero if not.  */</span>
+<span class='def def-Typedef' id='0002d0010002d04e'><span class='keyword typedef'>typedef</span> <span class='keyword int'>int</span> cookie_seek_function_t (<span class='keyword void'>void</span> *__cookie, __off64_t *__pos, <span class='keyword int'>int</span> __w)</span>;
+
+<span class='comment'>/* Close COOKIE.  */</span>
+<span class='def def-Typedef' id='0003000100030034'><span class='keyword typedef'>typedef</span> <span class='keyword int'>int</span> cookie_close_function_t (<span class='keyword void'>void</span> *__cookie)</span>;
+
+<span class='comment'>/* The structure with the cookie function pointers.
+   The tag name of this struct is _IO_cookie_io_functions_t to
+   preserve historic C++ mangled names for functions taking
+   cookie_io_functions_t arguments.  That name should not be used in
+   new code.  */</span>
+<span class='def def-Typedef' id='000370010003d003'><span class='keyword typedef'>typedef</span> <span class='def def-CXXRecord' id='000370090003d001'><span class='keyword struct'>struct</span> _IO_cookie_io_functions_t
+{
+  <span class='def def-Field' id='000390030003901b'>cookie_read_function_t *read</span>;		<span class='comment'>/* Read bytes.  */</span>
+  <span class='def def-Field' id='0003a0030003a01c'>cookie_write_function_t *write</span>;	<span class='comment'>/* Write bytes.  */</span>
+  <span class='def def-Field' id='0003b0030003b01b'>cookie_seek_function_t *seek</span>;		<span class='comment'>/* Seek/tell file position.  */</span>
+  <span class='def def-Field' id='0003c0030003c01c'>cookie_close_function_t *close</span>;	<span class='comment'>/* Close file.  */</span>
+}</span> cookie_io_functions_t</span>;
+
+<span class='directive'>#endif</span>

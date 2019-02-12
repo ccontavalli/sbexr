@@ -1,0 +1,139 @@
+{"name":"stddef.h","path":"/usr/include/clang/8.0.0/include/stddef.h","root":"../06/416cc91f3e3d90.html","project":"test","tag":"output","parents":[{"name":"usr","href":"../60/7abc7e1c17ae25.html"},{"name":"include","href":"../19/901c5d9478e5ce.html"},{"name":"clang","href":"../0a/9de303fcf49f53.html"},{"name":"8.0.0","href":"../be/b21853bfd529ee.html"},{"name":"include","href":"../81/d9c49f99af3d0a.html"}]}
+---
+<span class='comment'>/*===---- stddef.h - Basic type definitions --------------------------------===
+ *
+ * Copyright (c) 2008 Eli Friedman
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ *===-----------------------------------------------------------------------===
+ */</span>
+
+<span class='directive'>#if !defined(__STDDEF_H) || defined(__need_ptrdiff_t) ||                       \
+    defined(__need_size_t) || defined(__need_wchar_t) ||                       \
+    defined(__need_NULL) || defined(__need_wint_t)</span>
+
+<span class='directive'>#if !defined(__need_ptrdiff_t) &amp;&amp; !defined(__need_size_t) &amp;&amp;                   \
+    !defined(__need_wchar_t) &amp;&amp; !defined(__need_NULL) &amp;&amp;                       \
+    !defined(__need_wint_t)</span><span class='preprocessor-if muted'>
+<span class='comment'>/* Always define miscellaneous pieces when modules are available. */</span>
+<span class='directive'>#if !__has_feature(modules)</span>
+<span class='directive'>#define __STDDEF_H</span>
+<span class='directive'>#endif</span>
+<span class='directive'>#define __need_ptrdiff_t</span>
+<span class='directive'>#define __need_size_t</span>
+<span class='directive'>#define __need_wchar_t</span>
+<span class='directive'>#define __need_NULL</span>
+<span class='directive'>#define __need_STDDEF_H_misc</span>
+<span class='comment'>/* __need_wint_t is intentionally not defined here. */</span></span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#if defined(__need_ptrdiff_t)</span><span class='preprocessor-if muted'>
+<span class='directive'>#if !defined(_PTRDIFF_T) || __has_feature(modules)</span>
+<span class='comment'>/* Always define ptrdiff_t when modules are available. */</span>
+<span class='directive'>#if !__has_feature(modules)</span>
+<span class='directive'>#define _PTRDIFF_T</span>
+<span class='directive'>#endif</span>
+<span class='keyword typedef'>typedef</span> __PTRDIFF_TYPE__ ptrdiff_t;
+<span class='directive'>#endif</span>
+<span class='directive'>#undef __need_ptrdiff_t</span></span>
+<span class='directive'>#endif /* defined(__need_ptrdiff_t) */</span>
+
+<span class='directive'>#if defined(__need_size_t)</span>
+<span class='directive'>#if !defined(_SIZE_T) || __has_feature(modules)</span>
+<span class='comment'>/* Always define size_t when modules are available. */</span>
+<span class='directive'>#if !__has_feature(modules)</span>
+<span class='directive'>#define _SIZE_T</span>
+<span class='directive'>#endif</span>
+<span class='def def-Typedef' id='0003e0010003e017'><span class='keyword typedef'>typedef</span> __SIZE_TYPE__ size_t</span>;
+<span class='directive'>#endif</span>
+<span class='directive'>#undef __need_size_t</span>
+<span class='directive'>#endif /*defined(__need_size_t) */</span>
+
+<span class='directive'>#if defined(__need_STDDEF_H_misc)</span><span class='preprocessor-if muted'>
+<span class='comment'>/* ISO9899:2011 7.20 (C11 Annex K): Define rsize_t if __STDC_WANT_LIB_EXT1__ is
+ * enabled. */</span>
+<span class='directive'>#if (defined(__STDC_WANT_LIB_EXT1__) &amp;&amp; __STDC_WANT_LIB_EXT1__ &gt;= 1 &amp;&amp; \
+     !defined(_RSIZE_T)) || __has_feature(modules)</span>
+<span class='comment'>/* Always define rsize_t when modules are available. */</span>
+<span class='directive'>#if !__has_feature(modules)</span>
+<span class='directive'>#define _RSIZE_T</span>
+<span class='directive'>#endif</span>
+<span class='keyword typedef'>typedef</span> __SIZE_TYPE__ rsize_t;
+<span class='directive'>#endif</span></span>
+<span class='directive'>#endif /* defined(__need_STDDEF_H_misc) */</span>
+
+<span class='directive'>#if defined(__need_wchar_t)</span><span class='preprocessor-if muted'>
+<span class='directive'>#ifndef __cplusplus</span>
+<span class='comment'>/* Always define wchar_t when modules are available. */</span>
+<span class='directive'>#if !defined(_WCHAR_T) || __has_feature(modules)</span>
+<span class='directive'>#if !__has_feature(modules)</span>
+<span class='directive'>#define _WCHAR_T</span>
+<span class='directive'>#if defined(_MSC_EXTENSIONS)</span>
+<span class='directive'>#define _WCHAR_T_DEFINED</span>
+<span class='directive'>#endif</span>
+<span class='directive'>#endif</span>
+<span class='keyword typedef'>typedef</span> __WCHAR_TYPE__ <span class='keyword wchar_t'>wchar_t</span>;
+<span class='directive'>#endif</span>
+<span class='directive'>#endif</span>
+<span class='directive'>#undef __need_wchar_t</span></span>
+<span class='directive'>#endif /* defined(__need_wchar_t) */</span>
+
+<span class='directive'>#if defined(__need_NULL)</span>
+<span class='directive'>#undef NULL</span>
+<span class='directive'>#ifdef __cplusplus</span>
+<span class='directive'>#  if !defined(__MINGW32__) &amp;&amp; !defined(_MSC_VER)</span>
+<span class='directive'>#    define NULL __null</span>
+<span class='directive'>#  else</span><span class='preprocessor-if muted'>
+<span class='directive'>#    define NULL 0</span></span>
+<span class='directive'>#  endif</span>
+<span class='directive'>#else</span><span class='preprocessor-if muted'>
+<span class='directive'>#  define NULL ((void*)0)</span></span>
+<span class='directive'>#endif</span>
+<span class='directive'>#ifdef __cplusplus</span>
+<span class='directive'>#if defined(_MSC_EXTENSIONS) &amp;&amp; defined(_NATIVE_NULLPTR_SUPPORTED)</span><span class='preprocessor-if muted'>
+<span class='keyword namespace'>namespace</span> std { <span class='keyword typedef'>typedef</span> <span class='keyword decltype'>decltype</span>(<span class='keyword nullptr'>nullptr</span>) nullptr_t; }
+<span class='keyword using'>using</span> ::std::nullptr_t;</span>
+<span class='directive'>#endif</span>
+<span class='directive'>#endif</span>
+<span class='directive'>#undef __need_NULL</span>
+<span class='directive'>#endif /* defined(__need_NULL) */</span>
+
+<span class='directive'>#if defined(__need_STDDEF_H_misc)</span><span class='preprocessor-if muted'>
+<span class='directive'>#if __STDC_VERSION__ &gt;= 201112L || __cplusplus &gt;= 201103L</span>
+<span class='directive'>#include "__stddef_max_align_t.h"</span>
+<span class='directive'>#endif</span>
+<span class='directive'>#define offsetof(t, d) __builtin_offsetof(t, d)</span>
+<span class='directive'>#undef __need_STDDEF_H_misc</span></span>
+<span class='directive'>#endif  /* defined(__need_STDDEF_H_misc) */</span>
+
+<span class='comment'>/* Some C libraries expect to see a wint_t here. Others (notably MinGW) will use
+__WINT_TYPE__ directly; accommodate both by requiring __need_wint_t */</span>
+<span class='directive'>#if defined(__need_wint_t)</span><span class='preprocessor-if muted'>
+<span class='comment'>/* Always define wint_t when modules are available. */</span>
+<span class='directive'>#if !defined(_WINT_T) || __has_feature(modules)</span>
+<span class='directive'>#if !__has_feature(modules)</span>
+<span class='directive'>#define _WINT_T</span>
+<span class='directive'>#endif</span>
+<span class='keyword typedef'>typedef</span> __WINT_TYPE__ wint_t;
+<span class='directive'>#endif</span>
+<span class='directive'>#undef __need_wint_t</span></span>
+<span class='directive'>#endif /* __need_wint_t */</span>
+
+<span class='directive'>#endif</span>

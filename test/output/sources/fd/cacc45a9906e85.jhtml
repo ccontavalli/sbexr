@@ -1,0 +1,19 @@
+{"name":"wordsize.h","path":"/usr/include/x86_64-linux-gnu/bits/wordsize.h","root":"../06/416cc91f3e3d90.html","project":"test","tag":"output","parents":[{"name":"usr","href":"../60/7abc7e1c17ae25.html"},{"name":"include","href":"../19/901c5d9478e5ce.html"},{"name":"x86_64-linux-gnu","href":"../f0/212845f8a256c3.html"},{"name":"bits","href":"../23/32e20e89ff3dae.html"}]}
+---
+<span class='comment'>/* Determine the wordsize from the preprocessor defines.  */</span>
+
+<span class='directive'>#if defined __x86_64__ &amp;&amp; !defined __ILP32__</span>
+<span class='directive'># define __WORDSIZE	64</span>
+<span class='directive'>#else</span><span class='preprocessor-if muted'>
+<span class='directive'># define __WORDSIZE	32</span>
+<span class='directive'>#define __WORDSIZE32_SIZE_ULONG		0</span>
+<span class='directive'>#define __WORDSIZE32_PTRDIFF_LONG	0</span></span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef __x86_64__</span>
+<span class='directive'># define __WORDSIZE_TIME64_COMPAT32	1</span>
+<span class='comment'>/* Both x86-64 and x32 use the 64-bit system call interface.  */</span>
+<span class='directive'># define __SYSCALL_WORDSIZE		64</span>
+<span class='directive'>#else</span><span class='preprocessor-if muted'>
+<span class='directive'># define __WORDSIZE_TIME64_COMPAT32	0</span></span>
+<span class='directive'>#endif</span>

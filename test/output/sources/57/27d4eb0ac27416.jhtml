@@ -1,0 +1,25 @@
+{"name":"__mbstate_t.h","path":"/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h","root":"../06/416cc91f3e3d90.html","project":"test","tag":"output","parents":[{"name":"usr","href":"../60/7abc7e1c17ae25.html"},{"name":"include","href":"../19/901c5d9478e5ce.html"},{"name":"x86_64-linux-gnu","href":"../f0/212845f8a256c3.html"},{"name":"bits","href":"../23/32e20e89ff3dae.html"},{"name":"types","href":"../50/6c0d28222dde39.html"}]}
+---
+<span class='directive'>#ifndef ____mbstate_t_defined</span>
+<span class='directive'>#define ____mbstate_t_defined 1</span>
+
+<span class='comment'>/* Integral type unchanged by default argument promotions that can
+   hold any value corresponding to members of the extended character
+   set, as well as at least one value that does not correspond to any
+   member of the extended character set.  */</span>
+<span class='directive'>#ifndef __WINT_TYPE__</span><span class='preprocessor-if muted'>
+<span class='directive'># define __WINT_TYPE__ unsigned int</span></span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* Conversion state information.  */</span>
+<span class='def def-Typedef' id='0000d00100015003'><span class='keyword typedef'>typedef</span> <span class='def def-CXXRecord' id='0000d00900015001'><span class='keyword struct'>struct</span>
+{
+  <span class='def def-Field' id='0000f0030000f007'><span class='keyword int'>int</span> __count</span>;
+  <span class='def def-Field' id='0001000300014005'><span class='def def-CXXRecord' id='0001000300014003'><a class='declaration-uses' href='../57/27d4eb0ac27416.html#0001000300014003'><span class='keyword union'>union</span></a>
+  {
+    <span class='def def-Field' id='00074017000120130001200500012013'>__WINT_TYPE__ __wch</span>;
+    <span class='def def-Field' id='0001300500013012'><span class='keyword char'>char</span> __wchb[<span class='numeric'>4</span>]</span>;
+  }</span> __value</span>;		<span class='comment'>/* Value so far.  */</span>
+}</span> __mbstate_t</span>;
+
+<span class='directive'>#endif</span>

@@ -1,0 +1,796 @@
+{"name":"test.html","path":"test.html","root":"../be/e2916b98dcf1fc.html","project":"test","tag":"output","parents":[]}
+---
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;test&lt;/title&gt;
+&lt;style type="text/css"&gt;
+ body { font-family:Helvetica, sans-serif; font-size:10pt }
+ h1 { font-size:14pt }
+ .type { color: green}
+ .code { border-collapse:collapse; width:100%; }
+ .code { font-family: "Monospace", monospace; font-size:10pt }
+ .code { line-height: 1.2em }
+ .compound { display: inline-block; }
+ .compound.level-0:hover { margin-left: 1px; border-left-style: solid; border-left-color: yellow; }
+ .compound.level-1:hover { margin-left: 2px; border-left-style: solid; border-left-color: green; }
+ .compound.level-2:hover { margin-left: 3px; border-left-style: solid; border-left-color: orange; }
+ .comment { color: magenta; font-style: oblique }
+ .string { color: purple; }
+ .numeric { color: purple; }
+ .char { color: purple; }
+ .directive { color: blue; }
+ .expansion { display: none; }
+ .macro:hover .expansion { display: block; border: 2px solid #FF0000; padding: 2px; background-color:#FFF0F0; font-weight: normal;   -webkit-border-radius:5px;  -webkit-box-shadow:1px 1px 7px #000; position: absolute; top: -1em; left:10em; z-index: 1 } 
+ .macro { color: darkmagenta; background-color:LemonChiffon; position: relative }
+ .num { width:2.5em; padding-right:2ex; background-color:#eeeeee }
+ .num { text-align:right; font-size:8pt }
+ .num { color:#444444 }
+ .line { padding-left: 1ex; border-left: 3px solid #ccc }
+ .line { white-space: pre }
+ .msg { -webkit-box-shadow:1px 1px 7px #000 }
+ .msg { -webkit-border-radius:5px }
+ .msg { font-family:Helvetica, sans-serif; font-size:8pt }
+ .msg { float:left }
+ .msg { padding:0.25em 1ex 0.25em 1ex }
+ .msg { margin-top:10px; margin-bottom:10px }
+ .msg { font-weight:bold }
+ .msg { max-width:60em; word-wrap: break-word; white-space: pre-wrap }
+ .msgT { padding:0x; spacing:0x }
+ .msgEvent { background-color:#fff8b4; color:#000000 }
+ .msgControl { background-color:#bbbbbb; color:#000000 }
+ .mrange { background-color:#dfddf3 }
+ .mrange { border-bottom:1px solid #6F9DBE }
+ .PathIndex { font-weight: bold; padding:0px 5px; margin-right:5px; }
+ .PathIndex { -webkit-border-radius:8px }
+ .PathIndexEvent { background-color:#bfba87 }
+ .PathIndexControl { background-color:#8c8c8c }
+ .PathNav a { text-decoration:none; font-size: larger }
+ .CodeInsertionHint { font-weight: bold; background-color: #10dd10 }
+ .CodeRemovalHint { background-color:#de1010 }
+ .CodeRemovalHint { border-bottom:1px solid #6F9DBE }
+ table.simpletable {
+   padding: 5px;
+   font-size:12pt;
+   margin:20px;
+   border-collapse: collapse; border-spacing: 0px;
+ }
+ td.rowname {
+   text-align:right; font-weight:bold; color:#444444;
+   padding-right:2ex; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;&lt;pre class='code'&gt;&lt;span class='directive'&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
+&lt;span class='directive'&gt;#include "test.h"&lt;/span&gt;
+
+&lt;span class='directive'&gt;# define TEST(foo) if (foo) { printf("foo"); }&lt;/span&gt;
+
+&lt;span class='comment'&gt;/// Test comment.&lt;/span&gt;
+&lt;div class='compound level-0'&gt;&lt;span class='type'&gt;int&lt;/span&gt; test() {
+  printf(&lt;span class='string'&gt;"this is a test"&lt;/span&gt;);
+
+&lt;div class='compound level-1'&gt;  {
+    int a = &lt;span class='numeric'&gt;9&lt;/span&gt;;
+    printf(&lt;span class='string'&gt;"this is another test: %d"&lt;/span&gt;, a);
+
+  }&lt;/div&gt;
+
+  return &lt;span class='numeric'&gt;3&lt;/span&gt;;
+}&lt;/div&gt;
+
+&lt;span class='comment'&gt;// This is a pre-existing comment.&lt;/span&gt;
+&lt;span class='comment'&gt;/** Test comment */&lt;/span&gt;
+&lt;div class='compound level-0'&gt;&lt;span class='type'&gt;int&lt;/span&gt; main(void) {
+  int value = &lt;span class='numeric'&gt;12&lt;/span&gt;;
+&lt;div class='compound level-1'&gt;  if (&lt;span class='numeric'&gt;1&lt;/span&gt;) { value = test();
+&lt;div class='compound level-2'&gt;    if (value &amp;gt; &lt;span class='numeric'&gt;5&lt;/span&gt;) {
+      printf(&lt;span class='string'&gt;"this is a second test"&lt;/span&gt;);
+    }&lt;/div&gt;
+  }&lt;/div&gt;
+  TEST(value);
+  return &lt;span class='numeric'&gt;0&lt;/span&gt;;
+}&lt;/div&gt;
+&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;test&lt;/title&gt;
+&lt;style type="text/css"&gt;
+ body { font-family:Helvetica, sans-serif; font-size:10pt }
+ h1 { font-size:14pt }
+ .type { color: green}
+ .code { border-collapse:collapse; width:100%; }
+ .code { font-family: "Monospace", monospace; font-size:10pt }
+ .code { line-height: 1.2em }
+ .compound { display: inline-block; }
+ .compound.level-0:hover { margin-left: 1px; border-left-style: solid; border-left-color: yellow; }
+ .compound.level-1:hover { margin-left: 2px; border-left-style: solid; border-left-color: green; }
+ .compound.level-2:hover { margin-left: 3px; border-left-style: solid; border-left-color: orange; }
+ .comment { color: magenta; font-style: oblique }
+ .string { color: purple; }
+ .numeric { color: purple; }
+ .char { color: purple; }
+ .directive { color: blue; }
+ .expansion { display: none; }
+ .macro:hover .expansion { display: block; border: 2px solid #FF0000; padding: 2px; background-color:#FFF0F0; font-weight: normal;   -webkit-border-radius:5px;  -webkit-box-shadow:1px 1px 7px #000; position: absolute; top: -1em; left:10em; z-index: 1 } 
+ .macro { color: darkmagenta; background-color:LemonChiffon; position: relative }
+ .num { width:2.5em; padding-right:2ex; background-color:#eeeeee }
+ .num { text-align:right; font-size:8pt }
+ .num { color:#444444 }
+ .line { padding-left: 1ex; border-left: 3px solid #ccc }
+ .line { white-space: pre }
+ .msg { -webkit-box-shadow:1px 1px 7px #000 }
+ .msg { -webkit-border-radius:5px }
+ .msg { font-family:Helvetica, sans-serif; font-size:8pt }
+ .msg { float:left }
+ .msg { padding:0.25em 1ex 0.25em 1ex }
+ .msg { margin-top:10px; margin-bottom:10px }
+ .msg { font-weight:bold }
+ .msg { max-width:60em; word-wrap: break-word; white-space: pre-wrap }
+ .msgT { padding:0x; spacing:0x }
+ .msgEvent { background-color:#fff8b4; color:#000000 }
+ .msgControl { background-color:#bbbbbb; color:#000000 }
+ .mrange { background-color:#dfddf3 }
+ .mrange { border-bottom:1px solid #6F9DBE }
+ .PathIndex { font-weight: bold; padding:0px 5px; margin-right:5px; }
+ .PathIndex { -webkit-border-radius:8px }
+ .PathIndexEvent { background-color:#bfba87 }
+ .PathIndexControl { background-color:#8c8c8c }
+ .PathNav a { text-decoration:none; font-size: larger }
+ .CodeInsertionHint { font-weight: bold; background-color: #10dd10 }
+ .CodeRemovalHint { background-color:#de1010 }
+ .CodeRemovalHint { border-bottom:1px solid #6F9DBE }
+ table.simpletable {
+   padding: 5px;
+   font-size:12pt;
+   margin:20px;
+   border-collapse: collapse; border-spacing: 0px;
+ }
+ td.rowname {
+   text-align:right; font-weight:bold; color:#444444;
+   padding-right:2ex; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;&lt;pre class='code'&gt;&lt;span class='comment'&gt;// Copyright (c) 2013 Carlo Contavalli (ccontavalli@gmail.com).&lt;/span&gt;
+&lt;span class='comment'&gt;// All rights reserved.&lt;/span&gt;
+&lt;span class='comment'&gt;// &lt;/span&gt;
+&lt;span class='comment'&gt;// Redistribution and use in source and binary forms, with or without&lt;/span&gt;
+&lt;span class='comment'&gt;// modification, are permitted provided that the following conditions are met:&lt;/span&gt;
+&lt;span class='comment'&gt;// &lt;/span&gt;
+&lt;span class='comment'&gt;//    1. Redistributions of source code must retain the above copyright notice,&lt;/span&gt;
+&lt;span class='comment'&gt;//    this list of conditions and the following disclaimer.&lt;/span&gt;
+&lt;span class='comment'&gt;// &lt;/span&gt;
+&lt;span class='comment'&gt;//    2. Redistributions in binary form must reproduce the above copyright&lt;/span&gt;
+&lt;span class='comment'&gt;//    notice, this list of conditions and the following disclaimer in the&lt;/span&gt;
+&lt;span class='comment'&gt;//    documentation and/or other materials provided with the distribution.&lt;/span&gt;
+&lt;span class='comment'&gt;// &lt;/span&gt;
+&lt;span class='comment'&gt;// THIS SOFTWARE IS PROVIDED BY Carlo Contavalli ''AS IS'' AND ANY EXPRESS OR&lt;/span&gt;
+&lt;span class='comment'&gt;// IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF&lt;/span&gt;
+&lt;span class='comment'&gt;// MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO&lt;/span&gt;
+&lt;span class='comment'&gt;// EVENT SHALL Carlo Contavalli OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,&lt;/span&gt;
+&lt;span class='comment'&gt;// INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES&lt;/span&gt;
+&lt;span class='comment'&gt;// (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;&lt;/span&gt;
+&lt;span class='comment'&gt;// LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND&lt;/span&gt;
+&lt;span class='comment'&gt;// ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT&lt;/span&gt;
+&lt;span class='comment'&gt;// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF&lt;/span&gt;
+&lt;span class='comment'&gt;// THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/span&gt;
+&lt;span class='comment'&gt;// &lt;/span&gt;
+&lt;span class='comment'&gt;// The views and conclusions contained in the software and documentation are&lt;/span&gt;
+&lt;span class='comment'&gt;// those of the authors and should not be interpreted as representing official&lt;/span&gt;
+&lt;span class='comment'&gt;// policies, either expressed or implied, of Carlo Contavalli.&lt;/span&gt;
+
+&lt;span class='comment'&gt;//------------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class='comment'&gt;// Clang rewriter sample. Demonstrates:&lt;/span&gt;
+&lt;span class='comment'&gt;//&lt;/span&gt;
+&lt;span class='comment'&gt;// * How to use RecursiveASTVisitor to find interesting AST nodes.&lt;/span&gt;
+&lt;span class='comment'&gt;// * How to use the Rewriter API to rewrite the source code.&lt;/span&gt;
+&lt;span class='comment'&gt;//&lt;/span&gt;
+&lt;span class='comment'&gt;// Eli Bendersky (eliben@gmail.com)&lt;/span&gt;
+&lt;span class='comment'&gt;// This code is in the public domain&lt;/span&gt;
+&lt;span class='comment'&gt;//------------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class='directive'&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
+&lt;span class='directive'&gt;#include &amp;lt;cstdio&amp;gt;&lt;/span&gt;
+&lt;span class='directive'&gt;#include &amp;lt;memory&amp;gt;&lt;/span&gt;
+&lt;span class='directive'&gt;#include &amp;lt;string&amp;gt;&lt;/span&gt;
+&lt;span class='directive'&gt;#include &amp;lt;sstream&amp;gt;&lt;/span&gt;
+&lt;span class='directive'&gt;#include &amp;lt;iomanip&amp;gt;&lt;/span&gt;
+
+&lt;span class='directive'&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
+&lt;span class='directive'&gt;#include &amp;lt;fstream&amp;gt;&lt;/span&gt;
+
+&lt;span class='directive'&gt;#include &amp;lt;sys/stat.h&amp;gt;&lt;/span&gt;
+&lt;span class='directive'&gt;#include &amp;lt;sys/types.h&amp;gt;&lt;/span&gt;
+
+&lt;span class='directive'&gt;#include "clang/AST/ASTConsumer.h"&lt;/span&gt;
+&lt;span class='directive'&gt;#include "clang/AST/RecursiveASTVisitor.h"&lt;/span&gt;
+&lt;span class='directive'&gt;#include "clang/AST/ASTContext.h"&lt;/span&gt;
+&lt;span class='directive'&gt;#include "clang/Basic/Diagnostic.h"&lt;/span&gt;
+&lt;span class='directive'&gt;#include "clang/Basic/FileManager.h"&lt;/span&gt;
+&lt;span class='directive'&gt;#include "clang/Basic/SourceManager.h"&lt;/span&gt;
+&lt;span class='directive'&gt;#include "clang/Basic/TargetOptions.h"&lt;/span&gt;
+&lt;span class='directive'&gt;#include "clang/Basic/TargetInfo.h"&lt;/span&gt;
+&lt;span class='directive'&gt;#include "clang/Frontend/CompilerInstance.h"&lt;/span&gt;
+&lt;span class='directive'&gt;#include "clang/Lex/Preprocessor.h"&lt;/span&gt;
+&lt;span class='directive'&gt;#include "clang/Parse/ParseAST.h"&lt;/span&gt;
+&lt;span class='directive'&gt;#include "clang/Rewrite/Core/Rewriter.h"&lt;/span&gt;
+&lt;span class='directive'&gt;#include "clang/Rewrite/Core/HTMLRewrite.h"&lt;/span&gt;
+&lt;span class='directive'&gt;#include "clang/Rewrite/Frontend/Rewriters.h"&lt;/span&gt;
+&lt;span class='directive'&gt;#include "llvm/Support/Host.h"&lt;/span&gt;
+&lt;span class='directive'&gt;#include "llvm/Support/raw_ostream.h"&lt;/span&gt;
+
+&lt;span class='comment'&gt;// ./clang/lib/Frontend/Rewrite/HTMLPrint.cpp&lt;/span&gt;
+&lt;span class='comment'&gt;// CommentVisitor&lt;/span&gt;
+
+&lt;span class='comment'&gt;// Scoping:&lt;/span&gt;
+&lt;span class='comment'&gt;//   - variable names: links are scoped. Clicking on hte name brings to the definition within the scope.&lt;/span&gt;
+&lt;span class='comment'&gt;//   - function names: static in .cc are per file, non static are global.&lt;/span&gt;
+&lt;span class='comment'&gt;//   - class definitions: in .cc file, they are per file?&lt;/span&gt;
+&lt;span class='comment'&gt;//&lt;/span&gt;
+&lt;span class='comment'&gt;// Two parts of the problem:&lt;/span&gt;
+&lt;span class='comment'&gt;// - identifying position of objects, linking to objects.&lt;/span&gt;
+
+using namespace clang;
+
+void WrapIt(Rewriter&amp;amp; R, FileID FID, const char *title);
+void RawHighlight(Rewriter &amp;amp;R, FileID FID, const Preprocessor &amp;amp;PP);
+
+class Id {
+ public:
+  Id(std::string start) {
+    if (!start.empty()) {
+      base_ = start;
+      base_.append(&lt;span class='string'&gt;"-"&lt;/span&gt;);
+    }
+  }
+
+  std::string Get() {
+    return base_ + std::to_string(id_++);
+  }
+
+ private:
+  std::string base_ = &lt;span class='string'&gt;""&lt;/span&gt;;
+  uint64_t id_ = &lt;span class='numeric'&gt;0&lt;/span&gt;;
+};
+
+&lt;span class='comment'&gt;// By implementing RecursiveASTVisitor, we can specify which AST nodes&lt;/span&gt;
+&lt;span class='comment'&gt;// we're interested in by overriding relevant methods.&lt;/span&gt;
+class MyASTVisitor : public RecursiveASTVisitor&amp;lt;MyASTVisitor&amp;gt; {
+public:
+  MyASTVisitor(Rewriter &amp;amp;rewriter, SourceManager&amp;amp; source_manager) : rewriter_(rewriter), source_manager_(source_manager) {}
+
+  bool TraverseStmt(Stmt *s) {
+    static int depth = &lt;span class='numeric'&gt;0&lt;/span&gt;;
+    if (s &amp;amp;&amp;amp; isa&amp;lt;CompoundStmt&amp;gt;(s)) {
+      auto *statement = cast&amp;lt;CompoundStmt&amp;gt;(s);
+
+      &lt;span class='comment'&gt;// Find location with start of column.&lt;/span&gt;
+      auto start = statement-&amp;gt;getLocStart();
+      if (!start.isMacroID()) {
+        auto fid = source_manager_.getMainFileID();
+        auto line = source_manager_.getExpansionLineNumber(start);
+        auto cache = source_manager_.getSLocEntry(fid).getFile().getContentCache();
+        auto offset = cache-&amp;gt;SourceLineCache[line - &lt;span class='numeric'&gt;1&lt;/span&gt;];
+
+        auto&amp;amp; buffer = rewriter_.getEditBuffer(fid);
+        std::string div = &lt;span class='string'&gt;"&amp;lt;div class='compound level-"&lt;/span&gt; + std::to_string(depth) + &lt;span class='string'&gt;"'&amp;gt;"&lt;/span&gt;;
+        buffer.InsertText(offset, div, false);
+        &lt;span class='comment'&gt;//auto column = source_manager_.getSpellingColumnNumber(start);&lt;/span&gt;
+        &lt;span class='comment'&gt;// auto cstart2 = source_manager_.translateLineCol(source_manager_.getMainFileID(), line, 0);&lt;/span&gt;
+        &lt;span class='comment'&gt;// auto cstart = statement-&amp;gt;getLocStart();&lt;/span&gt;
+
+        &lt;span class='comment'&gt;// rewriter_.InsertText(statement-&amp;gt;getLocStart(), "/**/");&lt;/span&gt;
+        ++depth;
+        &lt;span class='comment'&gt;// std::cerr &amp;lt;&amp;lt; "Entering compound " &amp;lt;&amp;lt; cstart.printToString(source_manager_) &amp;lt;&amp;lt; " or " &amp;lt;&amp;lt; cstart2.printToString(source_manager_) &amp;lt;&amp;lt; std::endl;&lt;/span&gt;
+        auto result = RecursiveASTVisitor&amp;lt;MyASTVisitor&amp;gt;::TraverseStmt(s);
+        --depth;
+        rewriter_.InsertTextAfterToken(statement-&amp;gt;getLocEnd(), &lt;span class='string'&gt;"&amp;lt;/div&amp;gt;"&lt;/span&gt;);
+        &lt;span class='comment'&gt;//std::cerr &amp;lt;&amp;lt; "Exiting compound " &amp;lt;&amp;lt; statement-&amp;gt;getLocEnd().printToString(source_manager_) &amp;lt;&amp;lt; std::endl;&lt;/span&gt;
+        return result;
+      }
+    }
+
+    return RecursiveASTVisitor&amp;lt;MyASTVisitor&amp;gt;::TraverseStmt(s);
+  }
+
+  bool VisitStmt(Stmt *s) {
+    std::cerr &amp;lt;&amp;lt; &lt;span class='string'&gt;"Visiting statement "&lt;/span&gt; &amp;lt;&amp;lt; s-&amp;gt;getLocStart().printToString(source_manager_) &amp;lt;&amp;lt; std::endl;
+
+&lt;span class='directive'&gt;#if 0&lt;/span&gt;
+    &lt;span class='comment'&gt;// Only care about If statements.&lt;/span&gt;
+    if (isa&amp;lt;IfStmt&amp;gt;(s)) {
+      IfStmt *IfStatement = cast&amp;lt;IfStmt&amp;gt;(s);
+      Stmt *Then = IfStatement-&amp;gt;getThen();
+
+      rewriter_.InsertText(Then-&amp;gt;getLocStart(), &lt;span class='string'&gt;"// the 'if' part\n"&lt;/span&gt;, true,
+                             true);
+
+      Stmt *Else = IfStatement-&amp;gt;getElse();
+      if (Else)
+        rewriter_.InsertText(Else-&amp;gt;getLocStart(), &lt;span class='string'&gt;"// the 'else' part\n"&lt;/span&gt;,
+                               true, true);
+    }
+&lt;span class='directive'&gt;#endif&lt;/span&gt;
+
+    return true;
+  }
+
+  bool VisitBlockDecl(BlockDecl *d) {
+    std::cerr &amp;lt;&amp;lt; &lt;span class='string'&gt;"Visiting block "&lt;/span&gt; &amp;lt;&amp;lt; std::endl;
+    return true;
+  }
+
+  bool VisitFunctionDecl(FunctionDecl *f) {
+    std::cerr &amp;lt;&amp;lt; &lt;span class='string'&gt;"Visiting function "&lt;/span&gt; &amp;lt;&amp;lt; std::endl;
+
+    &lt;span class='comment'&gt;// Only function definitions (with bodies), not declarations.&lt;/span&gt;
+    if (f-&amp;gt;hasBody()) {
+
+      &lt;span class='comment'&gt;// Type name as string&lt;/span&gt;
+      QualType QT = f-&amp;gt;getReturnType();
+      std::string TypeStr = QT.getAsString();
+
+      &lt;span class='comment'&gt;// Function name&lt;/span&gt;
+      DeclarationName DeclName = f-&amp;gt;getNameInfo().getName();
+      std::string FuncName = DeclName.getAsString();
+
+      &lt;span class='comment'&gt;// Add comment before&lt;/span&gt;
+&lt;span class='directive'&gt;#if 0&lt;/span&gt;
+      std::stringstream SSBefore;
+      SSBefore &amp;lt;&amp;lt; &lt;span class='string'&gt;"// Begin function "&lt;/span&gt; &amp;lt;&amp;lt; FuncName &amp;lt;&amp;lt; &lt;span class='string'&gt;" returning "&lt;/span&gt; &amp;lt;&amp;lt; TypeStr
+               &amp;lt;&amp;lt; &lt;span class='string'&gt;"\n"&lt;/span&gt;;
+      SourceLocation source_location = f-&amp;gt;getSourceRange().getBegin();
+      rewriter_.InsertText(source_location, SSBefore.str(), true, true);
+&lt;span class='directive'&gt;#endif&lt;/span&gt;
+
+&lt;span class='directive'&gt;#if 0&lt;/span&gt;
+      Stmt *FuncBody = f-&amp;gt;getBody();
+      &lt;span class='comment'&gt;// And after&lt;/span&gt;
+      std::stringstream SSAfter;
+      SSAfter &amp;lt;&amp;lt; &lt;span class='string'&gt;"\n// End function "&lt;/span&gt; &amp;lt;&amp;lt; FuncName;
+      auto source_location = FuncBody-&amp;gt;getLocEnd().getLocWithOffset(&lt;span class='numeric'&gt;1&lt;/span&gt;);
+      rewriter_.InsertText(source_location, SSAfter.str(), true, true);
+&lt;span class='directive'&gt;#endif&lt;/span&gt;
+
+      auto source_location = f-&amp;gt;getReturnTypeSourceRange().getEnd();
+      rewriter_.InsertTextAfterToken(source_location, &lt;span class='string'&gt;"&amp;lt;/span&amp;gt;"&lt;/span&gt;);
+      source_location = f-&amp;gt;getReturnTypeSourceRange().getBegin();
+      rewriter_.InsertTextBefore(source_location, &lt;span class='string'&gt;"&amp;lt;span class='type'&amp;gt;"&lt;/span&gt;);
+    }
+
+    return true;
+  }
+
+private:
+  &lt;span class='comment'&gt;//Id id_;&lt;/span&gt;
+  Rewriter &amp;amp;rewriter_;
+  SourceManager &amp;amp;source_manager_;
+};
+
+&lt;span class='comment'&gt;// Implementation of the ASTConsumer interface for reading an AST produced&lt;/span&gt;
+&lt;span class='comment'&gt;// by the Clang parser.&lt;/span&gt;
+class MyASTConsumer : public ASTConsumer {
+public:
+  MyASTConsumer(CompilerInstance&amp;amp; ci, Rewriter &amp;amp;rewriter, SourceManager &amp;amp;source_manager) : ci_(ci), rewriter_(rewriter), visitor_(rewriter, source_manager) {}
+
+  &lt;span class='comment'&gt;// Override the method that gets called for each parsed top-level&lt;/span&gt;
+  &lt;span class='comment'&gt;// declaration.&lt;/span&gt;
+  bool HandleTopLevelDecl(DeclGroupRef DR) override {
+    for (DeclGroupRef::iterator b = DR.begin(), e = DR.end(); b != e; ++b)
+      &lt;span class='comment'&gt;// Traverse the declaration using our AST visitor.&lt;/span&gt;
+      visitor_.TraverseDecl(*b);
+    return true;
+  }
+
+  void HandleTranslationUnit(ASTContext&amp;amp; ctx) override {
+    const auto&amp;amp; sm = ctx.getSourceManager();
+    const auto&amp;amp; fid = sm.getMainFileID();
+
+    WrapIt(rewriter_, fid, &lt;span class='string'&gt;"test"&lt;/span&gt;);
+    RawHighlight(rewriter_, fid, ci_.getPreprocessor());
+
+    html::EscapeText(rewriter_, fid, false, true);
+
+    const auto&amp;amp; location = sm.getLocForStartOfFile(sm.getMainFileID());
+    std::cerr &amp;lt;&amp;lt; &lt;span class='string'&gt;"HANDLE TU "&lt;/span&gt; &amp;lt;&amp;lt; fid.getHashValue()
+      &amp;lt;&amp;lt; &lt;span class='string'&gt;" "&lt;/span&gt; &amp;lt;&amp;lt; location.printToString(sm) &amp;lt;&amp;lt; std::endl;
+  }
+
+private:
+  CompilerInstance&amp;amp; ci_;
+  Rewriter&amp;amp; rewriter_;
+  MyASTVisitor visitor_;
+};
+
+
+&lt;span class='type'&gt;void&lt;/span&gt; HighlightRange(RewriteBuffer &amp;amp;RB, unsigned B, unsigned E,
+                          const char *BufferStart,
+&lt;div class='compound level-0'&gt;                          const char *StartTag, const char *EndTag) {
+  &lt;span class='comment'&gt;// Insert the tag at the absolute start/end of the range.&lt;/span&gt;
+  RB.InsertTextAfter(B, StartTag);
+  RB.InsertTextBefore(E, EndTag);
+
+  &lt;span class='comment'&gt;// Scan the range to see if there is a \r or \n.  If so, and if the line is&lt;/span&gt;
+  &lt;span class='comment'&gt;// not blank, insert tags on that line as well.&lt;/span&gt;
+  bool HadOpenTag = true;
+
+  unsigned LastNonWhiteSpace = B;
+&lt;div class='compound level-1'&gt;  for (unsigned i = B; i != E; ++i) {
+    switch (BufferStart[i]) {
+    case &lt;span class='char'&gt;'\r'&lt;/span&gt;:
+    case &lt;span class='char'&gt;'\n'&lt;/span&gt;:
+      &lt;span class='comment'&gt;// Okay, we found a newline in the range.  If we have an open tag, we need&lt;/span&gt;
+      &lt;span class='comment'&gt;// to insert a close tag at the first non-whitespace before the newline.&lt;/span&gt;
+      if (HadOpenTag)
+        RB.InsertTextBefore(LastNonWhiteSpace+&lt;span class='numeric'&gt;1&lt;/span&gt;, EndTag);
+
+      &lt;span class='comment'&gt;// Instead of inserting an open tag immediately after the newline, we&lt;/span&gt;
+      &lt;span class='comment'&gt;// wait until we see a non-whitespace character.  This prevents us from&lt;/span&gt;
+      &lt;span class='comment'&gt;// inserting tags around blank lines, and also allows the open tag to&lt;/span&gt;
+      &lt;span class='comment'&gt;// be put *after* whitespace on a non-blank line.&lt;/span&gt;
+      HadOpenTag = false;
+      break;
+    case &lt;span class='char'&gt;'\0'&lt;/span&gt;:
+    case &lt;span class='char'&gt;' '&lt;/span&gt;:
+    case &lt;span class='char'&gt;'\t'&lt;/span&gt;:
+    case &lt;span class='char'&gt;'\f'&lt;/span&gt;:
+    case &lt;span class='char'&gt;'\v'&lt;/span&gt;:
+      &lt;span class='comment'&gt;// Ignore whitespace.&lt;/span&gt;
+      break;
+
+    default:
+      &lt;span class='comment'&gt;// If there is no tag open, do it now.&lt;/span&gt;
+      if (!HadOpenTag) {
+        RB.InsertTextAfter(i, StartTag);
+        HadOpenTag = true;
+      }
+
+      &lt;span class='comment'&gt;// Remember this character.&lt;/span&gt;
+      LastNonWhiteSpace = i;
+      break;
+    }
+  }&lt;/div&gt;
+}&lt;/div&gt;
+&lt;span class='type'&gt;void&lt;/span&gt; HighlightRange(Rewriter &amp;amp;R, SourceLocation B, SourceLocation E,
+&lt;div class='compound level-0'&gt;                          const char *StartTag, const char *EndTag) {
+  SourceManager &amp;amp;SM = R.getSourceMgr();
+  B = SM.getExpansionLoc(B);
+  E = SM.getExpansionLoc(E);
+  FileID FID = SM.getFileID(B);
+  assert(SM.getFileID(E) == FID &amp;amp;&amp;amp; &lt;span class='string'&gt;"B/E not in the same file!"&lt;/span&gt;);
+
+  unsigned BOffset = SM.getFileOffset(B);
+  unsigned EOffset = SM.getFileOffset(E);
+
+  &lt;span class='comment'&gt;// Include the whole end token in the range.&lt;/span&gt;
+  EOffset += Lexer::MeasureTokenLength(E, R.getSourceMgr(), R.getLangOpts());
+
+  bool Invalid = false;
+  const char *BufferStart = SM.getBufferData(FID, &amp;amp;Invalid).data();
+  if (Invalid)
+    return;
+  
+  HighlightRange(R.getEditBuffer(FID), BOffset, EOffset,
+                 BufferStart, StartTag, EndTag);
+}&lt;/div&gt;
+&lt;div class='compound level-0'&gt;&lt;span class='type'&gt;void&lt;/span&gt; RawHighlight(Rewriter &amp;amp;R, FileID FID, const Preprocessor &amp;amp;PP) {
+  RewriteBuffer &amp;amp;RB = R.getEditBuffer(FID);
+
+  const SourceManager &amp;amp;SM = PP.getSourceManager();
+  const llvm::MemoryBuffer *FromFile = SM.getBuffer(FID);
+  Lexer L(FID, FromFile, SM, PP.getLangOpts());
+  const char *BufferStart = L.getBuffer().data();
+
+  &lt;span class='comment'&gt;// Inform the preprocessor that we want to retain comments as tokens, so we&lt;/span&gt;
+  &lt;span class='comment'&gt;// can highlight them.&lt;/span&gt;
+  L.SetCommentRetentionState(true);
+
+  &lt;span class='comment'&gt;// Lex all the tokens in raw mode, to avoid entering #includes or expanding&lt;/span&gt;
+  &lt;span class='comment'&gt;// macros.&lt;/span&gt;
+  Token Tok;
+  L.LexFromRawLexer(Tok);
+
+  while (Tok.isNot(tok::eof)) {
+    unsigned TokOffs = SM.getFileOffset(Tok.getLocation());
+    unsigned TokLen = Tok.getLength();
+    switch (Tok.getKind()) {
+    default: break;
+    case tok::comment:
+      HighlightRange(RB, TokOffs, TokOffs+TokLen, BufferStart,
+                     &lt;span class='string'&gt;"&amp;lt;span class='comment'&amp;gt;"&lt;/span&gt;, &lt;span class='string'&gt;"&amp;lt;/span&amp;gt;"&lt;/span&gt;);
+      break;
+    case tok::utf8_string_literal:
+      &lt;span class='comment'&gt;// Chop off the u part of u8 prefix&lt;/span&gt;
+      ++TokOffs;
+      --TokLen;
+      &lt;span class='comment'&gt;// FALL THROUGH to chop the 8&lt;/span&gt;
+    case tok::wide_string_literal:
+    case tok::utf16_string_literal:
+    case tok::utf32_string_literal:
+      &lt;span class='comment'&gt;// Chop off the L, u, U or 8 prefix&lt;/span&gt;
+      ++TokOffs;
+      --TokLen;
+      &lt;span class='comment'&gt;// FALL THROUGH.&lt;/span&gt;
+    case tok::string_literal:
+      &lt;span class='comment'&gt;// FIXME: Exclude the optional ud-suffix from the highlighted range.&lt;/span&gt;
+      HighlightRange(RB, TokOffs, TokOffs+TokLen, BufferStart,
+                     &lt;span class='string'&gt;"&amp;lt;span class='string'&amp;gt;"&lt;/span&gt;, &lt;span class='string'&gt;"&amp;lt;/span&amp;gt;"&lt;/span&gt;);
+      break;
+    case tok::numeric_constant:
+      HighlightRange(RB, TokOffs, TokOffs+TokLen, BufferStart,
+                     &lt;span class='string'&gt;"&amp;lt;span class='numeric'&amp;gt;"&lt;/span&gt;, &lt;span class='string'&gt;"&amp;lt;/span&amp;gt;"&lt;/span&gt;);
+      break;
+    case tok::utf8_char_constant:
+      ++TokOffs;
+      --TokLen;
+    case tok::wide_char_constant:
+    case tok::utf16_char_constant:
+    case tok::utf32_char_constant:
+      &lt;span class='comment'&gt;// Chop off the L, u, U or 8 prefix&lt;/span&gt;
+      ++TokOffs;
+      --TokLen;
+    case tok::char_constant:
+      HighlightRange(RB, TokOffs, TokOffs+TokLen, BufferStart,
+                     &lt;span class='string'&gt;"&amp;lt;span class='char'&amp;gt;"&lt;/span&gt;, &lt;span class='string'&gt;"&amp;lt;/span&amp;gt;"&lt;/span&gt;);
+      break;
+    case tok::hash: {
+      &lt;span class='comment'&gt;// If this is a preprocessor directive, all tokens to end of line are too.&lt;/span&gt;
+      if (!Tok.isAtStartOfLine())
+        break;
+
+      &lt;span class='comment'&gt;// Eat all of the tokens until we get to the next one at the start of&lt;/span&gt;
+      &lt;span class='comment'&gt;// line.&lt;/span&gt;
+      unsigned TokEnd = TokOffs+TokLen;
+      L.LexFromRawLexer(Tok);
+      while (!Tok.isAtStartOfLine() &amp;amp;&amp;amp; Tok.isNot(tok::eof)) {
+        TokEnd = SM.getFileOffset(Tok.getLocation())+Tok.getLength();
+        L.LexFromRawLexer(Tok);
+      }
+
+      &lt;span class='comment'&gt;// Find end of line.  This is a hack.&lt;/span&gt;
+      HighlightRange(RB, TokOffs, TokEnd, BufferStart,
+                     &lt;span class='string'&gt;"&amp;lt;span class='directive'&amp;gt;"&lt;/span&gt;, &lt;span class='string'&gt;"&amp;lt;/span&amp;gt;"&lt;/span&gt;);
+
+      &lt;span class='comment'&gt;// Don't skip the next token.&lt;/span&gt;
+      continue;
+    }
+    }
+
+    L.LexFromRawLexer(Tok);
+  }
+}&lt;/div&gt;
+
+
+
+&lt;div class='compound level-0'&gt;&lt;span class='type'&gt;void&lt;/span&gt; WrapIt(Rewriter&amp;amp; R, FileID FID, const char *title) {
+
+  const llvm::MemoryBuffer *Buf = R.getSourceMgr().getBuffer(FID);
+  const char* FileStart = Buf-&amp;gt;getBufferStart();
+  const char* FileEnd = Buf-&amp;gt;getBufferEnd();
+
+  SourceLocation StartLoc = R.getSourceMgr().getLocForStartOfFile(FID);
+  SourceLocation EndLoc = StartLoc.getLocWithOffset(FileEnd-FileStart);
+
+  std::string s;
+  llvm::raw_string_ostream os(s);
+  os &amp;lt;&amp;lt; &lt;span class='string'&gt;"&amp;lt;!doctype html&amp;gt;\n"&lt;/span&gt; &lt;span class='comment'&gt;// Use HTML 5 doctype&lt;/span&gt;
+        &lt;span class='string'&gt;"&amp;lt;html&amp;gt;\n&amp;lt;head&amp;gt;\n"&lt;/span&gt;;
+
+  if (title)
+    os &amp;lt;&amp;lt; &lt;span class='string'&gt;"&amp;lt;title&amp;gt;"&lt;/span&gt; &amp;lt;&amp;lt; html::EscapeText(title) &amp;lt;&amp;lt; &lt;span class='string'&gt;"&amp;lt;/title&amp;gt;\n"&lt;/span&gt;;
+
+  os &amp;lt;&amp;lt; &lt;span class='string'&gt;"&amp;lt;style type=\"text/css\"&amp;gt;\n"&lt;/span&gt;
+      &lt;span class='comment'&gt;// " body { color:#000000; background-color:#ffffff }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" body { font-family:Helvetica, sans-serif; font-size:10pt }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" h1 { font-size:14pt }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .type { color: green}\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .code { border-collapse:collapse; width:100%; }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .code { font-family: \"Monospace\", monospace; font-size:10pt }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .code { line-height: 1.2em }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .compound { display: inline-block; }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .compound.level-0:hover { margin-left: 1px; border-left-style: solid; border-left-color: yellow; }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .compound.level-1:hover { margin-left: 2px; border-left-style: solid; border-left-color: green; }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .compound.level-2:hover { margin-left: 3px; border-left-style: solid; border-left-color: orange; }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .comment { color: magenta; font-style: oblique }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .string { color: purple; }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .numeric { color: purple; }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .char { color: purple; }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .directive { color: blue; }\n"&lt;/span&gt;
+
+      &lt;span class='comment'&gt;// Macro expansions.&lt;/span&gt;
+      &lt;span class='string'&gt;" .expansion { display: none; }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .macro:hover .expansion { display: block; border: 2px solid #FF0000; "&lt;/span&gt;
+          &lt;span class='string'&gt;"padding: 2px; background-color:#FFF0F0; font-weight: normal; "&lt;/span&gt;
+          &lt;span class='string'&gt;"  -webkit-border-radius:5px;  -webkit-box-shadow:1px 1px 7px #000; "&lt;/span&gt;
+          &lt;span class='string'&gt;"position: absolute; top: -1em; left:10em; z-index: 1 } \n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .macro { color: darkmagenta; background-color:LemonChiffon;"&lt;/span&gt;
+             &lt;span class='comment'&gt;// Macros are position: relative to provide base for expansions.&lt;/span&gt;
+             &lt;span class='string'&gt;" position: relative }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .num { width:2.5em; padding-right:2ex; background-color:#eeeeee }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .num { text-align:right; font-size:8pt }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .num { color:#444444 }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .line { padding-left: 1ex; border-left: 3px solid #ccc }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .line { white-space: pre }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .msg { -webkit-box-shadow:1px 1px 7px #000 }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .msg { -webkit-border-radius:5px }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .msg { font-family:Helvetica, sans-serif; font-size:8pt }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .msg { float:left }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .msg { padding:0.25em 1ex 0.25em 1ex }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .msg { margin-top:10px; margin-bottom:10px }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .msg { font-weight:bold }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .msg { max-width:60em; word-wrap: break-word; white-space: pre-wrap }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .msgT { padding:0x; spacing:0x }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .msgEvent { background-color:#fff8b4; color:#000000 }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .msgControl { background-color:#bbbbbb; color:#000000 }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .mrange { background-color:#dfddf3 }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .mrange { border-bottom:1px solid #6F9DBE }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .PathIndex { font-weight: bold; padding:0px 5px; "&lt;/span&gt;
+        &lt;span class='string'&gt;"margin-right:5px; }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .PathIndex { -webkit-border-radius:8px }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .PathIndexEvent { background-color:#bfba87 }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .PathIndexControl { background-color:#8c8c8c }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .PathNav a { text-decoration:none; font-size: larger }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .CodeInsertionHint { font-weight: bold; background-color: #10dd10 }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .CodeRemovalHint { background-color:#de1010 }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" .CodeRemovalHint { border-bottom:1px solid #6F9DBE }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" table.simpletable {\n"&lt;/span&gt;
+      &lt;span class='string'&gt;"   padding: 5px;\n"&lt;/span&gt;
+      &lt;span class='string'&gt;"   font-size:12pt;\n"&lt;/span&gt;
+      &lt;span class='string'&gt;"   margin:20px;\n"&lt;/span&gt;
+      &lt;span class='string'&gt;"   border-collapse: collapse; border-spacing: 0px;\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;" td.rowname {\n"&lt;/span&gt;
+      &lt;span class='string'&gt;"   text-align:right; font-weight:bold; color:#444444;\n"&lt;/span&gt;
+      &lt;span class='string'&gt;"   padding-right:2ex; }\n"&lt;/span&gt;
+      &lt;span class='string'&gt;"&amp;lt;/style&amp;gt;\n&amp;lt;/head&amp;gt;\n&amp;lt;body&amp;gt;&amp;lt;pre class='code'&amp;gt;"&lt;/span&gt;;
+
+  &lt;span class='comment'&gt;// Generate header&lt;/span&gt;
+  R.InsertTextBefore(StartLoc, os.str());
+  &lt;span class='comment'&gt;// Generate footer&lt;/span&gt;
+
+  R.InsertTextAfter(EndLoc, &lt;span class='string'&gt;"&amp;lt;/pre&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;\n"&lt;/span&gt;);
+}&lt;/div&gt;
+
+template&amp;lt; typename T &amp;gt;
+std::string ToHex( T i )
+{
+    std::stringstream stream;
+    stream 
+           &amp;lt;&amp;lt; std::setfill (&lt;span class='char'&gt;'0'&lt;/span&gt;) &amp;lt;&amp;lt; std::setw(sizeof(T)*&lt;span class='numeric'&gt;2&lt;/span&gt;) 
+           &amp;lt;&amp;lt; std::hex &amp;lt;&amp;lt; i;
+    return stream.str();
+}
+
+std::string Join(const std::initializer_list&amp;lt;std::string&amp;gt;&amp;amp; paths) {
+  std::string result;
+  if (!paths.size())
+    return result;
+
+  &lt;span class='comment'&gt;// Append all elements of the list, followed by a "/".&lt;/span&gt;
+  for (const auto&amp;amp; path : paths) {
+    result.append(path);
+    result.append(&lt;span class='string'&gt;"/"&lt;/span&gt;);
+  }
+
+  &lt;span class='comment'&gt;// Remove last trailing "/".&lt;/span&gt;
+  result.resize(result.size() - &lt;span class='numeric'&gt;1&lt;/span&gt;);
+  return result;
+}
+
+std::string MakeSourcePath(unsigned hash) {
+  std::string hex = ToHex(hash);
+  auto end = hex.length();
+  return Join({&lt;span class='string'&gt;"output"&lt;/span&gt;, &lt;span class='string'&gt;"sources"&lt;/span&gt;, hex.substr(end - &lt;span class='numeric'&gt;2&lt;/span&gt;), hex.substr(&lt;span class='numeric'&gt;0&lt;/span&gt;, end - &lt;span class='numeric'&gt;2&lt;/span&gt;) + &lt;span class='string'&gt;".html"&lt;/span&gt;});
+}
+
+&lt;div class='compound level-0'&gt;bool MakeDirs(const std::string&amp;amp; path, int mode) {
+  std::string copy(path);
+
+  for (std::size_t index = &lt;span class='numeric'&gt;1&lt;/span&gt;;
+       (index = copy.find(&lt;span class='char'&gt;'/'&lt;/span&gt;, index)) != std::string::npos;) {
+    copy[index] = &lt;span class='char'&gt;'\0'&lt;/span&gt;;
+    if (!mkdir(copy.c_str(), mode) &amp;amp;&amp;amp; errno != EEXIST)
+      return false;
+
+    copy[index] = &lt;span class='char'&gt;'/'&lt;/span&gt;;
+    index = index + &lt;span class='numeric'&gt;1&lt;/span&gt;;
+  }
+  return true;
+}&lt;/div&gt;
+
+
+&lt;div class='compound level-0'&gt;&lt;span class='type'&gt;int&lt;/span&gt; main(int argc, char *argv[]) {
+&lt;div class='compound level-1'&gt;  if (argc &amp;lt; &lt;span class='numeric'&gt;2&lt;/span&gt;) {
+    llvm::errs() &amp;lt;&amp;lt; &lt;span class='string'&gt;"Usage: rewritersample &amp;lt;filename&amp;gt;...\n"&lt;/span&gt;;
+    return &lt;span class='numeric'&gt;1&lt;/span&gt;;
+  }&lt;/div&gt;
+
+  &lt;span class='comment'&gt;// CompilerInstance will hold the instance of the Clang compiler for us,&lt;/span&gt;
+  &lt;span class='comment'&gt;// managing the various objects needed to run the compiler.&lt;/span&gt;
+  CompilerInstance ci;
+  ci.createDiagnostics();
+
+  LangOptions &amp;amp;lo = ci.getLangOpts();
+  &lt;span class='comment'&gt;// lo.CPlusPlus = 1;&lt;/span&gt;
+
+  &lt;span class='comment'&gt;// Initialize target info with the default triple for our platform.&lt;/span&gt;
+  auto target_options = std::make_shared&amp;lt;TargetOptions&amp;gt;();
+  target_options-&amp;gt;Triple = llvm::sys::getDefaultTargetTriple();
+  TargetInfo *target_info =
+      TargetInfo::CreateTargetInfo(ci.getDiagnostics(), target_options);
+  ci.setTarget(target_info);
+
+  ci.createFileManager();
+  FileManager &amp;amp;file_mgr = ci.getFileManager();
+  ci.createSourceManager(file_mgr);
+  SourceManager &amp;amp;source_mgr = ci.getSourceManager();
+  &lt;span class='comment'&gt;//ci.createPreprocessor(TU_Module);&lt;/span&gt;
+  ci.createPreprocessor(TU_Complete);
+  ci.createASTContext();
+
+  &lt;span class='comment'&gt;// A Rewriter helps us manage the code rewriting task.&lt;/span&gt;
+  Rewriter rewriter;
+  rewriter.setSourceMgr(source_mgr, ci.getLangOpts());
+
+  &lt;span class='comment'&gt;// Create an AST consumer instance which is going to get called by&lt;/span&gt;
+  &lt;span class='comment'&gt;// ParseAST.&lt;/span&gt;
+  MyASTConsumer consumer(ci, rewriter, source_mgr);
+
+&lt;div class='compound level-1'&gt;  for (int i = &lt;span class='numeric'&gt;1&lt;/span&gt;; i &amp;lt; argc; ++i) {
+    &lt;span class='comment'&gt;// Set the main file handled by the source manager to the input file.&lt;/span&gt;
+    const FileEntry *input = file_mgr.getFile(argv[i]);
+    auto fid = source_mgr.createFileID(input, SourceLocation(), SrcMgr::C_User);
+    source_mgr.setMainFileID(fid);
+    ci.getDiagnosticClient().BeginSourceFile(ci.getLangOpts(), &amp;amp;ci.getPreprocessor());
+
+    auto fib = source_mgr.fileinfo_begin();
+    auto fie = source_mgr.fileinfo_end();
+&lt;div class='compound level-2'&gt;    for (int i = &lt;span class='numeric'&gt;0&lt;/span&gt;; fib != fie; ++fib, ++i) {
+      std::cerr &amp;lt;&amp;lt; &lt;span class='string'&gt;"FIB "&lt;/span&gt; &amp;lt;&amp;lt; i &amp;lt;&amp;lt; std::endl;
+    }&lt;/div&gt;
+
+    &lt;span class='comment'&gt;// Parse the file to AST, registering our consumer as the AST consumer.&lt;/span&gt;
+    ParseAST(ci.getPreprocessor(), &amp;amp;consumer, ci.getASTContext(), false &lt;span class='comment'&gt;/* Print Stats */&lt;/span&gt;);
+
+    fib = source_mgr.fileinfo_begin();
+    fie = source_mgr.fileinfo_end();
+&lt;div class='compound level-2'&gt;    for (int i = &lt;span class='numeric'&gt;0&lt;/span&gt;; fib != fie; ++fib, ++i) {
+      std::cerr &amp;lt;&amp;lt; &lt;span class='string'&gt;"FIB "&lt;/span&gt; &amp;lt;&amp;lt; i &amp;lt;&amp;lt; std::endl;
+    }&lt;/div&gt;
+
+
+    &lt;span class='comment'&gt;// NOTES, about handling comments:&lt;/span&gt;
+    &lt;span class='comment'&gt;// auto *pp = ci.getPreprocessor();&lt;/span&gt;
+    &lt;span class='comment'&gt;// pp-&amp;gt;addCommentHandler();&lt;/span&gt;
+    &lt;span class='comment'&gt;// &lt;/span&gt;
+
+
+
+    &lt;span class='comment'&gt;// Check comments. THIS ONLY CAPTURES doxygen comments.&lt;/span&gt;
+    auto&amp;amp; ast_context = ci.getASTContext();
+&lt;span class='comment'&gt;//    ast_context.getExternalSource()-&amp;gt;ReadComments();&lt;/span&gt;
+    const auto&amp;amp; comments = ast_context.getRawCommentList().getComments();
+    std::cerr &amp;lt;&amp;lt; &lt;span class='string'&gt;"DUMPING COMMENTS"&lt;/span&gt; &amp;lt;&amp;lt; std::endl;
+    for (auto&amp;amp; comment : comments) 
+      std::cerr &amp;lt;&amp;lt; &lt;span class='string'&gt;"COMMENT "&lt;/span&gt; &amp;lt;&amp;lt; comment-&amp;gt;getRawText(source_mgr).str() &amp;lt;&amp;lt; std::endl;
+    std::cerr &amp;lt;&amp;lt; &lt;span class='string'&gt;"DONE COMMENTS"&lt;/span&gt; &amp;lt;&amp;lt; std::endl;
+
+    auto path = MakeSourcePath(fid.getHashValue());
+    std::cerr &amp;lt;&amp;lt; &lt;span class='string'&gt;"PATH "&lt;/span&gt; &amp;lt;&amp;lt; path &amp;lt;&amp;lt; std::endl;
+&lt;div class='compound level-2'&gt;    if (!MakeDirs(path, &lt;span class='numeric'&gt;0777&lt;/span&gt;)) {
+      std::cerr &amp;lt;&amp;lt; &lt;span class='string'&gt;"FAILED TO MAKE DIRS"&lt;/span&gt; &amp;lt;&amp;lt; std::endl;
+      return &lt;span class='numeric'&gt;5&lt;/span&gt;;
+    }&lt;/div&gt;
+
+    &lt;span class='comment'&gt;// At this point the rewriter's buffer should be full with the rewritten&lt;/span&gt;
+    &lt;span class='comment'&gt;// file contents.&lt;/span&gt;
+    const RewriteBuffer *RewriteBuf = rewriter.getRewriteBufferFor(fid);
+    llvm::outs() &amp;lt;&amp;lt; std::string(RewriteBuf-&amp;gt;begin(), RewriteBuf-&amp;gt;end());
+
+    std::ofstream myfile;
+    myfile.open(path);
+    myfile &amp;lt;&amp;lt; std::string(RewriteBuf-&amp;gt;begin(), RewriteBuf-&amp;gt;end());
+  }&lt;/div&gt;
+
+  return &lt;span class='numeric'&gt;0&lt;/span&gt;;
+}&lt;/div&gt;
+&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;

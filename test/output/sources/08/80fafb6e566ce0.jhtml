@@ -1,0 +1,453 @@
+{"name":"features.h","path":"/usr/include/features.h","root":"../06/416cc91f3e3d90.html","project":"test","tag":"output","parents":[{"name":"usr","href":"../60/7abc7e1c17ae25.html"},{"name":"include","href":"../19/901c5d9478e5ce.html"}]}
+---
+<span class='comment'>/* Copyright (C) 1991-2018 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   &lt;http://www.gnu.org/licenses/&gt;.  */</span>
+
+<span class='directive'>#ifndef	_FEATURES_H</span>
+<span class='directive'>#define	_FEATURES_H	1</span>
+
+<span class='comment'>/* These are defined by the user (or the compiler)
+   to specify the desired environment:
+
+   __STRICT_ANSI__	ISO Standard C.
+   _ISOC99_SOURCE	Extensions to ISO C89 from ISO C99.
+   _ISOC11_SOURCE	Extensions to ISO C99 from ISO C11.
+   __STDC_WANT_LIB_EXT2__
+			Extensions to ISO C99 from TR 27431-2:2010.
+   __STDC_WANT_IEC_60559_BFP_EXT__
+			Extensions to ISO C11 from TS 18661-1:2014.
+   __STDC_WANT_IEC_60559_FUNCS_EXT__
+			Extensions to ISO C11 from TS 18661-4:2015.
+   __STDC_WANT_IEC_60559_TYPES_EXT__
+			Extensions to ISO C11 from TS 18661-3:2015.
+
+   _POSIX_SOURCE	IEEE Std 1003.1.
+   _POSIX_C_SOURCE	If ==1, like _POSIX_SOURCE; if &gt;=2 add IEEE Std 1003.2;
+			if &gt;=199309L, add IEEE Std 1003.1b-1993;
+			if &gt;=199506L, add IEEE Std 1003.1c-1995;
+			if &gt;=200112L, all of IEEE 1003.1-2004
+			if &gt;=200809L, all of IEEE 1003.1-2008
+   _XOPEN_SOURCE	Includes POSIX and XPG things.  Set to 500 if
+			Single Unix conformance is wanted, to 600 for the
+			sixth revision, to 700 for the seventh revision.
+   _XOPEN_SOURCE_EXTENDED XPG things and X/Open Unix extensions.
+   _LARGEFILE_SOURCE	Some more functions for correct standard I/O.
+   _LARGEFILE64_SOURCE	Additional functionality from LFS for large files.
+   _FILE_OFFSET_BITS=N	Select default filesystem interface.
+   _ATFILE_SOURCE	Additional *at interfaces.
+   _GNU_SOURCE		All of the above, plus GNU extensions.
+   _DEFAULT_SOURCE	The default set of features (taking precedence over
+			__STRICT_ANSI__).
+
+   _FORTIFY_SOURCE	Add security hardening to many library functions.
+			Set to 1 or 2; 2 performs stricter checks than 1.
+
+   _REENTRANT, _THREAD_SAFE
+			Obsolete; equivalent to _POSIX_C_SOURCE=199506L.
+
+   The `-ansi' switch to the GNU C compiler, and standards conformance
+   options such as `-std=c99', define __STRICT_ANSI__.  If none of
+   these are defined, or if _DEFAULT_SOURCE is defined, the default is
+   to have _POSIX_SOURCE set to one and _POSIX_C_SOURCE set to
+   200809L, as well as enabling miscellaneous functions from BSD and
+   SVID.  If more than one of these are defined, they accumulate.  For
+   example __STRICT_ANSI__, _POSIX_SOURCE and _POSIX_C_SOURCE together
+   give you ISO C, 1003.1, and 1003.2, but nothing else.
+
+   These are defined by this file and are used by the
+   header files to decide what to declare or define:
+
+   __GLIBC_USE (F)	Define things from feature set F.  This is defined
+			to 1 or 0; the subsequent macros are either defined
+			or undefined, and those tests should be moved to
+			__GLIBC_USE.
+   __USE_ISOC11		Define ISO C11 things.
+   __USE_ISOC99		Define ISO C99 things.
+   __USE_ISOC95		Define ISO C90 AMD1 (C95) things.
+   __USE_ISOCXX11	Define ISO C++11 things.
+   __USE_POSIX		Define IEEE Std 1003.1 things.
+   __USE_POSIX2		Define IEEE Std 1003.2 things.
+   __USE_POSIX199309	Define IEEE Std 1003.1, and .1b things.
+   __USE_POSIX199506	Define IEEE Std 1003.1, .1b, .1c and .1i things.
+   __USE_XOPEN		Define XPG things.
+   __USE_XOPEN_EXTENDED	Define X/Open Unix things.
+   __USE_UNIX98		Define Single Unix V2 things.
+   __USE_XOPEN2K        Define XPG6 things.
+   __USE_XOPEN2KXSI     Define XPG6 XSI things.
+   __USE_XOPEN2K8       Define XPG7 things.
+   __USE_XOPEN2K8XSI    Define XPG7 XSI things.
+   __USE_LARGEFILE	Define correct standard I/O things.
+   __USE_LARGEFILE64	Define LFS things with separate names.
+   __USE_FILE_OFFSET64	Define 64bit interface as default.
+   __USE_MISC		Define things from 4.3BSD or System V Unix.
+   __USE_ATFILE		Define *at interfaces and AT_* constants for them.
+   __USE_GNU		Define GNU extensions.
+   __USE_FORTIFY_LEVEL	Additional security measures used, according to level.
+
+   The macros `__GNU_LIBRARY__', `__GLIBC__', and `__GLIBC_MINOR__' are
+   defined by this file unconditionally.  `__GNU_LIBRARY__' is provided
+   only for compatibility.  All new code should use the other symbols
+   to test for features.
+
+   All macros listed above as possibly being defined by this file are
+   explicitly undefined if they are not explicitly defined.
+   Feature-test macros that are not defined by the user or compiler
+   but are implied by the other feature-test macros defined (or by the
+   lack of any definitions) are defined by the file.
+
+   ISO C feature test macros depend on the definition of the macro
+   when an affected header is included, not when the first system
+   header is included, and so they are handled in
+   &lt;bits/libc-header-start.h&gt;, which does not have a multiple include
+   guard.  Feature test macros that can be handled from the first
+   system header included are handled here.  */</span>
+
+
+<span class='comment'>/* Undefine everything, so we get a clean slate.  */</span>
+<span class='directive'>#undef	__USE_ISOC11</span>
+<span class='directive'>#undef	__USE_ISOC99</span>
+<span class='directive'>#undef	__USE_ISOC95</span>
+<span class='directive'>#undef	__USE_ISOCXX11</span>
+<span class='directive'>#undef	__USE_POSIX</span>
+<span class='directive'>#undef	__USE_POSIX2</span>
+<span class='directive'>#undef	__USE_POSIX199309</span>
+<span class='directive'>#undef	__USE_POSIX199506</span>
+<span class='directive'>#undef	__USE_XOPEN</span>
+<span class='directive'>#undef	__USE_XOPEN_EXTENDED</span>
+<span class='directive'>#undef	__USE_UNIX98</span>
+<span class='directive'>#undef	__USE_XOPEN2K</span>
+<span class='directive'>#undef	__USE_XOPEN2KXSI</span>
+<span class='directive'>#undef	__USE_XOPEN2K8</span>
+<span class='directive'>#undef	__USE_XOPEN2K8XSI</span>
+<span class='directive'>#undef	__USE_LARGEFILE</span>
+<span class='directive'>#undef	__USE_LARGEFILE64</span>
+<span class='directive'>#undef	__USE_FILE_OFFSET64</span>
+<span class='directive'>#undef	__USE_MISC</span>
+<span class='directive'>#undef	__USE_ATFILE</span>
+<span class='directive'>#undef	__USE_GNU</span>
+<span class='directive'>#undef	__USE_FORTIFY_LEVEL</span>
+<span class='directive'>#undef	__KERNEL_STRICT_NAMES</span>
+<span class='directive'>#undef	__GLIBC_USE_DEPRECATED_GETS</span>
+
+<span class='comment'>/* Suppress kernel-name space pollution unless user expressedly asks
+   for it.  */</span>
+<span class='directive'>#ifndef _LOOSE_KERNEL_NAMES</span>
+<span class='directive'># define __KERNEL_STRICT_NAMES</span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* Convenience macro to test the version of gcc.
+   Use like this:
+   #if __GNUC_PREREQ (2,8)
+   ... code requiring gcc 2.8 or later ...
+   #endif
+   Note: only works for GCC 2.0 and later, because __GNUC_MINOR__ was
+   added in 2.0.  */</span>
+<span class='directive'>#if defined __GNUC__ &amp;&amp; defined __GNUC_MINOR__</span>
+<span class='directive'># define __GNUC_PREREQ(maj, min) \
+	((__GNUC__ &lt;&lt; 16) + __GNUC_MINOR__ &gt;= ((maj) &lt;&lt; 16) + (min))</span>
+<span class='directive'>#else</span><span class='preprocessor-if muted'>
+<span class='directive'># define __GNUC_PREREQ(maj, min) 0</span></span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* Similarly for clang.  Features added to GCC after version 4.2 may
+   or may not also be available in clang, and clang's definitions of
+   __GNUC(_MINOR)__ are fixed at 4 and 2 respectively.  Not all such
+   features can be queried via __has_extension/__has_feature.  */</span>
+<span class='directive'>#if defined __clang_major__ &amp;&amp; defined __clang_minor__</span>
+<span class='directive'># define __glibc_clang_prereq(maj, min) \
+  ((__clang_major__ &lt;&lt; 16) + __clang_minor__ &gt;= ((maj) &lt;&lt; 16) + (min))</span>
+<span class='directive'>#else</span><span class='preprocessor-if muted'>
+<span class='directive'># define __glibc_clang_prereq(maj, min) 0</span></span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* Whether to use feature set F.  */</span>
+<span class='directive'>#define __GLIBC_USE(F)	__GLIBC_USE_ ## F</span>
+
+<span class='comment'>/* _BSD_SOURCE and _SVID_SOURCE are deprecated aliases for
+   _DEFAULT_SOURCE.  If _DEFAULT_SOURCE is present we do not
+   issue a warning; the expectation is that the source is being
+   transitioned to use the new macro.  */</span>
+<span class='directive'>#if (defined _BSD_SOURCE || defined _SVID_SOURCE) \
+    &amp;&amp; !defined _DEFAULT_SOURCE</span><span class='preprocessor-if muted'>
+<span class='directive'># warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"</span>
+<span class='directive'># undef  _DEFAULT_SOURCE</span>
+<span class='directive'># define _DEFAULT_SOURCE	1</span></span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* If _GNU_SOURCE was defined by the user, turn on all the other features.  */</span>
+<span class='directive'>#ifdef _GNU_SOURCE</span>
+<span class='directive'># undef  _ISOC95_SOURCE</span>
+<span class='directive'># define _ISOC95_SOURCE	1</span>
+<span class='directive'># undef  _ISOC99_SOURCE</span>
+<span class='directive'># define _ISOC99_SOURCE	1</span>
+<span class='directive'># undef  _ISOC11_SOURCE</span>
+<span class='directive'># define _ISOC11_SOURCE	1</span>
+<span class='directive'># undef  _POSIX_SOURCE</span>
+<span class='directive'># define _POSIX_SOURCE	1</span>
+<span class='directive'># undef  _POSIX_C_SOURCE</span>
+<span class='directive'># define _POSIX_C_SOURCE	200809L</span>
+<span class='directive'># undef  _XOPEN_SOURCE</span>
+<span class='directive'># define _XOPEN_SOURCE	700</span>
+<span class='directive'># undef  _XOPEN_SOURCE_EXTENDED</span>
+<span class='directive'># define _XOPEN_SOURCE_EXTENDED	1</span>
+<span class='directive'># undef	 _LARGEFILE64_SOURCE</span>
+<span class='directive'># define _LARGEFILE64_SOURCE	1</span>
+<span class='directive'># undef  _DEFAULT_SOURCE</span>
+<span class='directive'># define _DEFAULT_SOURCE	1</span>
+<span class='directive'># undef  _ATFILE_SOURCE</span>
+<span class='directive'># define _ATFILE_SOURCE	1</span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* If nothing (other than _GNU_SOURCE and _DEFAULT_SOURCE) is defined,
+   define _DEFAULT_SOURCE.  */</span>
+<span class='directive'>#if (defined _DEFAULT_SOURCE					\
+     || (!defined __STRICT_ANSI__				\
+	 &amp;&amp; !defined _ISOC99_SOURCE &amp;&amp; !defined _ISOC11_SOURCE	\
+	 &amp;&amp; !defined _POSIX_SOURCE &amp;&amp; !defined _POSIX_C_SOURCE	\
+	 &amp;&amp; !defined _XOPEN_SOURCE))</span>
+<span class='directive'># undef  _DEFAULT_SOURCE</span>
+<span class='directive'># define _DEFAULT_SOURCE	1</span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* This is to enable the ISO C11 extension.  */</span>
+<span class='directive'>#if (defined _ISOC11_SOURCE \
+     || (defined __STDC_VERSION__ &amp;&amp; __STDC_VERSION__ &gt;= 201112L))</span>
+<span class='directive'># define __USE_ISOC11	1</span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* This is to enable the ISO C99 extension.  */</span>
+<span class='directive'>#if (defined _ISOC99_SOURCE || defined _ISOC11_SOURCE \
+     || (defined __STDC_VERSION__ &amp;&amp; __STDC_VERSION__ &gt;= 199901L))</span>
+<span class='directive'># define __USE_ISOC99	1</span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* This is to enable the ISO C90 Amendment 1:1995 extension.  */</span>
+<span class='directive'>#if (defined _ISOC99_SOURCE || defined _ISOC11_SOURCE \
+     || (defined __STDC_VERSION__ &amp;&amp; __STDC_VERSION__ &gt;= 199409L))</span>
+<span class='directive'># define __USE_ISOC95	1</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef __cplusplus</span>
+<span class='comment'>/* This is to enable compatibility for ISO C++17.  */</span>
+<span class='directive'># if __cplusplus &gt;= 201703L</span><span class='preprocessor-if muted'>
+<span class='directive'>#  define __USE_ISOC11	1</span></span>
+<span class='directive'># endif</span>
+<span class='comment'>/* This is to enable compatibility for ISO C++11.
+   Check the temporary macro for now, too.  */</span>
+<span class='directive'># if __cplusplus &gt;= 201103L || defined __GXX_EXPERIMENTAL_CXX0X__</span>
+<span class='directive'>#  define __USE_ISOCXX11	1</span>
+<span class='directive'>#  define __USE_ISOC99	1</span>
+<span class='directive'># endif</span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* If none of the ANSI/POSIX macros are defined, or if _DEFAULT_SOURCE
+   is defined, use POSIX.1-2008 (or another version depending on
+   _XOPEN_SOURCE).  */</span>
+<span class='directive'>#ifdef _DEFAULT_SOURCE</span>
+<span class='directive'># if !defined _POSIX_SOURCE &amp;&amp; !defined _POSIX_C_SOURCE</span><span class='preprocessor-if muted'>
+<span class='directive'>#  define __USE_POSIX_IMPLICITLY	1</span></span>
+<span class='directive'># endif</span>
+<span class='directive'># undef  _POSIX_SOURCE</span>
+<span class='directive'># define _POSIX_SOURCE	1</span>
+<span class='directive'># undef  _POSIX_C_SOURCE</span>
+<span class='directive'># define _POSIX_C_SOURCE	200809L</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#if ((!defined __STRICT_ANSI__					\
+      || (defined _XOPEN_SOURCE &amp;&amp; (_XOPEN_SOURCE - 0) &gt;= 500))	\
+     &amp;&amp; !defined _POSIX_SOURCE &amp;&amp; !defined _POSIX_C_SOURCE)</span><span class='preprocessor-if muted'>
+<span class='directive'># define _POSIX_SOURCE	1</span>
+<span class='directive'># if defined _XOPEN_SOURCE &amp;&amp; (_XOPEN_SOURCE - 0) &lt; 500</span>
+<span class='directive'>#  define _POSIX_C_SOURCE	2</span>
+<span class='directive'># elif defined _XOPEN_SOURCE &amp;&amp; (_XOPEN_SOURCE - 0) &lt; 600</span>
+<span class='directive'>#  define _POSIX_C_SOURCE	199506L</span>
+<span class='directive'># elif defined _XOPEN_SOURCE &amp;&amp; (_XOPEN_SOURCE - 0) &lt; 700</span>
+<span class='directive'>#  define _POSIX_C_SOURCE	200112L</span>
+<span class='directive'># else</span>
+<span class='directive'>#  define _POSIX_C_SOURCE	200809L</span>
+<span class='directive'># endif</span>
+<span class='directive'># define __USE_POSIX_IMPLICITLY	1</span></span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* Some C libraries once required _REENTRANT and/or _THREAD_SAFE to be
+   defined in all multithreaded code.  GNU libc has not required this
+   for many years.  We now treat them as compatibility synonyms for
+   _POSIX_C_SOURCE=199506L, which is the earliest level of POSIX with
+   comprehensive support for multithreaded code.  Using them never
+   lowers the selected level of POSIX conformance, only raises it.  */</span>
+<span class='directive'>#if ((!defined _POSIX_C_SOURCE || (_POSIX_C_SOURCE - 0) &lt; 199506L) \
+     &amp;&amp; (defined _REENTRANT || defined _THREAD_SAFE))</span><span class='preprocessor-if muted'>
+<span class='directive'># define _POSIX_SOURCE   1</span>
+<span class='directive'># undef  _POSIX_C_SOURCE</span>
+<span class='directive'># define _POSIX_C_SOURCE 199506L</span></span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#if (defined _POSIX_SOURCE					\
+     || (defined _POSIX_C_SOURCE &amp;&amp; _POSIX_C_SOURCE &gt;= 1)	\
+     || defined _XOPEN_SOURCE)</span>
+<span class='directive'># define __USE_POSIX	1</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#if defined _POSIX_C_SOURCE &amp;&amp; _POSIX_C_SOURCE &gt;= 2 || defined _XOPEN_SOURCE</span>
+<span class='directive'># define __USE_POSIX2	1</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#if defined _POSIX_C_SOURCE &amp;&amp; (_POSIX_C_SOURCE - 0) &gt;= 199309L</span>
+<span class='directive'># define __USE_POSIX199309	1</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#if defined _POSIX_C_SOURCE &amp;&amp; (_POSIX_C_SOURCE - 0) &gt;= 199506L</span>
+<span class='directive'># define __USE_POSIX199506	1</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#if defined _POSIX_C_SOURCE &amp;&amp; (_POSIX_C_SOURCE - 0) &gt;= 200112L</span>
+<span class='directive'># define __USE_XOPEN2K		1</span>
+<span class='directive'># undef __USE_ISOC95</span>
+<span class='directive'># define __USE_ISOC95		1</span>
+<span class='directive'># undef __USE_ISOC99</span>
+<span class='directive'># define __USE_ISOC99		1</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#if defined _POSIX_C_SOURCE &amp;&amp; (_POSIX_C_SOURCE - 0) &gt;= 200809L</span>
+<span class='directive'># define __USE_XOPEN2K8		1</span>
+<span class='directive'># undef  _ATFILE_SOURCE</span>
+<span class='directive'># define _ATFILE_SOURCE	1</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef	_XOPEN_SOURCE</span>
+<span class='directive'># define __USE_XOPEN	1</span>
+<span class='directive'># if (_XOPEN_SOURCE - 0) &gt;= 500</span>
+<span class='directive'>#  define __USE_XOPEN_EXTENDED	1</span>
+<span class='directive'>#  define __USE_UNIX98	1</span>
+<span class='directive'>#  undef _LARGEFILE_SOURCE</span>
+<span class='directive'>#  define _LARGEFILE_SOURCE	1</span>
+<span class='directive'>#  if (_XOPEN_SOURCE - 0) &gt;= 600</span>
+<span class='directive'>#   if (_XOPEN_SOURCE - 0) &gt;= 700</span>
+<span class='directive'>#    define __USE_XOPEN2K8	1</span>
+<span class='directive'>#    define __USE_XOPEN2K8XSI	1</span>
+<span class='directive'>#   endif</span>
+<span class='directive'>#   define __USE_XOPEN2K	1</span>
+<span class='directive'>#   define __USE_XOPEN2KXSI	1</span>
+<span class='directive'>#   undef __USE_ISOC95</span>
+<span class='directive'>#   define __USE_ISOC95		1</span>
+<span class='directive'>#   undef __USE_ISOC99</span>
+<span class='directive'>#   define __USE_ISOC99		1</span>
+<span class='directive'>#  endif</span>
+<span class='directive'># else</span><span class='preprocessor-if muted'>
+<span class='directive'>#  ifdef _XOPEN_SOURCE_EXTENDED</span>
+<span class='directive'>#   define __USE_XOPEN_EXTENDED	1</span>
+<span class='directive'>#  endif</span></span>
+<span class='directive'># endif</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef _LARGEFILE_SOURCE</span>
+<span class='directive'># define __USE_LARGEFILE	1</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef _LARGEFILE64_SOURCE</span>
+<span class='directive'># define __USE_LARGEFILE64	1</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#if defined _FILE_OFFSET_BITS &amp;&amp; _FILE_OFFSET_BITS == 64</span><span class='preprocessor-if muted'>
+<span class='directive'># define __USE_FILE_OFFSET64	1</span></span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#if defined _DEFAULT_SOURCE</span>
+<span class='directive'># define __USE_MISC	1</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef	_ATFILE_SOURCE</span>
+<span class='directive'># define __USE_ATFILE	1</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#ifdef	_GNU_SOURCE</span>
+<span class='directive'># define __USE_GNU	1</span>
+<span class='directive'>#endif</span>
+
+<span class='directive'>#if defined _FORTIFY_SOURCE &amp;&amp; _FORTIFY_SOURCE &gt; 0 \
+    &amp;&amp; __GNUC_PREREQ (4, 1) &amp;&amp; defined __OPTIMIZE__ &amp;&amp; __OPTIMIZE__ &gt; 0</span><span class='preprocessor-if muted'>
+<span class='directive'># if _FORTIFY_SOURCE &gt; 1</span>
+<span class='directive'>#  define __USE_FORTIFY_LEVEL 2</span>
+<span class='directive'># else</span>
+<span class='directive'>#  define __USE_FORTIFY_LEVEL 1</span>
+<span class='directive'># endif</span></span>
+<span class='directive'>#else</span>
+<span class='directive'># define __USE_FORTIFY_LEVEL 0</span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* The function 'gets' existed in C89, but is impossible to use
+   safely.  It has been removed from ISO C11 and ISO C++14.  Note: for
+   compatibility with various implementations of &lt;cstdio&gt;, this test
+   must consider only the value of __cplusplus when compiling C++.  */</span>
+<span class='directive'>#if defined __cplusplus ? __cplusplus &gt;= 201402L : defined __USE_ISOC11</span><span class='preprocessor-if muted'>
+<span class='directive'># define __GLIBC_USE_DEPRECATED_GETS 0</span></span>
+<span class='directive'>#else</span>
+<span class='directive'># define __GLIBC_USE_DEPRECATED_GETS 1</span>
+<span class='directive'>#endif</span>
+
+<span class='comment'>/* Get definitions of __STDC_* predefined macros, if the compiler has
+   not preincluded this header automatically.  */</span>
+<span class='directive'>#include <a class='include' href='../de/54dd5925795da2.html'>&lt;stdc-predef.h&gt;</a></span>
+
+<span class='comment'>/* This macro indicates that the installed library is the GNU C Library.
+   For historic reasons the value now is 6 and this will stay from now
+   on.  The use of this variable is deprecated.  Use __GLIBC__ and
+   __GLIBC_MINOR__ now (see below) when you want to test for a specific
+   GNU C library version and use the values in &lt;gnu/lib-names.h&gt; to get
+   the sonames of the shared libraries.  */</span>
+<span class='directive'>#undef  __GNU_LIBRARY__</span>
+<span class='directive'>#define __GNU_LIBRARY__ 6</span>
+
+<span class='comment'>/* Major and minor version number of the GNU C library package.  Use
+   these macros to test for features in specific releases.  */</span>
+<span class='directive'>#define	__GLIBC__	2</span>
+<span class='directive'>#define	__GLIBC_MINOR__	28</span>
+
+<span class='directive'>#define __GLIBC_PREREQ(maj, min) \
+	((__GLIBC__ &lt;&lt; 16) + __GLIBC_MINOR__ &gt;= ((maj) &lt;&lt; 16) + (min))</span>
+
+<span class='comment'>/* This is here only because every header file already includes this one.  */</span>
+<span class='directive'>#ifndef __ASSEMBLER__</span>
+<span class='directive'># ifndef _SYS_CDEFS_H</span>
+<span class='directive'>#  include <a class='include' href='../11/d2796f2851903a.html'>&lt;sys/cdefs.h&gt;</a></span>
+<span class='directive'># endif</span>
+
+<span class='comment'>/* If we don't have __REDIRECT, prototypes will be missing if
+   __USE_FILE_OFFSET64 but not __USE_LARGEFILE[64]. */</span>
+<span class='directive'># if defined __USE_FILE_OFFSET64 &amp;&amp; !defined __REDIRECT</span><span class='preprocessor-if muted'>
+<span class='directive'>#  define __USE_LARGEFILE	1</span>
+<span class='directive'>#  define __USE_LARGEFILE64	1</span></span>
+<span class='directive'># endif</span>
+
+<span class='directive'>#endif	/* !ASSEMBLER */</span>
+
+<span class='comment'>/* Decide whether we can define 'extern inline' functions in headers.  */</span>
+<span class='directive'>#if __GNUC_PREREQ (2, 7) &amp;&amp; defined __OPTIMIZE__ \
+    &amp;&amp; !defined __OPTIMIZE_SIZE__ &amp;&amp; !defined __NO_INLINE__ \
+    &amp;&amp; defined __extern_inline</span><span class='preprocessor-if muted'>
+<span class='directive'># define __USE_EXTERN_INLINES	1</span></span>
+<span class='directive'>#endif</span>
+
+
+<span class='comment'>/* This is here only because every header file already includes this one.
+   Get the definitions of all the appropriate `__stub_FUNCTION' symbols.
+   &lt;gnu/stubs.h&gt; contains `#define __stub_FUNCTION' when FUNCTION is a stub
+   that will always return failure (and set errno to ENOSYS).  */</span>
+<span class='directive'>#include <a class='include' href='../6a/77ce5d776029cb.html'>&lt;gnu/stubs.h&gt;</a></span>
+
+
+<span class='directive'>#endif	/* features.h  */</span>
