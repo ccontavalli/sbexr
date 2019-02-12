@@ -1,60 +1,69 @@
+{% import "github.com/ccontavalli/sbexr/server/structs" %}
+{% import "github.com/dustin/go-humanize" %}
+
 {% code
 type DirectoryPage struct {
-  BasePage
+  structs.JDir
+  Index []byte
 }
 %}
 
-{% func (page *DirectoryPage) Body() %}
+{% func (page *DirectoryPage) GetPath() %}{%= GetParentsPath(&page.JDir.JNavData) %}{% endfunc %}
+{% func (page *DirectoryPage) GetTitle() %}{%= GetJnavTitle(&page.JDir.JNavData) %}{% endfunc %}
+{% func (page *DirectoryPage) GetBody() %}
 <div class="row">
 
 <div class="col-md-4">
 <table class="table table-hover table-condensed">
-{{#directories}}
+{% if len(page.Dirs) > 0 %}
   <tr>
     <th colspan="2">Directory</th>
     <th>Files</th>
   </tr>
-{{#directory}}
+  {% for _, dir := range page.Dirs %}
   <tr>
     <td width="20"><i class="glyphicon glyphicon-folder-open"></i></td>
-    <td><a href="{{href}}">{{name}}</a></td>
-    <td>{{size}}</td>
+    <td><a href="{%s dir.Href %}">{%s dir.Name %}</a></td>
+    <td>{%d dir.Size %}</td>
   </tr>
-{{/directory}}
-{{#files}}
+  {% endfor %}
+  {% if len(page.Files) > 0 %}
   <tr>
     <td colspan="3"></td>
   </tr>
-{{/files}}
-{{/directories}}
+  {% endif %}
+{% endif %}
 
-{{#files}}
+{% if len(page.Files) > 0 %}
   <tr>
     <th colspan="2">File</th>
     <th>Size</th>
   </tr>
-{{#file}}
+  {% for _, file := range page.Files %}
   <tr>
     <td width="20">
-      {{#parsed}}<i title="Code - parsed & indexed" class="fa fa-code"></i>{{/parsed}}
-      {{#blob}}<i title="Binary blob - ignored" class="fa fa-ban"></i>{{/blob}}
-      {{#text}}<i title="Text data - indexed" class="fa fa-file-text-o"></i>{{/text}}
-      {{#media}}<i title="Media - download only" class="fa fa-download"></i>{{/media}}
+      {% switch file.Type %}
+        {% case "parsed" %}<i title="Code - parsed & indexed" class="fa fa-code"></i>
+        {% case "blob" %}<i title="Binary blob - ignored" class="fa fa-ban"></i>
+        {% case "text" %}<i title="Text data - indexed" class="fa fa-file-text-o"></i>
+        {% default %}<i title="Media - download only" class="fa fa-download"></i>
+      {% endswitch %}
     </td>
-    <td><a href="{{href}}">{{name}}</a></td>
-    <td>{{size}}</td>
+    <td><a href="{%s file.Href %}">{%s file.Name %}</a></td>
+    <td>{%s= humanize.Bytes(uint64(file.Size)) %}</td>
   </tr>
-{{/file}}
-{{/files}}
+  {% endfor %}
+{% endif %}
 </table>
 </div>
 
-{{#index}}
+{% if len(page.Index) > 0 %}
 <div class="col-md-8">
+{%z page.Index %}
 <h2>{{project}} {{tag}} - {{index_file}}</h2>
 <pre class='code'><span id='line-number'>{{#lines}}<span>{{line}}</span>{{/lines}}</span>{{code}}<span class='cl'></span></pre>
 </div>
-{{/index}}
+{% endif %}
 
 </div>
 </div>

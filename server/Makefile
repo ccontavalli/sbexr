@@ -7,9 +7,15 @@ all: update-templates
 update-templates:
 	cd templates && ~/gopath/bin/qtc
 
-testindex: all
-	make -C ../src test-gen
-	./server --root=../test/ --index-dir=../test/indexes --listen=:10000 ../test/output
+test-index:
+	make -C ../src test-gen 2>/dev/null >/dev/null
+
+test-run: test-index all
+	./server --web-root=../test/output/ --index-dir=../test/indexes --listen=:10000
+
+test: test-index all
+	go test
+	cd db && go test
 
 clean:
 	rm -f server

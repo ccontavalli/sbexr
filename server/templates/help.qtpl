@@ -4,7 +4,7 @@ type HelpPage struct {
 }
 %}
 
-{% func (page *HelpPage) Body() %}
+{% func (page *HelpPage) GetBody() %}
 <div class="container-fluid" id="sbexr-help-data">
 
 <h4>KEY Bindings</h4>

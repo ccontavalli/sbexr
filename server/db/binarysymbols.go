@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"regexp"
 	"runtime"
 	"strconv"
@@ -16,7 +17,6 @@ import (
 	"syscall"
 	"time"
 	"unsafe"
-	"path/filepath"
 )
 
 // #include "../../src/cindex.h"
@@ -91,7 +91,7 @@ func mmapFile(f *os.File) ([]byte, error) {
 func LoadSymbols(root, tag string) (ApiHandler, error) {
 	var symbol CompactBinarySymbolData
 
-	basefile := filepath.Join(root, "index." + tag)
+	basefile := filepath.Join(root, "index."+tag)
 
 	detailsfile := basefile + ".details"
 	details, err := mmap(detailsfile)

@@ -4,16 +4,16 @@ type AboutPage struct {
 }
 %}
 
-{% func (page *AboutPage) Body() %}
+{% func (page *AboutPage) GetBody() %}
   <div class="container-fluid" id="sbexr-about-data">
       <h4>What is this?</h4>
 
       <p>
-        You are looking at a <b>code browser</b> for <b>{{project}}</b>.
+        You are looking at a <b>code browser</b> for <b>{%s page.Project %}</b>.
       </p>
 
       <p>
-        By using this web interface, you can navigate the source code of <b>{{project}}</b> by <b>following simple links</b>, <b>search it</b> by using the box in the navigation bar, or use <b>vi inspired</b> key bindings to move within files.
+        By using this web interface, you can navigate the source code of <b>{%s page.Project %}</b> by <b>following simple links</b>, <b>search it</b> by using the box in the navigation bar, or use <b>vi inspired</b> key bindings to move within files.
       </p>
 
       <p>

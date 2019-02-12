@@ -1,8 +1,10 @@
+{% import "github.com/ccontavalli/sbexr/server/structs" %}
+
 {% interface
 Page {
-  Body()
-  Title()
-  Path()
+  GetBody()
+  GetTitle()
+  GetPath()
 }
 %}
 
@@ -15,17 +17,19 @@ Page {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>{%= page.Title() %}</title>
+  <title>{%= page.GetTitle() %}</title>
   {%= AddCss() %}
 </head>
 
 <body>
+
 <div class="container-fluid">
 {%= AddNavBar(page) %}
 {%= AddFastJs() %}
 </div>
+
 <div class="container-fluid">
-{%= page.Body() %}
+{%= page.GetBody() %}
 </div>
 
 {%= AddSlowJs() %}
@@ -34,20 +38,24 @@ Page {
 {% endfunc %}
 {% endstripspace %}
 
-{% code type BasePage struct {
-  Project string
-  Tag string
-} %}
-{% func (page *BasePage) Body() %}NO BODY{% endfunc %}
+{% code type BasePage structs.JNavData %}
 
-{% func (page *BasePage) Path() %}{% endfunc %}
-{% comment %}
-        {{#parent}}<a href="{{parent_href}}">{{parent_name}}</a>{{pseparator}}{{/parent}}{{curr_name}}
-{% endcomment %}
+{% func (page *BasePage) GetBody() %}NO BODY{% endfunc %}
+
+{% func (page *BasePage) GetPath() %}{% endfunc %}
+
+{% func GetParentsPath(data *structs.JNavData) %}
+  {% for _, parent := range data.Parents %}
+<a href="{%s parent.Href %}">{%s parent.Name %}{%s parent.Name %}</a>/
+  {% endfor %}
+{% endfunc %}
+{% func GetJnavTitle(data *structs.JNavData) %}
+  {% if data.Project != "" %}{%s data.Project %}{% space %}{% endif %}
+  {% if data.Tag != "" %}{%s data.Tag %}{% space %}{% endif %}
+  {% if data.Tag != "" || data.Project != "" %}-{% space %}{% endif %}
+{% endfunc %}
 {% stripspace %}
-{% func (page *BasePage) Title() %}
-  {% if page.Project != "" %}{%s page.Project %}{% space %}{% endif %}
-  {% if page.Tag != "" %}{%s page.Tag %}{% space %}{% endif %}
-  {% if page.Tag != "" || page.Project != "" %}-{% space %}{% endif %}
+{% func (page *BasePage) GetTitle() %}
+  {%= GetJnavTitle((*structs.JNavData)(page)) %}
 {% endfunc %}
 {% endstripspace %}

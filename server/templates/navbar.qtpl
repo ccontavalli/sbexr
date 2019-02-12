@@ -13,7 +13,7 @@
       </button>
 
       <span class="navbar-brand" style="padding-top: 8px">
-        <a href="../meta/index.html"><i class="glyphicon glyphicon-hdd" style="vertical-align: middle"></i></a>&nbsp;/{%= page.Path() %}
+        <a href="../meta/index.html"><i class="glyphicon glyphicon-hdd" style="vertical-align: middle"></i></a>&nbsp;/{%= page.GetPath() %}
       </span>
     </div>
 
@@ -68,12 +68,4 @@
   </div><!-- /.container-fluid -->
 </nav>
 </div>
-<html>
-  <head>
-    <title>Test</title>
-  </head>
-
-  <body>
-  </body>
-</html>
 {% endfunc %}

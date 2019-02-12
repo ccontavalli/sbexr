@@ -2,9 +2,9 @@ package db
 
 import (
 	"net/http"
+	"path/filepath"
 	"strings"
 	"time"
-	"path/filepath"
 )
 
 type TreeData struct {
@@ -19,7 +19,7 @@ type TreeObject struct {
 
 func LoadJsonTree(root, tag string) (ApiHandler, error) {
 	var symbol TreeData
-	err := LoadJson(filepath.Join(root, "index." + tag + ".files.json"), &symbol)
+	err := LoadJson(filepath.Join(root, "index."+tag+".files.json"), &symbol)
 	return &symbol, err
 }
 

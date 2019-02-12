@@ -164,8 +164,8 @@ func NewTagSet(name string, handler TagSetHandler) TagSet {
 type TagSetLoader func(root, tag string) (ApiHandler, error)
 
 type SingleDirTagSet struct {
-	path   string
-	loader TagSetLoader
+	path     string
+	loader   TagSetLoader
 	sentinel string
 }
 

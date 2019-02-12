@@ -1,9 +1,12 @@
+{% import "github.com/ccontavalli/sbexr/server/structs" %}
+
 {% code
 type SourcePage struct {
-  BasePage
+  structs.JDir 
+  Content []byte
 }
 %}
 
-{% func (page *SourcePage) Body() %}
-<pre class='code'><span id='line-number'>{{#lines}}<span>{{line}}</span>{{/lines}}</span>{{code}}<span class='cl'></span></pre>
-{% endfunc %}
+{% func (page *SourcePage) GetPath() %}{%= GetParentsPath(&page.JDir.JNavData) %}{% endfunc %}
+{% func (page *SourcePage) GetTitle() %}{%= GetJnavTitle(&page.JDir.JNavData) %}{% endfunc %}
+{% func (page *SourcePage) GetBody() %}{%z= page.Content %}{% endfunc %}

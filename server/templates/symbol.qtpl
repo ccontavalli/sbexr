@@ -61,7 +61,7 @@ type SymbolPage struct {
 {% endfunc %}
 
 {% collapsespace %}
-{% func (page *SymbolPage) Body() %}
+{% func (page *SymbolPage) GetBody() %}
 <h1>Symbol: {%s page.Symbol.Name %}</h1>
 
 <ul>
@@ -90,7 +90,7 @@ type SymbolPage struct {
 {% endcollapsespace %}
 
 {% stripspace %}
-{% func (page *SymbolPage) Title() %}
-  {%= page.BasePage.Title() %}symbol:{% space %}{%s page.Symbol.Name %}
+{% func (page *SymbolPage) GetTitle() %}
+  {%= page.BasePage.GetTitle() %}symbol:{% space %}{%s page.Symbol.Name %}
 {% endfunc %}
 {% endstripspace %}
