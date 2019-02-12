@@ -133,8 +133,6 @@ class FileRenderer {
 
   void OutputFiles();
   bool OutputJFiles();
-
-  void OutputOther();
   void OutputJOther();
 
   void OutputJsonTree(const char* path, const char* tag);

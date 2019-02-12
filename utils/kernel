@@ -222,17 +222,18 @@ def UpdateValidTags(tree, tags=None):
 
   # Update each file with the tags.
   for tag in tags:
-    path = os.path.join(tree, tag, "globals.js")
+    path = os.path.join(tree, tag, "optional.js")
     try:
       gl = open(path, "r+")
       data = gl.read()
       data = re.sub(r"globalAllTags\s*=\s*\[[^]]*\]", r"globalAllTags = %s" % tags, data, re.M)
       gl.seek(0, 0)
       gl.truncate(0)
-      gl.write(data)
     except IOError as err:
-      print >>sys.stderr, "WARNING: updating global.js FAILED %s" % err
-      pass
+      gl = open(path, "w")
+      data = r"globalAllTags = %s" % tags
+
+    gl.write(data)
 
 def RestartServer():
   Run(["killall", "server"])

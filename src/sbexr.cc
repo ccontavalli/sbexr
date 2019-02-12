@@ -1207,12 +1207,11 @@ int main(int argc, const char** argv) {
   renderer.ScanTree(gl_input_dir);
   renderer.OutputFiles();
   renderer.OutputJFiles();
-  renderer.OutputOther();
   renderer.OutputJOther();
   renderer.OutputJsonTree(gl_index_dir.c_str(), gl_tag.c_str());
   MemoryPrinter::OutputStats();
 
-  const auto& index = MakeMetaPath("indexdir");
+  const auto& index = MakeMetaPath("index");
   if (!MakeDirs(index, 0777)) {
     std::cerr << "FAILED TO MAKE DIRS " << index << std::endl;
   } else {

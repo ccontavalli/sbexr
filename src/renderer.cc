@@ -462,50 +462,18 @@ void AddSubTemplates(ctemplate::TemplateDictionary* dict) {
 }
 
 void FileRenderer::OutputJOther() {
+  const auto& globals = MakeMetaPath("globals.json");
+  if (!MakeDirs(globals, 0777)) {
+    std::cerr << "FAILED TO MAKE DIRS " << globals << std::endl;
+    return;
+  }
+
   std::ofstream myfile;
-  myfile.open("output/globals.json");
+  myfile.open(globals);
   json::OStreamWrapper osw(myfile);
   json::PrettyWriter<json::OStreamWrapper> writer(osw);
   auto jdata = MakeJsonObject(&writer);
   OutputJNavbar(&writer, "", "", nullptr, nullptr);
-}
-
-void FileRenderer::OutputOther() {
-  ctemplate::TemplateDictionary dict("GLOBALS");
-  dict.SetTemplateGlobalValueWithoutCopy("tag", gl_tag);
-  dict.SetTemplateGlobalValueWithoutCopy("project", gl_project_name);
-  dict.ShowSection("project");
-
-  AddSubTemplates(&dict);
-  AddNavbarTemplates(&dict, "", "", nullptr, nullptr);
-
-  {
-    std::ofstream myfile;
-    myfile.open("output/globals.js");
-    FileEmitter emitter(&myfile);
-    ctemplate::ExpandTemplate("templates/globals.js",
-                              ctemplate::STRIP_WHITESPACE, &dict, &emitter);
-  }
-
-  {
-    // FIXME: output error in case of failure.
-    const auto& about = MakeMetaPath("about.html");
-    MakeDirs(about, 0777);
-
-    std::ofstream myfile;
-    myfile.open(MakeMetaPath("about.html"));
-    FileEmitter emitter(&myfile);
-    ctemplate::ExpandTemplate("templates/about.html",
-                              ctemplate::STRIP_WHITESPACE, &dict, &emitter);
-  }
-
-  {
-    std::ofstream myfile;
-    myfile.open(MakeMetaPath("help.html"));
-    FileEmitter emitter(&myfile);
-    ctemplate::ExpandTemplate("templates/help.html",
-                              ctemplate::STRIP_WHITESPACE, &dict, &emitter);
-  }
 }
 
 void FileRenderer::OutputJsonTree(const char* path, const char* tag) {
@@ -970,72 +938,75 @@ bool FileRenderer::OutputJDirectory(ParsedDirectory* dir) {
 
   std::ofstream myfile;
   myfile.open(path);
-  json::OStreamWrapper osw(myfile);
-  json::Writer<json::OStreamWrapper> writer(osw);
+  {
+    json::OStreamWrapper osw(myfile);
+    json::Writer<json::OStreamWrapper> writer(osw);
 
-  auto jdata = MakeJsonObject(&writer);
-  OutputJNavbar(&writer, dir->name, dir->path, dir, dir->parent);
+    auto jdata = MakeJsonObject(&writer);
+    OutputJNavbar(&writer, dir->name, dir->path, dir, dir->parent);
 
-  std::string code;
-  if (!dir->files.empty()) {
-    auto files = MakeJsonArray(&writer, "files");
-    for (const auto& it : dir->files) {
-      auto& filename = it.first;
-      auto& descriptor = it.second;
-      auto file = MakeJsonObject(&writer);
+    std::string code;
+    if (!dir->files.empty()) {
+      auto files = MakeJsonArray(&writer, "files");
+      for (const auto& it : dir->files) {
+        auto& filename = it.first;
+        auto& descriptor = it.second;
+        auto file = MakeJsonObject(&writer);
 
-      WriteJsonKeyValue(&writer, "name", filename);
-      writer.Key("type");
-      switch (descriptor.type) {
-        case kFileMedia:
-          WriteJsonString(&writer, "media");
-          break;
+        WriteJsonKeyValue(&writer, "name", filename);
+        writer.Key("type");
+        switch (descriptor.type) {
+          case kFileMedia:
+            WriteJsonString(&writer, "media");
+            break;
 
-        case kFileUtf8:
-        case kFilePrintable:
-        case kFileHtml:
-          WriteJsonString(&writer, "text");
-          break;
+          case kFileUtf8:
+          case kFilePrintable:
+          case kFileHtml:
+            WriteJsonString(&writer, "text");
+            break;
 
-        case kFileParsed:
-        case kFileGenerated:
-          WriteJsonString(&writer, "parsed");
-          break;
+          case kFileParsed:
+          case kFileGenerated:
+            WriteJsonString(&writer, "parsed");
+            break;
 
-        case kFileUnknown:
-        case kFileBinary:
-          WriteJsonString(&writer, "blob");
-          break;
+          case kFileUnknown:
+          case kFileBinary:
+            WriteJsonString(&writer, "blob");
+            break;
+        }
+
+        WriteJsonKeyValue(&writer, "href", descriptor.HtmlPath());
+        WriteJsonKeyValue(&writer, "mtime", ctime(&descriptor.mtime));
+        WriteJsonKeyValue(&writer, "size", descriptor.size);
+      }
+    }
+
+    if (!dir->directories.empty() ||
+        (dir->parent && dir != &absolute_root_ && dir != relative_root_)) {
+      auto dirs = MakeJsonArray(&writer, "dirs");
+
+      if (dir->parent && dir != &absolute_root_ && dir != relative_root_) {
+        auto obj = MakeJsonObject(&writer);
+
+        WriteJsonKeyValue(&writer, "href", dir->parent->HtmlPath());
+        WriteJsonKeyValue(&writer, "size", dir->parent->files.size());
+        WriteJsonKeyValue(&writer, "name", "..");
       }
 
-      WriteJsonKeyValue(&writer, "href", descriptor.HtmlPath());
-      WriteJsonKeyValue(&writer, "mtime", ctime(&descriptor.mtime));
-      WriteJsonKeyValue(&writer, "size", GetHumanValue(descriptor.size));
+      for (const auto& it : dir->directories) {
+        auto& name = it.first;
+        auto& descriptor = it.second;
+        auto obj = MakeJsonObject(&writer);
+
+        WriteJsonKeyValue(&writer, "href", descriptor.HtmlPath());
+        WriteJsonKeyValue(&writer, "size", descriptor.files.size());
+        WriteJsonKeyValue(&writer, "name", name);
+      }
     }
   }
-
-  if (!dir->directories.empty() ||
-      (dir->parent && dir != &absolute_root_ && dir != relative_root_)) {
-    auto dirs = MakeJsonArray(&writer, "files");
-
-    if (dir->parent && dir != &absolute_root_ && dir != relative_root_) {
-      auto obj = MakeJsonObject(&writer);
-
-      WriteJsonKeyValue(&writer, "href", dir->parent->HtmlPath());
-      WriteJsonKeyValue(&writer, "size", dir->parent->files.size());
-      WriteJsonKeyValue(&writer, "name", "..");
-    }
-
-    for (const auto& it : dir->directories) {
-      auto& name = it.first;
-      auto& descriptor = it.second;
-      auto obj = MakeJsonObject(&writer);
-
-      WriteJsonKeyValue(&writer, "href", descriptor.HtmlPath());
-      WriteJsonKeyValue(&writer, "size", descriptor.files.size());
-      WriteJsonKeyValue(&writer, "name", name);
-    }
-  }
+  AddJHtmlSeparator(&myfile);
   return true;
 }
 
