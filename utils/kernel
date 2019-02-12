@@ -165,8 +165,7 @@ def CreateRunTree(binary, directory):
 
 def PrepareOutputDir(run, tag):
   tree_dir = tempfile.mkdtemp(prefix="build-", suffix="-" + tag, dir=TMP_TREE)
-  if (Run(["ln", "-Tfs", tree_dir, os.path.join(run, "output")]).status or
-      Run(["cp", "-a", os.path.join(BINARY_TREE, "static"), os.path.join(tree_dir, "static")]).status):
+  if Run(["ln", "-Tfs", tree_dir, os.path.join(run, "output")]).status:
     raise BuildError("Could not prepare output directory")
   return tree_dir
 
@@ -196,11 +195,15 @@ def UpdateLatest(tree, tags=None):
   else:
     return
 
+  # Update symlink to the latest folder.
   Run(["ln", "-Tfs", tag, "latest"], cwd=tree)
   for ifile in GetIndexFilesForTag(tag):
     Run(["ln", "-Tfs", ifile, ifile.replace("." + tag + ".", ".latest.")])
 
-  # Generate sitemap
+  # Create static symlink.
+  Run(["ln", "-Tfs", os.path.join(BINARY_TREE, "static"), os.path.join(OUTPUT_TREE, "static")])
+
+  # Generate a sitemap.
   stdout = open(os.path.join(BEAR_TREE, tag + ".sitemap.stdout"), "w")
   stderr = open(os.path.join(BEAR_TREE, tag + ".sitemap.stderr"), "w")
   Run([os.path.join(BINARY_TREE, "sitemap/sitemap"),
@@ -237,7 +240,6 @@ def UpdateValidTags(tree, tags=None):
 
 def RestartServer():
   Run(["killall", "server"])
-
 
 def GetIndexFilesForTag(tag):
   return glob.glob(os.path.join(INDEX_TREE, "*." + tag + ".*"))
