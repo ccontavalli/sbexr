@@ -81,3 +81,39 @@ std::string GetCwd() {
   if (end != std::string::npos) result.resize(end);
   return result;
 }
+
+std::string GetSuffixedValue(int64_t uv, std::array<const char*, 5> suffixes) {
+  static constexpr const int kKb = 1024;
+  static constexpr const int kMb = kKb * 1024;
+  static constexpr const int kGb = kMb * 1024;
+  static constexpr const int64_t kTb = kGb * 1024ULL;
+
+  std::string retval;
+  retval.resize(32);
+
+  float value = uv;
+  int suffix;
+  if (value > kTb) {
+    value /= kTb;
+    suffix = 0;
+  } else if (value > kGb) {
+    value /= kGb;
+    suffix = 1;
+  } else if (value > kMb) {
+    value /= kMb;
+    suffix = 2;
+  } else if (value > kKb) {
+    value /= kKb;
+    suffix = 3;
+  } else {
+    return std::to_string(uv) + suffixes[4];
+  }
+
+  int n =
+      snprintf(&retval[0], retval.size(), "%3.2f%s", value, suffixes[suffix]);
+  retval.resize(n);
+
+  return retval;
+}
+
+

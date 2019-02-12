@@ -1079,7 +1079,6 @@ std::unique_ptr<CompilerInstance> CreateCompilerInstance(
 
 int main(int argc, const char** argv) {
   HideUnrelatedOptions(&gl_category);
-  FileRenderer::InitFlags();
 
   cl::ParseCommandLineOptions(
       argc, argv, "Indexes and generates HTML files for your source code.");
@@ -1207,25 +1206,21 @@ int main(int argc, const char** argv) {
 
   std::cerr << ">>> EMBEDDING FILES" << std::endl;
   renderer.ScanTree(gl_input_dir);
-  renderer.OutputFiles();
   renderer.OutputJFiles();
   renderer.OutputJOther();
   renderer.OutputJsonTree(gl_index_dir.c_str(), gl_tag.c_str());
   MemoryPrinter::OutputStats();
 
-  const auto& index = MakeMetaPath("index");
+  const auto& index = MakeMetaPath("index.jhtml");
   if (!MakeDirs(index, 0777)) {
     std::cerr << "FAILED TO MAKE DIRS " << index << std::endl;
   } else {
     const auto* dir = renderer.GetDirectoryFor(gl_input_dir);
-    for (const char* extension : {".html", ".jhtml"}) {
-      const auto& entry = dir->HtmlPath(extension);
-      const auto& index = MakeMetaPath("index") + extension;
+    const auto& entry = dir->HtmlPath(".jhtml");
 
-      unlink(index.c_str());
-      symlink(entry.c_str(), index.c_str());
-      std::cerr << ">>> ENTRY POINT " << index << " aka " << entry << std::endl;
-    }
+    unlink(index.c_str());
+    symlink(entry.c_str(), index.c_str());
+    std::cerr << ">>> ENTRY POINT " << index << " aka " << entry << std::endl;
   }
 
   return 0;

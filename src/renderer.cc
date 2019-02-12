@@ -31,10 +31,6 @@
 #include "wrapping.h"
 
 // DEPRECATE once we remove the template expansion logic.
-cl::list<std::string> gl_index_files(
-    "i",
-    cl::desc("Possible names of files to use when showing a directory index."),
-    cl::value_desc("filename"), cl::cat(gl_category), cl::CommaSeparated);
 cl::opt<std::string> gl_project_name(
     "p", cl::desc("Project name, to use in titles of html pages."),
     cl::value_desc("name"), cl::init([]() {
@@ -53,20 +49,6 @@ cl::opt<std::string> gl_tag(
     "t", cl::desc("Tag to use when querying the symbols / tree database."),
     cl::value_desc("tag"), cl::init("output"), cl::cat(gl_category));
 
-// TODO: remove this class as soon as we stop using templates.
-class FileEmitter final : public ctemplate::ExpandEmitter {
- public:
-  FileEmitter(std::ofstream* stream) : stream_(stream) {}
-
-  void Emit(char c) override { (*stream_) << c; }
-  void Emit(const char* c) override { (*stream_) << c; }
-  void Emit(const char* c, size_t len) override { stream_->write(c, len); }
-  void Emit(const std::string& s) override { (*stream_) << s; }
-
- private:
-  std::ofstream* stream_;
-};
-
 std::pair<std::string, std::string> SplitPath(const std::string& name) {
   auto slash = name.rfind('/');
   if (slash == std::string::npos) return std::make_pair(std::string(), name);
@@ -77,10 +59,6 @@ StringRef FileRenderer::GetUserPath(const StringRef& path) const {
   if (relative_root_ && path.startswith(relative_root_->path))
     return path.substr(std::min(relative_root_->path.size() + 1, path.size()));
   return path;
-}
-
-ctemplate::TemplateString ToTemplate(const StringRef& ref) {
-  return {ref.data(), ref.size()};
 }
 
 #define STRANDLEN(str) str, sizeof(str)
@@ -413,19 +391,6 @@ void FileRenderer::RenderFile(const SourceManager& sm, ParsedFile* file,
   file->body = FormatSource(pp, fid, file);
 }
 
-void FileRenderer::OutputFiles() {
-  std::deque<ParsedDirectory*> to_output({&absolute_root_});
-  while (!to_output.empty()) {
-    auto* node = to_output.front();
-    OutputDirectory(node);
-
-    to_output.pop_front();
-    for (auto& element : node->files) OutputFile(*node, &element.second);
-    for (auto& element : node->directories)
-      to_output.emplace_back(&element.second);
-  }
-}
-
 bool FileRenderer::OutputJFiles() {
   std::deque<ParsedDirectory*> to_output({&absolute_root_});
   while (!to_output.empty()) {
@@ -452,13 +417,6 @@ std::string FileRenderer::GetNormalizedPath(const std::string& filename) {
   ParsedFile* file;
   std::tie(directory, file) = GetDirectoryAndFileFor(filename);
   return file->path;
-}
-
-// TODO deprecated once we switch to .jhtml format.
-void AddSubTemplates(ctemplate::TemplateDictionary* dict) {
-  dict->AddIncludeDictionary("INCLUDE_CSS")->SetFilename("templates/css.html");
-  dict->AddIncludeDictionary("INCLUDE_JS")
-      ->SetFilename("templates/javascript.html");
 }
 
 void FileRenderer::OutputJOther() {
@@ -684,94 +642,6 @@ std::string FileRenderer::FormatSource(Preprocessor& pp, FileID fid,
   return retval;
 }
 
-void FileRenderer::AddNavbarTemplates(
-    ctemplate::TemplateDictionary* dict, const std::string& name,
-    const std::string& path, const FileRenderer::ParsedDirectory* current,
-    const FileRenderer::ParsedDirectory* parent) {
-  auto* navbar = dict->AddIncludeDictionary("INCLUDE_NAVBAR");
-  navbar->SetFilename("templates/navbar.html");
-
-  const FileRenderer::ParsedDirectory* root = relative_root_;
-  static std::deque<const FileRenderer::ParsedDirectory*> stack;
-  for (const auto* cursor = current ? current : parent; cursor;
-       cursor = cursor->parent) {
-    if (!cursor->parent || cursor == relative_root_) {
-      root = cursor;
-      break;
-    }
-    if (cursor != current) stack.push_back(cursor);
-  }
-  while (!stack.empty()) {
-    const auto* cursor = stack.back();
-    stack.pop_back();
-
-    auto* sub = navbar->AddSectionDictionary("parent");
-    sub->SetValueWithoutCopy("pseparator", "/");
-    sub->SetValueWithoutCopy("parent_name", cursor->name);
-    sub->SetValue("parent_href", cursor->HtmlPath());
-  }
-  dict->SetTemplateGlobalValue("root_href", root->HtmlPath());
-
-  // Whatever, we will have a directory name or file.
-  if (current != root)
-    dict->SetTemplateGlobalValueWithoutCopy("curr_name", name);
-
-  // Give a reasonable title to the html document.
-  dict->SetTemplateGlobalValueWithoutCopy("project", gl_project_name);
-  dict->SetTemplateGlobalValueWithoutCopy("tag", gl_tag);
-  if (!path.empty()) {
-    const auto& userpath = GetUserPath(path);
-    if (!userpath.empty()) {
-      dict->ShowSection("project");
-      dict->SetTemplateGlobalValue("curr_path", ToTemplate(userpath));
-    }
-  }
-}
-
-void AddTemplateCode(ctemplate::TemplateDictionary* dict,
-                     FileRenderer::ParsedFile* file, std::string* code) {
-  bool add_line_numbers = false;
-  switch (file->type) {
-    case FileRenderer::kFileHtml:
-      *code = html::EscapeText(file->body);
-      dict->SetValueWithoutCopy("raw", file->body);
-      dict->SetValueWithoutCopy("code", *code);
-      add_line_numbers = true;
-      break;
-
-    case FileRenderer::kFilePrintable:
-    case FileRenderer::kFileUtf8:
-      dict->SetValueWithoutCopy("code", file->body);
-      add_line_numbers = true;
-      break;
-
-    case FileRenderer::kFileParsed:
-      file->type = FileRenderer::kFileGenerated;
-      file->body = file->rewriter.Generate(file->path, file->body);
-      /* NO BREAK HERE */
-
-    case FileRenderer::kFileGenerated:
-      add_line_numbers = true;
-      /* NO BREAK HERE */
-
-    case FileRenderer::kFileUnknown:
-    case FileRenderer::kFileBinary:
-      dict->SetValueWithoutCopy("code", file->body);
-      break;
-    case FileRenderer::kFileMedia:
-      abort();
-      break;
-  }
-
-  if (add_line_numbers) {
-    auto lines = std::count(file->body.cbegin(), file->body.cend(), '\n');
-    if (!file->body.empty() && file->body.back() != '\n') lines += 1;
-    for (int i = 0; i < lines; ++i)
-      dict->AddSectionDictionary("lines")->SetIntValue("line", i + 1);
-  }
-  return;
-}
-
 bool FileRenderer::OutputJFile(const ParsedDirectory& parent,
                                ParsedFile* file) {
   const auto& path = file->SourcePath(".jhtml");
@@ -826,70 +696,6 @@ bool FileRenderer::OutputJFile(const ParsedDirectory& parent,
       break;
   }
   return true;
-}
-
-std::string GetSuffixedValue(int64_t uv, std::array<const char*, 5> suffixes) {
-  static constexpr const int kKb = 1024;
-  static constexpr const int kMb = kKb * 1024;
-  static constexpr const int kGb = kMb * 1024;
-  static constexpr const int64_t kTb = kGb * 1024ULL;
-
-  std::string retval;
-  retval.resize(32);
-
-  float value = uv;
-  int suffix;
-  if (value > kTb) {
-    value /= kTb;
-    suffix = 0;
-  } else if (value > kGb) {
-    value /= kGb;
-    suffix = 1;
-  } else if (value > kMb) {
-    value /= kMb;
-    suffix = 2;
-  } else if (value > kKb) {
-    value /= kKb;
-    suffix = 3;
-  } else {
-    return std::to_string(uv) + suffixes[4];
-  }
-
-  int n =
-      snprintf(&retval[0], retval.size(), "%3.2f%s", value, suffixes[suffix]);
-  retval.resize(n);
-
-  return retval;
-}
-
-void FileRenderer::OutputFile(const ParsedDirectory& parent, ParsedFile* file) {
-  const auto& path = file->SourcePath();
-  std::cerr << "GENERATING FILE " << file->path << " " << path << std::endl;
-  if (!MakeDirs(path, 0777)) {
-    std::cerr << "FAILED TO MAKE DIRS" << std::endl;
-    assert(false && "FAILED TO CREATE DIRS");
-  }
-
-  if (file->type == kFileMedia) {
-    std::ofstream myfile;
-    myfile.open(path);
-    myfile.write(file->body.c_str(), file->body.size());
-    return;
-  }
-
-  ctemplate::TemplateDictionary dict("FILE");
-  AddSubTemplates(&dict);
-  AddNavbarTemplates(&dict, file->name, file->path, nullptr, &parent);
-  dict.SetTemplateGlobalValue("curr_path", ToTemplate(GetUserPath(file->path)));
-
-  std::string code;
-  AddTemplateCode(&dict, file, &code);
-
-  std::ofstream myfile;
-  myfile.open(path);
-  FileEmitter emitter(&myfile);
-  ctemplate::ExpandTemplate("templates/source.html",
-                            ctemplate::STRIP_WHITESPACE, &dict, &emitter);
 }
 
 void FileRenderer::OutputJNavbar(json::Writer<json::OStreamWrapper>* writer,
@@ -1008,104 +814,4 @@ bool FileRenderer::OutputJDirectory(ParsedDirectory* dir) {
   }
   AddJHtmlSeparator(&myfile);
   return true;
-}
-
-void FileRenderer::OutputDirectory(ParsedDirectory* dir) {
-  const auto& path = dir->SourcePath();
-  std::cerr << "GENERATING DIR " << dir->path << " " << path << std::endl;
-  if (!MakeDirs(path, 0777)) {
-    std::cerr << "FAILED TO MAKE DIRS" << std::endl;
-    assert(false && "FAILED TO CREATE DIRS");
-  }
-
-  ctemplate::TemplateDictionary dict("DIRECTORY");
-  AddSubTemplates(&dict);
-  AddNavbarTemplates(&dict, dir->name, dir->path, dir, dir->parent);
-
-  std::string code;
-  if (!dir->files.empty()) {
-    dict.ShowSection("files");
-    for (const auto& index : gl_index_files) {
-      auto found = dir->files.find(index);
-      if (found != dir->files.end() && (found->second.type == kFileParsed ||
-                                        found->second.type == kFileGenerated ||
-                                        found->second.type == kFilePrintable ||
-                                        found->second.type == kFileUtf8)) {
-        dict.ShowSection("index");
-        dict.SetValue("index_file",
-                      ToTemplate(GetUserPath(found->second.path)));
-        AddTemplateCode(&dict, &found->second, &code);
-        break;
-      }
-    }
-  }
-  for (const auto& it : dir->files) {
-    auto& filename = it.first;
-    auto& descriptor = it.second;
-
-    auto* sub = dict.AddSectionDictionary("file");
-    sub->SetValueWithoutCopy("name", filename);
-    switch (descriptor.type) {
-      case kFileMedia:
-        sub->ShowSection("media");
-        break;
-
-      case kFileUtf8:
-      case kFilePrintable:
-      case kFileHtml:
-        sub->ShowSection("text");
-        break;
-
-      case kFileParsed:
-      case kFileGenerated:
-        sub->ShowSection("parsed");
-        break;
-
-      case kFileUnknown:
-      case kFileBinary:
-        sub->ShowSection("blob");
-        break;
-    }
-
-    sub->SetValue("href", descriptor.HtmlPath());
-    sub->SetValue("mtime", ctime(&descriptor.mtime));
-    sub->SetValue("size", GetHumanValue(descriptor.size));
-  }
-
-  if (!dir->directories.empty() ||
-      (dir->parent && dir != &absolute_root_ && dir != relative_root_)) {
-    dict.ShowSection("directories");
-
-    if (dir->parent && dir != &absolute_root_ && dir != relative_root_) {
-      auto* sub = dict.AddSectionDictionary("directory");
-      sub->SetValue("href", dir->parent->HtmlPath());
-      sub->SetIntValue("size", dir->parent->files.size());
-      sub->SetValueWithoutCopy("name", "..");
-    }
-
-    for (const auto& it : dir->directories) {
-      auto& name = it.first;
-      auto& descriptor = it.second;
-
-      auto* sub = dict.AddSectionDictionary("directory");
-      sub->SetValue("href", descriptor.HtmlPath());
-      sub->SetIntValue("size", descriptor.files.size());
-      sub->SetValueWithoutCopy("name", name);
-    }
-  }
-
-  std::ofstream myfile;
-  myfile.open(path);
-  FileEmitter emitter(&myfile);
-  ctemplate::ExpandTemplate("templates/directory.html",
-                            ctemplate::STRIP_WHITESPACE, &dict, &emitter);
-}
-
-void FileRenderer::InitFlags() {
-  if (gl_index_files.empty()) {
-    const auto& files = {"NEWS",      "README",    "README.md",
-                         "00-INDEX",  "CHANGES",   "Changes",
-                         "ChangeLog", "changelog", "Kconfig"};
-    for (const auto& file : files) gl_index_files.push_back(file);
-  }
 }

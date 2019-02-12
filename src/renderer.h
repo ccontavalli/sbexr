@@ -34,12 +34,8 @@
 #include "json-helpers.h"
 #include "rewriter.h"
 
-#include <ctemplate/template.h>
-
 class FileRenderer {
  public:
-  static void InitFlags();
-
   struct ParsedDirectory;
 
   enum FileType {
@@ -131,16 +127,12 @@ class FileRenderer {
                   Preprocessor& pp);
   void ScanTree(const std::string& path);
 
-  void OutputFiles();
   bool OutputJFiles();
   void OutputJOther();
-
   void OutputJsonTree(const char* path, const char* tag);
 
  private:
   void RawHighlight(FileID parsing_fid, Preprocessor& pp, ParsedFile* file);
-  void OutputFile(const ParsedDirectory& dir, ParsedFile* file);
-  void OutputDirectory(ParsedDirectory* dir);
 
   bool OutputJFile(const ParsedDirectory& dir, ParsedFile* file);
   bool OutputJDirectory(ParsedDirectory* dir);
@@ -152,10 +144,6 @@ class FileRenderer {
                      const FileRenderer::ParsedDirectory* current,
                      const FileRenderer::ParsedDirectory* parent);
 
-  void AddNavbarTemplates(ctemplate::TemplateDictionary* dict,
-                          const std::string& name, const std::string& path,
-                          const FileRenderer::ParsedDirectory* current,
-                          const FileRenderer::ParsedDirectory* parent);
   std::string FormatSource(Preprocessor& pp, FileID fid, ParsedFile* file);
 
   ParsedDirectory* relative_root_;
