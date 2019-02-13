@@ -193,20 +193,20 @@ class ScopedWorkingDirectory {
 };
 
 inline ScopedWorkingDirectory ChangeDirectoryForScope(const std::string& dir) {
-  std::string buffer(1024, '\0');
-  while (getcwd(const_cast<char*>(buffer.data()), buffer.size()) == nullptr) {
-    if (buffer.size() * 2 < buffer.size() ||
-        buffer.size() * 2 > buffer.max_size())
-      return ScopedWorkingDirectory(ENAMETOOLONG);
-
-    buffer.resize(buffer.size() * 2);
-  }
-  buffer.resize(strlen(buffer.data()));
-
-  if (chdir(dir.c_str()) != 0) {
+  auto buffer = GetCwd();
+  if (buffer.empty() || chdir(dir.c_str()) != 0) {
     return ScopedWorkingDirectory(errno);
   }
   return ScopedWorkingDirectory(std::move(buffer));
+}
+
+inline std::string GetRealPath(const std::string& path) {
+  char* real = realpath(path.c_str(), NULL);
+  if (!real) return path;
+  std::string retval(real);
+  free(real);
+
+  return retval;
 }
 
 #endif /* COMMON_H */

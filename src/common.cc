@@ -54,7 +54,7 @@ bool MakeDirs(const std::string& path, int mode) {
   for (std::size_t index = 1;
        (index = copy.find('/', index)) != std::string::npos;) {
     copy[index] = '\0';
-    if (!mkdir(copy.c_str(), mode) && errno != EEXIST) return false;
+    if (mkdir(copy.c_str(), mode) && errno != EEXIST) return false;
 
     copy[index] = '/';
     index = index + 1;
@@ -69,32 +69,27 @@ bool MakeAllDirs(const std::string& path, int mode) {
     return false;
   }
 
-  if (!mkdir(path.c_str(), mode) && errno != EEXIST) return false;
+  if (mkdir(path.c_str(), mode) && errno != EEXIST) return false;
   return true;
 }
 
 std::string GetCwd() {
-  std::string result;
-  result.resize(64);
-
-  while (getcwd(&result[0], result.size()) == NULL) {
+  std::string buffer(1024, '\0');
+  while (getcwd(&buffer[0], buffer.size()) == nullptr) {
     if (errno != ERANGE) {
-      result.clear();
-      return result;
+      return "";
+    }
+    if (buffer.size() * 2 < buffer.size() ||
+        buffer.size() * 2 > buffer.max_size()) {
+      errno = ENAMETOOLONG;
+      return "";
     }
 
-    auto newsize = std::min(result.size() * 2, result.max_size());
-    if (newsize == result.size()) {
-      result.clear();
-      return result;
-    }
-
-    result.resize(newsize);
+    buffer.resize(buffer.size() * 2);
   }
 
-  auto end = result.find('\0');
-  if (end != std::string::npos) result.resize(end);
-  return result;
+  buffer.resize(buffer.find('\0'));
+  return buffer;
 }
 
 std::string GetSuffixedValue(int64_t uv, std::array<const char*, 5> suffixes) {
