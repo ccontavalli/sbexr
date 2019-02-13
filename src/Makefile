@@ -1,8 +1,8 @@
 LLVMVERSION := 8
 LLVMCONFIG := llvm-config-$(LLVMVERSION)
-LIBS := $(shell $(LLVMCONFIG) --libs) -lctemplate
-CXXFLAGS := $(shell $(LLVMCONFIG) --cxxflags | sed -e 's/-gsplit-dwarf//g') -ggdb3 -O0
-LDFLAGS := $(shell $(LLVMCONFIG) --ldflags | sed -e 's/-gsplit-dwarf //g')
+LIBS := $(shell $(LLVMCONFIG) --libs)
+CXXFLAGS := $(shell $(LLVMCONFIG) --cxxflags) -ggdb3 -O0
+LDFLAGS := $(shell $(LLVMCONFIG) --ldflags)
 TIME := time --format='MEM: unshared process size=%D, average total=%K, max resident=%M\nTIME: total wall time=%e, user time=%U, kernel time=%S'
 
 EXTRALIBS := -lclangFrontend \
