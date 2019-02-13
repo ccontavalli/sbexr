@@ -65,6 +65,8 @@ std::string GetSourceRange(const SourceManager& sm, const SourceRange& range);
 // Create all directories in path.
 // Last element of the path name assumed to be a file.
 bool MakeDirs(const std::string& path, int mode);
+// Create all directories in path, including last element.
+bool MakeAllDirs(const std::string& path, int mode);
 // Returns the current working directory.
 std::string GetCwd();
 
@@ -171,6 +173,40 @@ static inline std::string JoinPath(
   // Remove last trailing "/".
   result.resize(result.size() - 1);
   return result;
+}
+
+class ScopedWorkingDirectory {
+ public:
+  ScopedWorkingDirectory(int error) : error_(error) {}
+  ScopedWorkingDirectory(std::string&& oldcwd) : oldcwd_(oldcwd) {}
+
+  bool HasError() { return error_ != 0; }
+
+  ~ScopedWorkingDirectory() {
+    if (error_ != 0) return;
+    chdir(oldcwd_.c_str());
+  }
+
+ private:
+  std::string oldcwd_;
+  int error_ = 0;
+};
+
+inline ScopedWorkingDirectory ChangeDirectoryForScope(const std::string& dir) {
+  std::string buffer(1024, '\0');
+  while (getcwd(const_cast<char*>(buffer.data()), buffer.size()) == nullptr) {
+    if (buffer.size() * 2 < buffer.size() ||
+        buffer.size() * 2 > buffer.max_size())
+      return ScopedWorkingDirectory(ENAMETOOLONG);
+
+    buffer.resize(buffer.size() * 2);
+  }
+  buffer.resize(strlen(buffer.data()));
+
+  if (chdir(dir.c_str()) != 0) {
+    return ScopedWorkingDirectory(errno);
+  }
+  return ScopedWorkingDirectory(std::move(buffer));
 }
 
 #endif /* COMMON_H */

@@ -124,6 +124,8 @@ cl::opt<std::string> gl_bear_filter_regex(
     cl::value_desc("regex"), cl::cat(gl_category));
 cl::opt<std::string> gl_input_dir(cl::Positional, cl::desc("<input directory>"),
                                   cl::Required);
+cl::opt<bool> gl_scan("scan", cl::desc("Scan input directory for all files."),
+                      cl::cat(gl_category), cl::init(true));
 
 std::string MakeIdLink(const SourceManager& sm, FileCache* cache,
                        const SourceRange& range) {
@@ -652,7 +654,7 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
     if (!start.isMacroID()) {
       auto line = sm.getExpansionLineNumber(start);
       if (line <= 1) {
-        std::cerr << "ERROR: SKIPPiNG INVALID LINE" << std::endl;
+        std::cerr << "ERROR: SKIPPING INVALID LINE" << std::endl;
         return Base::TraverseCompoundStmt(statement);
       }
       auto cache = sm.getSLocEntry(fid).getFile().getContentCache();
@@ -688,12 +690,13 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 };
 
 struct ToParse {
-  ToParse(const std::string& file,
+  ToParse(const std::string& file, const std::string& directory,
           const std::vector<std::string>& argv = std::vector<std::string>())
-      : file(file), argv(argv) {}
+      : file(file), directory(directory), argv(argv) {}
   ToParse() = default;
 
   std::string file;
+  std::string directory;
   const std::vector<std::string> argv;
 };
 
@@ -722,7 +725,8 @@ class PPTracker : public PPCallbacks {
 
       if (gl_verbose)
         std::cerr << "#ENTERING "
-                  << (file ? file->path : std::string("<INVALID>"))
+                  << (file ? file->path : std::string("<INVALID>")) << " ("
+                  << loc.printToString(ci_.getSourceManager()) << ")"
                   << std::endl;
 
       include_stack_.push(file);
@@ -753,29 +757,38 @@ class PPTracker : public PPCallbacks {
            (include_stack_.top() && !include_stack_.top()->preprocessed);
   }
 
+//  bool FileNotFound(StringRef filename,
+//                    SmallVectorImpl<char>& RecoveryPath) override {
+//    std::cerr << "FILE NOT FOUND !!! " << filename.str() << std::endl;
+//    return false;
+//  }
+
   void InclusionDirective(SourceLocation loc, const Token& IncludeTok,
                           StringRef FileName, bool IsAngled,
                           CharSourceRange filename_range, const FileEntry* File,
                           StringRef SearchPath, StringRef RelativePath,
                           const clang::Module* Imported,
                           SrcMgr::CharacteristicKind FileType) override {
-    if (!File || !ShouldProcess()) return;
-
     auto included_full_path = (SearchPath + "/" + RelativePath).str();
     auto* file_descriptor = cache_->GetFileFor(included_full_path);
     auto html_path = file_descriptor->HtmlPath();
 
-    WrapWithTag(ci_, cache_, filename_range.getAsRange(),
-                std::move(MakeTag("a", {"include"}, {"href", html_path})));
-
     if (gl_verbose)
-      std::cerr << "#INCLUDING "
-                << PrintLocation(ci_.getSourceManager(), cache_, loc) << " "
-                << included_full_path << " " << file_descriptor->path
-                << " from "
+      std::cerr << "#INCLUDING " << file_descriptor->path << " ("
+                << included_full_path << ") FROM "
+                << PrintLocation(ci_.getSourceManager(), cache_, loc) << " ("
                 << cache_->GetNormalizedPath(ci_.getSourceManager(),
                                              filename_range.getBegin())
-                << std::endl;
+                << ")" << std::endl;
+
+    if (!ShouldProcess()) {
+      if (gl_verbose)
+        std::cerr << "#INCLUDE IGNORED " << (File ? "[has file]" : "[NO FILE]")
+                  << " " << ShouldProcess() << std::endl;
+    }
+
+    WrapWithTag(ci_, cache_, filename_range.getAsRange(),
+                std::move(MakeTag("a", {"include"}, {"href", html_path})));
   }
 
   /// \brief Called by Preprocessor::HandleMacroExpandedIdentifier when a
@@ -1032,6 +1045,23 @@ std::unique_ptr<CompilerInstance> CreateCompilerInstance(
   // Note: FrontendOptions.Inputs and FrontendOptions.Output have list of input
   // and output files for the invocation.
 
+  // llvm::ComputeEditDistance is eating almost 50% of our CPU in the analysis
+  // of a complex project. Two common uses: SpellChecking, and ... command line
+  // parsing? (gdb) bt #0  0x00007ffff32d9b58 in ComputeEditDistance<char> () at
+  // /build/llvm-toolchain-8-olKMoB/llvm-toolchain-8-8~+rc2/include/llvm/ADT/edit_distance.h:78
+  // #1  0x00007ffff4237e67 in findNearest () at
+  // /build/llvm-toolchain-8-olKMoB/llvm-toolchain-8-8~+rc2/lib/Option/OptTable.cpp:303
+  // #2  0x000055555628e245 in
+  // clang::driver::Driver::ParseArgStrings(llvm::ArrayRef<char const*>, bool,
+  // bool&) () #3  0x00005555562932de in
+  // clang::driver::Driver::BuildCompilation(llvm::ArrayRef<char const*>) () #4
+  // 0x000055555587baf2 in
+  // clang::createInvocationFromCommandLine(llvm::ArrayRef<char const*>,
+  // llvm::IntrusiveRefCntPtr<clang::DiagnosticsEngine>,
+  // llvm::IntrusiveRefCntPtr<llvm::vfs::FileSystem>) () #5  0x000055555571b9bc
+  // in CreateCompilerInstance (argv=std::vector of length 112, capacity 112 =
+  // {...}) at sbexr.cc:1019 #6  0x000055555571c6e5 in main (argc=4,
+  // argv=0x7fffffffda58) at sbexr.cc:1161
   invocation->getLangOpts()->Sanitize.clear();
   invocation->getLangOpts()->SpellChecking = false;
   invocation->getLangOpts()->CommentOpts.ParseAllComments = true;
@@ -1048,6 +1078,12 @@ std::unique_ptr<CompilerInstance> CreateCompilerInstance(
   instance->createPreprocessor(TU_Complete);
   instance->createASTContext();
 
+  auto& pp = instance->getPreprocessor();
+  pp.SetSuppressIncludeNotFoundError(true);
+  pp.SetCommentRetentionState(true, true);
+  pp.getBuiltinInfo().initializeBuiltins(pp.getIdentifierTable(),
+                                         pp.getLangOpts());
+
   // Without this, does not recognize bool and wchar_t, and a few other errors.
   // CompilerInvocation::setLangDefaults(
   //    lo, InputKind(InputKind::CXX, InputKind::Source, false),
@@ -1056,16 +1092,15 @@ std::unique_ptr<CompilerInstance> CreateCompilerInstance(
   // otherwise)
   // FIXME: does it need its own sema?
 
-  Preprocessor& pp = instance->getPreprocessor();
   if (gl_verbose) {
     const auto& hs = pp.getHeaderSearchInfo();
-    for (auto sd = hs.system_dir_begin(); sd != hs.system_dir_end(); ++sd) {
-      llvm::errs() << "+ HEADER SEARCH DIR: " << sd->getName() << "\n";
+    for (auto sd = hs.search_dir_begin(); sd != hs.search_dir_end(); ++sd) {
+      llvm::errs() << "+ HEADER SEARCH DIR: " << sd->getName()
+                   << (sd->isSystemHeaderDirectory() ? " (system)" : "")
+                   << "\n";
     }
   }
 
-  pp.getBuiltinInfo().initializeBuiltins(pp.getIdentifierTable(),
-                                         pp.getLangOpts());
   return instance;
 }
 
@@ -1123,15 +1158,8 @@ int main(int argc, const char** argv) {
       if (!std::regex_search(file, filter)) continue;
 
       const auto& commands = db->getCompileCommands(file);
-      for (const auto& command : commands) {
-        to_parse.emplace_back(file, command.CommandLine);
-
-        const auto& argv = command.CommandLine;
-        llvm::errs() << "ARGV " << file << " " << to_parse.back().argv.size()
-                     << " ";
-        for (const auto& arg : argv) llvm::errs() << arg << " ";
-        llvm::errs() << "\n";
-      }
+      for (const auto& command : commands)
+        to_parse.emplace_back(file, command.Directory, command.CommandLine);
     }
   }
 
@@ -1154,8 +1182,19 @@ int main(int argc, const char** argv) {
 
     const auto& filename = cache.GetFileFor(parsing.file)->path;
 
-    std::cerr << to_parse.size() << " PARSING " << filename << " "
-              << parsing.file << " " << parsing.argv.size() << std::endl;
+    std::cerr << to_parse.size() << " PARSING " << filename << " ("
+              << parsing.file << " in " << parsing.directory << ") "
+              << parsing.argv.size() << std::endl;
+    std::cerr << "  ARGV ";
+    for (const auto& arg : parsing.argv) std::cerr << arg << " ";
+    std::cerr << std::endl;
+
+    auto directory = ChangeDirectoryForScope(parsing.directory);
+    if (directory.HasError()) {
+      std::cerr << "ERROR: CHANGING DIRECTORY TO " << parsing.directory
+                << " FAILED - SKIPPING ARGV" << std::endl;
+      continue;
+    }
 
     {
       auto nci = CreateCompilerInstance(parsing.argv);
@@ -1175,6 +1214,7 @@ int main(int argc, const char** argv) {
       consumer.GetVisitor()->SetParameters(nci.get());
 
       // Parse the file to AST, registering our consumer as the AST consumer.
+      // FIXME: Sema is using incorrect parameters?
       Sema sema(pp, nci->getASTContext(), consumer, TU_Complete, nullptr);
       ParseAST(sema);
 
@@ -1197,7 +1237,9 @@ int main(int argc, const char** argv) {
   MemoryPrinter::OutputStats();
 
   std::cerr << ">>> EMBEDDING FILES" << std::endl;
-  renderer.ScanTree(gl_input_dir);
+  if (gl_scan) {
+    renderer.ScanTree(gl_input_dir);
+  }
   renderer.OutputJFiles();
   renderer.OutputJOther();
   renderer.OutputJsonTree(gl_index_dir.c_str(), gl_tag.c_str());

@@ -44,6 +44,10 @@ std::string MakeMetaPath(const std::string& filename) {
   return JoinPath({"output", "sources", "meta", filename});
 }
 
+// Creates all the directories up to the last /.
+// This is convenient to ensure the directory for a file exists.
+// Example: MakeDirs("/etc/defaults/test", 0777) will ensure that
+// "/etc", "/etc/defaults" exist, so the test file can be created.
 bool MakeDirs(const std::string& path, int mode) {
   std::string copy(path);
 
@@ -55,6 +59,17 @@ bool MakeDirs(const std::string& path, int mode) {
     copy[index] = '/';
     index = index + 1;
   }
+  return true;
+}
+// Creates all the directories specified.
+// Example: MakeAllDirs("/etc/defaults/test", 0777) will ensure that
+// "/etc", "/etc/defaults", "/etc/defaults/test" all exist.
+bool MakeAllDirs(const std::string& path, int mode) {
+  if (!MakeDirs(path, mode)) {
+    return false;
+  }
+
+  if (!mkdir(path.c_str(), mode) && errno != EEXIST) return false;
   return true;
 }
 

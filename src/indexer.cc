@@ -267,6 +267,11 @@ void Indexer::OutputBinaryIndex(const char* path, const char* tag) {
   std::map<NameString, Symbol> locations;
   std::map<FileRenderer::ParsedFile*, FileOffsetT> allfiles;
 
+  if (!MakeAllDirs(path, 0777)) {
+    std::cerr << "FAILED TO MAKE DIRS " << path << std::endl;
+    return;
+  }
+
   // 1) Re-index objects by name rather than unique identifier.
   for (const auto& objit : index_) {
     const auto& objid = objit.first;
