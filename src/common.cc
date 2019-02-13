@@ -115,5 +115,3 @@ std::string GetSuffixedValue(int64_t uv, std::array<const char*, 5> suffixes) {
 
   return retval;
 }
-
-

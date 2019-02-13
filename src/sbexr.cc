@@ -1010,61 +1010,53 @@ std::unique_ptr<Lexer> CreateLexer(const CompilerInstance* ci,
 }
 
 std::unique_ptr<CompilerInstance> CreateCompilerInstance(
-    const std::vector<std::string>& argv, FileManager* fm = nullptr,
-    SourceManager* sm = nullptr) {
+    const std::vector<std::string>& argv) {
+  std::vector<const char*> args;
+  for (const auto& arg : argv) args.push_back(arg.c_str());
+
+  auto diagnostics = CompilerInstance::createDiagnostics(
+      new DiagnosticOptions(), new IgnoringDiagConsumer(), true);
+  auto invocation = createInvocationFromCommandLine(args, diagnostics);
+
+  invocation->getDiagnosticOpts().ShowCarets = false;
+  invocation->getDiagnosticOpts().ShowFixits = false;
+  invocation->getDiagnosticOpts().ShowSourceRanges = false;
+  invocation->getDiagnosticOpts().ShowColumn = false;
+  invocation->getDiagnosticOpts().ShowLocation = false;
+  invocation->getDiagnosticOpts().ShowParseableFixits = false;
+
+  invocation->getFrontendOpts().DisableFree = true;
+  invocation->getFrontendOpts().FixWhatYouCan = false;
+  invocation->getFrontendOpts().FixOnlyWarnings = false;
+  invocation->getFrontendOpts().FixAndRecompile = false;
+  // Note: FrontendOptions.Inputs and FrontendOptions.Output have list of input
+  // and output files for the invocation.
+
+  invocation->getLangOpts()->Sanitize.clear();
+  invocation->getLangOpts()->SpellChecking = false;
+  invocation->getLangOpts()->CommentOpts.ParseAllComments = true;
+
   // CompilerInstance will hold the instance of the Clang compiler for us,
   // managing the various objects needed to run the compiler.
-  auto ci = llvm::make_unique<CompilerInstance>();
-  auto& options = ci->getDiagnosticOpts();
-  options.ShowCarets = 0;
-  ci->createDiagnostics(new TextDiagnosticPrinter(llvm::outs(), &options),
-                        true);
+  auto instance = llvm::make_unique<CompilerInstance>();
+  instance->setInvocation(std::move(invocation));
+  instance->createDiagnostics(new IgnoringDiagConsumer(), true);
+  instance->setTarget(TargetInfo::CreateTargetInfo(
+      instance->getDiagnostics(), instance->getInvocation().TargetOpts));
+  instance->createFileManager();
+  instance->createSourceManager(instance->getFileManager());
+  instance->createPreprocessor(TU_Complete);
+  instance->createASTContext();
 
-  LangOptions& lo = ci->getLangOpts();
   // Without this, does not recognize bool and wchar_t, and a few other errors.
-  CompilerInvocation::setLangDefaults(
-      lo, InputKind(InputKind::CXX, InputKind::Source, false),
-      llvm::Triple(ci->getTargetOpts().Triple), ci->getPreprocessorOpts());
+  // CompilerInvocation::setLangDefaults(
+  //    lo, InputKind(InputKind::CXX, InputKind::Source, false),
+  //    llvm::Triple(ci->getTargetOpts().Triple), ci->getPreprocessorOpts());
+  // FIXME: instance needs its own diagnostics? (YES, added, assert failure
+  // otherwise)
+  // FIXME: does it need its own sema?
 
-  if (argv.size()) {
-    std::vector<const char*> args;
-    for (const auto& arg : argv) args.push_back(arg.c_str());
-
-    auto invocation =
-        createInvocationFromCommandLine(args, &ci->getDiagnostics());
-    ci->setInvocation(std::move(invocation));
-  } else {
-    lo.CPlusPlus = 1;
-  }
-
-  lo.CommentOpts.ParseAllComments = true;
-  lo.SpellChecking = false;
-
-  // Initialize target info with the default triple for our platform.
-  auto target_options = std::make_shared<::clang::TargetOptions>();
-  target_options->Triple = llvm::sys::getDefaultTargetTriple();
-  TargetInfo* target_info =
-      TargetInfo::CreateTargetInfo(ci->getDiagnostics(), target_options);
-  ci->setTarget(target_info);
-
-  if (!fm)
-    ci->createFileManager();
-  else
-    ci->setFileManager(fm);
-
-  FileManager& file_mgr = ci->getFileManager();
-  if (!sm)
-    ci->createSourceManager(file_mgr);
-  else
-    ci->setSourceManager(sm);
-
-  // ci->createPreprocessor(TU_Module);
-  ci->createPreprocessor(TU_Complete);
-  ci->createASTContext();
-
-  // PPCallbacks -> to track all includes and similar.
-
-  Preprocessor& pp = ci->getPreprocessor();
+  Preprocessor& pp = instance->getPreprocessor();
   if (gl_verbose) {
     const auto& hs = pp.getHeaderSearchInfo();
     for (auto sd = hs.system_dir_begin(); sd != hs.system_dir_end(); ++sd) {
@@ -1074,7 +1066,7 @@ std::unique_ptr<CompilerInstance> CreateCompilerInstance(
 
   pp.getBuiltinInfo().initializeBuiltins(pp.getIdentifierTable(),
                                          pp.getLangOpts());
-  return ci;
+  return instance;
 }
 
 int main(int argc, const char** argv) {

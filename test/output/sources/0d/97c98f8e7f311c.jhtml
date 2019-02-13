@@ -36,11 +36,11 @@
             "-O0",
             "-I../",
             "-o",
-            "test-multiple-file-0.o",
-            "test-multiple-file-0.cc"
+            "test-multiple-file-1.o",
+            "test-multiple-file-1.cc"
         ],
         "directory": "/opt/projects/sbexr/test",
-        "file": "test-multiple-file-0.cc"
+        "file": "test-multiple-file-1.cc"
     },
     {
         "arguments": [
@@ -77,10 +77,10 @@
             "-O0",
             "-I../",
             "-o",
-            "test-multiple-file-1.o",
-            "test-multiple-file-1.cc"
+            "test-multiple-file-0.o",
+            "test-multiple-file-0.cc"
         ],
         "directory": "/opt/projects/sbexr/test",
-        "file": "test-multiple-file-1.cc"
+        "file": "test-multiple-file-0.cc"
     }
 ]
