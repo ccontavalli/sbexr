@@ -159,10 +159,6 @@ def CreateBearFile(tag, directory, output):
     raise BuildError("bear make failed", result)
   Run(["mv", path, output])
 
-def CreateRunTree(binary, directory):
-  if Run(["cp", "-a", os.path.join(binary, "templates"), "-t", directory]).status:
-    raise BuildError("Creation of tree failed")
-
 def PrepareOutputDir(run, tag):
   tree_dir = tempfile.mkdtemp(prefix="build-", suffix="-" + tag, dir=TMP_TREE)
   if Run(["ln", "-Tfs", tree_dir, os.path.join(run, "output")]).status:
@@ -314,11 +310,12 @@ def main():
       if not NeedsUpdating(tag) or (tag != all_desired_tags[-1] and NeedsUpdating(all_desired_tags[-1])):
         break
 
-      CreateRunTree(BINARY_TREE, RUN_TREE)
       CheckoutKernel(tag)
 
       bear_tree = os.path.join(BEAR_TREE, tag + ".json")
+      print >>sys.stderr, "BEAR TREE", bear_tree
       if not os.path.exists(bear_tree):
+        print >>sys.stderr, "BEAR TREE DOES NOT EXIST", bear_tree
         ConfigureKernel()
         CreateBearFile(tag, BEAR_TREE, bear_tree)
         # This will clean up the tree, and check it out again.
