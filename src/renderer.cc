@@ -56,8 +56,8 @@ std::pair<std::string, std::string> SplitPath(const std::string& name) {
 }
 
 StringRef FileRenderer::GetUserPath(const StringRef& path) const {
-  if (relative_root_ && path.startswith(relative_root_->path))
-    return path.substr(std::min(relative_root_->path.size() + 1, path.size()));
+  if (stripping_root_ && path.startswith(stripping_root_->path))
+    return path.substr(std::min(stripping_root_->path.size() + 1, path.size()));
   return path;
 }
 
@@ -346,15 +346,17 @@ FileRenderer::ParsedDirectory* FileRenderer::GetDirectoryFor(
   return node;
 }
 
-FileRenderer::FileRenderer(const std::string& cwd) {
-  char* path = realpath(cwd.c_str(), NULL);
-  if (!path) {
-    // FIXME ERROR!
-    abort();
-  }
+FileRenderer::FileRenderer() { SetWorkingPath(GetRealPath(GetCwd())); }
 
-  relative_root_ = GetDirectoryFor(path);
-  free(path);
+void FileRenderer::SetWorkingPath(const std::string& cwd) {
+  relative_root_ = GetDirectoryFor(cwd);
+}
+void FileRenderer::SetStripPath(const std::string& strip) {
+  if (strip.empty()) {
+    stripping_root_ = nullptr;
+    return;
+  }
+  stripping_root_ = GetDirectoryFor(strip);
 }
 
 std::pair<FileRenderer::ParsedDirectory*, FileRenderer::ParsedFile*>
@@ -396,13 +398,15 @@ bool FileRenderer::OutputJFiles() {
   while (!to_output.empty()) {
     auto* node = to_output.front();
     if (!OutputJDirectory(node)) {
-      llvm::errs() << "ERROR: Could not output directory " << node->name;
+      llvm::errs() << "ERROR: Could not output directory '" << node->name
+                   << "' aka " << node->path << "\n";
     }
 
     to_output.pop_front();
     for (auto& element : node->files) {
       if (!OutputJFile(*node, &element.second)) {
-        llvm::errs() << "ERROR: Could not output file " << element.second.name;
+        llvm::errs() << "ERROR: Could not output file '" << element.second.name
+                     << "'\n";
       }
     }
     for (auto& element : node->directories)
@@ -422,7 +426,8 @@ std::string FileRenderer::GetNormalizedPath(const std::string& filename) {
 void FileRenderer::OutputJOther() {
   const auto& globals = MakeMetaPath("globals.json");
   if (!MakeDirs(globals, 0777)) {
-    std::cerr << "FAILED TO MAKE DIRS " << globals << std::endl;
+    std::cerr << "ERROR: FAILED TO MAKE META PATH '" << globals << "'"
+              << std::endl;
     return;
   }
 
@@ -647,7 +652,8 @@ bool FileRenderer::OutputJFile(const ParsedDirectory& parent,
   const auto& path = file->SourcePath(".jhtml");
   std::cerr << "GENERATING JFILE " << file->path << " " << path << std::endl;
   if (!MakeDirs(path, 0777)) {
-    std::cerr << "FAILED TO MAKE DIRS" << std::endl;
+    std::cerr << "ERROR: FAILED TO MAKE DIRS FOR FILE '" << path << "'"
+              << std::endl;
     return false;
   }
 
@@ -704,7 +710,7 @@ void FileRenderer::OutputJNavbar(json::Writer<json::OStreamWrapper>* writer,
                                  const FileRenderer::ParsedDirectory* current,
                                  const FileRenderer::ParsedDirectory* parent) {
   // Build stack of parent directories, and find root.
-  const FileRenderer::ParsedDirectory* root = relative_root_;
+  const FileRenderer::ParsedDirectory* root = stripping_root_;
   static std::deque<const FileRenderer::ParsedDirectory*> stack;
   for (const auto* cursor = current ? current : parent;
        cursor && cursor != root; cursor = cursor->parent) {
@@ -738,7 +744,7 @@ bool FileRenderer::OutputJDirectory(ParsedDirectory* dir) {
   const auto& path = dir->SourcePath(".jhtml");
   std::cerr << "GENERATING JDIR " << dir->path << " " << path << std::endl;
   if (!MakeDirs(path, 0777)) {
-    std::cerr << "FAILED TO MAKE DIRS" << std::endl;
+    std::cerr << "ERROR: FAILED TO MAKE DIRS FOR '" << path << "'" << std::endl;
     return false;
   }
 
@@ -790,10 +796,10 @@ bool FileRenderer::OutputJDirectory(ParsedDirectory* dir) {
     }
 
     if (!dir->directories.empty() ||
-        (dir->parent && dir != &absolute_root_ && dir != relative_root_)) {
+        (dir->parent && dir != &absolute_root_ && dir != stripping_root_)) {
       auto dirs = MakeJsonArray(&writer, "dirs");
 
-      if (dir->parent && dir != &absolute_root_ && dir != relative_root_) {
+      if (dir->parent && dir != &absolute_root_ && dir != stripping_root_) {
         auto obj = MakeJsonObject(&writer);
 
         WriteJsonKeyValue(&writer, "href", dir->parent->HtmlPath());

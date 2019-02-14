@@ -110,7 +110,7 @@ class FileRenderer {
     std::map<std::string, ParsedFile> files;
   };
 
-  FileRenderer(const std::string& cwd);
+  FileRenderer();
 
   // Paths manipulation functions.
   std::string GetNormalizedPath(const std::string& path);
@@ -121,6 +121,9 @@ class FileRenderer {
 
   std::pair<ParsedDirectory*, ParsedFile*> GetDirectoryAndFileFor(
       const std::string& filename);
+
+  void SetWorkingPath(const std::string& cwd);
+  void SetStripPath(const std::string& sp);
 
   // Tree rendering functions.
   void RenderFile(const SourceManager& sm, ParsedFile* file, FileID fid,
@@ -146,7 +149,11 @@ class FileRenderer {
 
   std::string FormatSource(Preprocessor& pp, FileID fid, ParsedFile* file);
 
+  // Used to create absolute paths from relative paths fed to the renderer.
   ParsedDirectory* relative_root_;
+  // Parent directories to strip from output when rendering tree.
+  ParsedDirectory* stripping_root_ = nullptr;
+  // The absolute root of our in-memory tree.
   ParsedDirectory absolute_root_{nullptr, ""};
 };
 

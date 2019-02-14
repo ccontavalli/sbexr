@@ -4,6 +4,7 @@ LIBS := $(shell $(LLVMCONFIG) --libs)
 CXXFLAGS := $(shell $(LLVMCONFIG) --cxxflags) -ggdb3 -O0
 LDFLAGS := $(shell $(LLVMCONFIG) --ldflags)
 TIME := time --format='MEM: unshared process size=%D, average total=%K, max resident=%M\nTIME: total wall time=%e, user time=%U, kernel time=%S'
+VERBOSE := --verbose
 
 EXTRALIBS := -lclangFrontend \
 	     -lclangParse \
@@ -26,15 +27,9 @@ all: sbexr
 sbexr: sbexr.o indexer.o renderer.o rewriter.h wrapping.o rewriter.o cache.o mempool.h mempool.o common.o common.h
 	$(CXX) -lclang-$(LLVMVERSION) -lLLVM-$(LLVMVERSION) $(CXXFLAGS) $(LDFLAGS) $(LIBS) $(LIBDIR) -o sbexr $^ $(EXTRALIBS)
 
-gen:
-	$(MAKE) clean && bear $(MAKE) && cp ./compile_commands.json .. && cd .. && $(TIME) ./src/sbexr --index=indexes -x "output|indexes" .
-
-gen-only:
-	cd .. && $(TIME) ./src/sbexr -x "output|indexes" .
-
 test-gen: sbexr test-multi
-	cd ../test && rm -rf output/ && mkdir -p output && ln -sfT ../static ./static && cp -a ../compile_commands.json ./ && \
-	    rm -rf indexes && mkdir indexes && $(TIME) ../src/sbexr --verbose --index=indexes -x "output|indexes" ./
+	cd ../test && rm -rf output/ && rm -rf indexes/ && ln -sfT ../static ./static \
+	    && $(TIME) ../src/sbexr $(VERBOSE) --index=indexes -x "output|indexes" --jsondb . 
 
 test-dump: test-dump-multi
 

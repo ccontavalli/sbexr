@@ -109,23 +109,37 @@ cl::opt<int> gl_snippet_limit(
     cl::desc("Maximum number of characters captured in a "
              "snippet before or after the relevant text."),
     cl::cat(gl_category), cl::init(60));
-cl::opt<std::string> gl_output_cwd(
-    "c", cl::desc("Path to strip from generated filenames."),
-    cl::value_desc("directory"), cl::init(GetCwd()), cl::cat(gl_category));
-cl::opt<std::string> gl_index_dir(
-    "index",
-    cl::desc("Directory where to output all generated indexes. Tag "
-             "name is used to name files."),
-    cl::value_desc("directory"), cl::cat(gl_category), cl::Required);
 cl::opt<std::string> gl_bear_filter_regex(
     "l",
     cl::desc(
         "Regex describing which files to parse from the compilation database."),
     cl::value_desc("regex"), cl::cat(gl_category));
-cl::opt<std::string> gl_input_dir(cl::Positional, cl::desc("<input directory>"),
-                                  cl::Required);
-cl::opt<bool> gl_scan("scan", cl::desc("Scan input directory for all files."),
-                      cl::cat(gl_category), cl::init(true));
+
+cl::opt<std::string> gl_index_dir(
+    "index",
+    cl::desc("Directory where to output all generated indexes. Tag "
+             "name is used to name files."),
+    cl::value_desc("directory"), cl::cat(gl_category), cl::Required);
+cl::opt<std::string> gl_jsondb_dir(
+    "jsondb",
+    cl::desc("Directory where the compile_commands.json file can be found."),
+    cl::value_desc("directory"), cl::cat(gl_category), cl::Required);
+cl::opt<std::string> gl_scan_dir(
+    "scandir",
+    cl::desc(
+        "Directory to scan for files to include in the output, regardless "
+        "of the file being parsed or not. This generally is used to complement "
+        "the information gathered through clang - to include Makefiles and "
+        "such, "
+        "for example."),
+    cl::value_desc("directory"), cl::cat(gl_category));
+cl::opt<std::string> gl_strip_dir(
+    "c",
+    cl::desc("Path to strip from generated filenames. This is useful to "
+             "prevent disclosing the directory on your system used to build "
+             "the source code, for example, and have all paths relative to "
+             "where you checked out the code / uncompressed the tarball."),
+    cl::value_desc("directory"), cl::init(GetCwd()), cl::cat(gl_category));
 
 std::string MakeIdLink(const SourceManager& sm, FileCache* cache,
                        const SourceRange& range) {
@@ -757,11 +771,11 @@ class PPTracker : public PPCallbacks {
            (include_stack_.top() && !include_stack_.top()->preprocessed);
   }
 
-//  bool FileNotFound(StringRef filename,
-//                    SmallVectorImpl<char>& RecoveryPath) override {
-//    std::cerr << "FILE NOT FOUND !!! " << filename.str() << std::endl;
-//    return false;
-//  }
+  //  bool FileNotFound(StringRef filename,
+  //                    SmallVectorImpl<char>& RecoveryPath) override {
+  //    std::cerr << "FILE NOT FOUND !!! " << filename.str() << std::endl;
+  //    return false;
+  //  }
 
   void InclusionDirective(SourceLocation loc, const Token& IncludeTok,
                           StringRef FileName, bool IsAngled,
@@ -771,7 +785,6 @@ class PPTracker : public PPCallbacks {
                           SrcMgr::CharacteristicKind FileType) override {
     auto included_full_path = (SearchPath + "/" + RelativePath).str();
     auto* file_descriptor = cache_->GetFileFor(included_full_path);
-    auto html_path = file_descriptor->HtmlPath();
 
     if (gl_verbose)
       std::cerr << "#INCLUDING " << file_descriptor->path << " ("
@@ -786,7 +799,13 @@ class PPTracker : public PPCallbacks {
         std::cerr << "#INCLUDE IGNORED " << (File ? "[has file]" : "[NO FILE]")
                   << " " << ShouldProcess() << std::endl;
     }
+    if (!File) {
+      // FIXME: this means there's something wrong. The build would have failed,
+      // but here we are trying to index the file.
+      return;
+    }
 
+    auto html_path = file_descriptor->HtmlPath();
     WrapWithTag(ci_, cache_, filename_range.getAsRange(),
                 std::move(MakeTag("a", {"include"}, {"href", html_path})));
   }
@@ -1114,6 +1133,24 @@ int main(int argc, const char** argv) {
   LLVMInitializeX86TargetMC();
   LLVMInitializeX86AsmParser();
 
+  // If those flags were not specified, initialize them to reasonable values.
+  if (gl_scan_dir.getNumOccurrences() <= 0) gl_scan_dir.setValue(gl_jsondb_dir);
+  if (gl_strip_dir.getNumOccurrences() <= 0)
+    gl_strip_dir.setValue(GetRealPath(gl_scan_dir));
+
+  std::cerr << "- INPUT - BUILD DB: " << gl_jsondb_dir << " ("
+            << GetRealPath(gl_jsondb_dir) << ")" << std::endl;
+  std::cerr << "- INPUT - SCAN DIR: " << gl_scan_dir << " ("
+            << GetRealPath(gl_scan_dir) << ")" << std::endl;
+  std::cerr << "- PARAM - STRIP PATH: " << gl_strip_dir << " ("
+            << GetRealPath(gl_strip_dir) << ")" << std::endl;
+  std::cerr << "- OUTPUT - INDEX: " << gl_index_dir << " ("
+            << GetRealPath(gl_index_dir) << ")" << std::endl;
+  std::cerr << "- OUTPUT - FILES: "
+            << "./output"
+            << " (" << GetRealPath(".") << "/output"
+            << ")" << std::endl;
+
   // TODO: use ParseCommandLineOptions to parse command line
   // TODO: Create a CompilationDatabase object to load the json file.
   // TODO: use approach here http://fdiv.net/2012/08/15/compiling-code-clang-api
@@ -1143,7 +1180,7 @@ int main(int argc, const char** argv) {
                                                  : gl_bear_filter_regex);
 
   {
-    auto db = CompilationDatabase::loadFromDirectory(gl_input_dir, error);
+    auto db = CompilationDatabase::loadFromDirectory(gl_jsondb_dir, error);
     if (db == nullptr) {
       llvm::errs() << "ERROR " << error << "\n";
       return 2;
@@ -1165,7 +1202,9 @@ int main(int argc, const char** argv) {
 
   // Create an AST consumer instance which is going to get called by
   // ParseAST.
-  FileRenderer renderer(gl_output_cwd);
+  FileRenderer renderer;
+  if (!gl_strip_dir.empty()) renderer.SetStripPath(gl_strip_dir);
+
   FileCache cache(&renderer);
 
   Indexer indexer(&cache);
@@ -1195,6 +1234,7 @@ int main(int argc, const char** argv) {
                 << " FAILED - SKIPPING ARGV" << std::endl;
       continue;
     }
+    renderer.SetWorkingPath(parsing.directory);
 
     {
       auto nci = CreateCompilerInstance(parsing.argv);
@@ -1237,8 +1277,8 @@ int main(int argc, const char** argv) {
   MemoryPrinter::OutputStats();
 
   std::cerr << ">>> EMBEDDING FILES" << std::endl;
-  if (gl_scan) {
-    renderer.ScanTree(gl_input_dir);
+  if (!gl_scan_dir.empty()) {
+    renderer.ScanTree(gl_scan_dir);
   }
   renderer.OutputJFiles();
   renderer.OutputJOther();
@@ -1247,14 +1287,22 @@ int main(int argc, const char** argv) {
 
   const auto& index = MakeMetaPath("index.jhtml");
   if (!MakeDirs(index, 0777)) {
-    std::cerr << "FAILED TO MAKE DIRS " << index << std::endl;
+    std::cerr << "ERROR: FAILED TO MAKE META PATH '" << index << "'"
+              << std::endl;
   } else {
-    const auto* dir = renderer.GetDirectoryFor(gl_input_dir);
-    const auto& entry = dir->HtmlPath(".jhtml");
+    if (!gl_scan_dir.empty() || !gl_strip_dir.empty() ||
+        !gl_jsondb_dir.empty()) {
+      const auto& outputdir =
+          gl_scan_dir.empty()
+              ? (gl_strip_dir.empty() ? gl_jsondb_dir : gl_strip_dir)
+              : gl_scan_dir;
+      const auto* dir = renderer.GetDirectoryFor(outputdir);
+      const auto& entry = dir->HtmlPath(".jhtml");
 
-    unlink(index.c_str());
-    symlink(entry.c_str(), index.c_str());
-    std::cerr << ">>> ENTRY POINT " << index << " aka " << entry << std::endl;
+      unlink(index.c_str());
+      symlink(entry.c_str(), index.c_str());
+      std::cerr << ">>> ENTRY POINT " << index << " aka " << entry << std::endl;
+    }
   }
 
   return 0;
