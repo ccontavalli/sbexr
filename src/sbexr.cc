@@ -722,6 +722,9 @@ class PPTracker : public PPCallbacks {
 
   void FileChanged(SourceLocation loc, FileChangeReason reason,
                    SrcMgr::CharacteristicKind kind, FileID prevfid) override {
+    if (gl_verbose) {
+      std::cerr << "#CHANGED EVENT " << reason << " FOR " << loc.printToString(ci_.getSourceManager()) << " P:" << ShouldProcess() << " I:" << include_ignored_ << std::endl;
+    }
     if (reason == EnterFile) {
       if (!ShouldProcess()) {
         include_ignored_++;
@@ -730,7 +733,7 @@ class PPTracker : public PPCallbacks {
 
       auto file = cache_->GetFileFor(ci_.getSourceManager(), loc);
       if (file) {
-        if (file->preprocessing) {
+        if (file->preprocessing || file->preprocessed) {
           include_ignored_++;
           return;
         }
@@ -738,7 +741,7 @@ class PPTracker : public PPCallbacks {
       }
 
       if (gl_verbose)
-        std::cerr << "#ENTERING "
+        std::cerr << "  -> ENTERING "
                   << (file ? file->path : std::string("<INVALID>")) << " ("
                   << loc.printToString(ci_.getSourceManager()) << ")"
                   << std::endl;
@@ -768,7 +771,7 @@ class PPTracker : public PPCallbacks {
 
   bool ShouldProcess() {
     return include_stack_.empty() ||
-           (include_stack_.top() && !include_stack_.top()->preprocessed);
+           (include_stack_.top() && !include_stack_.top()->preprocessed && include_ignored_ <= 0);
   }
 
   //  bool FileNotFound(StringRef filename,
@@ -792,14 +795,11 @@ class PPTracker : public PPCallbacks {
                 << PrintLocation(ci_.getSourceManager(), cache_, loc) << " ("
                 << cache_->GetNormalizedPath(ci_.getSourceManager(),
                                              filename_range.getBegin())
-                << ")" << std::endl;
+                << ") P:"<< ShouldProcess() << " F:" << (File ? "[has file]" : "[NO FILE]")  << std::endl;
 
-    if (!ShouldProcess()) {
+    if (!ShouldProcess() || !File) {
       if (gl_verbose)
-        std::cerr << "#INCLUDE IGNORED " << (File ? "[has file]" : "[NO FILE]")
-                  << " " << ShouldProcess() << std::endl;
-    }
-    if (!File) {
+        std::cerr << "#IGNORING STATEMENT" << std::endl;
       // FIXME: this means there's something wrong. The build would have failed,
       // but here we are trying to index the file.
       return;
