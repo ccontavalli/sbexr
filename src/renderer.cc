@@ -56,8 +56,13 @@ std::pair<std::string, std::string> SplitPath(const std::string& name) {
 }
 
 StringRef FileRenderer::GetUserPath(const StringRef& path) const {
-  if (stripping_root_ && path.startswith(stripping_root_->path))
-    return path.substr(std::min(stripping_root_->path.size() + 1, path.size()));
+  if (stripping_root_ && path.startswith(stripping_root_->path)) {
+    auto result = path.substr(std::min(stripping_root_->path.size() + 1, path.size()));
+    if (result.empty()) {
+      return "/";
+    }
+    return result;
+  }
   return path;
 }
 
