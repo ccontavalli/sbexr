@@ -140,7 +140,8 @@ class BuildError(RuntimeError):
 def CheckoutKernel(tag):
   CleanupKernel()
   if (KernelRun(["make", "mrproper"]).status or
-      KernelRun(["git", "checkout", tag]).status):
+      KernelRun(["git", "checkout", tag]).status or 
+      KernelRun(["make", "modules_prepare"].status):
     raise BuildError("make mrproper or git checkout failed")
 
 def ConfigureKernel():
@@ -184,9 +185,12 @@ def CommitOutputDir(path, tree, tag):
 def UpdateLatest(tree, tags=None):
   if tags == None:
     tags = SortTags(GetFsTags(tree))
+
+  print >>sys.stderr, "FINDING 'latest' AMONG:", list(reversed(tags))
   for tag in reversed(tags):
-    index = os.path.join(tree, tag, "sources", "meta", "index.html")
+    index = os.path.join(tree, tag, "sources", "meta", "index.jhtml")
     if os.path.exists(index):
+      print >>sys.stderr, "USING:", tag
       break
   else:
     return
@@ -217,7 +221,7 @@ def UpdateValidTags(tree, tags=None):
   # 1) Find the list of all valid TAGS.
   tags = SortTags(tags)
   tags.reverse()
-  print >>sys.stderr, "UPDATING TAGS: ", tree, tags
+  print >>sys.stderr, "UPDATING TAGS:", tree, tags
 
   # Update each file with the tags.
   for tag in tags:
@@ -264,7 +268,7 @@ def RunSbexr(tag):
 
   stdout = open(os.path.join(BEAR_TREE, tag + ".rewriter.stdout"), "w")
   stderr = open(os.path.join(BEAR_TREE, tag + ".rewriter.stderr"), "w")
-  result = Run([rewriter_binfile, "-c", "/opt/sbexr/linux-stable", "--index", INDEX_TREE, "-t", tag, "-p", "Linux", "."], stdout=stdout, stderr=stderr, cwd=RUN_TREE)
+  result = Run([rewriter_binfile, "-c", "/opt/sbexr/linux-stable", "--index", INDEX_TREE, "-t", tag, "-p", "Linux", "--jsondb", "."], stdout=stdout, stderr=stderr, cwd=RUN_TREE)
   if result.status == 0:
     open(rewriter_tagfile, "w").write("DONE %0.3f" % result.time)
     return True
