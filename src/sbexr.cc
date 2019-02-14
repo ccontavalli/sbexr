@@ -40,15 +40,12 @@
 //   P0 - macros should be expandable to their real value
 //   P0 - staticmethods like CompilationDatabase::loadFromDirectory should link
 //   to class and method, two links.
-//   P0 - path at top of file should be broken down
 //   P0 - template parameters should link back to the original type
 //   P0 - show tooltip for type tracking -> eg, typedef foo bar; typedef bar
 //   int;
 //        foo test = 5; tooltip for foo should show 'foo -> bar -> int'
 //   P1 - for templates, track which parameter they are instantiated with?
-//
 //   P0 - function argument types should point back to the type definition
-//   P0 - #ifdef blocks disabled should be grayed out.
 //
 // ACTIONS:
 // - click on variable:
