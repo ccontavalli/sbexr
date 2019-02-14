@@ -9,9 +9,11 @@ type JNavData struct {
 	Name    string   `json:"name"`
 	Path    string   `json:"path"`
 	Root    string   `json:"root"`
+
 	Project string   `json:"project"`
 	Tag     string   `json:"tag"`
 	Tags    []string `json:"tags"`
+
 	Parents []JLink  `json:"parents"`
 }
 

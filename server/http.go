@@ -1,9 +1,9 @@
 package main
 
 import (
-	"bytes"
 	"encoding/json"
 	"github.com/ccontavalli/goutils/misc"
+	"github.com/ccontavalli/goutils/config"
 	"github.com/ccontavalli/sbexr/server/structs"
 	"github.com/ccontavalli/sbexr/server/templates"
 	"io/ioutil"
@@ -21,28 +21,6 @@ type SourceServer struct {
 	tagsmap  map[string]structs.JNavData
 	tagslist []string
 	tagslock sync.RWMutex
-}
-
-var JSeparator = []byte{'\n', '-', '-', '-', '\n'}
-
-func SplitJhtml(content []byte) ([]byte, []byte) {
-	separator := bytes.Index(content, JSeparator)
-	if separator < 0 {
-		return content, content[0:0]
-	}
-	return content[0:separator], content[separator+len(JSeparator):]
-}
-
-func ReadJhtmlFile(fpath string, jheader interface{}) ([]byte, error) {
-	data, err := ioutil.ReadFile(fpath)
-	if err != nil {
-		return nil, err
-	}
-
-	header, content := SplitJhtml(data)
-
-	err = json.Unmarshal(header, jheader)
-	return content, err
 }
 
 var kSourceRoot = "/sources/"
@@ -78,7 +56,7 @@ func getIndex(root, upath string, dir structs.JDir) []byte {
 	indexpath = strings.TrimSuffix(indexpath, path.Ext(indexpath))
 
 	var jdir structs.JDir
-	content, err := ReadJhtmlFile(indexpath+".jhtml", &jdir)
+	content, err := config.ParseJhtmlFile(indexpath+".jhtml", &jdir)
 	if err != nil {
 		return []byte{}
 	}
@@ -137,7 +115,7 @@ func (ss *SourceServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Pseudo code:
 	// 1) try to read jhtml file, and corresponding json.
 	jdir := structs.JDir{JNavData: tagdata}
-	content, err := ReadJhtmlFile(cpath+".jhtml", &jdir)
+	content, err := config.ParseJhtmlFile(cpath+".jhtml", &jdir)
 	if err != nil {
 		_, ispatherror := err.(*os.PathError)
 		if !ispatherror {
