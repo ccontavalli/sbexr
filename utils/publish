@@ -81,7 +81,7 @@ def UpdateNewsFile():
     newsfile.write(json.dumps({"news": news}))
 
 def Transfer():
-  Run('rsync --exclude="indexes" --exclude="backup/" --exclude="examples" --exclude="testindex" '
+  Run('rsync --exclude="indexes" --exclude="backup/" --exclude="run/" --exclude="examples" --exclude="testindex" '
       '--exclude="tree.txt" --exclude="*.o" --include="news.json" --exclude="*.json" '
       '--exclude="output/sources/" --progress -avz --delete -e ssh '
       '%s/ root@pertini:/opt/sbexr/sbexr' % BASE, stdout=sys.stdout, stderr=sys.stderr)
