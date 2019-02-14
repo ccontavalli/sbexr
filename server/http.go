@@ -141,6 +141,7 @@ func (ss *SourceServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		_, ispatherror := err.(*os.PathError)
 		if !ispatherror {
+			log.Printf("CORRUPTED FILE - %s, %s, %#v", cpath, content, err)
 			http.Error(w, "CORRUPTED FILE", http.StatusInternalServerError)
 			return
 		}
