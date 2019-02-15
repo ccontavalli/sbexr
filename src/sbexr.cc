@@ -963,7 +963,12 @@ class SbexrAstConsumer : public ASTConsumer {
 
   void HandleTranslationUnit(ASTContext& context) override {
     if (gl_verbose) std::cerr << "ENTERING TRANSLATION UNIT\n";
-    visitor_.TraverseDecl(context.getTranslationUnitDecl());
+
+    auto* turd = context.getTranslationUnitDecl();
+    if (gl_verbose) turd->dump(); // giggling... could not resist.
+    visitor_.TraverseDecl(turd);
+
+    if (gl_verbose) std::cerr << "EXITING TRANSLATION UNIT\n";
   }
 
 #if 0
@@ -1096,7 +1101,12 @@ std::unique_ptr<CompilerInstance> CreateCompilerInstance(
 
   auto& pp = instance->getPreprocessor();
   pp.SetSuppressIncludeNotFoundError(true);
-  pp.SetCommentRetentionState(true, true);
+  // BUG? setting one of those two values to true causes the AST to miss some definitions?
+  // For example: when compiling test-multiple-file-0.cc, the definition
+  // of the class Test in test-multiple-file-0.h is missed, does not appear
+  // in a dumpColor of the TU - at all. Search for "TestMore", see that Test*
+  // is marked as 'invalid', and interpreted as 'int' rather than object Test.
+  //pp.SetCommentRetentionState(true, false);
   pp.getBuiltinInfo().initializeBuiltins(pp.getIdentifierTable(),
                                          pp.getLangOpts());
 
