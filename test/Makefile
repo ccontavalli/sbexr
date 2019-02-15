@@ -1,16 +1,18 @@
-LIBS := $(shell llvm-config-3.9 --libs) -lctemplate
-CXXFLAGS := $(shell llvm-config-3.9 --cxxflags | sed -e 's/-gsplit-dwarf//g') -ggdb3 -O0 -I../
-LDFLAGS := $(shell llvm-config-3.9 --ldflags | sed -e 's/-gsplit-dwarf //g')
+LLVMVERSION := 8
+LLVMCONFIG := llvm-config-$(LLVMVERSION)
+LIBS := $(shell $(LLVMCONFIG) --libs)
+CXXFLAGS := $(shell $(LLVMCONFIG) --cxxflags) -ggdb3 -O0 -I../
+LDFLAGS := $(shell $(LLVMCONFIG) --ldflags)
 EXTRALIBS :=
 
 all: test-single-file test-multiple-file
 
 dump-single:
-	clang-3.8 -Xclang -ast-dump -fsyntax-only $(CXXFLAGS) $(LIBS) $(LIBDIR) ./test-single-file.c
+	clang-$(LLVMVERSION) -Xclang -ast-dump -fsyntax-only $(CXXFLAGS) $(LIBS) $(LIBDIR) ./test-single-file.c
 
 dump-multi:
-	clang-3.8 -Xclang -ast-dump -fsyntax-only $(CXXFLAGS) $(LIBS) $(LIBDIR) ./test-multiple-file-0.cc
-	clang-3.8 -Xclang -ast-dump -fsyntax-only $(CXXFLAGS) $(LIBS) $(LIBDIR) ./test-multiple-file-1.cc
+	clang-$(LLVMVERSION) -Xclang -ast-dump -fsyntax-only $(CXXFLAGS) $(LIBS) $(LIBDIR) ./test-multiple-file-0.cc
+	clang-$(LLVMVERSION) -Xclang -ast-dump -fsyntax-only $(CXXFLAGS) $(LIBS) $(LIBDIR) ./test-multiple-file-1.cc
 
 
 
@@ -26,7 +28,7 @@ test-multiple-file-0.o: test-multiple-file-0.cc test-multiple-file-0.h
 test-multiple-file-1.o: test-multiple-file-1.cc test-multiple-file-1.h
 
 format:
-	clang-format-3.8 --style=google -i *.cc *.h
+	clang-format-$(LLVMVERSION) --style=google -i *.cc *.h
 
 clean:
 	rm -f test-multiple-file test-single-file
