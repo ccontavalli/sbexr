@@ -125,3 +125,9 @@ std::string GetSuffixedValue(int64_t uv, std::array<const char*, 5> suffixes) {
 
   return retval;
 }
+
+SourceRange NormalizeSourceRange(const SourceRange& range) {
+  if (!range.getEnd().isValid())
+    return SourceRange(range.getBegin(), range.getBegin());
+  return range;
+}

@@ -138,24 +138,6 @@ cl::opt<std::string> gl_strip_dir(
              "where you checked out the code / uncompressed the tarball."),
     cl::value_desc("directory"), cl::init(GetCwd()), cl::cat(gl_category));
 
-std::string MakeIdLink(const SourceManager& sm, FileCache* cache,
-                       const SourceRange& range) {
-  std::string prefix(MakeHtmlPath(cache->GetFileHashFor(sm, range.getBegin())));
-  prefix.append("#");
-  prefix.append(MakeIdName(sm, range));
-
-  return prefix;
-}
-
-SourceRange NormalizeSourceRange(const SourceRange& range) {
-  if (!range.getEnd().isValid())
-    return SourceRange(range.getBegin(), range.getBegin());
-  return range;
-}
-
-std::unique_ptr<Lexer> CreateLexer(const CompilerInstance* ci,
-                                   SourceLocation location);
-
 // By implementing RecursiveASTVisitor, we can specify which AST nodes
 // we're interested in by overriding relevant methods.
 class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
@@ -171,7 +153,12 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
   // bool shouldVisitImplicitCode() const { return true; }
 
   std::string MakeIdLink(SourceRange location) {
-    return ::MakeIdLink(ci_->getSourceManager(), cache_, location);
+    auto& sm = ci_->getSourceManager();
+    std::string prefix(MakeHtmlPath(cache_->GetFileHashFor(sm, location.getBegin())));
+    prefix.append("#");
+    prefix.append(::MakeIdName(sm, location));
+
+    return prefix;
   }
   std::string MakeIdName(SourceRange location) {
     return ::MakeIdName(ci_->getSourceManager(), location);
@@ -971,77 +958,9 @@ class SbexrAstConsumer : public ASTConsumer {
     if (gl_verbose) std::cerr << "EXITING TRANSLATION UNIT\n";
   }
 
-#if 0
-  bool HandleTopLevelDecl(DeclGroupRef DR) override {
-    if (gl_verbose) std::cerr << "TOP LEVEL DECLARATION ";
-    int i = 0;
-    for (DeclGroupRef::iterator b = DR.begin(), e = DR.end(); b != e; ++b) {
-      if (gl_verbose && i++ == 0)
-        std::cerr << PrintLocation(
-                         visitor_.GetCompilerInstance().getSourceManager(),
-                         (*b)->getSourceRange())
-                  << std::endl;
-      // Traverse the declaration using our AST visitor.
-      visitor_.TraverseDecl(*b);
-    }
-    if (gl_verbose && i++ == 0) std::cerr << "EMPTY" << std::endl;
-
-    return true;
-  }
-#endif
-
  private:
   SbexrAstVisitor visitor_;
 };
-
-#if 0
-std::string GetSourceRange(const SourceManager& sm, const SourceRange& range) {
-  const auto& begin = range.getBegin();
-  const auto& end = range.getEnd();
-
-  const auto fid = sm.getFileID(end);
-  if (fid != sm.getFileID(begin)) {
-    if (gl_verbose)
-      std::cerr << "BEGIN AND END IN DIFFERENT FILES: "
-                << sm.getFilename(begin).str() << " vs "
-                << sm.getFilename(end).str() << std::endl;
-    return "<different-files>";
-  }
-
-  bool invalid = false;
-  const auto& buffer = sm.getBufferData(fid, &invalid);
-  const char* data = buffer.data();
-  if (invalid) {
-    if (gl_verbose) std::cerr << "getBufferData returned invalid" << std::endl;
-    return "<invalid-range>";
-  }
-
-  const auto begin_offset = sm.getFileOffset(begin);
-  const auto end_offset = sm.getFileOffset(end);
-  return std::string(data + begin_offset, end_offset - begin_offset + 1);
-}
-#endif
-
-std::unique_ptr<Lexer> CreateLexer(const CompilerInstance* ci,
-                                   SourceLocation location) {
-  const auto& sm = ci->getSourceManager();
-
-  location = sm.getExpansionLoc(location);
-  std::pair<FileID, unsigned> info = sm.getDecomposedLoc(location);
-  bool invalid = false;
-  auto buffer = sm.getBufferData(info.first, &invalid);
-  if (invalid) return nullptr;
-
-  const char* data = buffer.data() + info.second;
-
-  auto lexer = llvm::make_unique<Lexer>(sm.getLocForStartOfFile(info.first),
-                                        ci->getLangOpts(), buffer.begin(), data,
-                                        buffer.end());
-
-  lexer->SetCommentRetentionState(true);
-  // lexer->LexFromRawLexer(Result);
-  return std::move(lexer);
-}
 
 std::unique_ptr<CompilerInstance> CreateCompilerInstance(
     const std::vector<std::string>& argv) {
@@ -1066,23 +985,6 @@ std::unique_ptr<CompilerInstance> CreateCompilerInstance(
   // Note: FrontendOptions.Inputs and FrontendOptions.Output have list of input
   // and output files for the invocation.
 
-  // llvm::ComputeEditDistance is eating almost 50% of our CPU in the analysis
-  // of a complex project. Two common uses: SpellChecking, and ... command line
-  // parsing? (gdb) bt #0  0x00007ffff32d9b58 in ComputeEditDistance<char> () at
-  // /build/llvm-toolchain-8-olKMoB/llvm-toolchain-8-8~+rc2/include/llvm/ADT/edit_distance.h:78
-  // #1  0x00007ffff4237e67 in findNearest () at
-  // /build/llvm-toolchain-8-olKMoB/llvm-toolchain-8-8~+rc2/lib/Option/OptTable.cpp:303
-  // #2  0x000055555628e245 in
-  // clang::driver::Driver::ParseArgStrings(llvm::ArrayRef<char const*>, bool,
-  // bool&) () #3  0x00005555562932de in
-  // clang::driver::Driver::BuildCompilation(llvm::ArrayRef<char const*>) () #4
-  // 0x000055555587baf2 in
-  // clang::createInvocationFromCommandLine(llvm::ArrayRef<char const*>,
-  // llvm::IntrusiveRefCntPtr<clang::DiagnosticsEngine>,
-  // llvm::IntrusiveRefCntPtr<llvm::vfs::FileSystem>) () #5  0x000055555571b9bc
-  // in CreateCompilerInstance (argv=std::vector of length 112, capacity 112 =
-  // {...}) at sbexr.cc:1019 #6  0x000055555571c6e5 in main (argc=4,
-  // argv=0x7fffffffda58) at sbexr.cc:1161
   invocation->getLangOpts()->Sanitize.clear();
   invocation->getLangOpts()->SpellChecking = false;
   invocation->getLangOpts()->CommentOpts.ParseAllComments = true;
@@ -1107,17 +1009,9 @@ std::unique_ptr<CompilerInstance> CreateCompilerInstance(
   // in a dumpColor of the TU - at all. Search for "TestMore", see that Test*
   // is marked as 'invalid', and interpreted as 'int' rather than object Test.
   //pp.SetCommentRetentionState(true, false);
-  pp.getBuiltinInfo().initializeBuiltins(pp.getIdentifierTable(),
-                                         pp.getLangOpts());
+  pp.getBuiltinInfo().initializeBuiltins(pp.getIdentifierTable(), pp.getLangOpts());
 
-  // Without this, does not recognize bool and wchar_t, and a few other errors.
-  // CompilerInvocation::setLangDefaults(
-  //    lo, InputKind(InputKind::CXX, InputKind::Source, false),
-  //    llvm::Triple(ci->getTargetOpts().Triple), ci->getPreprocessorOpts());
-  // FIXME: instance needs its own diagnostics? (YES, added, assert failure
-  // otherwise)
-  // FIXME: does it need its own sema?
-
+  // Dump header files search path if verbose output is enabled.
   if (gl_verbose) {
     const auto& hs = pp.getHeaderSearchInfo();
     for (auto sd = hs.search_dir_begin(); sd != hs.search_dir_end(); ++sd) {
@@ -1157,28 +1051,6 @@ int main(int argc, const char** argv) {
             << "./output"
             << " (" << GetRealPath(".") << "/output"
             << ")" << std::endl;
-
-  // TODO: use ParseCommandLineOptions to parse command line
-  // TODO: Create a CompilationDatabase object to load the json file.
-  // TODO: use approach here http://fdiv.net/2012/08/15/compiling-code-clang-api
-  //   to pass the options to a CompilerInstance. Namely:
-  //
-  // // The compiler invocation needs a DiagnosticsEngine so it can report
-  // problems
-  // clang::TextDiagnosticPrinter *DiagClient = new
-  // clang::TextDiagnosticPrinter(llvm::errs(), clang::DiagnosticOptions());
-  // llvm::IntrusiveRefCntPtr<clang::DiagnosticIDs> DiagID(new
-  // clang::DiagnosticIDs());
-  // clang::DiagnosticsEngine Diags(DiagID, DiagClient);
-  //
-  // llvm::OwningPtr<clang::CompilerInvocation> CI(new
-  // clang::CompilerInvocation);
-  //
-  // clang::CompilerInvocation::CreateFromArgs(*CI, &args[0], &args[0] +
-  // args.size(), Diags);
-  // clang::CompilerInstance Clang;
-  // Clang.setInvocation(CI.take());
-  // cl::ParseCommandLineOptions(argc, argv);
 
   std::string error;
   // A Rewriter helps us manage the code rewriting task.
