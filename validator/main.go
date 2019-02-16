@@ -14,11 +14,14 @@ import (
 	"path"
 	"path/filepath"
 	"regexp"
+	"sort"
 	"strings"
 )
 
 var root = flag.String("root", "", "Directory with pages to serve.")
-var pedantic = flag.Bool("pedantic", false, "Be pedantic in reporting problems.")
+var pedantic = flag.Bool("pedantic", false, "Be pedantic in reporting things noticed.")
+var pstats = flag.Bool("print-stats", true, "Print statistics at the end of processing.")
+var pdump = flag.Bool("print-dump", false, "Dump some of the things we learned about the files.")
 
 var kGenerated = regexp.MustCompile("^sources/[a-f0-9]{2}/[a-f0-9]{14}\\.[a-zA-Z0-9_.-]*$")
 var kSourceOrDir = regexp.MustCompile("^sources/[a-f0-9]{2}/[a-f0-9]{14}\\.jhtml$")
@@ -30,13 +33,15 @@ type Warning struct {
 }
 
 type Stats struct {
-	Scanned int
+	Scanned int // a file the parser found.
 
-	SourceOrDir int
-	Dir         int
-	Source      int
+	SourceOrDir int // a .jhtml generated file.
+	Dir         int // a .jhtml generated file with a dir.
+	Source      int // a .jhtml generated file with source code.
 
-	Generated int
+	Generated  int // any file XX/YYYYYYYYYYYYYY.*
+	Meta       int // sources/meta special files.
+	Unexpected int // Do not match any pattern.
 
 	HTMLTextBlocks       int
 	HTMLTextBytes        int
@@ -47,6 +52,12 @@ type Stats struct {
 	HTMLIdAttr           int
 	HTMLClassesUsed      int
 	HTMLTagStackMaxDepth int
+
+	ResourceRequested       int
+	ResourceRequestedUsers  int
+	ResourceTargetRequested int
+	ResourceUnused          int
+	ResourceTargetUnused    int
 
 	Classes map[string]int
 }
@@ -90,7 +101,8 @@ type Properties struct {
 }
 
 type Validator struct {
-	Root string
+	Root   string
+	Output io.Writer
 
 	Stats Stats
 	Props Properties
@@ -103,7 +115,7 @@ var kAnyName = ".."
 
 func (vs *Validator) AddWarning(path, message string, a ...interface{}) {
 	formatted := fmt.Sprintf(message, a...)
-	fmt.Printf("%s: WARNING - %s\n", path, formatted)
+	fmt.Fprintf(vs.Output, "%s: WARNING - %s\n", path, formatted)
 
 	vs.Warning = append(vs.Warning, Warning{path, formatted})
 }
@@ -111,10 +123,10 @@ func (vs *Validator) AddWarning(path, message string, a ...interface{}) {
 func (vs *Validator) AddPedantic(path, message string, a ...interface{}) {
 	formatted := fmt.Sprintf(message, a...)
 	if *pedantic {
-		fmt.Printf("%s: PEDANTIC - %s\n", path, formatted)
+		fmt.Fprintf(vs.Output, "%s: PEDANTIC - %s\n", path, formatted)
 	}
 
-	vs.Warning = append(vs.Warning, Warning{path, formatted})
+	vs.Pedantic = append(vs.Pedantic, Warning{path, formatted})
 }
 
 func (vs *Validator) AssertNotEmpty(apath, value, description string) bool {
@@ -256,8 +268,8 @@ func cleanHref(href string) (string, string) {
 	hash := strings.Index(href, "#")
 	var id string
 	if hash >= 0 {
+		id = href[hash+1:]
 		href = href[0:hash]
-		id = href[hash:]
 	}
 
 	href = strings.TrimSuffix(href, path.Ext(href))
@@ -268,8 +280,8 @@ func cleanHref(href string) (string, string) {
 	return href[slash-2:], id
 }
 
-func (vs *Validator) RecordRequested(requirer string, ty ResourceType, name, href string) *Resource {
-	href, id := cleanHref(href)
+func (vs *Validator) RecordRequested(requirer string, ty ResourceType, name, orig string) *Resource {
+	href, id := cleanHref(orig)
 	resource, found := vs.Props.Requested[href]
 	if !found {
 		resource = &Resource{Name: name, Type: ty}
@@ -376,9 +388,12 @@ func (vs *Validator) ValidateFile(state interface{}, path string, file os.FileIn
 		vs.ValidateGenerated(apath)
 
 	case rpath == "sources/meta/globals.json":
+		vs.Stats.Meta += 1
 	case rpath == "sources/meta/index.jhtml":
+		vs.Stats.Meta += 1
 	default:
 		vs.AddWarning(apath, "unexpected file")
+		vs.Stats.Unexpected += 1
 	}
 
 	return nil
@@ -394,6 +409,9 @@ func (vs *Validator) PerformFullTreeTests() {
 
 	provided := vs.Props.Provided
 	for rk, rr := range vs.Props.Requested {
+		vs.Stats.ResourceRequested += 1
+		vs.Stats.ResourceRequestedUsers += len(rr.User)
+
 		pr, ok := provided[rk]
 		if !ok {
 			keys, _ := misc.StringKeys(rr.User)
@@ -403,6 +421,8 @@ func (vs *Validator) PerformFullTreeTests() {
 
 		i := 0
 		for rt, _ := range rr.Target {
+			vs.Stats.ResourceTargetRequested += 1
+
 			_, ok := pr.Target[rt]
 			if !ok {
 				vs.AddWarning("", "Resource %s aka %s requires target %s, which is not provided (%d of %d request, %d provided)", rk, rr.Name, rt, i, len(rr.Target), len(pr.Target))
@@ -419,9 +439,11 @@ func (vs *Validator) PerformFullTreeTests() {
 	for pk, pr := range vs.Props.Provided {
 		_, ok := vs.Props.Requested[pk]
 		if len(pr.Target) <= 0 || !ok {
+			vs.Stats.ResourceUnused += 1
 			vs.AddPedantic("", "Resource %s aka %s is provided, but not used by anyone", pk, pr.Name)
 		} else {
 			for pt, _ := range pr.Target {
+				vs.Stats.ResourceTargetUnused += 1
 				vs.AddPedantic("", "Target %s in resource %s aka %s is provided, but not used by anyone", pt, pk, pr.Name)
 			}
 		}
@@ -444,6 +466,37 @@ func (vs *Validator) String() string {
 	return retval
 }
 
+func (vs *Validator) PrintStats(w io.Writer) {
+	fmt.Fprintf(vs.Output, "Warnings: %d, Pedantic: %d\n", len(vs.Warning), len(vs.Pedantic))
+	fmt.Fprintf(vs.Output, "\n")
+	fmt.Fprintf(vs.Output, "File system statistcs:\n")
+	fmt.Fprintf(vs.Output, "   root: '%s' absolute, '%s' relative\n",
+		vs.Props.AbsoluteRoot, vs.Props.RelativeRoot)
+	fmt.Fprintf(vs.Output, "   paths: %d scanned, of which %d directories, %d source, %d copied, %d meta, %d unexpected\n",
+		vs.Stats.Scanned, vs.Stats.Dir, vs.Stats.Source, vs.Stats.Generated, vs.Stats.Meta, vs.Stats.Unexpected)
+	fmt.Fprintf(vs.Output, "\n")
+	fmt.Fprintf(vs.Output, "Resource statistcs:\n")
+	fmt.Fprintf(vs.Output, "   requested: %d file/dir resources, %d targets, %d users\n", vs.Stats.ResourceRequested, vs.Stats.ResourceTargetRequested, vs.Stats.ResourceRequestedUsers)
+	fmt.Fprintf(vs.Output, "   unused: %d file/dir resources, %d targets\n", vs.Stats.ResourceUnused, vs.Stats.ResourceTargetUnused)
+	fmt.Fprintf(vs.Output, "   total: %d file/dir resources, %d targets\n", vs.Stats.ResourceUnused+vs.Stats.ResourceRequested, vs.Stats.ResourceTargetRequested+vs.Stats.ResourceTargetUnused)
+	fmt.Fprintf(vs.Output, "\n")
+	fmt.Fprintf(vs.Output, "JHTML Statistics:\n")
+	fmt.Fprintf(vs.Output, "   Text: %d blocks for %d bytes\n", vs.Stats.HTMLTextBlocks, vs.Stats.HTMLTextBytes)
+	fmt.Fprintf(vs.Output, "   Tags: %d opened, %d closed, in a %d elements max stack\n", vs.Stats.HTMLTagOpen, vs.Stats.HTMLTagClosed, vs.Stats.HTMLTagStackMaxDepth)
+	fmt.Fprintf(vs.Output, "   Attributes: %d href, %d id, %d class (%d classes specified)\n", vs.Stats.HTMLHrefAttr, vs.Stats.HTMLIdAttr, vs.Stats.HTMLClassAttr, vs.Stats.HTMLClassesUsed)
+	fmt.Fprintf(vs.Output, "\n")
+	fmt.Fprintf(vs.Output, "CLASS Attributes seen (%d different ones):\n", len(vs.Stats.Classes))
+
+	classes, _ := misc.StringKeys(vs.Stats.Classes)
+	sort.Strings(classes)
+	for i := 0; i < len(classes); {
+		for j := i + 5; i < j && i < len(classes); i++ {
+			fmt.Fprintf(vs.Output, "%8d:%-20s", vs.Stats.Classes[classes[i]], classes[i])
+		}
+		fmt.Fprintf(vs.Output, "\n")
+	}
+}
+
 func NewStats() Stats {
 	return Stats{Classes: make(map[string]int)}
 }
@@ -454,16 +507,21 @@ func NewProperties() Properties {
 
 func NewValidator(root string) *Validator {
 	return &Validator{
-		Root:  root,
-		Stats: NewStats(),
-		Props: NewProperties(),
+		Root:   root,
+		Output: os.Stdout,
+		Stats:  NewStats(),
+		Props:  NewProperties(),
 	}
 }
 
 func main() {
 	flag.Parse()
 	v := NewValidator(*root)
-	v.Scan()
 
-	fmt.Printf("%s\n", v)
+	fmt.Printf("==== WARNINGS FOR %s\n", *root)
+	v.Scan()
+	if *pstats {
+		fmt.Printf("==== STATISTICS FOR %s\n", *root)
+		v.PrintStats(os.Stdout)
+	}
 }
