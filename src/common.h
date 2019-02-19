@@ -33,7 +33,9 @@
 
 // Category for all relevant flags.
 extern cl::OptionCategory gl_category;
+
 extern cl::opt<std::string> gl_tag;
+extern cl::opt<bool> gl_verbose;
 
 // Returns a path like xx/yyyy.html.
 // Used to compute other paths.
