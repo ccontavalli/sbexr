@@ -8,7 +8,7 @@ update-templates:
 	cd templates && ~/gopath/bin/qtc
 
 test-index:
-	make -C ../src test-gen 2>/dev/null >/dev/null
+	make -C ../src VERBOSE= test-gen
 
 test-run: test test-index all
 	./server --web-root=../test --index-dir=../test/indexes --listen=:10000
