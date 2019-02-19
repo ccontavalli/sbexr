@@ -140,12 +140,12 @@ class BuildError(RuntimeError):
 def CheckoutKernel(tag):
   CleanupKernel()
   if (KernelRun(["make", "mrproper"]).status or
-      KernelRun(["git", "checkout", tag]).status or 
-      KernelRun(["make", "modules_prepare"].status):
+      KernelRun(["git", "checkout", tag]).status):
     raise BuildError("make mrproper or git checkout failed")
 
 def ConfigureKernel():
-  if KernelRun(["make", "allmodconfig"]).status:
+  if (KernelRun(["make", "allmodconfig"]).status or
+      KernelRun(["make", "modules_prepare"]).status):
     raise BuildError("make failed");
 
 def CreateBearFile(tag, directory, output):
@@ -184,8 +184,9 @@ def CommitOutputDir(path, tree, tag):
 
 def UpdateLatest(tree, tags=None):
   if tags == None:
-    tags = SortTags(GetFsTags(tree))
-
+    tags = GetFsTags(tree)
+  
+  tags = SortTags(tags)
   print >>sys.stderr, "FINDING 'latest' AMONG:", list(reversed(tags))
   for tag in reversed(tags):
     index = os.path.join(tree, tag, "sources", "meta", "index.jhtml")
@@ -216,7 +217,7 @@ def UpdateLatest(tree, tags=None):
 
 def UpdateValidTags(tree, tags=None):
   if tags == None:
-    tags = SortTags(GetFsTags(tree))
+    tags = GetFsTags(tree)
 
   # 1) Find the list of all valid TAGS.
   tags = SortTags(tags)
@@ -324,6 +325,8 @@ def main():
         CreateBearFile(tag, BEAR_TREE, bear_tree)
         # This will clean up the tree, and check it out again.
         CheckoutKernel(tag)
+      else:
+        ConfigureKernel()
  
       Run(["ln", "-Tfs", bear_tree, os.path.join(RUN_TREE, "compile_commands.json")])
 
