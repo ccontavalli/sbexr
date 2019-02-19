@@ -191,6 +191,7 @@ func (vs *Validator) ValidateSourceContent(apath, name string, content []byte) {
 	z := html.NewTokenizer(bytes.NewReader(content))
 
 	tag_open_c := 0
+	tag_open_a := 0
 	tag_closed_c := 0
 	tag_stack := []string{}
 
@@ -214,6 +215,12 @@ func (vs *Validator) ValidateSourceContent(apath, name string, content []byte) {
 
 			tag_open_c += 1
 			name, has_attr := z.TagName()
+			if string(name) == "a" {
+				tag_open_a += 1
+				if tag_open_a > 1 {
+					vs.AddWarning(apath, "HTML has nested <a><a> tags, which is invalid")
+				}
+			}
 			for has_attr {
 				var key, val []byte
 				key, val, has_attr = z.TagAttr()
@@ -244,6 +251,9 @@ func (vs *Validator) ValidateSourceContent(apath, name string, content []byte) {
 
 			tag_closed_c += 1
 			name, _ := z.TagName()
+			if string(name) == "a" {
+				tag_open_a -= 1
+			}
 			if string(name) != tag_stack[len(tag_stack)-1] {
 				vs.AddWarning(apath, "HTML last opened tag was %s, but closed %s", name, tag_stack[len(tag_stack)-1])
 			}
