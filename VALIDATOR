@@ -1,0 +1,5 @@
+- #ifdef / #ifndef at start of file, should not be obscured, ever.
+- all href are valid.
+- no weird nesting of tags.
+- all files in compile database are fully parsed.
+

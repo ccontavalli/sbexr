@@ -1,0 +1,32 @@
+==== WARNINGS FOR ./output
+output/validator.report: WARNING - unexpected file
+output/sources/7c/1572fe148af43d.jhtml: WARNING - HTML has nested <a><a> tags, which is invalid
+==== STATISTICS FOR ./output
+Warnings: 2, Pedantic: 265
+
+File system statistcs:
+   root: 'output/sources/06/416cc91f3e3d90.jhtml' absolute, 'output/sources/be/e2916b98dcf1fc.jhtml' relative
+   paths: 60 scanned, of which 16 directories, 40 source, 1 copied, 2 meta, 1 unexpected
+
+Resource statistcs:
+   requested: 57 file/dir resources, 37 targets, 273 users
+   unused: 0 file/dir resources, 265 targets
+   total: 57 file/dir resources, 302 targets
+
+JHTML Statistics:
+   Text: 5197 blocks for 1918011 bytes
+   Tags: 2857 opened, 2857 closed, in a 7 elements max stack
+   Attributes: 174 href, 302 id, 2857 class (3995 classes specified)
+
+CLASS Attributes seen (55 different ones):
+      17:__attribute__              6:__extension__              2:bool                     126:char                       2:class               
+     415:comment                   83:const                    123:decl                       6:decl-CXXRecord           109:decl-Function       
+       8:decl-Var                  93:declaration-uses           1:decltype                 179:def                        3:def-CXXMethod       
+      13:def-CXXRecord             48:def-Field                  7:def-Function               1:def-Namespace              8:def-ParmVar         
+      83:def-Typedef                1:def-UsingDirective        15:def-Var                 1075:directive                  7:expression-uses     
+     131:extern                     1:float                      1:if                        34:include                    1:inline              
+     160:int                      734:keyword                   23:long                     102:muted                      3:namespace           
+       1:nullptr                   47:numeric                  102:preprocessor-if            1:private                    1:public              
+       8:return                    11:return-uses                4:short                      6:signed                     3:sizeof              
+       3:static                     8:string                    32:struct                    61:typedef                    2:union               
+      15:unsigned                   2:using                     29:variable-uses             37:void                       1:wchar_t             

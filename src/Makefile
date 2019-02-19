@@ -27,9 +27,15 @@ all: sbexr
 sbexr: sbexr.o indexer.o renderer.o rewriter.h wrapping.o rewriter.o cache.o mempool.h mempool.o common.o common.h
 	$(CXX) -lclang-$(LLVMVERSION) -lLLVM-$(LLVMVERSION) $(CXXFLAGS) $(LDFLAGS) $(LIBS) $(LIBDIR) -o sbexr $^ $(EXTRALIBS)
 
-test-gen: sbexr test-multi
+validator:
+	$(MAKE) -C ../validator
+
+test-gen: validator sbexr test-multi
 	cd ../test && rm -rf output/ && rm -rf indexes/ && ln -sfT ../static ./static \
-	    && $(TIME) ../src/sbexr $(VERBOSE) --index=indexes -x "output|indexes" --jsondb . 
+	    && $(TIME) ../src/sbexr $(VERBOSE) --index=indexes -x "output|indexes" --jsondb . \
+	    && ../validator/validator --root ./output |tee ./output/validator.report \
+	    && cp -a ./indexes/*.json ./output/
+
 
 test-dump: test-dump-multi
 
