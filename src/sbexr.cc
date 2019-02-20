@@ -319,7 +319,7 @@ int main(int argc, const char** argv) {
 
       nci->getDiagnosticClient().BeginSourceFile(nci->getLangOpts(), &pp);
       pp.addPPCallbacks(llvm::make_unique<PPTracker>(&cache, *nci.get()));
-      consumer.GetVisitor()->SetParameters(nci.get());
+      consumer.GetVisitor()->GetRecorder()->SetParameters(nci.get());
 
       // Parse the file to AST, registering our consumer as the AST consumer.
       // FIXME: Sema is using incorrect parameters?

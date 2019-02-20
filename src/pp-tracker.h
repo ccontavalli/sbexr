@@ -130,11 +130,13 @@ class PPTracker : public PPCallbacks {
   /// \brief Called by Preprocessor::HandleMacroExpandedIdentifier when a
   /// macro invocation is found.
   void MacroExpands(const Token& MacroNameTok, const MacroDefinition& MD,
-                    SourceRange Range, const MacroArgs* Args) override{};
+                    SourceRange Range, const MacroArgs* Args) override {
+  };
 
   /// \brief Hook called whenever a macro definition is seen.
   void MacroDefined(const Token& MacroNameTok,
-                    const MacroDirective* MD) override{};
+                    const MacroDirective* MD) override {
+  };
 
   /// \brief Hook called whenever a macro \#undef is seen.
   ///

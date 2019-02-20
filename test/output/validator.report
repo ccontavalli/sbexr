@@ -14,16 +14,16 @@ Resource statistcs:
    total: 57 file/dir resources, 302 targets
 
 JHTML Statistics:
-   Text: 5197 blocks for 1918011 bytes
-   Tags: 2857 opened, 2857 closed, in a 7 elements max stack
-   Attributes: 174 href, 302 id, 2857 class (3995 classes specified)
+   Text: 5199 blocks for 1918032 bytes
+   Tags: 2858 opened, 2858 closed, in a 7 elements max stack
+   Attributes: 174 href, 302 id, 2858 class (3996 classes specified)
 
 CLASS Attributes seen (55 different ones):
       17:__attribute__              6:__extension__              2:bool                     126:char                       2:class               
      415:comment                   83:const                    123:decl                       6:decl-CXXRecord           109:decl-Function       
        8:decl-Var                  93:declaration-uses           1:decltype                 179:def                        3:def-CXXMethod       
       13:def-CXXRecord             48:def-Field                  7:def-Function               1:def-Namespace              8:def-ParmVar         
-      83:def-Typedef                1:def-UsingDirective        15:def-Var                 1075:directive                  7:expression-uses     
+      83:def-Typedef                1:def-UsingDirective        15:def-Var                 1076:directive                  7:expression-uses     
      131:extern                     1:float                      1:if                        34:include                    1:inline              
      160:int                      734:keyword                   23:long                     102:muted                      3:namespace           
        1:nullptr                   47:numeric                  102:preprocessor-if            1:private                    1:public              

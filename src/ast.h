@@ -31,83 +31,14 @@
 
 #include "common.h"
 
-// By implementing RecursiveASTVisitor, we can specify which AST nodes
-// we're interested in by overriding relevant methods.
-class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
+class SbexrRecorder {
  public:
-  using Base = RecursiveASTVisitor<SbexrAstVisitor>;
-  SbexrAstVisitor(FileCache* cache, Indexer* indexer)
-      : cache_(cache), index_(indexer) {}
+  SbexrRecorder(FileCache* cache, Indexer* index)
+    : cache_(cache), index_(index) {}
 
-  bool shouldVisitTemplateInstantiations() const { return true; }
-  // Setting this to true will get the visitor to enter things like
-  // implicitly defined constructors, but also things like "using" directives
-  // that bring in more details.
-  // bool shouldVisitImplicitCode() const { return true; }
-
-  std::string MakeIdLink(SourceRange location) {
-    auto& sm = ci_->getSourceManager();
-    std::string prefix(MakeHtmlPath(cache_->GetFileHashFor(sm, location.getBegin())));
-    prefix.append("#");
-    prefix.append(::MakeIdName(sm, location));
-
-    return prefix;
-  }
-  std::string MakeIdName(SourceRange location) {
-    return ::MakeIdName(ci_->getSourceManager(), location);
-  }
-  FileRenderer::ParsedFile* GetFileFor(SourceLocation location) {
-    return cache_->GetFileFor(ci_->getSourceManager(), location);
-  }
-  StringRef GetNormalizedPath(SourceLocation location) {
-    return cache_->GetNormalizedPath(ci_->getSourceManager(), location);
-  }
-  template <typename TypeT>
-  std::string PrintLocation(const TypeT& range) {
-    const auto& sm = ci_->getSourceManager();
-    return ::PrintLocation(sm, cache_, range);
-  }
-
-  StringRef GetSnippet(const SourceRange& range) {
-    const auto& sm = ci_->getSourceManager();
-
-    FileID fid;
-    unsigned offset;
-
-    std::tie(fid, offset) = sm.getDecomposedExpansionLoc(range.getBegin());
-    if (!fid.isValid()) return "<invalid-file>";
-
-    bool invalid = false;
-    const auto& buffer = sm.getBufferData(fid, &invalid);
-    if (invalid) return "<invalid-buffer>";
-
-    const char* data = buffer.data();
-    if (offset >= buffer.size()) return "<invalid-offset>";
-
-    const char* begin = data + offset;
-    const char* end = begin + 1;
-
-    // FIXME: instead of stopping at \n, stop at start of file, ; or }
-    // Find end of previous line or beginning of file.
-    for (; begin > data && *begin != '\n' && *begin != '\r'; --begin)
-      ;
-    // Skip any whitespace.
-    for (; begin <= (data + offset) && isspace(*begin); ++begin)
-      ;
-    // FIXME: instead of stopping at \n, stop at end of file, ; or {
-    // Find end of line.
-    for (; end < data + buffer.size() && *end != '\n' && *end != '\r'; ++end)
-      ;
-    // FIXME: limit the number of characters collected, strip \n and others??
-    // Skip any whitespace.
-    for (; end > (begin + 1) && isspace(*end); --end)
-      ;
-    return StringRef(begin, 1 + end - begin);
-  }
-
-  template <typename TypeT>
-  std::string TryPrint(const TypeT* v) {
-    return printer_.Print(v);
+  void SetParameters(const CompilerInstance* ci) {
+    ci_ = ci;
+    printer_ = Printer(*ci, cache_);
   }
 
   // Example:
@@ -149,6 +80,12 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 
     if (!real_type) return nullptr;
     return real_type->getAsTagDecl();
+  }
+
+  // Returns true if the location has already been rendered.
+  bool LocationRendered(SourceLocation loc) const {
+    auto* file = GetFileFor(loc);
+    return file && file->Rendered();
   }
 
   template <typename UserT>
@@ -274,29 +211,112 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
                            GetSnippet(declared_range), access, linkage);
   }
 
-  void SetParameters(const CompilerInstance* ci) {
-    ci_ = ci;
-    printer_ = Printer(*ci, cache_);
+  template <typename TypeT>
+  std::string PrintLocation(const TypeT& range) {
+    const auto& sm = ci_->getSourceManager();
+    return ::PrintLocation(sm, cache_, range);
   }
-  const CompilerInstance& GetCompilerInstance() const { return *ci_; }
+
+  template <typename TypeT>
+  std::string TryPrint(const TypeT* v) {
+    return printer_.Print(v);
+  }
+
+ private:
+  std::string MakeIdLink(SourceRange location) {
+    auto& sm = ci_->getSourceManager();
+    std::string prefix(MakeHtmlPath(cache_->GetFileHashFor(sm, location.getBegin())));
+    prefix.append("#");
+    prefix.append(::MakeIdName(sm, location));
+
+    return prefix;
+  }
+  std::string MakeIdName(SourceRange location) {
+    return ::MakeIdName(ci_->getSourceManager(), location);
+  }
+
+  FileRenderer::ParsedFile* GetFileFor(SourceLocation location) const {
+    return cache_->GetFileFor(ci_->getSourceManager(), location);
+  }
+
+  StringRef GetSnippet(const SourceRange& range) {
+    const auto& sm = ci_->getSourceManager();
+
+    FileID fid;
+    unsigned offset;
+
+    std::tie(fid, offset) = sm.getDecomposedExpansionLoc(range.getBegin());
+    if (!fid.isValid()) return "<invalid-file>";
+
+    bool invalid = false;
+    const auto& buffer = sm.getBufferData(fid, &invalid);
+    if (invalid) return "<invalid-buffer>";
+
+    const char* data = buffer.data();
+    if (offset >= buffer.size()) return "<invalid-offset>";
+
+    const char* begin = data + offset;
+    const char* end = begin + 1;
+
+    // FIXME: instead of stopping at \n, stop at start of file, ; or }
+    // Find end of previous line or beginning of file.
+    for (; begin > data && *begin != '\n' && *begin != '\r'; --begin)
+      ;
+    // Skip any whitespace.
+    for (; begin <= (data + offset) && isspace(*begin); ++begin)
+      ;
+    // FIXME: instead of stopping at \n, stop at end of file, ; or {
+    // Find end of line.
+    for (; end < data + buffer.size() && *end != '\n' && *end != '\r'; ++end)
+      ;
+    // FIXME: limit the number of characters collected, strip \n and others??
+    // Skip any whitespace.
+    for (; end > (begin + 1) && isspace(*end); --end)
+      ;
+    return StringRef(begin, 1 + end - begin);
+  }
+
+  FileCache* cache_;
+  Indexer* index_;
+  Printer printer_;
+
+  const CompilerInstance* ci_ = nullptr;
+};
+
+// By implementing RecursiveASTVisitor, we can specify which AST nodes
+// we're interested in by overriding relevant methods.
+class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
+ public:
+  using Base = RecursiveASTVisitor<SbexrAstVisitor>;
+  SbexrAstVisitor(FileCache* cache, Indexer* indexer)
+      : recorder_(cache, indexer) {}
+  SbexrRecorder* GetRecorder() { return &recorder_; }
+
+
+  bool shouldVisitTemplateInstantiations() const { return true; }
+  // Setting this to true will get the visitor to enter things like
+  // implicitly defined constructors, but also things like "using" directives
+  // that bring in more details.
+  // bool shouldVisitImplicitCode() const { return true; }
+
+  //const CompilerInstance& GetCompilerInstance() const { return *ci_; }
 
   bool TraverseMemberExpr(MemberExpr* e) {
     if (gl_verbose) {
-      std::cerr << "MEMBEREXPR " << PrintLocation(e->getSourceRange())
-                << PrintLocation(e->getMemberNameInfo().getSourceRange())
+      std::cerr << "MEMBEREXPR " << recorder_.PrintLocation(e->getSourceRange())
+                << recorder_.PrintLocation(e->getMemberNameInfo().getSourceRange())
                 << std::endl;
       e->dump();
     }
-    CodeUses(e->getMemberNameInfo(), "expression", *e->getFoundDecl());
+    recorder_.CodeUses(e->getMemberNameInfo(), "expression", *e->getFoundDecl());
     return Base::TraverseMemberExpr(e);
   }
   bool TraverseDecl(Decl* decl) {
     if (!decl) return Base::TraverseDecl(decl);
 
-    auto* file = GetFileFor(decl->getBeginLoc());
-    if (file && file->Rendered()) {
+    if (recorder_.LocationRendered(decl->getBeginLoc())) {
       if (gl_verbose)
-        std::cerr << "FILE ALREADY PARSED " << TryPrint(decl) << std::endl;
+        std::cerr << "FILE ALREADY PARSED " << recorder_.TryPrint(decl) << std::endl;
       return true;
     }
 
@@ -308,9 +328,9 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
     if (gl_verbose)
       std::cerr << "DECLREFEXPR " << e->getNameInfo().getAsString() << " "
                 << e->getFoundDecl()->getNameAsString() << " "
-                << PrintLocation(e->getFoundDecl()->getSourceRange())
+                << recorder_.PrintLocation(e->getFoundDecl()->getSourceRange())
                 << std::endl;
-    CodeUses(*e, "variable", *e->getFoundDecl());
+    recorder_.CodeUses(*e, "variable", *e->getFoundDecl());
     return Base::TraverseDeclRefExpr(e);
   }
 
@@ -361,10 +381,10 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
     if (gl_verbose) {
       std::cerr << "DECLARATORDECL " << v->getName().str() << " "
                 << v->getQualifiedNameAsString() << " "
-                << PrintLocation(v->getSourceRange()) << " "
-                << PrintLocation(decl->getSourceRange());
+                << recorder_.PrintLocation(v->getSourceRange()) << " "
+                << recorder_.PrintLocation(decl->getSourceRange());
       std::cerr << std::endl;
-      std::cerr << "DeclaratorDecl: " << TryPrint(v) << std::endl;
+      std::cerr << "DeclaratorDecl: " << recorder_.TryPrint(v) << std::endl;
     }
     // v->dump();
 
@@ -392,17 +412,17 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 #endif
 
       if (gl_verbose)
-        std::cerr << "getTypeSourceInfo: " << TryPrint(v->getTypeSourceInfo())
+        std::cerr << "getTypeSourceInfo: " << recorder_.TryPrint(v->getTypeSourceInfo())
                   << std::endl;
 
       // If this is a VarDecl in a DeclStmt, then it only needs to be recorded.
       // The type link was already created by the DeclStmt.
       auto* vt = dyn_cast<VarDecl>(v);
       if (vt && vt->isLocalVarDecl()) {
-        auto* rt = GetTagDeclForType(v->getType());
-        RecordTypeUse(v->getTypeSourceInfo()->getTypeLoc(), "declaration", rt);
+        auto* rt = recorder_.GetTagDeclForType(v->getType());
+        recorder_.RecordTypeUse(v->getTypeSourceInfo()->getTypeLoc(), "declaration", rt);
       } else {
-        CodeUsesQualType(v->getTypeSourceInfo()->getTypeLoc(), "declaration",
+        recorder_.CodeUsesQualType(v->getTypeSourceInfo()->getTypeLoc(), "declaration",
                          v->getType());
       }
     }
@@ -410,7 +430,7 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
   }
   bool VisitUsingDecl(UsingDecl* v) {
     // FIXME: do something smart on using declarations.
-    if (gl_verbose) std::cerr << TryPrint(v) << std::endl;
+    if (gl_verbose) std::cerr << recorder_.TryPrint(v) << std::endl;
 #if 0
     if (v->shadow_size() == 1) {
       const auto& target = v->shadow_begin()->getTargetDecl();
@@ -426,7 +446,7 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
   bool VisitNamedDecl(NamedDecl* v) {
     if (!v) return true;
 
-    if (gl_verbose) std::cerr << TryPrint(v) << std::endl;
+    if (gl_verbose) std::cerr << recorder_.TryPrint(v) << std::endl;
 
     if (isa<FunctionDecl>(v)) {
       // For each use of a templated function, the AST will contain,
@@ -440,19 +460,19 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
         return true;
 
       // Record the use of the return type.
-      CodeUsesQualType(f->getReturnTypeSourceRange(), "return",
+      recorder_.CodeUsesQualType(f->getReturnTypeSourceRange(), "return",
                        f->getReturnType());
 
       auto* first = f->getFirstDecl();
       if (!first) first = f;
-      if (gl_verbose) std::cerr << TryPrint(f) << "\n";
+      if (gl_verbose) std::cerr << recorder_.TryPrint(f) << "\n";
 
       if (f->isThisDeclarationADefinition()) {
-        CodeDefines(*v, *first, v->getDeclKindName(),
+        recorder_.CodeDefines(*v, *first, v->getDeclKindName(),
                     v->getQualifiedNameAsString(), v->getAccess(),
                     v->getLinkageInternal());
       } else {
-        CodeDeclares(*v, *first, v->getDeclKindName(),
+        recorder_.CodeDeclares(*v, *first, v->getDeclKindName(),
                      v->getQualifiedNameAsString(), v->getAccess(),
                      v->getLinkageInternal());
       }
@@ -463,17 +483,17 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
       if (!first) first = t;
 
       if (t->isCompleteDefinition()) {
-        CodeDefines(*v, *first, v->getDeclKindName(),
+        recorder_.CodeDefines(*v, *first, v->getDeclKindName(),
                     v->getQualifiedNameAsString(), v->getAccess(),
                     v->getLinkageInternal());
       } else {
-        CodeDeclares(*v, *first, v->getDeclKindName(),
+        recorder_.CodeDeclares(*v, *first, v->getDeclKindName(),
                      v->getQualifiedNameAsString(), v->getAccess(),
                      v->getLinkageInternal());
       }
     } else if (isa<VarDecl>(v)) {
       auto* t = cast<VarDecl>(v);
-      if (gl_verbose) std::cerr << TryPrint(t) << std::endl;
+      if (gl_verbose) std::cerr << recorder_.TryPrint(t) << std::endl;
 
       auto* first = t->getFirstDecl();
       if (!first) first = t;
@@ -483,7 +503,7 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
         if (context && context->getDeclKind() == Decl::Function) {
           auto* function = cast<FunctionDecl>(context);
           if (function && function->isThisDeclarationADefinition()) {
-            CodeDefines(*v, *first, v->getDeclKindName(),
+            recorder_.CodeDefines(*v, *first, v->getDeclKindName(),
                         v->getQualifiedNameAsString(), v->getAccess(),
                         v->getLinkageInternal());
           }
@@ -492,28 +512,24 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
         // FIXME: 'extern' variables are declarations. But so are some form of
         // static attributes and similar? This code could be better.
         if (t->hasExternalStorage()) {
-          CodeDeclares(*v, *first, v->getDeclKindName(),
+          recorder_.CodeDeclares(*v, *first, v->getDeclKindName(),
                        v->getQualifiedNameAsString(), v->getAccess(),
                        v->getLinkageInternal());
         } else {
-          CodeDefines(*v, *first, v->getDeclKindName(),
+          recorder_.CodeDefines(*v, *first, v->getDeclKindName(),
                       v->getQualifiedNameAsString(), v->getAccess(),
                       v->getLinkageInternal());
         }
       }
     } else {
-      CodeDefines(*v, *v, v->getDeclKindName(), v->getQualifiedNameAsString(),
+      recorder_.CodeDefines(*v, *v, v->getDeclKindName(), v->getQualifiedNameAsString(),
                   v->getAccess(), v->getLinkageInternal());
     }
     return Base::VisitNamedDecl(v);
   }
 
-#if 0
-  bool VisitDecl(Decl* decl) { return Base::VisitDecl(decl); }
-  bool VisitStmt(Stmt* stmt) { return Base::VisitStmt(stmt); }
-#endif
   bool VisitDeclStmt(DeclStmt* stmt) {
-    if (gl_verbose) std::cerr << TryPrint(stmt) << std::endl;
+    if (gl_verbose) std::cerr << recorder_.TryPrint(stmt) << std::endl;
 
     // The first declaration in the statement that has a type should link the
     // type. Example:
@@ -525,8 +541,8 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
     for (auto& decl : stmt->decls()) {
       auto* decldecl = dyn_cast<DeclaratorDecl>(decl);
       if (decldecl) {
-        auto* rt = GetTagDeclForType(decldecl->getType());
-        LinkToType(decldecl->getTypeSourceInfo()->getTypeLoc(), "declaration",
+        auto* rt = recorder_.GetTagDeclForType(decldecl->getType());
+        recorder_.LinkToType(decldecl->getTypeSourceInfo()->getTypeLoc(), "declaration",
                    rt);
         break;
       }
@@ -534,50 +550,48 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
     return Base::VisitDeclStmt(stmt);
   }
 
-  bool TraverseCompoundStmt(CompoundStmt* statement) {
-    static int depth = 0;
-
-    // Find location with start of column.
-    const auto& sm = ci_->getSourceManager();
-    auto start = statement->getBeginLoc();
-    auto fid = sm.getFileID(start);
-
-    if (!start.isMacroID()) {
-      auto line = sm.getExpansionLineNumber(start);
-      if (line <= 1) {
-        std::cerr << "ERROR: SKIPPING INVALID LINE" << std::endl;
-        return Base::TraverseCompoundStmt(statement);
-      }
-      auto cache = sm.getSLocEntry(fid).getFile().getContentCache();
-      auto offset = cache->SourceLineCache[line - 1];
-
-      auto max = cache->NumLines;
-      if (line >= max) {
-        std::cerr << "ERROR: SKIPPiNG INVALID LINE" << std::endl;
-        return Base::TraverseCompoundStmt(statement);
-      }
-
-      // auto& buffer = rewriter_->getEditBuffer(fid);
-      std::string div =
-          "<div class='compound level-" + std::to_string(depth) + "'>";
-      // buffer.InsertText(offset, div, false);
-
-      ++depth;
-      auto result = Base::TraverseCompoundStmt(statement);
-      --depth;
-      // rewriter_->InsertTextAfterToken(statement->getLocEnd(), "</div>");
-      return result;
-    }
-
-    return Base::TraverseCompoundStmt(statement);
-  }
+// TODO: compound statement annotations have been disabled for some time.
+//       Fix the code here to enable them again.
+//  bool TraverseCompoundStmt(CompoundStmt* statement) {
+//    static int depth = 0;
+//
+//    // Find location with start of column.
+//    const auto& sm = ci_->getSourceManager();
+//    auto start = statement->getBeginLoc();
+//    auto fid = sm.getFileID(start);
+//
+//    if (!start.isMacroID()) {
+//      auto line = sm.getExpansionLineNumber(start);
+//      if (line <= 1) {
+//        std::cerr << "ERROR: SKIPPING INVALID LINE" << std::endl;
+//        return Base::TraverseCompoundStmt(statement);
+//      }
+//      auto cache = sm.getSLocEntry(fid).getFile().getContentCache();
+//      auto offset = cache->SourceLineCache[line - 1];
+//
+//      auto max = cache->NumLines;
+//      if (line >= max) {
+//        std::cerr << "ERROR: SKIPPiNG INVALID LINE" << std::endl;
+//        return Base::TraverseCompoundStmt(statement);
+//      }
+//
+//      // auto& buffer = rewriter_->getEditBuffer(fid);
+//      std::string div =
+//          "<div class='compound level-" + std::to_string(depth) + "'>";
+//      // buffer.InsertText(offset, div, false);
+//
+//      ++depth;
+//      auto result = Base::TraverseCompoundStmt(statement);
+//      --depth;
+//      // rewriter_->InsertTextAfterToken(statement->getLocEnd(), "</div>");
+//      return result;
+//    }
+//
+//    return Base::TraverseCompoundStmt(statement);
+//  }
 
  private:
-  FileCache* cache_;
-  Indexer* index_;
-
-  const CompilerInstance* ci_ = nullptr;
-  Printer printer_;
+  SbexrRecorder recorder_;
 };
 
 // Implementation of the ASTConsumer interface for reading an AST produced

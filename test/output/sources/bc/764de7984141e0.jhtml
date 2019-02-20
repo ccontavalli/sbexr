@@ -41,4 +41,6 @@
 
 <span class='directive'># define MACROP(B) printf(B)</span>
 
+<span class='directive'># define FIELD(A) A</span>
+
 <span class='directive'>#endif /* INCLUDE_ALL_H */</span>

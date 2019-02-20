@@ -39,4 +39,6 @@ static inline void IncludedByAll(int value) {
 
 # define MACROP(B) printf(B)
 
+# define FIELD(A) A
+
 #endif /* INCLUDE_ALL_H */
