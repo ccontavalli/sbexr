@@ -417,8 +417,16 @@ func (vs *Validator) PerformFullTreeTests() {
 		vs.AddWarning("", "No absolute root found in tree?")
 	}
 
+	requested := vs.Props.Requested
 	provided := vs.Props.Provided
-	for rk, rr := range vs.Props.Requested {
+
+	requested_sorted, _ := misc.StringKeys(requested)
+	sort.Strings(requested_sorted)
+
+
+	for _, rk := range requested_sorted {
+		rr := requested[rk]
+
 		vs.Stats.ResourceRequested += 1
 		vs.Stats.ResourceRequestedUsers += len(rr.User)
 
@@ -430,7 +438,11 @@ func (vs *Validator) PerformFullTreeTests() {
 		}
 
 		i := 0
-		for rt, _ := range rr.Target {
+
+		targets_sorted, _ := misc.StringKeys(rr.Target)
+		sort.Strings(targets_sorted)
+
+		for _, rt := range targets_sorted {
 			vs.Stats.ResourceTargetRequested += 1
 
 			_, ok := pr.Target[rt]
@@ -446,13 +458,20 @@ func (vs *Validator) PerformFullTreeTests() {
 			delete(provided, rk)
 		}
 	}
-	for pk, pr := range vs.Props.Provided {
-		_, ok := vs.Props.Requested[pk]
+
+	provided_sorted, _ := misc.StringKeys(vs.Props.Provided)
+	sort.Strings(provided_sorted)
+	for _, pk := range provided_sorted {
+		pr := provided[pk]
+		_, ok := requested[pk]
 		if len(pr.Target) <= 0 || !ok {
 			vs.Stats.ResourceUnused += 1
 			vs.AddPedantic("", "Resource %s aka %s is provided, but not used by anyone", pk, pr.Name)
 		} else {
-			for pt, _ := range pr.Target {
+			targets_sorted, _ := misc.StringKeys(pr.Target)
+			sort.Strings(targets_sorted)
+
+			for _, pt := range targets_sorted {
 				vs.Stats.ResourceTargetUnused += 1
 				vs.AddPedantic("", "Target %s in resource %s aka %s is provided, but not used by anyone", pt, pk, pr.Name)
 			}
