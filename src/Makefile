@@ -24,8 +24,10 @@ EXTRALIBS := -lclangFrontend \
 
 all: sbexr
 
-sbexr: sbexr.o indexer.o renderer.o rewriter.h wrapping.o rewriter.o cache.o mempool.h mempool.o common.o common.h
-	$(CXX) -lclang-$(LLVMVERSION) -lLLVM-$(LLVMVERSION) $(CXXFLAGS) $(LDFLAGS) $(LIBS) $(LIBDIR) -o sbexr $^ $(EXTRALIBS)
+DEPS := sbexr.o indexer.o renderer.o wrapping.o rewriter.o cache.o mempool.o common.o
+
+sbexr: .depend $(DEPS)
+	$(CXX) -lclang-$(LLVMVERSION) -lLLVM-$(LLVMVERSION) $(CXXFLAGS) $(LDFLAGS) $(LIBS) $(LIBDIR) -o sbexr $(DEPS) $(EXTRALIBS)
 
 validator:
 	$(MAKE) -C ../validator
@@ -62,14 +64,13 @@ dump:
 format:
 	clang-format-$(LLVMVERSION) --style=google -i *.cc *.h
 
-renderer.o: renderer.cc renderer.h
-sbexr.o: sbexr.cc common.h printer.h
-indexer.o: indexer.cc indexer.h
-wrapping.o: wrapping.cc wrapping.h
-rewriter.o: rewriter.cc rewriter.h
-cache.o: cache.cc cache.h
-mempool.o: mempool.cc mempool.h
-common.o: common.cc common.h
+SOURCES := $(wildcard *.cc)
+
+.depend:
+	fastdep --extraremakedep=Makefile \
+	        --remakedeptarget=.depend $(SOURCES) > .depend 2>/dev/null
+
+-include .depend
 
 clean:
 	rm -f sbexr

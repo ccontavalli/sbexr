@@ -1,0 +1,85 @@
+mempool.o: mempool.cc \
+	mempool.h \
+	base.h \
+	common.h
+renderer.o: renderer.cc \
+	renderer.h \
+	base.h \
+	common.h \
+	json-helpers.h \
+	mempool.h \
+	rewriter.h \
+	wrapping.h \
+	cache.h
+common.o: common.cc \
+	common.h \
+	base.h
+indexer.o: indexer.cc \
+	indexer.h \
+	base.h \
+	cache.h \
+	common.h \
+	renderer.h \
+	json-helpers.h \
+	mempool.h \
+	rewriter.h \
+	cindex.h
+wrapping.o: wrapping.cc \
+	wrapping.h \
+	base.h \
+	cache.h \
+	common.h \
+	renderer.h \
+	json-helpers.h \
+	mempool.h \
+	rewriter.h
+sbexr.o: sbexr.cc \
+	base.h \
+	indexer.h \
+	cache.h \
+	common.h \
+	renderer.h \
+	json-helpers.h \
+	mempool.h \
+	rewriter.h \
+	cindex.h \
+	printer.h \
+	wrapping.h \
+	ast.h \
+	pp-tracker.h
+cache.o: cache.cc \
+	cache.h \
+	base.h \
+	common.h \
+	renderer.h \
+	json-helpers.h \
+	mempool.h \
+	rewriter.h
+rewriter.o: rewriter.cc \
+	rewriter.h \
+	common.h \
+	base.h \
+	mempool.h
+.depend: \
+	mempool.h \
+	base.h \
+	common.h \
+	mempool.cc \
+	renderer.h \
+	json-helpers.h \
+	rewriter.h \
+	wrapping.h \
+	cache.h \
+	renderer.cc \
+	common.cc \
+	indexer.h \
+	cindex.h \
+	indexer.cc \
+	wrapping.cc \
+	printer.h \
+	ast.h \
+	pp-tracker.h \
+	sbexr.cc \
+	cache.cc \
+	rewriter.cc \
+	Makefile
