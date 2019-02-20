@@ -1,5 +1,8 @@
-- #ifdef / #ifndef at start of file, should not be obscured, ever.
-- all href are valid.
-- no weird nesting of tags.
-- all files in compile database are fully parsed.
+- all href are valid. [DONE]
+- no weird nesting of tags
+  - opening / closing tag should match [DONE]
+  - no nesting of <a> tag [DONE]
+  - no consecutive equivalent tags
 
+- #ifdef / #ifndef at start of file, should not be obscured, ever.
+- statistics on files fully parsed vs tokenized.

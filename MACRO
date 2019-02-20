@@ -1,0 +1,30 @@
+#define FOO(a, b) printf("test " ## a, b)
+
+void test(int a, b) {
+	FOO("%d", a);
+	FOO("%d", b);
+}
+
+In the AST, I will see:
+  - call expression
+  - parameter defined
+
+In terms of features:
+  - user should see what hides under FOO - there should be a way to get the final expanded code
+  - user should be able to go see the definition of FOO
+  - index should track correctly the dependency of the source code on FOO, and the dependencies the macro is bringing in (printf, in the example)
+
+Proposal:
+  - hijack macro use - turn that into a link to the macro itself. 
+  - when AST appears in the macro - silence the addition of links or wrapping, but still add them to the index.
+
+Unsolved:
+  - showing the expanded macro in the code there.
+
+APIs
+====
+- pp-tracker is invoked when a macro is defined, and when a macro expands. Can track dependencies across macros.
+- a SourceLocation, can be turned into a FID, which in turn can be looked up in the source manager via getSLocEntry, which in turn returns a SrcMgr::SLocEntry, which is either a macro expansion (isExpansion()) or a file (isFile), and returns either an ExpansionInfo or a FileInfo. SourceLocation immediately returns isMacroID or isFileID.
+
+- maybe querying the lexer for the text in between a sourcerange will just work? see https://stackoverflow.com/questions/11083066/getting-the-source-behind-clangs-ast
+

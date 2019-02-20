@@ -1,23 +1,24 @@
+SBEXR PARSING
+=============
+
+- scanner should skip some files, like .swp files from vim.
+
+- in typedef, the target type should be linked to its definition.
+
+- weird types should link back to their definition.
+
+- add metadata in the file indicating how it was rendered. Eg, full indexing,
+  or partial.
+
 - // WHEN CLICKING ON A LINK, if points with the same page,
   // IF POINTS WITHIN THE SAME WINDOW, do not change scrolling.
   // Rather, just highlight the target.
 
+- when passed the --scan=false flag, root directory entry is not generated, although
+  it probably exists in memory (it has a hash!)
+
 - names in all-symbols.json... don't have namespace identifier. They should!
   namespace is important.
-
-DONE  // FIXME: THIS IS WRONG.
-      // Problem: errno-base.h, a file with only macros and defines.
-      // Now:
-      // - RecursiveASTParser will not be invoked - there are no top level declarations.
-      // - Nothing of the file will be rewritten - no ast after all
-      // - RenderFile will never be called!!
-
-DONE  // ON THE DIRECTORY VIEW, when an INDEX FILE IS DISPLAYED,
-      // selecting :78 will highlight the whole line! Directory tree
-      // and all!
-
-DONE In make test-server, searching for symbol __c, ends up having multiple repeated definitions for the same location! bad!
-
 
 - pinctrl-palmas.c:354, problem:
   - There is a macro that defines a list of elements, like:
@@ -38,6 +39,7 @@ DONE In make test-server, searching for symbol __c, ends up having multiple repe
 
 
 in global-symbols database:
+
 - all entries that have no name that I manually verified were
   prototype definitions, eg, things like:
 
@@ -53,16 +55,7 @@ in global-symbols database:
      type: const char*
      name: ""
 
-
-
-In slab.h, kmalloc.h, header is marked as muted, included multiple times. 
-
 kernel handler:
-
-DONE It loops over the last X tags from git, only regenerates those tags.
-     Instead: it should look at regenerating all tags if an updated
-     rewriter is available.
-
 
 ==================
 When there is something like:
@@ -70,5 +63,13 @@ When there is something like:
 struct sk_buff *skb, *tmp_skb;
 
 struct sk_buff is surrounded by span and a twice, creating nested a links.
+
+RENDERING - JAVSACRIPT / server
+======================
+- In firefox, clicking on the same link covers the text highlighted under the search bar,
+  making the interface almost unusable!
+
+- server could do a bit of a better job at redirecting to the right places without
+  too much effort. Eg, when entering partial links manually.
 
 
