@@ -70,6 +70,12 @@ void PrintLineNumbers(raw_ostream& s, const SourceManager& sm,
   s << ":" << sm.getExpansionColumnNumber(location);
 }
 
+void PrintSpellingLineNumbers(raw_ostream& s, const SourceManager& sm,
+                              SourceLocation location) {
+  s << sm.getSpellingLineNumber(location);
+  s << ":" << sm.getSpellingColumnNumber(location);
+}
+
 // SpellingLocation -> the place where the bytes shown have been typed.
 //    If the code is "extern 'C' {" from macro EXTERN, Spelling Location
 //    is next to the macro definition, where "extern 'C' was typed.
@@ -111,10 +117,36 @@ std::string PrintLocation(const SourceManager& sm, FileCache* cache,
 
 std::string PrintLocation(const SourceManager& sm, FileCache* cache,
                           SourceLocation location) {
-  std::string output(cache->GetNormalizedPath(sm, location));
+  std::string output(GetFilePath(cache->GetFileFor(sm, location)));
   raw_string_ostream s(output);
   s << ":";
   PrintLineNumbers(s, sm, location);
+  return s.str();
+}
+
+std::string PrintSpellingLocation(const SourceManager& sm, FileCache* cache,
+                                  SourceRange location) {
+  if (!location.isValid()) return "<invalid-location>";
+
+  auto sf = cache->GetSpellingFileFor(sm, location.getBegin());
+  auto ef = cache->GetSpellingFileFor(sm, location.getEnd());
+
+  std::string output(sf->path);
+  raw_string_ostream s(output);
+
+  PrintSpellingLineNumbers(s, sm, location.getBegin());
+  s << "-";
+  if (sf != ef) s << ef->path;
+  PrintSpellingLineNumbers(s, sm, location.getEnd());
+  return s.str();
+}
+
+std::string PrintSpellingLocation(const SourceManager& sm, FileCache* cache,
+                                  SourceLocation location) {
+  std::string output(GetFilePath(cache->GetSpellingFileFor(sm, location)));
+  raw_string_ostream s(output);
+  s << ":";
+  PrintSpellingLineNumbers(s, sm, location);
   return s.str();
 }
 

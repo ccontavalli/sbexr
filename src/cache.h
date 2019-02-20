@@ -63,40 +63,50 @@ class FileCache {
  public:
   FileCache(FileRenderer* renderer) : renderer_(renderer) {}
 
-  // Given the provided parameters, the functions here fetch the corresponding
-  // file descriptor.
+  // Given a path as a string, makes it relative to the output tree.
+  // Eg, as the user should see it.
+  StringRef GetUserPath(const StringRef& other) const;
+
+  // Given a path, return the file descriptor.
   FileRenderer::ParsedFile* GetFileFor(const StringRef& path);
-  FileRenderer::ParsedFile* GetFileFor(const SourceManager& sm,
-                                       SourceLocation location);
+  // Given a FileID, return the file descriptor.
+  // IMPORTANT: in clang/llvm, a FileID is generally an entry in a SLocEntry
+  // table that can refer to a file, or to a macro expansion. If you obtain
+  // the FileID via a getFileID for a location, that FileID can refer either
+  // to a macro or to a file. You should use either getDecomposedSpellingLoc
+  // or getDecomposedExpansionLoc to resolve the correct location.
   FileRenderer::ParsedFile* GetFileFor(const SourceManager& sm,
                                        const FileID& fid);
+
+  // Given the supplied location, return the file where the corresponding
+  // code is being used. (expansion location, generally).
+  FileRenderer::ParsedFile* GetFileFor(const SourceManager& sm,
+                                       SourceLocation location);
   FileRenderer::ParsedFile* GetFileFor(const SourceManager& sm,
                                        SourceLocation begin,
                                        SourceLocation end);
 
-  uint64_t GetFileHashFor(const SourceManager& sm, SourceLocation location);
-
-  const std::string& GetNormalizedPath(const SourceManager& sm,
-                                       SourceLocation location);
-  StringRef GetUserPath(const StringRef& other) const;
-
-  void PreprocessPending();
+  // Given the supplied location, return the file where the corresponding
+  // code was actually typed. (spelling location, generally).
+  FileRenderer::ParsedFile* GetSpellingFileFor(const SourceManager& sm,
+                                               SourceLocation location);
+  FileRenderer::ParsedFile* GetSpellingFileFor(const SourceManager& sm,
+                                               SourceLocation begin,
+                                               SourceLocation end);
 
  private:
+  StringRef last_path_;
+  FileRenderer::ParsedFile* last_path_file_ = nullptr;
+
   FileID last_id_;
   const SourceManager* last_sm_ = nullptr;
-  StringRef last_path_;
-
-  FileRenderer::ParsedFile* last_path_file_ = nullptr;
   FileRenderer::ParsedFile* last_sm_file_ = nullptr;
-  FileRenderer* renderer_;
 
-  static const std::string fid_error_;
+  FileRenderer* renderer_;
 };
 
 inline FileRenderer::ParsedFile* FileCache::GetFileFor(const StringRef& path) {
   if (path.data() == last_path_.data()) return last_path_file_;
-
   if (path.empty()) return nullptr;
 
   last_path_file_ = renderer_->GetFileFor(path);
@@ -106,7 +116,6 @@ inline FileRenderer::ParsedFile* FileCache::GetFileFor(const StringRef& path) {
 inline FileRenderer::ParsedFile* FileCache::GetFileFor(const SourceManager& sm,
                                                        const FileID& fid) {
   if (!fid.isValid()) return nullptr;
-
   if (last_sm_ == &sm && fid == last_id_) return last_sm_file_;
 
   last_sm_ = &sm;
@@ -126,17 +135,16 @@ inline FileRenderer::ParsedFile* FileCache::GetFileFor(const SourceManager& sm,
     return nullptr;
   }
 
-  llvm::StringRef filename;
-  if (cache->OrigEntry) {
-    filename = cache->OrigEntry->getName();
-  } else {
-    filename = cache->getBuffer(sm.getDiagnostics(), sm)->getBufferIdentifier();
+  // If there is no OrigEntry, the content comes from a buffer.
+  // We could get a name for the buffer by using:
+  //   cache->getBuffer(sm.getDiagnostics(), sm)->getBufferIdentifier()
+  // However, buffers seem to be used for <built-in> and possibly other
+  // magic stuff that we don't need to index, so just return nullptr here.
+  if (!cache->OrigEntry) {
+    return nullptr;
   }
 
-  // Very unfortunate... is there a better way? TODO
-  if (filename.equals("<built-in>")) return nullptr;
-
-  last_sm_file_ = GetFileFor(filename);
+  last_sm_file_ = GetFileFor(cache->OrigEntry->getName());
   return last_sm_file_;
 }
 
@@ -153,8 +161,10 @@ inline FileRenderer::ParsedFile* FileCache::GetFileFor(
 inline FileRenderer::ParsedFile* FileCache::GetFileFor(const SourceManager& sm,
                                                        SourceLocation begin,
                                                        SourceLocation end) {
-  FileID bid = sm.getFileID(begin);
-  FileID eid = sm.getFileID(end);
+  FileID bid, eid;
+  unsigned boff, eoff;
+  std::tie(bid, boff) = sm.getDecomposedExpansionLoc(begin);
+  std::tie(eid, eoff) = sm.getDecomposedExpansionLoc(end);
 
   if (eid != bid) {
     std::cerr << "WARNING: begin and end of locaiton in different files ("
@@ -165,20 +175,32 @@ inline FileRenderer::ParsedFile* FileCache::GetFileFor(const SourceManager& sm,
   return GetFileFor(sm, bid);
 }
 
-inline uint64_t FileCache::GetFileHashFor(const SourceManager& sm,
-                                          SourceLocation location) {
-  auto* ptr = GetFileFor(sm, location);
-  return ptr ? ptr->hash : 0;
+inline FileRenderer::ParsedFile* FileCache::GetSpellingFileFor(
+    const SourceManager& sm, SourceLocation location) {
+  if (!location.isValid()) return nullptr;
+
+  FileID fid;
+  unsigned offset;
+  std::tie(fid, offset) = sm.getDecomposedSpellingLoc(location);
+  return GetFileFor(sm, fid);
 }
 
-inline const std::string& FileCache::GetNormalizedPath(
-    const SourceManager& sm, SourceLocation location) {
-  auto* file = GetFileFor(sm, location);
-  if (!file) {
-    return fid_error_;
+inline FileRenderer::ParsedFile* FileCache::GetSpellingFileFor(
+    const SourceManager& sm, SourceLocation begin, SourceLocation end) {
+  FileID bid, eid;
+  unsigned boff, eoff;
+  std::tie(bid, boff) = sm.getDecomposedSpellingLoc(begin);
+  std::tie(eid, eoff) = sm.getDecomposedSpellingLoc(end);
+
+  if (eid != bid) {
+    std::cerr << "WARNING: begin and end of locaiton in different files ("
+              << sm.getFilename(begin).str() << " vs "
+              << sm.getFilename(end).str() << ")" << std::endl;
+    return nullptr;
   }
-  return file->path;
+  return GetFileFor(sm, bid);
 }
+
 inline StringRef FileCache::GetUserPath(const StringRef& original) const {
   return renderer_->GetUserPath(original);
 }

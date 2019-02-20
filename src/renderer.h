@@ -157,4 +157,12 @@ class FileRenderer {
   ParsedDirectory absolute_root_{nullptr, ""};
 };
 
+inline const std::string& GetFilePath(FileRenderer::ParsedFile* file) {
+  static const std::string fid_error{"<no-file-entry-corresponding-to-fid>"};
+  return file ? file->path : fid_error;
+}
+inline uint64_t GetFileHash(FileRenderer::ParsedFile* file) {
+  return file ? file->hash : 0;
+}
+
 #endif /* RENDERER_H */

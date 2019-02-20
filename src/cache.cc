@@ -27,5 +27,3 @@
 // policies, either expressed or implied, of Carlo Contavalli.
 
 #include "cache.h"
-
-const std::string FileCache::fid_error_{"<no-file-entry-corresponding-to-fid>"};
