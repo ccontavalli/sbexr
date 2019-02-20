@@ -29,12 +29,16 @@
 #ifndef AST_H
 #define AST_H
 
+#include "base.h"
+#include "cache.h"
 #include "common.h"
+#include "indexer.h"
+#include "printer.h"
 
 class SbexrRecorder {
  public:
   SbexrRecorder(FileCache* cache, Indexer* index)
-    : cache_(cache), index_(index) {}
+      : cache_(cache), index_(index) {}
 
   void SetParameters(const CompilerInstance* ci) {
     ci_ = ci;
@@ -225,7 +229,8 @@ class SbexrRecorder {
  private:
   std::string MakeIdLink(SourceRange location) {
     auto& sm = ci_->getSourceManager();
-    std::string prefix(MakeHtmlPath(cache_->GetFileHashFor(sm, location.getBegin())));
+    std::string prefix(
+        MakeHtmlPath(GetFileHash(cache_->GetFileFor(sm, location.getBegin()))));
     prefix.append("#");
     prefix.append(::MakeIdName(sm, location));
 
@@ -292,21 +297,21 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
       : recorder_(cache, indexer) {}
   SbexrRecorder* GetRecorder() { return &recorder_; }
 
-
   bool shouldVisitTemplateInstantiations() const { return true; }
   // Setting this to true will get the visitor to enter things like
   // implicitly defined constructors, but also things like "using" directives
   // that bring in more details.
   // bool shouldVisitImplicitCode() const { return true; }
 
-  //const CompilerInstance& GetCompilerInstance() const { return *ci_; }
+  // const CompilerInstance& GetCompilerInstance() const { return *ci_; }
 
   bool TraverseDecl(Decl* decl) {
     if (!decl) return Base::TraverseDecl(decl);
 
     if (recorder_.LocationRendered(decl->getBeginLoc())) {
       if (gl_verbose)
-        std::cerr << "FILE ALREADY PARSED " << recorder_.TryPrint(decl) << std::endl;
+        std::cerr << "FILE ALREADY PARSED " << recorder_.TryPrint(decl)
+                  << std::endl;
       return true;
     }
 
@@ -316,11 +321,13 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
   bool VisitMemberExpr(MemberExpr* e) {
     if (gl_verbose) {
       std::cerr << "MEMBEREXPR " << recorder_.PrintLocation(e->getSourceRange())
-                << recorder_.PrintLocation(e->getMemberNameInfo().getSourceRange())
+                << recorder_.PrintLocation(
+                       e->getMemberNameInfo().getSourceRange())
                 << std::endl;
       e->dump();
     }
-    recorder_.CodeUses(e->getMemberNameInfo(), "expression", *e->getFoundDecl());
+    recorder_.CodeUses(e->getMemberNameInfo(), "expression",
+                       *e->getFoundDecl());
     return Base::VisitMemberExpr(e);
   }
   bool VisitDeclRefExpr(DeclRefExpr* e) {
@@ -413,18 +420,19 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 #endif
 
       if (gl_verbose)
-        std::cerr << "getTypeSourceInfo: " << recorder_.TryPrint(v->getTypeSourceInfo())
-                  << std::endl;
+        std::cerr << "getTypeSourceInfo: "
+                  << recorder_.TryPrint(v->getTypeSourceInfo()) << std::endl;
 
       // If this is a VarDecl in a DeclStmt, then it only needs to be recorded.
       // The type link was already created by the DeclStmt.
       auto* vt = dyn_cast<VarDecl>(v);
       if (vt && vt->isLocalVarDecl()) {
         auto* rt = recorder_.GetTagDeclForType(v->getType());
-        recorder_.RecordTypeUse(v->getTypeSourceInfo()->getTypeLoc(), "declaration", rt);
+        recorder_.RecordTypeUse(v->getTypeSourceInfo()->getTypeLoc(),
+                                "declaration", rt);
       } else {
-        recorder_.CodeUsesQualType(v->getTypeSourceInfo()->getTypeLoc(), "declaration",
-                         v->getType());
+        recorder_.CodeUsesQualType(v->getTypeSourceInfo()->getTypeLoc(),
+                                   "declaration", v->getType());
       }
     }
     return Base::VisitDeclaratorDecl(v);
@@ -462,7 +470,7 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 
       // Record the use of the return type.
       recorder_.CodeUsesQualType(f->getReturnTypeSourceRange(), "return",
-                       f->getReturnType());
+                                 f->getReturnType());
 
       auto* first = f->getFirstDecl();
       if (!first) first = f;
@@ -470,12 +478,12 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 
       if (f->isThisDeclarationADefinition()) {
         recorder_.CodeDefines(*v, *first, v->getDeclKindName(),
-                    v->getQualifiedNameAsString(), v->getAccess(),
-                    v->getLinkageInternal());
+                              v->getQualifiedNameAsString(), v->getAccess(),
+                              v->getLinkageInternal());
       } else {
         recorder_.CodeDeclares(*v, *first, v->getDeclKindName(),
-                     v->getQualifiedNameAsString(), v->getAccess(),
-                     v->getLinkageInternal());
+                               v->getQualifiedNameAsString(), v->getAccess(),
+                               v->getLinkageInternal());
       }
     } else if (isa<TagDecl>(v)) {
       auto* t = cast<TagDecl>(v);
@@ -485,12 +493,12 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 
       if (t->isCompleteDefinition()) {
         recorder_.CodeDefines(*v, *first, v->getDeclKindName(),
-                    v->getQualifiedNameAsString(), v->getAccess(),
-                    v->getLinkageInternal());
+                              v->getQualifiedNameAsString(), v->getAccess(),
+                              v->getLinkageInternal());
       } else {
         recorder_.CodeDeclares(*v, *first, v->getDeclKindName(),
-                     v->getQualifiedNameAsString(), v->getAccess(),
-                     v->getLinkageInternal());
+                               v->getQualifiedNameAsString(), v->getAccess(),
+                               v->getLinkageInternal());
       }
     } else if (isa<VarDecl>(v)) {
       auto* t = cast<VarDecl>(v);
@@ -505,8 +513,8 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
           auto* function = cast<FunctionDecl>(context);
           if (function && function->isThisDeclarationADefinition()) {
             recorder_.CodeDefines(*v, *first, v->getDeclKindName(),
-                        v->getQualifiedNameAsString(), v->getAccess(),
-                        v->getLinkageInternal());
+                                  v->getQualifiedNameAsString(), v->getAccess(),
+                                  v->getLinkageInternal());
           }
         }
       } else {
@@ -514,17 +522,18 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
         // static attributes and similar? This code could be better.
         if (t->hasExternalStorage()) {
           recorder_.CodeDeclares(*v, *first, v->getDeclKindName(),
-                       v->getQualifiedNameAsString(), v->getAccess(),
-                       v->getLinkageInternal());
+                                 v->getQualifiedNameAsString(), v->getAccess(),
+                                 v->getLinkageInternal());
         } else {
           recorder_.CodeDefines(*v, *first, v->getDeclKindName(),
-                      v->getQualifiedNameAsString(), v->getAccess(),
-                      v->getLinkageInternal());
+                                v->getQualifiedNameAsString(), v->getAccess(),
+                                v->getLinkageInternal());
         }
       }
     } else {
-      recorder_.CodeDefines(*v, *v, v->getDeclKindName(), v->getQualifiedNameAsString(),
-                  v->getAccess(), v->getLinkageInternal());
+      recorder_.CodeDefines(*v, *v, v->getDeclKindName(),
+                            v->getQualifiedNameAsString(), v->getAccess(),
+                            v->getLinkageInternal());
     }
     return Base::VisitNamedDecl(v);
   }
@@ -543,53 +552,53 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
       auto* decldecl = dyn_cast<DeclaratorDecl>(decl);
       if (decldecl) {
         auto* rt = recorder_.GetTagDeclForType(decldecl->getType());
-        recorder_.LinkToType(decldecl->getTypeSourceInfo()->getTypeLoc(), "declaration",
-                   rt);
+        recorder_.LinkToType(decldecl->getTypeSourceInfo()->getTypeLoc(),
+                             "declaration", rt);
         break;
       }
     }
     return Base::VisitDeclStmt(stmt);
   }
 
-// TODO: compound statement annotations have been disabled for some time.
-//       Fix the code here to enable them again.
-//  bool TraverseCompoundStmt(CompoundStmt* statement) {
-//    static int depth = 0;
-//
-//    // Find location with start of column.
-//    const auto& sm = ci_->getSourceManager();
-//    auto start = statement->getBeginLoc();
-//    auto fid = sm.getFileID(start);
-//
-//    if (!start.isMacroID()) {
-//      auto line = sm.getExpansionLineNumber(start);
-//      if (line <= 1) {
-//        std::cerr << "ERROR: SKIPPING INVALID LINE" << std::endl;
-//        return Base::TraverseCompoundStmt(statement);
-//      }
-//      auto cache = sm.getSLocEntry(fid).getFile().getContentCache();
-//      auto offset = cache->SourceLineCache[line - 1];
-//
-//      auto max = cache->NumLines;
-//      if (line >= max) {
-//        std::cerr << "ERROR: SKIPPiNG INVALID LINE" << std::endl;
-//        return Base::TraverseCompoundStmt(statement);
-//      }
-//
-//      // auto& buffer = rewriter_->getEditBuffer(fid);
-//      std::string div =
-//          "<div class='compound level-" + std::to_string(depth) + "'>";
-//      // buffer.InsertText(offset, div, false);
-//
-//      ++depth;
-//      auto result = Base::TraverseCompoundStmt(statement);
-//      --depth;
-//      // rewriter_->InsertTextAfterToken(statement->getLocEnd(), "</div>");
-//      return result;
-//    }
-//
-//    return Base::TraverseCompoundStmt(statement);
-//  }
+  // TODO: compound statement annotations have been disabled for some time.
+  //       Fix the code here to enable them again.
+  //  bool TraverseCompoundStmt(CompoundStmt* statement) {
+  //    static int depth = 0;
+  //
+  //    // Find location with start of column.
+  //    const auto& sm = ci_->getSourceManager();
+  //    auto start = statement->getBeginLoc();
+  //    auto fid = sm.getFileID(start);
+  //
+  //    if (!start.isMacroID()) {
+  //      auto line = sm.getExpansionLineNumber(start);
+  //      if (line <= 1) {
+  //        std::cerr << "ERROR: SKIPPING INVALID LINE" << std::endl;
+  //        return Base::TraverseCompoundStmt(statement);
+  //      }
+  //      auto cache = sm.getSLocEntry(fid).getFile().getContentCache();
+  //      auto offset = cache->SourceLineCache[line - 1];
+  //
+  //      auto max = cache->NumLines;
+  //      if (line >= max) {
+  //        std::cerr << "ERROR: SKIPPiNG INVALID LINE" << std::endl;
+  //        return Base::TraverseCompoundStmt(statement);
+  //      }
+  //
+  //      // auto& buffer = rewriter_->getEditBuffer(fid);
+  //      std::string div =
+  //          "<div class='compound level-" + std::to_string(depth) + "'>";
+  //      // buffer.InsertText(offset, div, false);
+  //
+  //      ++depth;
+  //      auto result = Base::TraverseCompoundStmt(statement);
+  //      --depth;
+  //      // rewriter_->InsertTextAfterToken(statement->getLocEnd(), "</div>");
+  //      return result;
+  //    }
+  //
+  //    return Base::TraverseCompoundStmt(statement);
+  //  }
 
  private:
   SbexrRecorder recorder_;
@@ -606,7 +615,7 @@ class SbexrAstConsumer : public ASTConsumer {
     if (gl_verbose) std::cerr << "ENTERING TRANSLATION UNIT\n";
 
     auto* turd = context.getTranslationUnitDecl();
-    if (gl_verbose) turd->dump(); // giggling... could not resist.
+    if (gl_verbose) turd->dump();  // giggling... could not resist.
     visitor_.TraverseDecl(turd);
 
     if (gl_verbose) std::cerr << "EXITING TRANSLATION UNIT\n";
@@ -615,6 +624,5 @@ class SbexrAstConsumer : public ASTConsumer {
  private:
   SbexrAstVisitor visitor_;
 };
-
 
 #endif

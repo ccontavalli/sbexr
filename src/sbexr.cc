@@ -26,12 +26,12 @@
 // those of the authors and should not be interpreted as representing official
 // policies, either expressed or implied, of Carlo Contavalli.
 
+#include "ast.h"
 #include "base.h"
 #include "indexer.h"
+#include "pp-tracker.h"
 #include "printer.h"
 #include "wrapping.h"
-#include "ast.h"
-#include "pp-tracker.h"
 
 // TODO:
 //   P0 - compound blocks insert html in random places, pretty much breaking
@@ -192,13 +192,15 @@ std::unique_ptr<CompilerInstance> CreateCompilerInstance(
 
   auto& pp = instance->getPreprocessor();
   pp.SetSuppressIncludeNotFoundError(true);
-  // BUG? setting one of those two values to true causes the AST to miss some definitions?
-  // For example: when compiling test-multiple-file-0.cc, the definition
-  // of the class Test in test-multiple-file-0.h is missed, does not appear
-  // in a dumpColor of the TU - at all. Search for "TestMore", see that Test*
-  // is marked as 'invalid', and interpreted as 'int' rather than object Test.
-  //pp.SetCommentRetentionState(true, false);
-  pp.getBuiltinInfo().initializeBuiltins(pp.getIdentifierTable(), pp.getLangOpts());
+  // BUG? setting one of those two values to true causes the AST to miss some
+  // definitions? For example: when compiling test-multiple-file-0.cc, the
+  // definition of the class Test in test-multiple-file-0.h is missed, does not
+  // appear in a dumpColor of the TU - at all. Search for "TestMore", see that
+  // Test* is marked as 'invalid', and interpreted as 'int' rather than object
+  // Test.
+  // pp.SetCommentRetentionState(true, false);
+  pp.getBuiltinInfo().initializeBuiltins(pp.getIdentifierTable(),
+                                         pp.getLangOpts());
 
   // Dump header files search path if verbose output is enabled.
   if (gl_verbose) {
