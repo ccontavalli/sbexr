@@ -30,6 +30,9 @@ sbexr: sbexr.o indexer.o renderer.o rewriter.h wrapping.o rewriter.o cache.o mem
 validator:
 	$(MAKE) -C ../validator
 
+test-run:
+	$(MAKE) -C ../server test-run
+
 test-gen: validator sbexr test-multi
 	cd ../test && rm -rf output/ && rm -rf indexes/ && ln -sfT ../static ./static \
 	    && $(TIME) ../src/sbexr $(VERBOSE) --index=indexes -x "output|indexes" --jsondb . \
@@ -58,15 +61,6 @@ dump:
 
 format:
 	clang-format-$(LLVMVERSION) --style=google -i *.cc *.h
-
-test-server:
-	killall -TERM server || true
-	cd ../server && make && ./server --root=../test/ --index-dir=../test/indexes --listen=:10000 ../test/
-
-server:
-	cd ../server && go build && ./server --index-dir=../indexes --root=../output --listen=:9000 ..
-	# cd ../server && go build && ./server --root=../output --listen=:9000 ..
-	# cd output && python -m SimpleHTTPServer 8000
 
 renderer.o: renderer.cc renderer.h
 sbexr.o: sbexr.cc common.h printer.h
