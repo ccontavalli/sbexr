@@ -301,16 +301,6 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 
   //const CompilerInstance& GetCompilerInstance() const { return *ci_; }
 
-  bool TraverseMemberExpr(MemberExpr* e) {
-    if (gl_verbose) {
-      std::cerr << "MEMBEREXPR " << recorder_.PrintLocation(e->getSourceRange())
-                << recorder_.PrintLocation(e->getMemberNameInfo().getSourceRange())
-                << std::endl;
-      e->dump();
-    }
-    recorder_.CodeUses(e->getMemberNameInfo(), "expression", *e->getFoundDecl());
-    return Base::TraverseMemberExpr(e);
-  }
   bool TraverseDecl(Decl* decl) {
     if (!decl) return Base::TraverseDecl(decl);
 
@@ -322,7 +312,18 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 
     return Base::TraverseDecl(decl);
   }
-  bool TraverseDeclRefExpr(DeclRefExpr* e) {
+
+  bool VisitMemberExpr(MemberExpr* e) {
+    if (gl_verbose) {
+      std::cerr << "MEMBEREXPR " << recorder_.PrintLocation(e->getSourceRange())
+                << recorder_.PrintLocation(e->getMemberNameInfo().getSourceRange())
+                << std::endl;
+      e->dump();
+    }
+    recorder_.CodeUses(e->getMemberNameInfo(), "expression", *e->getFoundDecl());
+    return Base::VisitMemberExpr(e);
+  }
+  bool VisitDeclRefExpr(DeclRefExpr* e) {
     // getNameInfo().getAsString() -> returns the variable name, eg, int foo;
     // would return foo.
     if (gl_verbose)
@@ -331,7 +332,7 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
                 << recorder_.PrintLocation(e->getFoundDecl()->getSourceRange())
                 << std::endl;
     recorder_.CodeUses(*e, "variable", *e->getFoundDecl());
-    return Base::TraverseDeclRefExpr(e);
+    return Base::VisitDeclRefExpr(e);
   }
 
   bool VisitDeclaratorDecl(DeclaratorDecl* v) {
