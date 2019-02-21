@@ -120,18 +120,17 @@ inline FileRenderer::ParsedFile* FileCache::GetFileFor(const SourceManager& sm,
 
   last_sm_ = &sm;
   last_id_ = fid;
+  last_sm_file_ = nullptr;
 
   // This code comes from getPresumedLoc.
   // getFileEntryForID or getFilename
   bool invalid = false;
   auto& entry = sm.getSLocEntry(fid, &invalid);
   if (invalid || !entry.isFile()) {
-    last_sm_file_ = nullptr;
     return nullptr;
   }
   auto* cache = entry.getFile().getContentCache();
   if (!cache) {
-    last_sm_file_ = nullptr;
     return nullptr;
   }
 
