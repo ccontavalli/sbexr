@@ -278,7 +278,8 @@ int main(int argc, const char** argv) {
   FileCache cache(&renderer);
 
   Indexer indexer(&cache);
-  SbexrAstConsumer consumer(&cache, &indexer);
+  SbexrRecorder recorder(&cache, &indexer);
+  SbexrAstConsumer consumer(&recorder);
 
   if (gl_limit > 0 && static_cast<size_t>(gl_limit) < to_parse.size())
     to_parse.resize(gl_limit);
@@ -320,8 +321,8 @@ int main(int argc, const char** argv) {
       sm.setMainFileID(fid);
 
       nci->getDiagnosticClient().BeginSourceFile(nci->getLangOpts(), &pp);
-      pp.addPPCallbacks(llvm::make_unique<PPTracker>(&cache, *nci.get()));
-      consumer.GetVisitor()->GetRecorder()->SetParameters(nci.get());
+      recorder.SetParameters(nci.get());
+      pp.addPPCallbacks(llvm::make_unique<PPTracker>(&recorder));
 
       // Parse the file to AST, registering our consumer as the AST consumer.
       // FIXME: Sema is using incorrect parameters?

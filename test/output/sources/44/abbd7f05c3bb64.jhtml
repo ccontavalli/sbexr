@@ -23,7 +23,7 @@
 <span class='directive'>#endif</span>
 
 <span class='directive'>#ifndef	_BITS_TYPESIZES_H</span>
-<span class='directive'>#define	_BITS_TYPESIZES_H	1</span>
+<span class='directive'>#define	<span class='def def-MACRO' id='000180090001801b'>_BITS_TYPESIZES_H	1</span></span>
 
 <span class='comment'>/* See &lt;bits/types.h&gt; for the meaning of these macros.  This file exists so
    that &lt;bits/types.h&gt; need not vary across different GNU platforms.  */</span>
@@ -33,65 +33,65 @@
 <span class='directive'># define __SYSCALL_SLONG_TYPE	__SQUAD_TYPE</span>
 <span class='directive'># define __SYSCALL_ULONG_TYPE	__UQUAD_TYPE</span></span>
 <span class='directive'>#else</span>
-<span class='directive'># define __SYSCALL_SLONG_TYPE	__SLONGWORD_TYPE</span>
-<span class='directive'># define __SYSCALL_ULONG_TYPE	__ULONGWORD_TYPE</span>
+<span class='directive'># define <span class='def def-MACRO' id='0002200a0002201f'>__SYSCALL_SLONG_TYPE	__SLONGWORD_TYPE</span></span>
+<span class='directive'># define <span class='def def-MACRO' id='0002300a0002301f'>__SYSCALL_ULONG_TYPE	__ULONGWORD_TYPE</span></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#define __DEV_T_TYPE		__UQUAD_TYPE</span>
-<span class='directive'>#define __UID_T_TYPE		__U32_TYPE</span>
-<span class='directive'>#define __GID_T_TYPE		__U32_TYPE</span>
-<span class='directive'>#define __INO_T_TYPE		__SYSCALL_ULONG_TYPE</span>
-<span class='directive'>#define __INO64_T_TYPE		__UQUAD_TYPE</span>
-<span class='directive'>#define __MODE_T_TYPE		__U32_TYPE</span>
+<span class='directive'>#define <span class='def def-MACRO' id='0002600900026017'>__DEV_T_TYPE		__UQUAD_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0002700900027017'>__UID_T_TYPE		__U32_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0002800900028017'>__GID_T_TYPE		__U32_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0002900900029017'>__INO_T_TYPE		__SYSCALL_ULONG_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0002a0090002a019'>__INO64_T_TYPE		__UQUAD_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0002b0090002b018'>__MODE_T_TYPE		__U32_TYPE</span></span>
 <span class='directive'>#ifdef __x86_64__</span>
-<span class='directive'># define __NLINK_T_TYPE		__SYSCALL_ULONG_TYPE</span>
-<span class='directive'># define __FSWORD_T_TYPE	__SYSCALL_SLONG_TYPE</span>
+<span class='directive'># define <span class='def def-MACRO' id='0002d00a0002d01a'>__NLINK_T_TYPE		__SYSCALL_ULONG_TYPE</span></span>
+<span class='directive'># define <span class='def def-MACRO' id='0002e00a0002e01a'>__FSWORD_T_TYPE	__SYSCALL_SLONG_TYPE</span></span>
 <span class='directive'>#else</span><span class='preprocessor-if muted'>
 <span class='directive'># define __NLINK_T_TYPE		__UWORD_TYPE</span>
 <span class='directive'># define __FSWORD_T_TYPE	__SWORD_TYPE</span></span>
 <span class='directive'>#endif</span>
-<span class='directive'>#define __OFF_T_TYPE		__SYSCALL_SLONG_TYPE</span>
-<span class='directive'>#define __OFF64_T_TYPE		__SQUAD_TYPE</span>
-<span class='directive'>#define __PID_T_TYPE		__S32_TYPE</span>
-<span class='directive'>#define __RLIM_T_TYPE		__SYSCALL_ULONG_TYPE</span>
-<span class='directive'>#define __RLIM64_T_TYPE		__UQUAD_TYPE</span>
-<span class='directive'>#define __BLKCNT_T_TYPE		__SYSCALL_SLONG_TYPE</span>
-<span class='directive'>#define __BLKCNT64_T_TYPE	__SQUAD_TYPE</span>
-<span class='directive'>#define __FSBLKCNT_T_TYPE	__SYSCALL_ULONG_TYPE</span>
-<span class='directive'>#define __FSBLKCNT64_T_TYPE	__UQUAD_TYPE</span>
-<span class='directive'>#define __FSFILCNT_T_TYPE	__SYSCALL_ULONG_TYPE</span>
-<span class='directive'>#define __FSFILCNT64_T_TYPE	__UQUAD_TYPE</span>
-<span class='directive'>#define __ID_T_TYPE		__U32_TYPE</span>
-<span class='directive'>#define __CLOCK_T_TYPE		__SYSCALL_SLONG_TYPE</span>
-<span class='directive'>#define __TIME_T_TYPE		__SYSCALL_SLONG_TYPE</span>
-<span class='directive'>#define __USECONDS_T_TYPE	__U32_TYPE</span>
-<span class='directive'>#define __SUSECONDS_T_TYPE	__SYSCALL_SLONG_TYPE</span>
-<span class='directive'>#define __DADDR_T_TYPE		__S32_TYPE</span>
-<span class='directive'>#define __KEY_T_TYPE		__S32_TYPE</span>
-<span class='directive'>#define __CLOCKID_T_TYPE	__S32_TYPE</span>
-<span class='directive'>#define __TIMER_T_TYPE		void *</span>
-<span class='directive'>#define __BLKSIZE_T_TYPE	__SYSCALL_SLONG_TYPE</span>
-<span class='directive'>#define __FSID_T_TYPE		struct { int __val[2]; }</span>
-<span class='directive'>#define __SSIZE_T_TYPE		__SWORD_TYPE</span>
-<span class='directive'>#define __CPU_MASK_TYPE 	__SYSCALL_ULONG_TYPE</span>
+<span class='directive'>#define <span class='def def-MACRO' id='0003300900033017'>__OFF_T_TYPE		__SYSCALL_SLONG_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0003400900034019'>__OFF64_T_TYPE		__SQUAD_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0003500900035017'>__PID_T_TYPE		__S32_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0003600900036018'>__RLIM_T_TYPE		__SYSCALL_ULONG_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='000370090003701a'>__RLIM64_T_TYPE		__UQUAD_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='000380090003801a'>__BLKCNT_T_TYPE		__SYSCALL_SLONG_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='000390090003901b'>__BLKCNT64_T_TYPE	__SQUAD_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0003a0090003a01b'>__FSBLKCNT_T_TYPE	__SYSCALL_ULONG_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0003b0090003b01d'>__FSBLKCNT64_T_TYPE	__UQUAD_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0003c0090003c01b'>__FSFILCNT_T_TYPE	__SYSCALL_ULONG_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0003d0090003d01d'>__FSFILCNT64_T_TYPE	__UQUAD_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0003e0090003e016'>__ID_T_TYPE		__U32_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0003f0090003f019'>__CLOCK_T_TYPE		__SYSCALL_SLONG_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0004000900040018'>__TIME_T_TYPE		__SYSCALL_SLONG_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='000410090004101b'>__USECONDS_T_TYPE	__U32_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='000420090004201c'>__SUSECONDS_T_TYPE	__SYSCALL_SLONG_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0004300900043019'>__DADDR_T_TYPE		__S32_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0004400900044017'>__KEY_T_TYPE		__S32_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='000450090004501a'>__CLOCKID_T_TYPE	__S32_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='000460090004601e'>__TIMER_T_TYPE		void *</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='000470090004701a'>__BLKSIZE_T_TYPE	__SYSCALL_SLONG_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='000480090004802f'>__FSID_T_TYPE		struct { int __val[2]; }</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0004900900049019'>__SSIZE_T_TYPE		__SWORD_TYPE</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0004a0090004a01a'>__CPU_MASK_TYPE 	__SYSCALL_ULONG_TYPE</span></span>
 
 <span class='directive'>#ifdef __x86_64__</span>
 <span class='comment'>/* Tell the libc code that off_t and off64_t are actually the same type
    for all ABI purposes, even if possibly expressed as different base types
    for C type-checking purposes.  */</span>
-<span class='directive'># define __OFF_T_MATCHES_OFF64_T	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='0005000a00050022'>__OFF_T_MATCHES_OFF64_T	1</span></span>
 
 <span class='comment'>/* Same for ino_t and ino64_t.  */</span>
-<span class='directive'># define __INO_T_MATCHES_INO64_T	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='0005300a00053022'>__INO_T_MATCHES_INO64_T	1</span></span>
 
 <span class='comment'>/* And for __rlim_t and __rlim64_t.  */</span>
-<span class='directive'># define __RLIM_T_MATCHES_RLIM64_T	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='0005600a00056024'>__RLIM_T_MATCHES_RLIM64_T	1</span></span>
 <span class='directive'>#else</span><span class='preprocessor-if muted'>
 <span class='directive'># define __RLIM_T_MATCHES_RLIM64_T	0</span></span>
 <span class='directive'>#endif</span>
 
 <span class='comment'>/* Number of descriptors that can fit in an `fd_set'.  */</span>
-<span class='directive'>#define __FD_SETSIZE		1024</span>
+<span class='directive'>#define <span class='def def-MACRO' id='0005c0090005c017'>__FD_SETSIZE		1024</span></span>
 
 
 <span class='directive'>#endif /* bits/typesizes.h */</span>

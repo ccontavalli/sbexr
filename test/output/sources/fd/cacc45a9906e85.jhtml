@@ -3,7 +3,7 @@
 <span class='comment'>/* Determine the wordsize from the preprocessor defines.  */</span>
 
 <span class='directive'>#if defined __x86_64__ &amp;&amp; !defined __ILP32__</span>
-<span class='directive'># define __WORDSIZE	64</span>
+<span class='directive'># define <span class='def def-MACRO' id='0000400a00004015'>__WORDSIZE	64</span></span>
 <span class='directive'>#else</span><span class='preprocessor-if muted'>
 <span class='directive'># define __WORDSIZE	32</span>
 <span class='directive'>#define __WORDSIZE32_SIZE_ULONG		0</span>
@@ -11,9 +11,9 @@
 <span class='directive'>#endif</span>
 
 <span class='directive'>#ifdef __x86_64__</span>
-<span class='directive'># define __WORDSIZE_TIME64_COMPAT32	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='0000c00a0000c025'>__WORDSIZE_TIME64_COMPAT32	1</span></span>
 <span class='comment'>/* Both x86-64 and x32 use the 64-bit system call interface.  */</span>
-<span class='directive'># define __SYSCALL_WORDSIZE		64</span>
+<span class='directive'># define <span class='def def-MACRO' id='0000e00a0000e01e'>__SYSCALL_WORDSIZE		64</span></span>
 <span class='directive'>#else</span><span class='preprocessor-if muted'>
 <span class='directive'># define __WORDSIZE_TIME64_COMPAT32	0</span></span>
 <span class='directive'>#endif</span>

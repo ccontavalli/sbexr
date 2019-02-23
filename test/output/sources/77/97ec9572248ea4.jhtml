@@ -1,7 +1,7 @@
 {"name":"__FILE.h","path":"/usr/include/x86_64-linux-gnu/bits/types/__FILE.h","root":"../06/416cc91f3e3d90.html","project":"test","tag":"output","parents":[{"name":"usr","href":"../60/7abc7e1c17ae25.html"},{"name":"include","href":"../19/901c5d9478e5ce.html"},{"name":"x86_64-linux-gnu","href":"../f0/212845f8a256c3.html"},{"name":"bits","href":"../23/32e20e89ff3dae.html"},{"name":"types","href":"../50/6c0d28222dde39.html"}]}
 ---
 <span class='directive'>#ifndef ____FILE_defined</span>
-<span class='directive'>#define ____FILE_defined 1</span>
+<span class='directive'>#define <span class='def def-MACRO' id='000020090000201a'>____FILE_defined 1</span></span>
 
 <span class='decl decl-CXXRecord' id='0000400100004008'><span class='keyword struct'>struct</span> _IO_FILE</span>;
 <span class='def def-Typedef' id='0000500100005019'><span class='keyword typedef'>typedef</span> <span class='keyword struct'>struct</span> _IO_FILE __FILE</span>;

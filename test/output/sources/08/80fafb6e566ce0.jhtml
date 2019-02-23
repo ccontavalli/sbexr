@@ -18,7 +18,7 @@
    &lt;http://www.gnu.org/licenses/&gt;.  */</span>
 
 <span class='directive'>#ifndef	_FEATURES_H</span>
-<span class='directive'>#define	_FEATURES_H	1</span>
+<span class='directive'>#define	<span class='def def-MACRO' id='0001300900013015'>_FEATURES_H	1</span></span>
 
 <span class='comment'>/* These are defined by the user (or the compiler)
    to specify the desired environment:
@@ -146,7 +146,7 @@
 <span class='comment'>/* Suppress kernel-name space pollution unless user expressedly asks
    for it.  */</span>
 <span class='directive'>#ifndef _LOOSE_KERNEL_NAMES</span>
-<span class='directive'># define __KERNEL_STRICT_NAMES</span>
+<span class='directive'># define <span class='def def-MACRO' id='0009300a0009300a'>__KERNEL_STRICT_NAMES</span></span>
 <span class='directive'>#endif</span>
 
 <span class='comment'>/* Convenience macro to test the version of gcc.
@@ -157,8 +157,8 @@
    Note: only works for GCC 2.0 and later, because __GNUC_MINOR__ was
    added in 2.0.  */</span>
 <span class='directive'>#if defined __GNUC__ &amp;&amp; defined __GNUC_MINOR__</span>
-<span class='directive'># define __GNUC_PREREQ(maj, min) \
-	((__GNUC__ &lt;&lt; 16) + __GNUC_MINOR__ &gt;= ((maj) &lt;&lt; 16) + (min))</span>
+<span class='directive'># define <span class='def def-MACRO' id='0009e00a0009f03d'>__GNUC_PREREQ(maj, min) \
+	((__GNUC__ &lt;&lt; 16) + __GNUC_MINOR__ &gt;= ((maj) &lt;&lt; 16) + (min))</span></span>
 <span class='directive'>#else</span><span class='preprocessor-if muted'>
 <span class='directive'># define __GNUC_PREREQ(maj, min) 0</span></span>
 <span class='directive'>#endif</span>
@@ -168,14 +168,14 @@
    __GNUC(_MINOR)__ are fixed at 4 and 2 respectively.  Not all such
    features can be queried via __has_extension/__has_feature.  */</span>
 <span class='directive'>#if defined __clang_major__ &amp;&amp; defined __clang_minor__</span>
-<span class='directive'># define __glibc_clang_prereq(maj, min) \
-  ((__clang_major__ &lt;&lt; 16) + __clang_minor__ &gt;= ((maj) &lt;&lt; 16) + (min))</span>
+<span class='directive'># define <span class='def def-MACRO' id='000a900a000aa046'>__glibc_clang_prereq(maj, min) \
+  ((__clang_major__ &lt;&lt; 16) + __clang_minor__ &gt;= ((maj) &lt;&lt; 16) + (min))</span></span>
 <span class='directive'>#else</span><span class='preprocessor-if muted'>
 <span class='directive'># define __glibc_clang_prereq(maj, min) 0</span></span>
 <span class='directive'>#endif</span>
 
 <span class='comment'>/* Whether to use feature set F.  */</span>
-<span class='directive'>#define __GLIBC_USE(F)	__GLIBC_USE_ ## F</span>
+<span class='directive'>#define <span class='def def-MACRO' id='000b0009000b0028'>__GLIBC_USE(F)	__GLIBC_USE_ ## F</span></span>
 
 <span class='comment'>/* _BSD_SOURCE and _SVID_SOURCE are deprecated aliases for
    _DEFAULT_SOURCE.  If _DEFAULT_SOURCE is present we do not
@@ -191,25 +191,25 @@
 <span class='comment'>/* If _GNU_SOURCE was defined by the user, turn on all the other features.  */</span>
 <span class='directive'>#ifdef _GNU_SOURCE</span>
 <span class='directive'># undef  _ISOC95_SOURCE</span>
-<span class='directive'># define _ISOC95_SOURCE	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='000c000a000c0019'>_ISOC95_SOURCE	1</span></span>
 <span class='directive'># undef  _ISOC99_SOURCE</span>
-<span class='directive'># define _ISOC99_SOURCE	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='000c200a000c2019'>_ISOC99_SOURCE	1</span></span>
 <span class='directive'># undef  _ISOC11_SOURCE</span>
-<span class='directive'># define _ISOC11_SOURCE	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='000c400a000c4019'>_ISOC11_SOURCE	1</span></span>
 <span class='directive'># undef  _POSIX_SOURCE</span>
-<span class='directive'># define _POSIX_SOURCE	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='000c600a000c6018'>_POSIX_SOURCE	1</span></span>
 <span class='directive'># undef  _POSIX_C_SOURCE</span>
-<span class='directive'># define _POSIX_C_SOURCE	200809L</span>
+<span class='directive'># define <span class='def def-MACRO' id='000c800a000c801a'>_POSIX_C_SOURCE	200809L</span></span>
 <span class='directive'># undef  _XOPEN_SOURCE</span>
-<span class='directive'># define _XOPEN_SOURCE	700</span>
+<span class='directive'># define <span class='def def-MACRO' id='000ca00a000ca018'>_XOPEN_SOURCE	700</span></span>
 <span class='directive'># undef  _XOPEN_SOURCE_EXTENDED</span>
-<span class='directive'># define _XOPEN_SOURCE_EXTENDED	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='000cc00a000cc021'>_XOPEN_SOURCE_EXTENDED	1</span></span>
 <span class='directive'># undef	 _LARGEFILE64_SOURCE</span>
-<span class='directive'># define _LARGEFILE64_SOURCE	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='000ce00a000ce01e'>_LARGEFILE64_SOURCE	1</span></span>
 <span class='directive'># undef  _DEFAULT_SOURCE</span>
-<span class='directive'># define _DEFAULT_SOURCE	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='000d000a000d001a'>_DEFAULT_SOURCE	1</span></span>
 <span class='directive'># undef  _ATFILE_SOURCE</span>
-<span class='directive'># define _ATFILE_SOURCE	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='000d200a000d2019'>_ATFILE_SOURCE	1</span></span>
 <span class='directive'>#endif</span>
 
 <span class='comment'>/* If nothing (other than _GNU_SOURCE and _DEFAULT_SOURCE) is defined,
@@ -220,25 +220,25 @@
 	 &amp;&amp; !defined _POSIX_SOURCE &amp;&amp; !defined _POSIX_C_SOURCE	\
 	 &amp;&amp; !defined _XOPEN_SOURCE))</span>
 <span class='directive'># undef  _DEFAULT_SOURCE</span>
-<span class='directive'># define _DEFAULT_SOURCE	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='000dd00a000dd01a'>_DEFAULT_SOURCE	1</span></span>
 <span class='directive'>#endif</span>
 
 <span class='comment'>/* This is to enable the ISO C11 extension.  */</span>
 <span class='directive'>#if (defined _ISOC11_SOURCE \
      || (defined __STDC_VERSION__ &amp;&amp; __STDC_VERSION__ &gt;= 201112L))</span>
-<span class='directive'># define __USE_ISOC11	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='000e300a000e3017'>__USE_ISOC11	1</span></span>
 <span class='directive'>#endif</span>
 
 <span class='comment'>/* This is to enable the ISO C99 extension.  */</span>
 <span class='directive'>#if (defined _ISOC99_SOURCE || defined _ISOC11_SOURCE \
      || (defined __STDC_VERSION__ &amp;&amp; __STDC_VERSION__ &gt;= 199901L))</span>
-<span class='directive'># define __USE_ISOC99	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='000e900a000e9017'>__USE_ISOC99	1</span></span>
 <span class='directive'>#endif</span>
 
 <span class='comment'>/* This is to enable the ISO C90 Amendment 1:1995 extension.  */</span>
 <span class='directive'>#if (defined _ISOC99_SOURCE || defined _ISOC11_SOURCE \
      || (defined __STDC_VERSION__ &amp;&amp; __STDC_VERSION__ &gt;= 199409L))</span>
-<span class='directive'># define __USE_ISOC95	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='000ef00a000ef017'>__USE_ISOC95	1</span></span>
 <span class='directive'>#endif</span>
 
 <span class='directive'>#ifdef __cplusplus</span>
@@ -249,8 +249,8 @@
 <span class='comment'>/* This is to enable compatibility for ISO C++11.
    Check the temporary macro for now, too.  */</span>
 <span class='directive'># if __cplusplus &gt;= 201103L || defined __GXX_EXPERIMENTAL_CXX0X__</span>
-<span class='directive'>#  define __USE_ISOCXX11	1</span>
-<span class='directive'>#  define __USE_ISOC99	1</span>
+<span class='directive'>#  define <span class='def def-MACRO' id='000fa00b000fa01a'>__USE_ISOCXX11	1</span></span>
+<span class='directive'>#  define <span class='def def-MACRO' id='000fb00b000fb018'>__USE_ISOC99	1</span></span>
 <span class='directive'># endif</span>
 <span class='directive'>#endif</span>
 
@@ -262,13 +262,13 @@
 <span class='directive'>#  define __USE_POSIX_IMPLICITLY	1</span></span>
 <span class='directive'># endif</span>
 <span class='directive'># undef  _POSIX_SOURCE</span>
-<span class='directive'># define _POSIX_SOURCE	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='0010700a00107018'>_POSIX_SOURCE	1</span></span>
 <span class='directive'># undef  _POSIX_C_SOURCE</span>
-<span class='directive'># define _POSIX_C_SOURCE	200809L</span>
+<span class='directive'># define <span class='def def-MACRO' id='0010900a0010901a'>_POSIX_C_SOURCE	200809L</span></span>
 <span class='directive'>#endif</span>
 
 <span class='directive'>#if ((!defined __STRICT_ANSI__					\
-      || (defined _XOPEN_SOURCE &amp;&amp; (_XOPEN_SOURCE - 0) &gt;= 500))	\
+      || (defined _XOPEN_SOURCE &amp;&amp; (<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#000ca00a000ca018'>_XOPEN_SOURCE</a> - 0) &gt;= 500))	\
      &amp;&amp; !defined _POSIX_SOURCE &amp;&amp; !defined _POSIX_C_SOURCE)</span><span class='preprocessor-if muted'>
 <span class='directive'># define _POSIX_SOURCE	1</span>
 <span class='directive'># if defined _XOPEN_SOURCE &amp;&amp; (_XOPEN_SOURCE - 0) &lt; 500</span>
@@ -289,7 +289,7 @@
    _POSIX_C_SOURCE=199506L, which is the earliest level of POSIX with
    comprehensive support for multithreaded code.  Using them never
    lowers the selected level of POSIX conformance, only raises it.  */</span>
-<span class='directive'>#if ((!defined _POSIX_C_SOURCE || (_POSIX_C_SOURCE - 0) &lt; 199506L) \
+<span class='directive'>#if ((!defined _POSIX_C_SOURCE || (<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0010900a0010901a'>_POSIX_C_SOURCE</a> - 0) &lt; 199506L) \
      &amp;&amp; (defined _REENTRANT || defined _THREAD_SAFE))</span><span class='preprocessor-if muted'>
 <span class='directive'># define _POSIX_SOURCE   1</span>
 <span class='directive'># undef  _POSIX_C_SOURCE</span>
@@ -297,55 +297,55 @@
 <span class='directive'>#endif</span>
 
 <span class='directive'>#if (defined _POSIX_SOURCE					\
-     || (defined _POSIX_C_SOURCE &amp;&amp; _POSIX_C_SOURCE &gt;= 1)	\
+     || (defined _POSIX_C_SOURCE &amp;&amp; <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0010900a0010901a'>_POSIX_C_SOURCE</a> &gt;= 1)	\
      || defined _XOPEN_SOURCE)</span>
-<span class='directive'># define __USE_POSIX	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='0012c00a0012c016'>__USE_POSIX	1</span></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#if defined _POSIX_C_SOURCE &amp;&amp; _POSIX_C_SOURCE &gt;= 2 || defined _XOPEN_SOURCE</span>
-<span class='directive'># define __USE_POSIX2	1</span>
+<span class='directive'>#if defined _POSIX_C_SOURCE &amp;&amp; <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0010900a0010901a'>_POSIX_C_SOURCE</a> &gt;= 2 || defined _XOPEN_SOURCE</span>
+<span class='directive'># define <span class='def def-MACRO' id='0013000a00130017'>__USE_POSIX2	1</span></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#if defined _POSIX_C_SOURCE &amp;&amp; (_POSIX_C_SOURCE - 0) &gt;= 199309L</span>
-<span class='directive'># define __USE_POSIX199309	1</span>
+<span class='directive'>#if defined _POSIX_C_SOURCE &amp;&amp; (<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0010900a0010901a'>_POSIX_C_SOURCE</a> - 0) &gt;= 199309L</span>
+<span class='directive'># define <span class='def def-MACRO' id='0013400a0013401c'>__USE_POSIX199309	1</span></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#if defined _POSIX_C_SOURCE &amp;&amp; (_POSIX_C_SOURCE - 0) &gt;= 199506L</span>
-<span class='directive'># define __USE_POSIX199506	1</span>
+<span class='directive'>#if defined _POSIX_C_SOURCE &amp;&amp; (<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0010900a0010901a'>_POSIX_C_SOURCE</a> - 0) &gt;= 199506L</span>
+<span class='directive'># define <span class='def def-MACRO' id='0013800a0013801c'>__USE_POSIX199506	1</span></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#if defined _POSIX_C_SOURCE &amp;&amp; (_POSIX_C_SOURCE - 0) &gt;= 200112L</span>
-<span class='directive'># define __USE_XOPEN2K		1</span>
+<span class='directive'>#if defined _POSIX_C_SOURCE &amp;&amp; (<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0010900a0010901a'>_POSIX_C_SOURCE</a> - 0) &gt;= 200112L</span>
+<span class='directive'># define <span class='def def-MACRO' id='0013c00a0013c019'>__USE_XOPEN2K		1</span></span>
 <span class='directive'># undef __USE_ISOC95</span>
-<span class='directive'># define __USE_ISOC95		1</span>
+<span class='directive'># define <span class='def def-MACRO' id='0013e00a0013e018'>__USE_ISOC95		1</span></span>
 <span class='directive'># undef __USE_ISOC99</span>
-<span class='directive'># define __USE_ISOC99		1</span>
+<span class='directive'># define <span class='def def-MACRO' id='0014000a00140018'>__USE_ISOC99		1</span></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#if defined _POSIX_C_SOURCE &amp;&amp; (_POSIX_C_SOURCE - 0) &gt;= 200809L</span>
-<span class='directive'># define __USE_XOPEN2K8		1</span>
+<span class='directive'>#if defined _POSIX_C_SOURCE &amp;&amp; (<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0010900a0010901a'>_POSIX_C_SOURCE</a> - 0) &gt;= 200809L</span>
+<span class='directive'># define <span class='def def-MACRO' id='0014400a0014401a'>__USE_XOPEN2K8		1</span></span>
 <span class='directive'># undef  _ATFILE_SOURCE</span>
-<span class='directive'># define _ATFILE_SOURCE	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='0014600a00146019'>_ATFILE_SOURCE	1</span></span>
 <span class='directive'>#endif</span>
 
 <span class='directive'>#ifdef	_XOPEN_SOURCE</span>
-<span class='directive'># define __USE_XOPEN	1</span>
-<span class='directive'># if (_XOPEN_SOURCE - 0) &gt;= 500</span>
-<span class='directive'>#  define __USE_XOPEN_EXTENDED	1</span>
-<span class='directive'>#  define __USE_UNIX98	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='0014a00a0014a016'>__USE_XOPEN	1</span></span>
+<span class='directive'># if (<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#000ca00a000ca018'>_XOPEN_SOURCE</a> - 0) &gt;= 500</span>
+<span class='directive'>#  define <span class='def def-MACRO' id='0014c00b0014c020'>__USE_XOPEN_EXTENDED	1</span></span>
+<span class='directive'>#  define <span class='def def-MACRO' id='0014d00b0014d018'>__USE_UNIX98	1</span></span>
 <span class='directive'>#  undef _LARGEFILE_SOURCE</span>
-<span class='directive'>#  define _LARGEFILE_SOURCE	1</span>
-<span class='directive'>#  if (_XOPEN_SOURCE - 0) &gt;= 600</span>
-<span class='directive'>#   if (_XOPEN_SOURCE - 0) &gt;= 700</span>
-<span class='directive'>#    define __USE_XOPEN2K8	1</span>
-<span class='directive'>#    define __USE_XOPEN2K8XSI	1</span>
+<span class='directive'>#  define <span class='def def-MACRO' id='0014f00b0014f01d'>_LARGEFILE_SOURCE	1</span></span>
+<span class='directive'>#  if (<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#000ca00a000ca018'>_XOPEN_SOURCE</a> - 0) &gt;= 600</span>
+<span class='directive'>#   if (<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#000ca00a000ca018'>_XOPEN_SOURCE</a> - 0) &gt;= 700</span>
+<span class='directive'>#    define <span class='def def-MACRO' id='0015200d0015201c'>__USE_XOPEN2K8	1</span></span>
+<span class='directive'>#    define <span class='def def-MACRO' id='0015300d0015301f'>__USE_XOPEN2K8XSI	1</span></span>
 <span class='directive'>#   endif</span>
-<span class='directive'>#   define __USE_XOPEN2K	1</span>
-<span class='directive'>#   define __USE_XOPEN2KXSI	1</span>
+<span class='directive'>#   define <span class='def def-MACRO' id='0015500c0015501a'>__USE_XOPEN2K	1</span></span>
+<span class='directive'>#   define <span class='def def-MACRO' id='0015600c0015601d'>__USE_XOPEN2KXSI	1</span></span>
 <span class='directive'>#   undef __USE_ISOC95</span>
-<span class='directive'>#   define __USE_ISOC95		1</span>
+<span class='directive'>#   define <span class='def def-MACRO' id='0015800c0015801a'>__USE_ISOC95		1</span></span>
 <span class='directive'>#   undef __USE_ISOC99</span>
-<span class='directive'>#   define __USE_ISOC99		1</span>
+<span class='directive'>#   define <span class='def def-MACRO' id='0015a00c0015a01a'>__USE_ISOC99		1</span></span>
 <span class='directive'>#  endif</span>
 <span class='directive'># else</span><span class='preprocessor-if muted'>
 <span class='directive'>#  ifdef _XOPEN_SOURCE_EXTENDED</span>
@@ -355,11 +355,11 @@
 <span class='directive'>#endif</span>
 
 <span class='directive'>#ifdef _LARGEFILE_SOURCE</span>
-<span class='directive'># define __USE_LARGEFILE	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='0016400a0016401a'>__USE_LARGEFILE	1</span></span>
 <span class='directive'>#endif</span>
 
 <span class='directive'>#ifdef _LARGEFILE64_SOURCE</span>
-<span class='directive'># define __USE_LARGEFILE64	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='0016800a0016801c'>__USE_LARGEFILE64	1</span></span>
 <span class='directive'>#endif</span>
 
 <span class='directive'>#if defined _FILE_OFFSET_BITS &amp;&amp; _FILE_OFFSET_BITS == 64</span><span class='preprocessor-if muted'>
@@ -367,26 +367,26 @@
 <span class='directive'>#endif</span>
 
 <span class='directive'>#if defined _DEFAULT_SOURCE</span>
-<span class='directive'># define __USE_MISC	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='0017000a00170015'>__USE_MISC	1</span></span>
 <span class='directive'>#endif</span>
 
 <span class='directive'>#ifdef	_ATFILE_SOURCE</span>
-<span class='directive'># define __USE_ATFILE	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='0017400a00174017'>__USE_ATFILE	1</span></span>
 <span class='directive'>#endif</span>
 
 <span class='directive'>#ifdef	_GNU_SOURCE</span>
-<span class='directive'># define __USE_GNU	1</span>
+<span class='directive'># define <span class='def def-MACRO' id='0017800a00178014'>__USE_GNU	1</span></span>
 <span class='directive'>#endif</span>
 
 <span class='directive'>#if defined _FORTIFY_SOURCE &amp;&amp; _FORTIFY_SOURCE &gt; 0 \
-    &amp;&amp; __GNUC_PREREQ (4, 1) &amp;&amp; defined __OPTIMIZE__ &amp;&amp; __OPTIMIZE__ &gt; 0</span><span class='preprocessor-if muted'>
+    &amp;&amp; <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0009e00a0009f03d'>__GNUC_PREREQ</a> (4, 1) &amp;&amp; defined __OPTIMIZE__ &amp;&amp; __OPTIMIZE__ &gt; 0</span><span class='preprocessor-if muted'>
 <span class='directive'># if _FORTIFY_SOURCE &gt; 1</span>
 <span class='directive'>#  define __USE_FORTIFY_LEVEL 2</span>
 <span class='directive'># else</span>
 <span class='directive'>#  define __USE_FORTIFY_LEVEL 1</span>
 <span class='directive'># endif</span></span>
 <span class='directive'>#else</span>
-<span class='directive'># define __USE_FORTIFY_LEVEL 0</span>
+<span class='directive'># define <span class='def def-MACRO' id='0018300a0018301e'>__USE_FORTIFY_LEVEL 0</span></span>
 <span class='directive'>#endif</span>
 
 <span class='comment'>/* The function 'gets' existed in C89, but is impossible to use
@@ -396,7 +396,7 @@
 <span class='directive'>#if defined __cplusplus ? __cplusplus &gt;= 201402L : defined __USE_ISOC11</span><span class='preprocessor-if muted'>
 <span class='directive'># define __GLIBC_USE_DEPRECATED_GETS 0</span></span>
 <span class='directive'>#else</span>
-<span class='directive'># define __GLIBC_USE_DEPRECATED_GETS 1</span>
+<span class='directive'># define <span class='def def-MACRO' id='0018d00a0018d026'>__GLIBC_USE_DEPRECATED_GETS 1</span></span>
 <span class='directive'>#endif</span>
 
 <span class='comment'>/* Get definitions of __STDC_* predefined macros, if the compiler has
@@ -410,15 +410,15 @@
    GNU C library version and use the values in &lt;gnu/lib-names.h&gt; to get
    the sonames of the shared libraries.  */</span>
 <span class='directive'>#undef  __GNU_LIBRARY__</span>
-<span class='directive'>#define __GNU_LIBRARY__ 6</span>
+<span class='directive'>#define <span class='def def-MACRO' id='0019b0090019b019'>__GNU_LIBRARY__ 6</span></span>
 
 <span class='comment'>/* Major and minor version number of the GNU C library package.  Use
    these macros to test for features in specific releases.  */</span>
-<span class='directive'>#define	__GLIBC__	2</span>
-<span class='directive'>#define	__GLIBC_MINOR__	28</span>
+<span class='directive'>#define	<span class='def def-MACRO' id='0019f0090019f013'>__GLIBC__	2</span></span>
+<span class='directive'>#define	<span class='def def-MACRO' id='001a0009001a0019'>__GLIBC_MINOR__	28</span></span>
 
-<span class='directive'>#define __GLIBC_PREREQ(maj, min) \
-	((__GLIBC__ &lt;&lt; 16) + __GLIBC_MINOR__ &gt;= ((maj) &lt;&lt; 16) + (min))</span>
+<span class='directive'>#define <span class='def def-MACRO' id='001a2009001a303f'>__GLIBC_PREREQ(maj, min) \
+	((__GLIBC__ &lt;&lt; 16) + __GLIBC_MINOR__ &gt;= ((maj) &lt;&lt; 16) + (min))</span></span>
 
 <span class='comment'>/* This is here only because every header file already includes this one.  */</span>
 <span class='directive'>#ifndef __ASSEMBLER__</span>
@@ -436,7 +436,7 @@
 <span class='directive'>#endif	/* !ASSEMBLER */</span>
 
 <span class='comment'>/* Decide whether we can define 'extern inline' functions in headers.  */</span>
-<span class='directive'>#if __GNUC_PREREQ (2, 7) &amp;&amp; defined __OPTIMIZE__ \
+<span class='directive'>#if <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0009e00a0009f03d'>__GNUC_PREREQ</a> (2, 7) &amp;&amp; defined __OPTIMIZE__ \
     &amp;&amp; !defined __OPTIMIZE_SIZE__ &amp;&amp; !defined __NO_INLINE__ \
     &amp;&amp; defined __extern_inline</span><span class='preprocessor-if muted'>
 <span class='directive'># define __USE_EXTERN_INLINES	1</span></span>

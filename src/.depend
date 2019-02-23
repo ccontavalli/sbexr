@@ -34,19 +34,19 @@ wrapping.o: wrapping.cc \
 	mempool.h \
 	rewriter.h
 sbexr.o: sbexr.cc \
+	ast.h \
 	base.h \
-	indexer.h \
 	cache.h \
 	common.h \
 	renderer.h \
 	json-helpers.h \
 	mempool.h \
 	rewriter.h \
+	indexer.h \
 	cindex.h \
 	printer.h \
-	wrapping.h \
-	ast.h \
-	pp-tracker.h
+	pp-tracker.h \
+	wrapping.h
 cache.o: cache.cc \
 	cache.h \
 	base.h \
@@ -76,8 +76,8 @@ rewriter.o: rewriter.cc \
 	cindex.h \
 	indexer.cc \
 	wrapping.cc \
-	printer.h \
 	ast.h \
+	printer.h \
 	pp-tracker.h \
 	sbexr.cc \
 	cache.cc \

@@ -59,7 +59,7 @@
 <span class='directive'>#if !defined(_SIZE_T) || __has_feature(modules)</span>
 <span class='comment'>/* Always define size_t when modules are available. */</span>
 <span class='directive'>#if !__has_feature(modules)</span>
-<span class='directive'>#define _SIZE_T</span>
+<span class='directive'>#define <span class='def def-MACRO' id='0003c0090003c009'>_SIZE_T</span></span>
 <span class='directive'>#endif</span>
 <span class='def def-Typedef' id='0003e0010003e017'><span class='keyword typedef'>typedef</span> __SIZE_TYPE__ size_t</span>;
 <span class='directive'>#endif</span>
@@ -99,7 +99,7 @@
 <span class='directive'>#undef NULL</span>
 <span class='directive'>#ifdef __cplusplus</span>
 <span class='directive'>#  if !defined(__MINGW32__) &amp;&amp; !defined(_MSC_VER)</span>
-<span class='directive'>#    define NULL __null</span>
+<span class='directive'>#    define <span class='def def-MACRO' id='0006400d00064012'>NULL __null</span></span>
 <span class='directive'>#  else</span><span class='preprocessor-if muted'>
 <span class='directive'>#    define NULL 0</span></span>
 <span class='directive'>#  endif</span>

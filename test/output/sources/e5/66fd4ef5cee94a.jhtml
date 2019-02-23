@@ -29,7 +29,7 @@
 <span class='comment'>// policies, either expressed or implied, of Carlo Contavalli.</span>
 
 <span class='directive'>#ifndef TEST_MULTIPLE_FILE_1_H</span>
-<span class='directive'># define TEST_MULTIPLE_FILE_1_H</span>
+<span class='directive'># define <span class='def def-MACRO' id='0001e00a0001e00a'>TEST_MULTIPLE_FILE_1_H</span></span>
 
 <span class='decl decl-CXXRecord' id='0002000100020007'><span class='keyword class'>class</span> Test</span>;
 

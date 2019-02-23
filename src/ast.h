@@ -40,6 +40,9 @@ class SbexrRecorder {
   SbexrRecorder(FileCache* cache, Indexer* index)
       : cache_(cache), index_(index) {}
 
+  FileCache* GetCache() const { return cache_; }
+  const CompilerInstance* GetCI() const { return ci_; }
+
   void SetParameters(const CompilerInstance* ci) {
     ci_ = ci;
     printer_ = Printer(*ci, cache_);
@@ -106,25 +109,25 @@ class SbexrRecorder {
   }
 
   template <typename UserT>
-  void RecordTypeUse(const UserT& user, const char* description,
+  bool RecordTypeUse(const UserT& user, const char* description,
                      TagDecl* target) {
-    if (!target) return;
+    if (!target) return false;
 
     const auto& ntarget = NormalizeSourceRange(target->getSourceRange());
-    if (!ntarget.isValid()) return;
-
     const auto& nuser = NormalizeSourceRange(GetSourceRangeOrFail(user));
-    index_->RecordUse(ci_->getSourceManager(), ntarget, nuser, description);
+    return index_->RecordUse(ci_->getSourceManager(), ntarget, nuser,
+                             description);
   }
 
   template <typename UserT>
   void CodeUsesQualType(const UserT& user, const char* description,
                         const QualType& qual_type) {
     auto* real_type = GetTagDeclForType(qual_type);
-    LinkToType(user, description, real_type);
-    RecordTypeUse(user, description, real_type);
+    if (RecordTypeUse(user, description, real_type))
+      LinkToType(user, description, real_type);
   }
 
+  // Same as CodeUses, but TargetT is an element of the clang/llvm AST.
   template <typename UserT, typename TargetT>
   void CodeUses(const UserT& user, const char* description,
                 const TargetT& target) {
@@ -141,8 +144,7 @@ class SbexrRecorder {
     // This means that there will be a link pointing correctly to
     // the field.
     const auto sr = GetSourceRangeOrFail(user);
-
-    const auto& ntarget = NormalizeSourceRange(target.getSourceRange());
+    const auto& ntarget = NormalizeSourceRange(GetSourceRangeOrFail(target));
     const auto& nuser = NormalizeSourceRange(sr);
 
     if ((isa<RecordDecl>(&target) &&
@@ -157,38 +159,78 @@ class SbexrRecorder {
                   << std::endl;
       return;
     }
+    return CodeUses(user, description, target.Decl::getDeclKindName(), target);
+  }
 
-    if (!ntarget.isValid()) return;
+  template <typename UserT, typename TargetT>
+  void CodeUses(const UserT& user, const char* description,
+                const char* targettype, const TargetT& target) {
+    const auto sr = GetSourceRangeOrFail(user);
+    const auto& ntarget = NormalizeSourceRange(GetSourceRangeOrFail(target));
+    const auto& nuser = NormalizeSourceRange(sr);
 
     if (gl_verbose)
-      std::cerr << "+ USE " << description << " "
-                << target.Decl::getDeclKindName() << " " << PrintLocation(nuser)
-                << " " << PrintLocation(ntarget) << std::endl;
+      std::cerr << "+ USE " << description << " " << targettype << " "
+                << PrintLocation(nuser) << " " << PrintLocation(ntarget)
+                << std::endl;
 
-    WrapWithTag(*ci_, cache_, sr,
-                MakeTag("a", {std::string(description) + "-uses"},
-                        {"href", MakeIdLink(ntarget)}));
-    index_->RecordUse(ci_->getSourceManager(), ntarget, nuser, description);
+    if (index_->RecordUse(ci_->getSourceManager(), ntarget, nuser,
+                          description)) {
+      WrapWithTag(*ci_, cache_, sr,
+                  MakeTag("a", {std::string(description) + "-uses"},
+                          {"href", MakeIdLink(ntarget)}));
+    }
   }
 
   template <typename DefinerT, typename DefinedT>
   void CodeDefines(const DefinerT& definer, const DefinedT& defined,
                    const char* kind, const std::string& name,
                    AccessSpecifier access, clang::Linkage linkage) {
+    CodeDefines(definer, definer, defined, kind, name, access, linkage);
+  }
+
+  // What are definer and defined?
+  // Let's say you have a declaration in a header file, and a separate
+  // definition in the .cc file. The definer points to the declaration in the .h
+  // file. The defined points to the definition in the .cc file. Users will
+  // likely know only about the declaration, and not the definition. So the link
+  // is computed based on the definer, not the defined. Basically, definer is
+  // the target to the link.
+  template <typename HighlightT, typename DefinerT, typename DefinedT>
+  void CodeDefines(const HighlightT& highlight, const DefinerT& definer,
+                   const DefinedT& defined, const char* kind,
+                   const std::string& name, AccessSpecifier access,
+                   clang::Linkage linkage) {
     if (name.empty()) return;
-    auto definer_range = NormalizeSourceRange(definer.getSourceRange());
-    auto defined_range = NormalizeSourceRange(defined.getSourceRange());
+
+    auto definer_range = NormalizeSourceRange(GetSourceRangeOrFail(definer));
+    auto defined_range = NormalizeSourceRange(GetSourceRangeOrFail(defined));
 
     const auto& id = MakeIdName(definer_range);
-    if (gl_verbose)
-      std::cerr << "+ DEFINE FOR " << id << " " << kind << std::endl;
+    if (gl_verbose) {
+      const auto& buggy = MakeIdName(definer_range);
+      if (std::string(kind) != "MACRO" && id != buggy) {
+        std::cerr << "BUGGY!" << std::endl;
+        std::cerr << "  DEFINER " << PrintLocation(definer_range) << " "
+                  << PrintCode(definer_range) << std::endl;
+        std::cerr << "  DEFINED " << PrintLocation(defined_range) << " "
+                  << PrintCode(defined_range) << std::endl;
+      }
+      std::cerr << "+ DEFINE FOR " << id << " " << kind << " "
+                << PrintCode(definer_range) << std::endl;
+      std::cerr << "+ BUGGY FOR " << MakeIdName(definer_range) << " " << kind
+                << std::endl;
+    }
 
-    WrapWithTag(
-        *ci_, cache_, definer_range,
-        MakeTag("span", {"def", std::string("def-") + kind}, {"id", id}));
-    index_->RecordDefines(ci_->getSourceManager(), defined_range, definer_range,
-                          kind, name, GetSnippet(definer_range), access,
-                          linkage);
+    auto highlight_range =
+        NormalizeSourceRange(GetSourceRangeOrFail(highlight));
+    if (index_->RecordDefines(ci_->getSourceManager(), defined_range,
+                              definer_range, kind, name,
+                              GetSnippet(definer_range), access, linkage)) {
+      WrapWithTag(
+          *ci_, cache_, highlight_range,
+          MakeTag("span", {"def", std::string("def-") + kind}, {"id", id}));
+    }
   }
 
   // Records that the code declares something.
@@ -201,18 +243,18 @@ class SbexrRecorder {
     auto declarer_range = NormalizeSourceRange(declarer.getSourceRange());
     auto declared_range = NormalizeSourceRange(declared.getSourceRange());
 
-    if (!declared_range.isValid()) return;
-
     const auto& id = MakeIdName(declared_range);
     if (gl_verbose)
       std::cerr << "+ DECLARES FOR " << id << " " << kind << std::endl;
-    if (&declared == &declarer)
+
+    if (index_->RecordDeclares(ci_->getSourceManager(), declared_range,
+                               declarer_range, kind, name,
+                               GetSnippet(declared_range), access, linkage) &&
+        &declared == &declarer) {
       WrapWithTag(
           *ci_, cache_, declared_range,
           MakeTag("span", {"decl", std::string("decl-") + kind}, {"id", id}));
-    index_->RecordDeclares(ci_->getSourceManager(), declared_range,
-                           declarer_range, kind, name,
-                           GetSnippet(declared_range), access, linkage);
+    }
   }
 
   template <typename TypeT>
@@ -221,9 +263,18 @@ class SbexrRecorder {
     return ::PrintLocation(sm, cache_, range);
   }
 
+  std::string PrintCode(const SourceRange& range) {
+    const auto& sm = ci_->getSourceManager();
+    return ::PrintCode(sm, range);
+  }
+
   template <typename TypeT>
   std::string TryPrint(const TypeT* v) {
     return printer_.Print(v);
+  }
+
+  FileRenderer::ParsedFile* GetFileFor(SourceLocation location) const {
+    return cache_->GetFileFor(ci_->getSourceManager(), location);
   }
 
  private:
@@ -238,10 +289,6 @@ class SbexrRecorder {
   }
   std::string MakeIdName(SourceRange location) {
     return ::MakeIdName(ci_->getSourceManager(), location);
-  }
-
-  FileRenderer::ParsedFile* GetFileFor(SourceLocation location) const {
-    return cache_->GetFileFor(ci_->getSourceManager(), location);
   }
 
   StringRef GetSnippet(const SourceRange& range) {
@@ -293,9 +340,7 @@ class SbexrRecorder {
 class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
  public:
   using Base = RecursiveASTVisitor<SbexrAstVisitor>;
-  SbexrAstVisitor(FileCache* cache, Indexer* indexer)
-      : recorder_(cache, indexer) {}
-  SbexrRecorder* GetRecorder() { return &recorder_; }
+  SbexrAstVisitor(SbexrRecorder* recorder) : recorder_(recorder) {}
 
   bool shouldVisitTemplateInstantiations() const { return true; }
   // Setting this to true will get the visitor to enter things like
@@ -308,9 +353,9 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
   bool TraverseDecl(Decl* decl) {
     if (!decl) return Base::TraverseDecl(decl);
 
-    if (recorder_.LocationRendered(decl->getBeginLoc())) {
+    if (recorder_->LocationRendered(decl->getBeginLoc())) {
       if (gl_verbose)
-        std::cerr << "FILE ALREADY PARSED " << recorder_.TryPrint(decl)
+        std::cerr << "FILE ALREADY PARSED " << recorder_->TryPrint(decl)
                   << std::endl;
       return true;
     }
@@ -320,14 +365,15 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 
   bool VisitMemberExpr(MemberExpr* e) {
     if (gl_verbose) {
-      std::cerr << "MEMBEREXPR " << recorder_.PrintLocation(e->getSourceRange())
-                << recorder_.PrintLocation(
+      std::cerr << "MEMBEREXPR "
+                << recorder_->PrintLocation(e->getSourceRange())
+                << recorder_->PrintLocation(
                        e->getMemberNameInfo().getSourceRange())
                 << std::endl;
       e->dump();
     }
-    recorder_.CodeUses(e->getMemberNameInfo(), "expression",
-                       *e->getFoundDecl());
+    recorder_->CodeUses(e->getMemberNameInfo(), "expression",
+                        *e->getFoundDecl());
     return Base::VisitMemberExpr(e);
   }
   bool VisitDeclRefExpr(DeclRefExpr* e) {
@@ -336,9 +382,9 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
     if (gl_verbose)
       std::cerr << "DECLREFEXPR " << e->getNameInfo().getAsString() << " "
                 << e->getFoundDecl()->getNameAsString() << " "
-                << recorder_.PrintLocation(e->getFoundDecl()->getSourceRange())
+                << recorder_->PrintLocation(e->getFoundDecl()->getSourceRange())
                 << std::endl;
-    recorder_.CodeUses(*e, "variable", *e->getFoundDecl());
+    recorder_->CodeUses(*e, "variable", *e->getFoundDecl());
     return Base::VisitDeclRefExpr(e);
   }
 
@@ -389,10 +435,10 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
     if (gl_verbose) {
       std::cerr << "DECLARATORDECL " << v->getName().str() << " "
                 << v->getQualifiedNameAsString() << " "
-                << recorder_.PrintLocation(v->getSourceRange()) << " "
-                << recorder_.PrintLocation(decl->getSourceRange());
+                << recorder_->PrintLocation(v->getSourceRange()) << " "
+                << recorder_->PrintLocation(decl->getSourceRange());
       std::cerr << std::endl;
-      std::cerr << "DeclaratorDecl: " << recorder_.TryPrint(v) << std::endl;
+      std::cerr << "DeclaratorDecl: " << recorder_->TryPrint(v) << std::endl;
     }
     // v->dump();
 
@@ -421,25 +467,25 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 
       if (gl_verbose)
         std::cerr << "getTypeSourceInfo: "
-                  << recorder_.TryPrint(v->getTypeSourceInfo()) << std::endl;
+                  << recorder_->TryPrint(v->getTypeSourceInfo()) << std::endl;
 
       // If this is a VarDecl in a DeclStmt, then it only needs to be recorded.
       // The type link was already created by the DeclStmt.
       auto* vt = dyn_cast<VarDecl>(v);
       if (vt && vt->isLocalVarDecl()) {
-        auto* rt = recorder_.GetTagDeclForType(v->getType());
-        recorder_.RecordTypeUse(v->getTypeSourceInfo()->getTypeLoc(),
-                                "declaration", rt);
+        auto* rt = recorder_->GetTagDeclForType(v->getType());
+        recorder_->RecordTypeUse(v->getTypeSourceInfo()->getTypeLoc(),
+                                 "declaration", rt);
       } else {
-        recorder_.CodeUsesQualType(v->getTypeSourceInfo()->getTypeLoc(),
-                                   "declaration", v->getType());
+        recorder_->CodeUsesQualType(v->getTypeSourceInfo()->getTypeLoc(),
+                                    "declaration", v->getType());
       }
     }
     return Base::VisitDeclaratorDecl(v);
   }
   bool VisitUsingDecl(UsingDecl* v) {
     // FIXME: do something smart on using declarations.
-    if (gl_verbose) std::cerr << recorder_.TryPrint(v) << std::endl;
+    if (gl_verbose) std::cerr << recorder_->TryPrint(v) << std::endl;
 #if 0
     if (v->shadow_size() == 1) {
       const auto& target = v->shadow_begin()->getTargetDecl();
@@ -455,7 +501,7 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
   bool VisitNamedDecl(NamedDecl* v) {
     if (!v) return true;
 
-    if (gl_verbose) std::cerr << recorder_.TryPrint(v) << std::endl;
+    if (gl_verbose) std::cerr << recorder_->TryPrint(v) << std::endl;
 
     if (isa<FunctionDecl>(v)) {
       // For each use of a templated function, the AST will contain,
@@ -469,21 +515,22 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
         return true;
 
       // Record the use of the return type.
-      recorder_.CodeUsesQualType(f->getReturnTypeSourceRange(), "return",
-                                 f->getReturnType());
+      recorder_->CodeUsesQualType(f->getReturnTypeSourceRange(), "return",
+                                  f->getReturnType());
 
       auto* first = f->getFirstDecl();
       if (!first) first = f;
-      if (gl_verbose) std::cerr << recorder_.TryPrint(f) << "\n";
+      if (gl_verbose) std::cerr << recorder_->TryPrint(f) << "\n";
 
       if (f->isThisDeclarationADefinition()) {
-        recorder_.CodeDefines(*v, *first, v->getDeclKindName(),
-                              v->getQualifiedNameAsString(), v->getAccess(),
-                              v->getLinkageInternal());
-      } else {
-        recorder_.CodeDeclares(*v, *first, v->getDeclKindName(),
+        // SOURCE OF BUGGY[1] (IO_FILE_)
+        recorder_->CodeDefines(*v, *first, v->getDeclKindName(),
                                v->getQualifiedNameAsString(), v->getAccess(),
                                v->getLinkageInternal());
+      } else {
+        recorder_->CodeDeclares(*v, *first, v->getDeclKindName(),
+                                v->getQualifiedNameAsString(), v->getAccess(),
+                                v->getLinkageInternal());
       }
     } else if (isa<TagDecl>(v)) {
       auto* t = cast<TagDecl>(v);
@@ -492,17 +539,18 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
       if (!first) first = t;
 
       if (t->isCompleteDefinition()) {
-        recorder_.CodeDefines(*v, *first, v->getDeclKindName(),
-                              v->getQualifiedNameAsString(), v->getAccess(),
-                              v->getLinkageInternal());
-      } else {
-        recorder_.CodeDeclares(*v, *first, v->getDeclKindName(),
+        // SOURCE OF BUGGY[0] (IO_FILE_)
+        recorder_->CodeDefines(*v, *first, v->getDeclKindName(),
                                v->getQualifiedNameAsString(), v->getAccess(),
                                v->getLinkageInternal());
+      } else {
+        recorder_->CodeDeclares(*v, *first, v->getDeclKindName(),
+                                v->getQualifiedNameAsString(), v->getAccess(),
+                                v->getLinkageInternal());
       }
     } else if (isa<VarDecl>(v)) {
       auto* t = cast<VarDecl>(v);
-      if (gl_verbose) std::cerr << recorder_.TryPrint(t) << std::endl;
+      if (gl_verbose) std::cerr << recorder_->TryPrint(t) << std::endl;
 
       auto* first = t->getFirstDecl();
       if (!first) first = t;
@@ -512,34 +560,34 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
         if (context && context->getDeclKind() == Decl::Function) {
           auto* function = cast<FunctionDecl>(context);
           if (function && function->isThisDeclarationADefinition()) {
-            recorder_.CodeDefines(*v, *first, v->getDeclKindName(),
-                                  v->getQualifiedNameAsString(), v->getAccess(),
-                                  v->getLinkageInternal());
+            recorder_->CodeDefines(*v, *first, v->getDeclKindName(),
+                                   v->getQualifiedNameAsString(),
+                                   v->getAccess(), v->getLinkageInternal());
           }
         }
       } else {
         // FIXME: 'extern' variables are declarations. But so are some form of
         // static attributes and similar? This code could be better.
         if (t->hasExternalStorage()) {
-          recorder_.CodeDeclares(*v, *first, v->getDeclKindName(),
+          recorder_->CodeDeclares(*v, *first, v->getDeclKindName(),
+                                  v->getQualifiedNameAsString(), v->getAccess(),
+                                  v->getLinkageInternal());
+        } else {
+          recorder_->CodeDefines(*v, *first, v->getDeclKindName(),
                                  v->getQualifiedNameAsString(), v->getAccess(),
                                  v->getLinkageInternal());
-        } else {
-          recorder_.CodeDefines(*v, *first, v->getDeclKindName(),
-                                v->getQualifiedNameAsString(), v->getAccess(),
-                                v->getLinkageInternal());
         }
       }
     } else {
-      recorder_.CodeDefines(*v, *v, v->getDeclKindName(),
-                            v->getQualifiedNameAsString(), v->getAccess(),
-                            v->getLinkageInternal());
+      recorder_->CodeDefines(*v, *v, v->getDeclKindName(),
+                             v->getQualifiedNameAsString(), v->getAccess(),
+                             v->getLinkageInternal());
     }
     return Base::VisitNamedDecl(v);
   }
 
   bool VisitDeclStmt(DeclStmt* stmt) {
-    if (gl_verbose) std::cerr << recorder_.TryPrint(stmt) << std::endl;
+    if (gl_verbose) std::cerr << recorder_->TryPrint(stmt) << std::endl;
 
     // The first declaration in the statement that has a type should link the
     // type. Example:
@@ -551,9 +599,9 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
     for (auto& decl : stmt->decls()) {
       auto* decldecl = dyn_cast<DeclaratorDecl>(decl);
       if (decldecl) {
-        auto* rt = recorder_.GetTagDeclForType(decldecl->getType());
-        recorder_.LinkToType(decldecl->getTypeSourceInfo()->getTypeLoc(),
-                             "declaration", rt);
+        auto* rt = recorder_->GetTagDeclForType(decldecl->getType());
+        recorder_->LinkToType(decldecl->getTypeSourceInfo()->getTypeLoc(),
+                              "declaration", rt);
         break;
       }
     }
@@ -601,14 +649,14 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
   //  }
 
  private:
-  SbexrRecorder recorder_;
+  SbexrRecorder* recorder_;
 };
 
 // Implementation of the ASTConsumer interface for reading an AST produced
 // by the Clang parser.
 class SbexrAstConsumer : public ASTConsumer {
  public:
-  SbexrAstConsumer(FileCache* cache, Indexer* index) : visitor_(cache, index) {}
+  SbexrAstConsumer(SbexrRecorder* recorder) : visitor_(recorder) {}
   SbexrAstVisitor* GetVisitor() { return &visitor_; }
 
   void HandleTranslationUnit(ASTContext& context) override {

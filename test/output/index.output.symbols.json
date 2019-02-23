@@ -148,6 +148,24 @@
             ]
         },
         {
+            "name": "BUFSIZ",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0006300900063010",
+                            "location": "/usr/include/stdio.h:99:9-99:16",
+                            "snippet": "#define BUFSIZ 8192"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
             "name": "CheckArgs",
             "kinds": [
                 {
@@ -217,6 +235,42 @@
             ]
         },
         {
+            "name": "EOF",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0006800900068010",
+                            "location": "/usr/include/stdio.h:104:9-104:16",
+                            "snippet": "#define EOF (-1)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "FIELD",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../bc/764de7984141e0.html#0002a00a0002a013",
+                            "location": "include-all.h:42:10-42:19",
+                            "snippet": "# define FIELD(A) A"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
             "name": "FILE",
             "kinds": [
                 {
@@ -227,6 +281,42 @@
                             "href": "../00/eb21e8e066d2fe.html#0000700100007019",
                             "location": "/usr/include/x86_64-linux-gnu/bits/types/FILE.h:7:1-7:25",
                             "snippet": "typedef struct _IO_FILE FILE;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "FILENAME_MAX",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../0c/a8a47b0c4f7800.html#0001b0090001b016",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:27:9-27:22",
+                            "snippet": "#define FILENAME_MAX 4096"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "FOPEN_MAX",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../0c/a8a47b0c4f7800.html#0002500900025013",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:37:9-37:19",
+                            "snippet": "#define FOPEN_MAX 16"
                         }
                     ],
                     "decls": []
@@ -274,6 +364,24 @@
             ]
         },
         {
+            "name": "INCLUDE_ALL_H",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../bc/764de7984141e0.html#0001e00a0001e00a",
+                            "location": "include-all.h:30:10-30:10",
+                            "snippet": "# define INCLUDE_ALL_H"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
             "name": "IncludedByAll",
             "kinds": [
                 {
@@ -284,6 +392,96 @@
                             "href": "../bc/764de7984141e0.html#0002200100024001",
                             "location": "include-all.h:34:1-36:1",
                             "snippet": "static inline void IncludedByAll(int value) {"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "L_ctermid",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../0c/a8a47b0c4f7800.html#0001e00a0001e014",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:30:10-30:20",
+                            "snippet": "# define L_ctermid 9"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "L_cuserid",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../0c/a8a47b0c4f7800.html#0002000b00020015",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:32:11-32:21",
+                            "snippet": "#  define L_cuserid 9"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "L_tmpnam",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../0c/a8a47b0c4f7800.html#0001900900019012",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:25:9-25:18",
+                            "snippet": "#define L_tmpnam 20"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "MACRO",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../bc/764de7984141e0.html#0002600a00026022",
+                            "location": "include-all.h:38:10-38:34",
+                            "snippet": "# define MACRO(A) IncludedByAll(A)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "MACROP",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../bc/764de7984141e0.html#0002800a0002801c",
+                            "location": "include-all.h:40:10-40:28",
+                            "snippet": "# define MACROP(B) printf(B)"
                         }
                     ],
                     "decls": []
@@ -318,6 +516,24 @@
                             "href": "../7c/1572fe148af43d.html#000390010003d001",
                             "location": "test-multiple-file-0.cc:57:1-61:1",
                             "snippet": "int Mytest(struct Nfs* nfs) {"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "NULL",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../fd/abf26b4f65020a.html#0006400d00064012",
+                            "location": "/usr/include/clang/8.0.0/include/stddef.h:100:13-100:18",
+                            "snippet": "#    define NULL __null"
                         }
                     ],
                     "decls": []
@@ -396,6 +612,186 @@
             ]
         },
         {
+            "name": "POINT",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0001300a0001301f",
+                            "location": "test-multiple-file-1.cc:19:10-19:31",
+                            "snippet": "# define POINT volatile test::Point"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "P_tmpdir",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0007800a00078013",
+                            "location": "/usr/include/stdio.h:120:10-120:19",
+                            "snippet": "# define P_tmpdir\t\"/tmp\""
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "RENAME_EXCHANGE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0009f00a0009f021",
+                            "location": "/usr/include/stdio.h:159:10-159:33",
+                            "snippet": "# define RENAME_EXCHANGE (1 << 1)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "RENAME_NOREPLACE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0009e00a0009e022",
+                            "location": "/usr/include/stdio.h:158:10-158:34",
+                            "snippet": "# define RENAME_NOREPLACE (1 << 0)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "RENAME_WHITEOUT",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#000a000a000a0021",
+                            "location": "/usr/include/stdio.h:160:10-160:33",
+                            "snippet": "# define RENAME_WHITEOUT (1 << 2)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "SEEK_CUR",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0006e0090006e012",
+                            "location": "/usr/include/stdio.h:110:9-110:18",
+                            "snippet": "#define SEEK_CUR\t1\t/* Seek from current position.  */"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "SEEK_DATA",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0007100a00071014",
+                            "location": "/usr/include/stdio.h:113:10-113:20",
+                            "snippet": "# define SEEK_DATA\t3\t/* Seek to next data.  */"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "SEEK_END",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0006f0090006f012",
+                            "location": "/usr/include/stdio.h:111:9-111:18",
+                            "snippet": "#define SEEK_END\t2\t/* Seek from end of file.  */"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "SEEK_HOLE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0007200a00072014",
+                            "location": "/usr/include/stdio.h:114:10-114:20",
+                            "snippet": "# define SEEK_HOLE\t4\t/* Seek to next hole.  */"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "SEEK_SET",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0006d0090006d012",
+                            "location": "/usr/include/stdio.h:109:9-109:18",
+                            "snippet": "#define SEEK_SET\t0\t/* Seek from beginning of file.  */"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
             "name": "Single",
             "kinds": [
                 {
@@ -424,6 +820,60 @@
                             "href": "../7c/1572fe148af43d.html#0002700300027009",
                             "location": "test-multiple-file-0.cc:39:3-39:9",
                             "snippet": "float mysingle;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "TEST2_H",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../e0/389d8d16166a86.html#0001e00a0001e00a",
+                            "location": "test-multiple-file-0.h:30:10-30:10",
+                            "snippet": "# define TEST2_H"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "TEST_MULTIPLE_FILE_1_H",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../e5/66fd4ef5cee94a.html#0001e00a0001e00a",
+                            "location": "test-multiple-file-1.h:30:10-30:10",
+                            "snippet": "# define TEST_MULTIPLE_FILE_1_H"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "TMP_MAX",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../0c/a8a47b0c4f7800.html#0001a0090001a011",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:26:9-26:17",
+                            "snippet": "#define TMP_MAX 238328"
                         }
                     ],
                     "decls": []
@@ -554,6 +1004,124 @@
             ]
         },
         {
+            "name": "_ATFILE_SOURCE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000d200a000d2019",
+                            "location": "/usr/include/features.h:210:10-210:25",
+                            "snippet": "# define _ATFILE_SOURCE\t1"
+                        },
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0014600a00146019",
+                            "location": "/usr/include/features.h:326:10-326:25",
+                            "snippet": "# define _ATFILE_SOURCE\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_BITS_STDIO_LIM_H",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../0c/a8a47b0c4f7800.html#000130090001301b",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:19:9-19:27",
+                            "snippet": "#define _BITS_STDIO_LIM_H 1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_BITS_TYPESIZES_H",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#000180090001801b",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:24:9-24:27",
+                            "snippet": "#define\t_BITS_TYPESIZES_H\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_BITS_TYPES_H",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0001800900018017",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:24:9-24:23",
+                            "snippet": "#define\t_BITS_TYPES_H\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_DEFAULT_SOURCE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000d000a000d001a",
+                            "location": "/usr/include/features.h:208:10-208:26",
+                            "snippet": "# define _DEFAULT_SOURCE\t1"
+                        },
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000dd00a000dd01a",
+                            "location": "/usr/include/features.h:221:10-221:26",
+                            "snippet": "# define _DEFAULT_SOURCE\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_FEATURES_H",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0001300900013015",
+                            "location": "/usr/include/features.h:19:9-19:21",
+                            "snippet": "#define\t_FEATURES_H\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
             "name": "_G_fpos64_t",
             "kinds": [
                 {
@@ -653,6 +1221,96 @@
                             "href": "../a3/5161b30e4c9c85.html#0000d0030000d00f",
                             "location": "/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:13:3-13:15",
                             "snippet": "__mbstate_t __state;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_IOFBF",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0005d0090005d010",
+                            "location": "/usr/include/stdio.h:93:9-93:16",
+                            "snippet": "#define _IOFBF 0\t\t/* Fully buffered.  */"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_IOLBF",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0005e0090005e010",
+                            "location": "/usr/include/stdio.h:94:9-94:16",
+                            "snippet": "#define _IOLBF 1\t\t/* Line buffered.  */"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_IONBF",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0005f0090005f010",
+                            "location": "/usr/include/stdio.h:95:9-95:16",
+                            "snippet": "#define _IONBF 2\t\t/* No buffering.  */"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_IO_EOF_SEEN",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../91/8bbaed7fe58735.html#0006f0090006f016",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:111:9-111:22",
+                            "snippet": "#define _IO_EOF_SEEN 0x0010"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_IO_ERR_SEEN",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../91/8bbaed7fe58735.html#0007200900072016",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:114:9-114:22",
+                            "snippet": "#define _IO_ERR_SEEN 0x0020"
                         }
                     ],
                     "decls": []
@@ -1215,6 +1873,24 @@
             ]
         },
         {
+            "name": "_IO_USER_LOCK",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../91/8bbaed7fe58735.html#0007500900075017",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:117:9-117:23",
+                            "snippet": "#define _IO_USER_LOCK 0x8000"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
             "name": "_IO_codecvt",
             "kinds": [
                 {
@@ -1372,6 +2048,556 @@
             ]
         },
         {
+            "name": "_ISOC11_SOURCE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000c400a000c4019",
+                            "location": "/usr/include/features.h:196:10-196:25",
+                            "snippet": "# define _ISOC11_SOURCE\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_ISOC95_SOURCE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000c000a000c0019",
+                            "location": "/usr/include/features.h:192:10-192:25",
+                            "snippet": "# define _ISOC95_SOURCE\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_ISOC99_SOURCE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000c200a000c2019",
+                            "location": "/usr/include/features.h:194:10-194:25",
+                            "snippet": "# define _ISOC99_SOURCE\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_LARGEFILE64_SOURCE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000ce00a000ce01e",
+                            "location": "/usr/include/features.h:206:10-206:30",
+                            "snippet": "# define _LARGEFILE64_SOURCE\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_LARGEFILE_SOURCE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0014f00b0014f01d",
+                            "location": "/usr/include/features.h:335:11-335:29",
+                            "snippet": "#  define _LARGEFILE_SOURCE\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_Noreturn",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#001a300b001a3032",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:419:11-419:50",
+                            "snippet": "#  define _Noreturn __attribute__ ((__noreturn__))"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_POSIX_C_SOURCE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000c800a000c801a",
+                            "location": "/usr/include/features.h:200:10-200:26",
+                            "snippet": "# define _POSIX_C_SOURCE\t200809L"
+                        },
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0010900a0010901a",
+                            "location": "/usr/include/features.h:265:10-265:26",
+                            "snippet": "# define _POSIX_C_SOURCE\t200809L"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_POSIX_SOURCE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000c600a000c6018",
+                            "location": "/usr/include/features.h:198:10-198:24",
+                            "snippet": "# define _POSIX_SOURCE\t1"
+                        },
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0010700a00107018",
+                            "location": "/usr/include/features.h:263:10-263:24",
+                            "snippet": "# define _POSIX_SOURCE\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_SIZE_T",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../fd/abf26b4f65020a.html#0003c0090003c009",
+                            "location": "/usr/include/clang/8.0.0/include/stddef.h:60:9-60:9",
+                            "snippet": "#define _SIZE_T"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_STDC_PREDEF_H",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../de/54dd5925795da2.html#0001300900013018",
+                            "location": "/usr/include/stdc-predef.h:19:9-19:24",
+                            "snippet": "#define\t_STDC_PREDEF_H\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_STDIO_H",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0001800900018012",
+                            "location": "/usr/include/stdio.h:24:9-24:18",
+                            "snippet": "#define _STDIO_H\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_SYS_CDEFS_H",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0001300900013016",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:19:9-19:22",
+                            "snippet": "#define\t_SYS_CDEFS_H\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_VA_LIST",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/7afd378fb9bef7.html#0001f0090001f009",
+                            "location": "/usr/include/clang/8.0.0/include/stdarg.h:31:9-31:9",
+                            "snippet": "#define _VA_LIST"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_VA_LIST_DEFINED",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0003500c0003500c",
+                            "location": "/usr/include/stdio.h:53:12-53:12",
+                            "snippet": "#   define _VA_LIST_DEFINED"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_XOPEN_SOURCE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000ca00a000ca018",
+                            "location": "/usr/include/features.h:202:10-202:24",
+                            "snippet": "# define _XOPEN_SOURCE\t700"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_XOPEN_SOURCE_EXTENDED",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000cc00a000cc021",
+                            "location": "/usr/include/features.h:204:10-204:33",
+                            "snippet": "# define _XOPEN_SOURCE_EXTENDED\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__ASMNAME",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#000ba00a000ba044",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:186:10-186:68",
+                            "snippet": "# define __ASMNAME(cname)  __ASMNAME2 (__USER_LABEL_PREFIX__, cname)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__ASMNAME2",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#000bb00a000bb036",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:187:10-187:54",
+                            "snippet": "# define __ASMNAME2(prefix, cname) __STRING (prefix) cname"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__BEGIN_DECLS",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0007200a00072023",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:114:10-114:35",
+                            "snippet": "# define __BEGIN_DECLS\textern \"C\" {"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__BLKCNT64_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#000390090003901b",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:57:9-57:27",
+                            "snippet": "#define __BLKCNT64_T_TYPE\t__SQUAD_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__BLKCNT_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#000380090003801a",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:56:9-56:26",
+                            "snippet": "#define __BLKCNT_T_TYPE\t\t__SYSCALL_SLONG_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__BLKSIZE_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#000470090004701a",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:71:9-71:26",
+                            "snippet": "#define __BLKSIZE_T_TYPE\t__SYSCALL_SLONG_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__CLOCKID_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#000450090004501a",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:69:9-69:26",
+                            "snippet": "#define __CLOCKID_T_TYPE\t__S32_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__CLOCK_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0003f0090003f019",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:63:9-63:25",
+                            "snippet": "#define __CLOCK_T_TYPE\t\t__SYSCALL_SLONG_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__CONCAT",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#000690090006901c",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:105:9-105:28",
+                            "snippet": "#define __CONCAT(x,y)\tx ## y"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__CPU_MASK_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0004a0090004a01a",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:74:9-74:26",
+                            "snippet": "#define __CPU_MASK_TYPE \t__SYSCALL_ULONG_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__DADDR_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0004300900043019",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:67:9-67:25",
+                            "snippet": "#define __DADDR_T_TYPE\t\t__S32_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__DEV_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0002600900026017",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:38:9-38:23",
+                            "snippet": "#define __DEV_T_TYPE\t\t__UQUAD_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__END_DECLS",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0007300a00073016",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:115:10-115:22",
+                            "snippet": "# define __END_DECLS\t}"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__FD_SETSIZE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0005c0090005c017",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:92:9-92:23",
+                            "snippet": "#define __FD_SETSIZE\t\t1024"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
             "name": "__FILE",
             "kinds": [
                 {
@@ -1382,6 +2608,2057 @@
                             "href": "../77/97ec9572248ea4.html#0000500100005019",
                             "location": "/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:5:1-5:25",
                             "snippet": "typedef struct _IO_FILE __FILE;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__FILE_defined",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../00/eb21e8e066d2fe.html#0000200900002018",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/FILE.h:2:9-2:24",
+                            "snippet": "#define __FILE_defined 1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__FSBLKCNT64_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0003b0090003b01d",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:59:9-59:29",
+                            "snippet": "#define __FSBLKCNT64_T_TYPE\t__UQUAD_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__FSBLKCNT_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0003a0090003a01b",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:58:9-58:27",
+                            "snippet": "#define __FSBLKCNT_T_TYPE\t__SYSCALL_ULONG_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__FSFILCNT64_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0003d0090003d01d",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:61:9-61:29",
+                            "snippet": "#define __FSFILCNT64_T_TYPE\t__UQUAD_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__FSFILCNT_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0003c0090003c01b",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:60:9-60:27",
+                            "snippet": "#define __FSFILCNT_T_TYPE\t__SYSCALL_ULONG_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__FSID_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#000480090004802f",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:72:9-72:47",
+                            "snippet": "#define __FSID_T_TYPE\t\tstruct { int __val[2]; }"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__FSWORD_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0002e00a0002e01a",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:46:10-46:26",
+                            "snippet": "# define __FSWORD_T_TYPE\t__SYSCALL_SLONG_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__GID_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0002800900028017",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:40:9-40:23",
+                            "snippet": "#define __GID_T_TYPE\t\t__U32_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0001a0090001a009",
+                            "location": "/usr/include/stdio.h:26:9-26:9",
+                            "snippet": "#define __GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__GLIBC_MINOR__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#001a0009001a0019",
+                            "location": "/usr/include/features.h:416:9-416:25",
+                            "snippet": "#define\t__GLIBC_MINOR__\t28"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__GLIBC_PREREQ",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#001a2009001a303f",
+                            "location": "/usr/include/features.h:418:9-419:63",
+                            "snippet": "#define __GLIBC_PREREQ(maj, min) \\"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__GLIBC_USE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000b0009000b0028",
+                            "location": "/usr/include/features.h:176:9-176:40",
+                            "snippet": "#define __GLIBC_USE(F)\t__GLIBC_USE_ ## F"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__GLIBC_USE_DEPRECATED_GETS",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0018d00a0018d026",
+                            "location": "/usr/include/features.h:397:10-397:38",
+                            "snippet": "# define __GLIBC_USE_DEPRECATED_GETS 1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__GLIBC_USE_IEC_60559_BFP_EXT",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../e1/6f60ab16e47e49.html#0003100a00031028",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:49:10-49:40",
+                            "snippet": "# define __GLIBC_USE_IEC_60559_BFP_EXT 1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__GLIBC_USE_IEC_60559_FUNCS_EXT",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../e1/6f60ab16e47e49.html#0003a00a0003a02a",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:58:10-58:42",
+                            "snippet": "# define __GLIBC_USE_IEC_60559_FUNCS_EXT 1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__GLIBC_USE_IEC_60559_TYPES_EXT",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../e1/6f60ab16e47e49.html#0004300a0004302a",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:67:10-67:42",
+                            "snippet": "# define __GLIBC_USE_IEC_60559_TYPES_EXT 1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__GLIBC_USE_LIB_EXT2",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../e1/6f60ab16e47e49.html#0002800a0002801f",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:40:10-40:31",
+                            "snippet": "# define __GLIBC_USE_LIB_EXT2 1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__GLIBC__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0019f0090019f013",
+                            "location": "/usr/include/features.h:415:9-415:19",
+                            "snippet": "#define\t__GLIBC__\t2"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__GNUC_PREREQ",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0009e00a0009f03d",
+                            "location": "/usr/include/features.h:158:10-159:61",
+                            "snippet": "# define __GNUC_PREREQ(maj, min) \\"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__GNUC_VA_LIST",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/7afd378fb9bef7.html#0002f0090002f018",
+                            "location": "/usr/include/clang/8.0.0/include/stdarg.h:47:9-47:24",
+                            "snippet": "#define __GNUC_VA_LIST 1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__GNU_LIBRARY__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0019b0090019b019",
+                            "location": "/usr/include/features.h:411:9-411:25",
+                            "snippet": "#define __GNU_LIBRARY__ 6"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__HAVE_GENERIC_SELECTION",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#001f800a001f8023",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:504:10-504:35",
+                            "snippet": "# define __HAVE_GENERIC_SELECTION 0"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__ID_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0003e0090003e016",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:62:9-62:22",
+                            "snippet": "#define __ID_T_TYPE\t\t__U32_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__INO64_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0002a0090002a019",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:42:9-42:25",
+                            "snippet": "#define __INO64_T_TYPE\t\t__UQUAD_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__INO_T_MATCHES_INO64_T",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0005300a00053022",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:83:10-83:34",
+                            "snippet": "# define __INO_T_MATCHES_INO64_T\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__INO_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0002900900029017",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:41:9-41:23",
+                            "snippet": "#define __INO_T_TYPE\t\t__SYSCALL_ULONG_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__KERNEL_STRICT_NAMES",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0009300a0009300a",
+                            "location": "/usr/include/features.h:147:10-147:10",
+                            "snippet": "# define __KERNEL_STRICT_NAMES"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__KEY_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0004400900044017",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:68:9-68:23",
+                            "snippet": "#define __KEY_T_TYPE\t\t__S32_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__LDBL_REDIR",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#001d200a001d2029",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:466:10-466:41",
+                            "snippet": "# define __LDBL_REDIR(name, proto) name proto"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__LDBL_REDIR1",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#001d100a001d1031",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:465:10-465:49",
+                            "snippet": "# define __LDBL_REDIR1(name, proto, alias) name proto"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__LDBL_REDIR1_NTH",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#001d300a001d303b",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:467:10-467:59",
+                            "snippet": "# define __LDBL_REDIR1_NTH(name, proto, alias) name proto __THROW"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__LDBL_REDIR_DECL",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#001d500a001d5020",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:469:10-469:32",
+                            "snippet": "# define __LDBL_REDIR_DECL(name)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__LDBL_REDIR_NTH",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#001d400a001d4033",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:468:10-468:51",
+                            "snippet": "# define __LDBL_REDIR_NTH(name, proto) name proto __THROW"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__LEAF",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0002d00b0002d00b",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:45:11-45:11",
+                            "snippet": "#  define __LEAF"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__LEAF_ATTR",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0002e00b0002e00b",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:46:11-46:11",
+                            "snippet": "#  define __LEAF_ATTR"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__MODE_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0002b0090002b018",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:43:9-43:24",
+                            "snippet": "#define __MODE_T_TYPE\t\t__U32_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__NLINK_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0002d00a0002d01a",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:45:10-45:26",
+                            "snippet": "# define __NLINK_T_TYPE\t\t__SYSCALL_ULONG_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__NTH",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0003f00c0003f02e",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:63:12-63:46",
+                            "snippet": "#   define __NTH(fct)\t__LEAF_ATTR fct throw ()"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__NTHNL",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0004000c00040024",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:64:12-64:36",
+                            "snippet": "#   define __NTHNL(fct) fct throw ()"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__OFF64_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0003400900034019",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:52:9-52:25",
+                            "snippet": "#define __OFF64_T_TYPE\t\t__SQUAD_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__OFF_T_MATCHES_OFF64_T",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0005000a00050022",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:80:10-80:34",
+                            "snippet": "# define __OFF_T_MATCHES_OFF64_T\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__OFF_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0003300900033017",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:51:9-51:23",
+                            "snippet": "#define __OFF_T_TYPE\t\t__SYSCALL_SLONG_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__P",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0006300900063013",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:99:9-99:19",
+                            "snippet": "#define __P(args)\targs"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__PID_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0003500900035017",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:53:9-53:23",
+                            "snippet": "#define __PID_T_TYPE\t\t__S32_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__PMT",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0006400900064015",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:100:9-100:21",
+                            "snippet": "#define __PMT(args)\targs"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__REDIRECT",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#000ae00a000ae04f",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:174:10-174:79",
+                            "snippet": "# define __REDIRECT(name, proto, alias) name proto __asm__ (__ASMNAME (#alias))"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__REDIRECT_LDBL",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#001d700b001d704d",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:471:11-471:77",
+                            "snippet": "#  define __REDIRECT_LDBL(name, proto, alias) __REDIRECT (name, proto, alias)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__REDIRECT_NTH",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#000b000b000b1034",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:176:11-177:52",
+                            "snippet": "#  define __REDIRECT_NTH(name, proto, alias) \\"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__REDIRECT_NTHNL",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#000b200b000b3036",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:178:11-179:54",
+                            "snippet": "#  define __REDIRECT_NTHNL(name, proto, alias) \\"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__REDIRECT_NTH_LDBL",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#001d800b001d9025",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:472:11-473:37",
+                            "snippet": "#  define __REDIRECT_NTH_LDBL(name, proto, alias) \\"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__RLIM64_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#000370090003701a",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:55:9-55:26",
+                            "snippet": "#define __RLIM64_T_TYPE\t\t__UQUAD_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__RLIM_T_MATCHES_RLIM64_T",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0005600a00056024",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:86:10-86:36",
+                            "snippet": "# define __RLIM_T_MATCHES_RLIM64_T\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__RLIM_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0003600900036018",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:54:9-54:24",
+                            "snippet": "#define __RLIM_T_TYPE\t\t__SYSCALL_ULONG_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__S16_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0006c0090006c01b",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:108:9-108:27",
+                            "snippet": "#define\t__S16_TYPE\t\tshort int"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__S32_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0006e0090006e015",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:110:9-110:21",
+                            "snippet": "#define\t__S32_TYPE\t\tint"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__S64_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0008500a0008501b",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:133:10-133:27",
+                            "snippet": "# define __S64_TYPE\t\tlong int"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__SLONG32_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0008300a0008301a",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:131:10-131:26",
+                            "snippet": "# define __SLONG32_TYPE\t\tint"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__SLONGWORD_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#000700090007001f",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:112:9-112:31",
+                            "snippet": "#define __SLONGWORD_TYPE\tlong int"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__SQUAD_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0007f00a0007f01d",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:127:10-127:29",
+                            "snippet": "# define __SQUAD_TYPE\t\tlong int"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__SSIZE_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0004900900049019",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:73:9-73:25",
+                            "snippet": "#define __SSIZE_T_TYPE\t\t__SWORD_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__STDARG_H",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/7afd378fb9bef7.html#0001b0090001b009",
+                            "location": "/usr/include/clang/8.0.0/include/stdarg.h:27:9-27:9",
+                            "snippet": "#define __STDARG_H"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__STDC_IEC_559_COMPLEX__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../de/54dd5925795da2.html#0003100a00031023",
+                            "location": "/usr/include/stdc-predef.h:49:10-49:35",
+                            "snippet": "# define __STDC_IEC_559_COMPLEX__\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__STDC_IEC_559__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../de/54dd5925795da2.html#0002900a0002901c",
+                            "location": "/usr/include/stdc-predef.h:41:10-41:28",
+                            "snippet": "# define __STDC_IEC_559__\t\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__STDC_ISO_10646__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../de/54dd5925795da2.html#0003a0090003a01d",
+                            "location": "/usr/include/stdc-predef.h:58:9-58:29",
+                            "snippet": "#define __STDC_ISO_10646__\t\t201706L"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__STD_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0008800a00088016",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:136:10-136:22",
+                            "snippet": "# define __STD_TYPE\t\ttypedef"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__STRING",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0006a0090006a016",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:106:9-106:22",
+                            "snippet": "#define __STRING(x)\t#x"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__SUSECONDS_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#000420090004201c",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:66:9-66:28",
+                            "snippet": "#define __SUSECONDS_T_TYPE\t__SYSCALL_SLONG_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__SWORD_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0008100a0008101d",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:129:10-129:29",
+                            "snippet": "# define __SWORD_TYPE\t\tlong int"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__SYSCALL_SLONG_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0002200a0002201f",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:34:10-34:31",
+                            "snippet": "# define __SYSCALL_SLONG_TYPE\t__SLONGWORD_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__SYSCALL_ULONG_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0002300a0002301f",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:35:10-35:31",
+                            "snippet": "# define __SYSCALL_ULONG_TYPE\t__ULONGWORD_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__SYSCALL_WORDSIZE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../fd/cacc45a9906e85.html#0000e00a0000e01e",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/wordsize.h:14:10-14:30",
+                            "snippet": "# define __SYSCALL_WORDSIZE\t\t64"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__THROW",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0003d00c0003d01b",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:61:12-61:27",
+                            "snippet": "#   define __THROW\tthrow ()"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__THROWNL",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0003e00c0003e01d",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:62:12-62:29",
+                            "snippet": "#   define __THROWNL\tthrow ()"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__TIMER_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#000460090004601e",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:70:9-70:30",
+                            "snippet": "#define __TIMER_T_TYPE\t\tvoid *"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__TIME_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0004000900040018",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:64:9-64:24",
+                            "snippet": "#define __TIME_T_TYPE\t\t__SYSCALL_SLONG_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__U16_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0006d0090006d024",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:109:9-109:36",
+                            "snippet": "#define __U16_TYPE\t\tunsigned short int"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__U32_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0006f0090006f01e",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:111:9-111:30",
+                            "snippet": "#define __U32_TYPE\t\tunsigned int"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__U64_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0008600a00086024",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:134:10-134:36",
+                            "snippet": "# define __U64_TYPE\t\tunsigned long int"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__UID_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#0002700900027017",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:39:9-39:23",
+                            "snippet": "#define __UID_T_TYPE\t\t__U32_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__ULONG32_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0008400a00084023",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:132:10-132:35",
+                            "snippet": "# define __ULONG32_TYPE\t\tunsigned int"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__ULONGWORD_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0007100900071028",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:113:9-113:40",
+                            "snippet": "#define __ULONGWORD_TYPE\tunsigned long int"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__UQUAD_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0008000a00080026",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:128:10-128:38",
+                            "snippet": "# define __UQUAD_TYPE\t\tunsigned long int"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USECONDS_T_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/abbd7f05c3bb64.html#000410090004101b",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/typesizes.h:65:9-65:27",
+                            "snippet": "#define __USECONDS_T_TYPE\t__U32_TYPE"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_ATFILE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0017400a00174017",
+                            "location": "/usr/include/features.h:372:10-372:23",
+                            "snippet": "# define __USE_ATFILE\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_FORTIFY_LEVEL",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0018300a0018301e",
+                            "location": "/usr/include/features.h:387:10-387:30",
+                            "snippet": "# define __USE_FORTIFY_LEVEL 0"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_GNU",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0017800a00178014",
+                            "location": "/usr/include/features.h:376:10-376:20",
+                            "snippet": "# define __USE_GNU\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_ISOC11",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000e300a000e3017",
+                            "location": "/usr/include/features.h:227:10-227:23",
+                            "snippet": "# define __USE_ISOC11\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_ISOC95",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000ef00a000ef017",
+                            "location": "/usr/include/features.h:239:10-239:23",
+                            "snippet": "# define __USE_ISOC95\t1"
+                        },
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0013e00a0013e018",
+                            "location": "/usr/include/features.h:318:10-318:24",
+                            "snippet": "# define __USE_ISOC95\t\t1"
+                        },
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0015800c0015801a",
+                            "location": "/usr/include/features.h:344:12-344:26",
+                            "snippet": "#   define __USE_ISOC95\t\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_ISOC99",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000e900a000e9017",
+                            "location": "/usr/include/features.h:233:10-233:23",
+                            "snippet": "# define __USE_ISOC99\t1"
+                        },
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000fb00b000fb018",
+                            "location": "/usr/include/features.h:251:11-251:24",
+                            "snippet": "#  define __USE_ISOC99\t1"
+                        },
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0014000a00140018",
+                            "location": "/usr/include/features.h:320:10-320:24",
+                            "snippet": "# define __USE_ISOC99\t\t1"
+                        },
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0015a00c0015a01a",
+                            "location": "/usr/include/features.h:346:12-346:26",
+                            "snippet": "#   define __USE_ISOC99\t\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_ISOCXX11",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000fa00b000fa01a",
+                            "location": "/usr/include/features.h:250:11-250:26",
+                            "snippet": "#  define __USE_ISOCXX11\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_LARGEFILE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0016400a0016401a",
+                            "location": "/usr/include/features.h:356:10-356:26",
+                            "snippet": "# define __USE_LARGEFILE\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_LARGEFILE64",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0016800a0016801c",
+                            "location": "/usr/include/features.h:360:10-360:28",
+                            "snippet": "# define __USE_LARGEFILE64\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_MISC",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0017000a00170015",
+                            "location": "/usr/include/features.h:368:10-368:21",
+                            "snippet": "# define __USE_MISC\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_POSIX",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0012c00a0012c016",
+                            "location": "/usr/include/features.h:300:10-300:22",
+                            "snippet": "# define __USE_POSIX\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_POSIX199309",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0013400a0013401c",
+                            "location": "/usr/include/features.h:308:10-308:28",
+                            "snippet": "# define __USE_POSIX199309\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_POSIX199506",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0013800a0013801c",
+                            "location": "/usr/include/features.h:312:10-312:28",
+                            "snippet": "# define __USE_POSIX199506\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_POSIX2",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0013000a00130017",
+                            "location": "/usr/include/features.h:304:10-304:23",
+                            "snippet": "# define __USE_POSIX2\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_UNIX98",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0014d00b0014d018",
+                            "location": "/usr/include/features.h:333:11-333:24",
+                            "snippet": "#  define __USE_UNIX98\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_XOPEN",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0014a00a0014a016",
+                            "location": "/usr/include/features.h:330:10-330:22",
+                            "snippet": "# define __USE_XOPEN\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_XOPEN2K",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0013c00a0013c019",
+                            "location": "/usr/include/features.h:316:10-316:25",
+                            "snippet": "# define __USE_XOPEN2K\t\t1"
+                        },
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0015500c0015501a",
+                            "location": "/usr/include/features.h:341:12-341:26",
+                            "snippet": "#   define __USE_XOPEN2K\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_XOPEN2K8",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0014400a0014401a",
+                            "location": "/usr/include/features.h:324:10-324:26",
+                            "snippet": "# define __USE_XOPEN2K8\t\t1"
+                        },
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0015200d0015201c",
+                            "location": "/usr/include/features.h:338:13-338:28",
+                            "snippet": "#    define __USE_XOPEN2K8\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_XOPEN2K8XSI",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0015300d0015301f",
+                            "location": "/usr/include/features.h:339:13-339:31",
+                            "snippet": "#    define __USE_XOPEN2K8XSI\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_XOPEN2KXSI",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0015600c0015601d",
+                            "location": "/usr/include/features.h:342:12-342:29",
+                            "snippet": "#   define __USE_XOPEN2KXSI\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__USE_XOPEN_EXTENDED",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#0014c00b0014c020",
+                            "location": "/usr/include/features.h:332:11-332:32",
+                            "snippet": "#  define __USE_XOPEN_EXTENDED\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__UWORD_TYPE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0008200a00082026",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:130:10-130:38",
+                            "snippet": "# define __UWORD_TYPE\t\tunsigned long int"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__WORDSIZE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../fd/cacc45a9906e85.html#0000400a00004015",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/wordsize.h:4:10-4:21",
+                            "snippet": "# define __WORDSIZE\t64"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__WORDSIZE_TIME64_COMPAT32",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../fd/cacc45a9906e85.html#0000c00a0000c025",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/wordsize.h:12:10-12:37",
+                            "snippet": "# define __WORDSIZE_TIME64_COMPAT32\t1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "____FILE_defined",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../77/97ec9572248ea4.html#000020090000201a",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:2:9-2:26",
+                            "snippet": "#define ____FILE_defined 1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_____fpos64_t_defined",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../fa/0a0d3d8e7cc07c.html#000020090000201f",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:2:9-2:31",
+                            "snippet": "#define _____fpos64_t_defined 1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "_____fpos_t_defined",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../a3/5161b30e4c9c85.html#000020090000201d",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:2:9-2:29",
+                            "snippet": "#define _____fpos_t_defined 1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "____mbstate_t_defined",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../57/27d4eb0ac27416.html#000020090000201f",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:2:9-2:31",
+                            "snippet": "#define ____mbstate_t_defined 1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__always_inline",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0013f00a0013f045",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:319:10-319:69",
+                            "snippet": "# define __always_inline __inline __attribute__ ((__always_inline__))"
                         }
                     ],
                     "decls": []
@@ -1402,6 +4679,240 @@
                             "snippet": "extern int __asprintf (char **__restrict __ptr,"
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "name": "__attribute_alloc_size__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#000db00a000db029",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:219:10-219:41",
+                            "snippet": "# define __attribute_alloc_size__(params) /* Ignore.  */"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__attribute_artificial__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0014a00a0014a00a",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:330:10-330:10",
+                            "snippet": "# define __attribute_artificial__ /* Ignore */"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__attribute_const__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#000e900a000e9038",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:233:10-233:56",
+                            "snippet": "# define __attribute_const__ __attribute__ ((__const__))"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__attribute_deprecated__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#000fb00a000fb042",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:251:10-251:66",
+                            "snippet": "# define __attribute_deprecated__ __attribute__ ((__deprecated__))"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__attribute_deprecated_msg__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0010500a00106028",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:261:10-262:40",
+                            "snippet": "# define __attribute_deprecated_msg__(msg) \\"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__attribute_format_arg__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0011200a00112049",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:274:10-274:73",
+                            "snippet": "# define __attribute_format_arg__(x) __attribute__ ((__format_arg__ (x)))"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__attribute_format_strfmon__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0011c00a0011d032",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:284:10-285:50",
+                            "snippet": "# define __attribute_format_strfmon__(a,b) \\"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__attribute_malloc__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#000d000a000d003a",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:208:10-208:58",
+                            "snippet": "# define __attribute_malloc__ __attribute__ ((__malloc__))"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__attribute_noinline__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#000f300a000f303e",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:243:10-243:62",
+                            "snippet": "# define __attribute_noinline__ __attribute__ ((__noinline__))"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__attribute_nonstring__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#001af00a001af00a",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:431:10-431:10",
+                            "snippet": "# define __attribute_nonstring__"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__attribute_pure__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#000e200a000e2036",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:226:10-226:54",
+                            "snippet": "# define __attribute_pure__ __attribute__ ((__pure__))"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__attribute_used__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#000f200a000f2036",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:242:10-242:54",
+                            "snippet": "# define __attribute_used__ __attribute__ ((__used__))"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__attribute_warn_unused_result__",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0012d00a0012e02b",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:301:10-302:43",
+                            "snippet": "# define __attribute_warn_unused_result__ \\"
+                        }
+                    ],
+                    "decls": []
                 }
             ]
         },
@@ -1450,6 +4961,42 @@
                             "href": "../41/e28fc1cdef774c.html#00088016000ac01d000ac001000ac01d",
                             "location": "/usr/include/x86_64-linux-gnu/bits/types.h:172:1-172:29",
                             "snippet": "__STD_TYPE __BLKSIZE_T_TYPE __blksize_t;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__bos",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0007b0090007b047",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:123:9-123:71",
+                            "snippet": "#define __bos(ptr) __builtin_object_size (ptr, __USE_FORTIFY_LEVEL > 1)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__bos0",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0007c0090007c032",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:124:9-124:50",
+                            "snippet": "#define __bos0(ptr) __builtin_object_size (ptr, 0)"
                         }
                     ],
                     "decls": []
@@ -1508,6 +5055,24 @@
             ]
         },
         {
+            "name": "__cookie_io_functions_t_defined",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../f9/72a0e406b846b3.html#0001300900013029",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:19:9-19:41",
+                            "snippet": "#define __cookie_io_functions_t_defined 1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
             "name": "__daddr_t",
             "kinds": [
                 {
@@ -1535,6 +5100,132 @@
                             "href": "../41/e28fc1cdef774c.html#000880160008f0190008f0010008f019",
                             "location": "/usr/include/x86_64-linux-gnu/bits/types.h:143:1-143:25",
                             "snippet": "__STD_TYPE __DEV_T_TYPE __dev_t;\t/* Type of device numbers.  */"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__errordecl",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0008700a00087037",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:135:10-135:55",
+                            "snippet": "# define __errordecl(name, msg) extern void name (void)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__extern_always_inline",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0015b00b0015c039",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:347:11-348:57",
+                            "snippet": "#  define __extern_always_inline \\"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__extern_inline",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0015a00b0015a04a",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:346:11-346:74",
+                            "snippet": "#  define __extern_inline extern __inline __attribute__ ((__gnu_inline__))"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__feof_unlocked_body",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../91/8bbaed7fe58735.html#0007000900070047",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:112:9-112:71",
+                            "snippet": "#define __feof_unlocked_body(_fp) (((_fp)->_flags & _IO_EOF_SEEN) != 0)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__ferror_unlocked_body",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../91/8bbaed7fe58735.html#0007300900073049",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:115:9-115:73",
+                            "snippet": "#define __ferror_unlocked_body(_fp) (((_fp)->_flags & _IO_ERR_SEEN) != 0)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__flexarr",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0009400a00094015",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:148:10-148:21",
+                            "snippet": "# define __flexarr\t[]"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__fortify_function",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0016400a00164034",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:356:10-356:52",
+                            "snippet": "# define __fortify_function __extern_always_inline __attribute_artificial__"
                         }
                     ],
                     "decls": []
@@ -1678,6 +5369,24 @@
             ]
         },
         {
+            "name": "__getc_unlocked_body",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../91/8bbaed7fe58735.html#000660090006803e",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:102:9-104:62",
+                            "snippet": "#define __getc_unlocked_body(_fp)\t\t\t\t\t\\"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
             "name": "__getdelim",
             "kinds": [
                 {
@@ -1705,6 +5414,150 @@
                             "href": "../41/e28fc1cdef774c.html#00088016000910190009100100091019",
                             "location": "/usr/include/x86_64-linux-gnu/bits/types.h:145:1-145:25",
                             "snippet": "__STD_TYPE __GID_T_TYPE __gid_t;\t/* Type of group identifications.  */"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__glibc_c99_flexarr_available",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0009500a00095028",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:149:10-149:40",
+                            "snippet": "# define __glibc_c99_flexarr_available 1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__glibc_clang_has_extension",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0005c00a0005c03f",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:92:10-92:63",
+                            "snippet": "# define __glibc_clang_has_extension(ext) __has_extension (ext)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__glibc_clang_prereq",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../08/80fafb6e566ce0.html#000a900a000aa046",
+                            "location": "/usr/include/features.h:169:10-170:70",
+                            "snippet": "# define __glibc_clang_prereq(maj, min) \\"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__glibc_has_attribute",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0019a00a0019a03b",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:410:10-410:59",
+                            "snippet": "# define __glibc_has_attribute(attr)\t__has_attribute (attr)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__glibc_likely",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0019300a0019303a",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:403:10-403:58",
+                            "snippet": "# define __glibc_likely(cond)\t__builtin_expect ((cond), 1)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__glibc_macro_warning",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#001e400a001e502e",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:484:10-485:46",
+                            "snippet": "# define __glibc_macro_warning(message) \\"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__glibc_macro_warning1",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#001e300a001e303b",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:483:10-483:59",
+                            "snippet": "# define __glibc_macro_warning1(message) _Pragma (#message)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__glibc_unlikely",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0019200a0019203c",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:402:10-402:60",
+                            "snippet": "# define __glibc_unlikely(cond)\t__builtin_expect ((cond), 0)"
                         }
                     ],
                     "decls": []
@@ -2018,6 +5871,60 @@
             ]
         },
         {
+            "name": "__need_NULL",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0002000900020009",
+                            "location": "/usr/include/stdio.h:32:9-32:9",
+                            "snippet": "#define __need_NULL"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__need___va_list",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0002300900023009",
+                            "location": "/usr/include/stdio.h:35:9-35:9",
+                            "snippet": "#define __need___va_list"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__need_size_t",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0001f0090001f009",
+                            "location": "/usr/include/stdio.h:31:9-31:9",
+                            "snippet": "#define __need_size_t"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
             "name": "__nlink_t",
             "kinds": [
                 {
@@ -2028,6 +5935,24 @@
                             "href": "../41/e28fc1cdef774c.html#000880160009501b000950010009501b",
                             "location": "/usr/include/x86_64-linux-gnu/bits/types.h:149:1-149:27",
                             "snippet": "__STD_TYPE __NLINK_T_TYPE __nlink_t;\t/* Type of file link counts.  */"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__nonnull",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0012500a0012503f",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:293:10-293:63",
+                            "snippet": "# define __nonnull(params) __attribute__ ((__nonnull__ params))"
                         }
                     ],
                     "decls": []
@@ -2052,6 +5977,24 @@
             ]
         },
         {
+            "name": "__off64_t_defined",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0004700a0004700a",
+                            "location": "/usr/include/stdio.h:71:10-71:10",
+                            "snippet": "# define __off64_t_defined"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
             "name": "__off_t",
             "kinds": [
                 {
@@ -2062,6 +6005,24 @@
                             "href": "../41/e28fc1cdef774c.html#00088016000960190009600100096019",
                             "location": "/usr/include/x86_64-linux-gnu/bits/types.h:150:1-150:25",
                             "snippet": "__STD_TYPE __OFF_T_TYPE __off_t;\t/* Type of file sizes and offsets.  */"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__off_t_defined",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0004300a0004300a",
+                            "location": "/usr/include/stdio.h:67:10-67:10",
+                            "snippet": "# define __off_t_defined"
                         }
                     ],
                     "decls": []
@@ -2103,6 +6064,42 @@
             ]
         },
         {
+            "name": "__ptr_t",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0006d0090006d016",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:109:9-109:22",
+                            "snippet": "#define __ptr_t void *"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__putc_unlocked_body",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../91/8bbaed7fe58735.html#0006a0090006d037",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:106:9-109:55",
+                            "snippet": "#define __putc_unlocked_body(_ch, _fp)\t\t\t\t\t\\"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
             "name": "__quad_t",
             "kinds": [
                 {
@@ -2113,6 +6110,24 @@
                             "href": "../41/e28fc1cdef774c.html#0003e0010003e012",
                             "location": "/usr/include/x86_64-linux-gnu/bits/types.h:62:1-62:18",
                             "snippet": "typedef long int __quad_t;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__restrict_arr",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0018600b0018600b",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:390:11-390:11",
+                            "snippet": "#  define __restrict_arr\t/* Not supported in old GCC.  */"
                         }
                     ],
                     "decls": []
@@ -2198,6 +6213,294 @@
                             "href": "../41/e28fc1cdef774c.html#00088016000bf01b000bf001000bf01b",
                             "location": "/usr/include/x86_64-linux-gnu/bits/types.h:191:1-191:27",
                             "snippet": "__STD_TYPE __SSIZE_T_TYPE __ssize_t; /* Type of a byte count, or error.  */"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__ssize_t_defined",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0004e00a0004e00a",
+                            "location": "/usr/include/stdio.h:78:10-78:10",
+                            "snippet": "# define __ssize_t_defined"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__struct_FILE_defined",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../91/8bbaed7fe58735.html#000130090001301f",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:19:9-19:31",
+                            "snippet": "#define __struct_FILE_defined 1"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__stub___compat_bdflush",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../b4/1f7b6f8bf83afb.html#0000a0090000a009",
+                            "location": "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:10:9-10:9",
+                            "snippet": "#define __stub___compat_bdflush"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__stub_chflags",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../b4/1f7b6f8bf83afb.html#0000b0090000b009",
+                            "location": "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:11:9-11:9",
+                            "snippet": "#define __stub_chflags"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__stub_fattach",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../b4/1f7b6f8bf83afb.html#0000c0090000c009",
+                            "location": "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:12:9-12:9",
+                            "snippet": "#define __stub_fattach"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__stub_fchflags",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../b4/1f7b6f8bf83afb.html#0000d0090000d009",
+                            "location": "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:13:9-13:9",
+                            "snippet": "#define __stub_fchflags"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__stub_fdetach",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../b4/1f7b6f8bf83afb.html#0000e0090000e009",
+                            "location": "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:14:9-14:9",
+                            "snippet": "#define __stub_fdetach"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__stub_getmsg",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../b4/1f7b6f8bf83afb.html#0000f0090000f009",
+                            "location": "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:15:9-15:9",
+                            "snippet": "#define __stub_getmsg"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__stub_gtty",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../b4/1f7b6f8bf83afb.html#0001000900010009",
+                            "location": "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:16:9-16:9",
+                            "snippet": "#define __stub_gtty"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__stub_lchmod",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../b4/1f7b6f8bf83afb.html#0001100900011009",
+                            "location": "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:17:9-17:9",
+                            "snippet": "#define __stub_lchmod"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__stub_putmsg",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../b4/1f7b6f8bf83afb.html#0001200900012009",
+                            "location": "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:18:9-18:9",
+                            "snippet": "#define __stub_putmsg"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__stub_revoke",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../b4/1f7b6f8bf83afb.html#0001300900013009",
+                            "location": "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:19:9-19:9",
+                            "snippet": "#define __stub_revoke"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__stub_setlogin",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../b4/1f7b6f8bf83afb.html#0001400900014009",
+                            "location": "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:20:9-20:9",
+                            "snippet": "#define __stub_setlogin"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__stub_sigreturn",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../b4/1f7b6f8bf83afb.html#0001500900015009",
+                            "location": "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:21:9-21:9",
+                            "snippet": "#define __stub_sigreturn"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__stub_sstk",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../b4/1f7b6f8bf83afb.html#0001600900016009",
+                            "location": "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:22:9-22:9",
+                            "snippet": "#define __stub_sstk"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__stub_stty",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../b4/1f7b6f8bf83afb.html#0001700900017009",
+                            "location": "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:23:9-23:9",
+                            "snippet": "#define __stub_stty"
                         }
                     ],
                     "decls": []
@@ -2572,6 +6875,78 @@
                             "href": "../41/e28fc1cdef774c.html#000880160009f01e0009f0010009f01e",
                             "location": "/usr/include/x86_64-linux-gnu/bits/types.h:159:1-159:30",
                             "snippet": "__STD_TYPE __USECONDS_T_TYPE __useconds_t; /* Count of microseconds.  */"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__va_copy",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/7afd378fb9bef7.html#000280090002802d",
+                            "location": "/usr/include/clang/8.0.0/include/stdarg.h:40:9-40:45",
+                            "snippet": "#define __va_copy(d,s) __builtin_va_copy(d,s)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__warnattr",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0008600a00086018",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:134:10-134:24",
+                            "snippet": "# define __warnattr(msg)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__warndecl",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0008500a00085036",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:133:10-133:54",
+                            "snippet": "# define __warndecl(name, msg) extern void name (void)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "__wur",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../11/d2796f2851903a.html#0013600a0013600a",
+                            "location": "/usr/include/x86_64-linux-gnu/sys/cdefs.h:310:10-310:10",
+                            "snippet": "# define __wur /* Ignore */"
                         }
                     ],
                     "decls": []
@@ -4611,6 +8986,19 @@
             "name": "stderr",
             "kinds": [
                 {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0008f0090008f010",
+                            "location": "/usr/include/stdio.h:143:9-143:16",
+                            "snippet": "#define stderr stderr"
+                        }
+                    ],
+                    "decls": []
+                },
+                {
                     "kind": "Var",
                     "linkage": 6,
                     "defs": [],
@@ -4628,6 +9016,19 @@
             "name": "stdin",
             "kinds": [
                 {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0008d0090008d00f",
+                            "location": "/usr/include/stdio.h:141:9-141:15",
+                            "snippet": "#define stdin stdin"
+                        }
+                    ],
+                    "decls": []
+                },
+                {
                     "kind": "Var",
                     "linkage": 6,
                     "defs": [],
@@ -4644,6 +9045,19 @@
         {
             "name": "stdout",
             "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0008e0090008e010",
+                            "location": "/usr/include/stdio.h:142:9-142:16",
+                            "snippet": "#define stdout stdout"
+                        }
+                    ],
+                    "decls": []
+                },
                 {
                     "kind": "Var",
                     "linkage": 6,
@@ -4906,6 +9320,60 @@
             ]
         },
         {
+            "name": "va_arg",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/7afd378fb9bef7.html#0002300900023036",
+                            "location": "/usr/include/clang/8.0.0/include/stdarg.h:35:9-35:54",
+                            "snippet": "#define va_arg(ap, type)    __builtin_va_arg(ap, type)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "va_copy",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/7afd378fb9bef7.html#0002b0090002b038",
+                            "location": "/usr/include/clang/8.0.0/include/stdarg.h:43:9-43:56",
+                            "snippet": "#define va_copy(dest, src)  __builtin_va_copy(dest, src)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "va_end",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/7afd378fb9bef7.html#0002200900022030",
+                            "location": "/usr/include/clang/8.0.0/include/stdarg.h:34:9-34:48",
+                            "snippet": "#define va_end(ap)          __builtin_va_end(ap)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
             "name": "va_list",
             "kinds": [
                 {
@@ -4921,6 +9389,24 @@
                             "href": "../6f/078dbcc264af74.html#0003400100034018",
                             "location": "/usr/include/stdio.h:52:1-52:24",
                             "snippet": "typedef __gnuc_va_list va_list;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "va_start",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../44/7afd378fb9bef7.html#0002100900021039",
+                            "location": "/usr/include/clang/8.0.0/include/stdarg.h:33:9-33:57",
+                            "snippet": "#define va_start(ap, param) __builtin_va_start(ap, param)"
                         }
                     ],
                     "decls": []

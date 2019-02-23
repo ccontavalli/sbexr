@@ -29,18 +29,21 @@
 #ifndef PP_TRACKER_H
 #define PP_TRACKER_H
 
+#include "ast.h"
 #include "common.h"
+#include "wrapping.h"
 
 class PPTracker : public PPCallbacks {
  public:
-  PPTracker(FileCache* cache, const CompilerInstance& ci)
-      : cache_(cache), ci_(ci) {}
+  PPTracker(SbexrRecorder* recorder) : recorder_(recorder) {}
   virtual ~PPTracker() = default;
 
   void FileChanged(SourceLocation loc, FileChangeReason reason,
                    SrcMgr::CharacteristicKind kind, FileID prevfid) override {
     if (gl_verbose) {
-      std::cerr << "#CHANGED EVENT " << reason << " FOR " << loc.printToString(ci_.getSourceManager()) << " P:" << ShouldProcess() << " I:" << include_ignored_ << std::endl;
+      std::cerr << "#CHANGED EVENT " << reason << " FOR "
+                << recorder_->PrintLocation(loc) << " P:" << ShouldProcess()
+                << " I:" << include_ignored_ << std::endl;
     }
     if (reason == EnterFile) {
       if (!ShouldProcess()) {
@@ -48,7 +51,7 @@ class PPTracker : public PPCallbacks {
         return;
       }
 
-      auto file = cache_->GetFileFor(ci_.getSourceManager(), loc);
+      auto file = recorder_->GetFileFor(loc);
       if (file) {
         if (file->preprocessing || file->preprocessed) {
           include_ignored_++;
@@ -60,8 +63,7 @@ class PPTracker : public PPCallbacks {
       if (gl_verbose)
         std::cerr << "  -> ENTERING "
                   << (file ? file->path : std::string("<INVALID>")) << " ("
-                  << loc.printToString(ci_.getSourceManager()) << ")"
-                  << std::endl;
+                  << recorder_->PrintLocation(loc) << ")" << std::endl;
 
       include_stack_.push(file);
       return;
@@ -88,7 +90,8 @@ class PPTracker : public PPCallbacks {
 
   bool ShouldProcess() {
     return include_stack_.empty() ||
-           (include_stack_.top() && !include_stack_.top()->preprocessed && include_ignored_ <= 0);
+           (include_stack_.top() && !include_stack_.top()->preprocessed &&
+            include_ignored_ <= 0);
   }
 
   //  bool FileNotFound(StringRef filename,
@@ -104,38 +107,93 @@ class PPTracker : public PPCallbacks {
                           const clang::Module* Imported,
                           SrcMgr::CharacteristicKind FileType) override {
     auto included_full_path = (SearchPath + "/" + RelativePath).str();
-    auto* file_descriptor = cache_->GetFileFor(included_full_path);
+    auto* file_descriptor =
+        recorder_->GetCache()->GetFileFor(included_full_path);
 
     if (gl_verbose)
       std::cerr << "#INCLUDING " << file_descriptor->path << " ("
                 << included_full_path << ") FROM "
-                << PrintLocation(ci_.getSourceManager(), cache_, loc) << " ("
-                << cache_->GetNormalizedPath(ci_.getSourceManager(),
-                                             filename_range.getBegin())
-                << ") P:"<< ShouldProcess() << " F:" << (File ? "[has file]" : "[NO FILE]")  << std::endl;
+                << recorder_->PrintLocation(loc) << " ("
+                << GetFilePath(recorder_->GetFileFor(filename_range.getBegin()))
+                << ") P:" << ShouldProcess()
+                << " F:" << (File ? "[has file]" : "[NO FILE]") << std::endl;
 
     if (!ShouldProcess() || !File) {
-      if (gl_verbose)
-        std::cerr << "#IGNORING STATEMENT" << std::endl;
+      if (gl_verbose) std::cerr << "#IGNORING STATEMENT" << std::endl;
       // FIXME: this means there's something wrong. The build would have failed,
       // but here we are trying to index the file.
       return;
     }
 
     auto html_path = file_descriptor->HtmlPath();
-    WrapWithTag(ci_, cache_, filename_range.getAsRange(),
+    WrapWithTag(*recorder_->GetCI(), recorder_->GetCache(),
+                filename_range.getAsRange(),
                 std::move(MakeTag("a", {"include"}, {"href", html_path})));
   }
 
+ public:
   /// \brief Called by Preprocessor::HandleMacroExpandedIdentifier when a
   /// macro invocation is found.
-  void MacroExpands(const Token& MacroNameTok, const MacroDefinition& MD,
-                    SourceRange Range, const MacroArgs* Args) override {
+  void MacroExpands(const Token& name, const MacroDefinition& md,
+                    SourceRange range, const MacroArgs* args) override {
+    if (!ShouldProcess()) return;
+
+    auto target = GetMacroRange(*md.getLocalDirective()->getInfo());
+    auto mrange = SourceRange(name.getLocation(), name.getEndLoc());
+
+    if (gl_verbose) {
+      std::cerr << "MACRO EXPAND " << name.getIdentifierInfo()->getName().str()
+                << " expanding:" << recorder_->PrintLocation(mrange)
+                << " target:" << recorder_->PrintLocation(target) << " '"
+                << recorder_->PrintCode(target) << "'" << std::endl;
+    }
+
+    // To see the result of the expansion, we can use a TokenLexer.
+    recorder_->CodeUses(mrange, "MACRO", "MACRO", target);
   };
 
   /// \brief Hook called whenever a macro definition is seen.
-  void MacroDefined(const Token& MacroNameTok,
-                    const MacroDirective* MD) override {
+  void MacroDefined(const Token& name, const MacroDirective* md) override {
+    if (!ShouldProcess()) return;
+
+    auto* mi = md->getMacroInfo();
+    auto target = GetMacroRange(*mi);
+    auto highlight = SourceRange(name.getLocation(), mi->getDefinitionEndLoc());
+    // auto highlight = SourceRange(name.getLocation(), name.getEndLoc());
+    // if (mi->getNumTokens() > 0) {
+    //  highlight = SourceRange(name.getLocation(),
+    //  mi->tokens()[mi->getNumTokens() - 1].getEndLoc());
+    //}
+
+    if (gl_verbose) {
+      auto pfd = recorder_->GetCI()->getPreprocessor().getPredefinesFileID();
+      auto lid =
+          recorder_->GetCI()->getSourceManager().getFileID(name.getLocation());
+      auto internal = pfd == lid;
+
+      std::cerr << "MACRO DEFINED " << internal << " "
+                << mi->isUsedForHeaderGuard() << " "
+                << name.getIdentifierInfo()->getName().str() << " at "
+                << recorder_->PrintLocation(name.getLocation()) << " vs "
+                << recorder_->PrintLocation(target) << " '"
+                << recorder_->PrintCode(highlight) << "'" << std::endl;
+      for (const auto& tok : mi->tokens()) {
+        std::cerr << "  TOKEN " << tok.getName() << " "
+                  << recorder_->PrintLocation(tok.getLocation()) << " "
+                  << recorder_->PrintLocation(tok.getEndLoc())
+                  /* << " " << (tok.isLiteral() ? tok.getLiteralData() :
+                     "not-literal") */
+                  << std::endl;
+      }
+    }
+
+    // TODO: isUsedForHeaderGuard() seems to be always returning false.
+    // Is there a reliable way to detect and skip header guards?
+    if (!mi->isUsedForHeaderGuard()) {
+      recorder_->CodeDefines(highlight, target, target, "MACRO",
+                             name.getIdentifierInfo()->getName().str(),
+                             AccessSpecifier::AS_public, Linkage::NoLinkage);
+    }
   };
 
   /// \brief Hook called whenever a macro \#undef is seen.
@@ -175,8 +233,8 @@ class PPTracker : public PPCallbacks {
 
     auto& state = if_stack_.top();
     if (state.condition == CVK_False) {
-      WrapEolSol(ci_, cache_, state.if_start, location,
-                 MakeTag("span", {"preprocessor-if", "muted"}, {}));
+      WrapEolSol(*recorder_->GetCI(), recorder_->GetCache(), state.if_start,
+                 location, MakeTag("span", {"preprocessor-if", "muted"}, {}));
     }
     state.condition = value;
     state.if_start = cond_range.getBegin();
@@ -190,8 +248,7 @@ class PPTracker : public PPCallbacks {
              const MacroDefinition& definition) override {
     if (!ShouldProcess()) return;
     if (gl_verbose)
-      std::cerr << "#IFDEF IN "
-                << PrintLocation(ci_.getSourceManager(), cache_, location)
+      std::cerr << "#IFDEF IN " << recorder_->PrintLocation(location)
                 << std::endl;
     if_stack_.emplace((definition ? CVK_True : CVK_False), token.getEndLoc());
   };
@@ -204,8 +261,7 @@ class PPTracker : public PPCallbacks {
               const MacroDefinition& definition) override {
     if (!ShouldProcess()) return;
     if (gl_verbose)
-      std::cerr << "#IFNDEF IN "
-                << PrintLocation(ci_.getSourceManager(), cache_, location)
+      std::cerr << "#IFNDEF IN " << recorder_->PrintLocation(location)
                 << std::endl;
     if_stack_.emplace((definition ? CVK_False : CVK_True), token.getEndLoc());
   };
@@ -218,22 +274,13 @@ class PPTracker : public PPCallbacks {
     if (if_stack_.empty()) return;
 
     if (gl_verbose)
-      std::cerr << "#ELSE IN "
-                << PrintLocation(ci_.getSourceManager(), cache_, location)
+      std::cerr << "#ELSE IN " << recorder_->PrintLocation(location)
                 << std::endl;
 
     auto& state = if_stack_.top();
     if (state.condition == CVK_False) {
-      //     std::cerr << "IFELSE " <<
-      //     location.printToString(rewriter_.getSourceMgr()) << " "
-      //                           <<
-      //                           if_location.printToString(rewriter_.getSourceMgr())
-      //                           << " "
-      //                           <<
-      //                           state.if_start.printToString(rewriter_.getSourceMgr())
-      //                           << std::endl;
-      WrapEolSol(ci_, cache_, state.if_start, location,
-                 MakeTag("span", {"preprocessor-if", "muted"}, {}));
+      WrapEolSol(*recorder_->GetCI(), recorder_->GetCache(), state.if_start,
+                 location, MakeTag("span", {"preprocessor-if", "muted"}, {}));
       state.condition = CVK_True;
     } else {
       state.condition = CVK_False;
@@ -247,21 +294,27 @@ class PPTracker : public PPCallbacks {
   void Endif(SourceLocation location, SourceLocation if_location) override {
     if (!ShouldProcess()) return;
     if (gl_verbose)
-      std::cerr << "#ENDIF IN "
-                << PrintLocation(ci_.getSourceManager(), cache_, location)
+      std::cerr << "#ENDIF IN " << recorder_->PrintLocation(location)
                 << std::endl;
 
     if (if_stack_.empty()) return;
 
     const auto& state = if_stack_.top();
     if (state.condition == CVK_False) {
-      WrapEolSol(ci_, cache_, state.if_start, location,
-                 MakeTag("span", {"preprocessor-if", "muted"}, {}));
+      WrapEolSol(*recorder_->GetCI(), recorder_->GetCache(), state.if_start,
+                 location, MakeTag("span", {"preprocessor-if", "muted"}, {}));
     }
     if_stack_.pop();
   };
 
  private:
+  // Return the range used to identify a MACRO.
+  SourceRange GetMacroRange(const MacroInfo& mi) {
+    // in #define FOO 1, getDefinitionLoc points right after FOO,
+    // getDefintionEndLoc() points to the 1.
+    return SourceRange(mi.getDefinitionLoc(), mi.getDefinitionEndLoc());
+  }
+
   struct State {
     State(const ConditionValueKind& condition, const SourceLocation& location)
         : condition(condition), if_start(location) {}
@@ -272,9 +325,7 @@ class PPTracker : public PPCallbacks {
   std::stack<FileRenderer::ParsedFile*> include_stack_;
   int include_ignored_ = 0;
 
-  FileCache* cache_;
-  const CompilerInstance& ci_;
+  SbexrRecorder* recorder_;
 };
-
 
 #endif

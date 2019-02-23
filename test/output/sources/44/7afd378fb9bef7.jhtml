@@ -26,27 +26,27 @@
  */</span>
 
 <span class='directive'>#ifndef __STDARG_H</span>
-<span class='directive'>#define __STDARG_H</span>
+<span class='directive'>#define <span class='def def-MACRO' id='0001b0090001b009'>__STDARG_H</span></span>
 
 <span class='directive'>#ifndef _VA_LIST</span>
 <span class='def def-Typedef' id='0001e0010001e01b'><span class='keyword typedef'>typedef</span> __builtin_va_list va_list</span>;
-<span class='directive'>#define _VA_LIST</span>
+<span class='directive'>#define <span class='def def-MACRO' id='0001f0090001f009'>_VA_LIST</span></span>
 <span class='directive'>#endif</span>
-<span class='directive'>#define va_start(ap, param) __builtin_va_start(ap, param)</span>
-<span class='directive'>#define va_end(ap)          __builtin_va_end(ap)</span>
-<span class='directive'>#define va_arg(ap, type)    __builtin_va_arg(ap, type)</span>
+<span class='directive'>#define <span class='def def-MACRO' id='0002100900021039'>va_start(ap, param) __builtin_va_start(ap, param)</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0002200900022030'>va_end(ap)          __builtin_va_end(ap)</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0002300900023036'>va_arg(ap, type)    __builtin_va_arg(ap, type)</span></span>
 
 <span class='comment'>/* GCC always defines __va_copy, but does not define va_copy unless in c99 mode
  * or -ansi is not specified, since it was not part of C90.
  */</span>
-<span class='directive'>#define __va_copy(d,s) __builtin_va_copy(d,s)</span>
+<span class='directive'>#define <span class='def def-MACRO' id='000280090002802d'>__va_copy(d,s) __builtin_va_copy(d,s)</span></span>
 
 <span class='directive'>#if __STDC_VERSION__ &gt;= 199901L || __cplusplus &gt;= 201103L || !defined(__STRICT_ANSI__)</span>
-<span class='directive'>#define va_copy(dest, src)  __builtin_va_copy(dest, src)</span>
+<span class='directive'>#define <span class='def def-MACRO' id='0002b0090002b038'>va_copy(dest, src)  __builtin_va_copy(dest, src)</span></span>
 <span class='directive'>#endif</span>
 
 <span class='directive'>#ifndef __GNUC_VA_LIST</span>
-<span class='directive'>#define __GNUC_VA_LIST 1</span>
+<span class='directive'>#define <span class='def def-MACRO' id='0002f0090002f018'>__GNUC_VA_LIST 1</span></span>
 <span class='def def-Typedef' id='000300010003001b'><span class='keyword typedef'>typedef</span> __builtin_va_list __gnuc_va_list</span>;
 <span class='directive'>#endif</span>
 

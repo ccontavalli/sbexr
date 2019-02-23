@@ -9,17 +9,17 @@
 <span class='directive'># error Applications may not define the macro _LIBC</span></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#define __stub___compat_bdflush</span>
-<span class='directive'>#define __stub_chflags</span>
-<span class='directive'>#define __stub_fattach</span>
-<span class='directive'>#define __stub_fchflags</span>
-<span class='directive'>#define __stub_fdetach</span>
-<span class='directive'>#define __stub_getmsg</span>
-<span class='directive'>#define __stub_gtty</span>
-<span class='directive'>#define __stub_lchmod</span>
-<span class='directive'>#define __stub_putmsg</span>
-<span class='directive'>#define __stub_revoke</span>
-<span class='directive'>#define __stub_setlogin</span>
-<span class='directive'>#define __stub_sigreturn</span>
-<span class='directive'>#define __stub_sstk</span>
-<span class='directive'>#define __stub_stty</span>
+<span class='directive'>#define <span class='def def-MACRO' id='0000a0090000a009'>__stub___compat_bdflush</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0000b0090000b009'>__stub_chflags</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0000c0090000c009'>__stub_fattach</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0000d0090000d009'>__stub_fchflags</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0000e0090000e009'>__stub_fdetach</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0000f0090000f009'>__stub_getmsg</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0001000900010009'>__stub_gtty</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0001100900011009'>__stub_lchmod</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0001200900012009'>__stub_putmsg</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0001300900013009'>__stub_revoke</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0001400900014009'>__stub_setlogin</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0001500900015009'>__stub_sigreturn</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0001600900016009'>__stub_sstk</span></span>
+<span class='directive'>#define <span class='def def-MACRO' id='0001700900017009'>__stub_stty</span></span>
