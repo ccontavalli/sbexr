@@ -42,6 +42,7 @@ bool WrapWithTag(const CompilerInstance& ci, FileCache* cache,
                  const SourceLocation& obegin, const SourceLocation& oend,
                  Tag tag) {
   SourceManager& sm = ci.getSourceManager();
+  if (obegin.isMacroID() || oend.isMacroID()) return false;
 
   auto begin = sm.getExpansionLoc(obegin);
   auto end = sm.getExpansionLoc(oend);
