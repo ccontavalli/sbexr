@@ -98,25 +98,50 @@ void PrintSpellingLineNumbers(raw_ostream& s, const SourceManager& sm,
 //   ExpansionLocation (eg, where the code is being processed) and lookup
 //   all human interesting information about that location.
 //   (eg, file name, column and line number, all in one go).
-std::string PrintLocation(const SourceManager& sm, FileCache* cache,
-                          SourceRange location) {
+inline std::string PrintCode(const SourceManager& sm,
+                             const SourceRange& range) {
+  FileID bid;
+  unsigned boffset;
+  std::tie(bid, boffset) = sm.getDecomposedExpansionLoc(range.getBegin());
+  if (!bid.isValid()) return "<no-code:invalid-begin-file>";
+
+  FileID eid;
+  unsigned eoffset;
+  std::tie(eid, eoffset) = sm.getDecomposedExpansionLoc(range.getEnd());
+  if (!eid.isValid()) return "<no-code:invalid-end-file>";
+  if (eid != bid) return "<no-code:different-begin-end-file>";
+
+  bool invalid = false;
+  const auto& buffer = sm.getBufferData(bid, &invalid);
+  if (invalid) return "<no-code:invalid-buffer>";
+
+  const char* data = buffer.data();
+  if (boffset >= buffer.size()) return "<no-code:invalid-begin-offset>";
+  if (eoffset >= buffer.size()) return "<no-code:invalid-end-offset>";
+  if (eoffset < boffset) return "<no-code:end-offset-smaller-than-begin>";
+
+  return std::string(data + boffset, eoffset - boffset);
+}
+
+inline std::string PrintLocation(const SourceManager& sm, FileCache* cache,
+                                 SourceRange location) {
   if (!location.isValid()) return "<invalid-location>";
 
   auto sf = cache->GetFileFor(sm, location.getBegin());
   auto ef = cache->GetFileFor(sm, location.getEnd());
 
-  std::string output(sf->path);
+  std::string output(GetFilePath(sf));
   raw_string_ostream s(output);
 
   PrintLineNumbers(s, sm, location.getBegin());
   s << "-";
-  if (sf != ef) s << ef->path;
+  if (sf != ef) s << GetFilePath(ef);
   PrintLineNumbers(s, sm, location.getEnd());
   return s.str();
 }
 
-std::string PrintLocation(const SourceManager& sm, FileCache* cache,
-                          SourceLocation location) {
+inline std::string PrintLocation(const SourceManager& sm, FileCache* cache,
+                                 SourceLocation location) {
   std::string output(GetFilePath(cache->GetFileFor(sm, location)));
   raw_string_ostream s(output);
   s << ":";
@@ -124,8 +149,9 @@ std::string PrintLocation(const SourceManager& sm, FileCache* cache,
   return s.str();
 }
 
-std::string PrintSpellingLocation(const SourceManager& sm, FileCache* cache,
-                                  SourceRange location) {
+inline std::string PrintSpellingLocation(const SourceManager& sm,
+                                         FileCache* cache,
+                                         SourceRange location) {
   if (!location.isValid()) return "<invalid-location>";
 
   auto sf = cache->GetSpellingFileFor(sm, location.getBegin());
@@ -141,8 +167,9 @@ std::string PrintSpellingLocation(const SourceManager& sm, FileCache* cache,
   return s.str();
 }
 
-std::string PrintSpellingLocation(const SourceManager& sm, FileCache* cache,
-                                  SourceLocation location) {
+inline std::string PrintSpellingLocation(const SourceManager& sm,
+                                         FileCache* cache,
+                                         SourceLocation location) {
   std::string output(GetFilePath(cache->GetSpellingFileFor(sm, location)));
   raw_string_ostream s(output);
   s << ":";
