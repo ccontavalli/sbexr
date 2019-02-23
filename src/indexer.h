@@ -149,19 +149,19 @@ class Indexer {
     std::vector<std::string> exceptions;
   };
 
-  void RecordUse(const SourceManager& sm, const clang::SourceRange& target,
+  bool RecordUse(const SourceManager& sm, const clang::SourceRange& target,
                  const clang::SourceRange& user, const char* description);
 
-  void RecordDeclares(const SourceManager& sm,
+  bool RecordDeclares(const SourceManager& sm,
                       const clang::SourceRange& declared,
                       const clang::SourceRange& declarer, const char* kind,
                       const std::string& name, const StringRef& snippet,
                       AccessSpecifier access, clang::Linkage linkage);
-  void RecordDefines(const SourceManager& sm, const clang::SourceRange& defined,
+  bool RecordDefines(const SourceManager& sm, const clang::SourceRange& defined,
                      const clang::SourceRange& definer, const char* kind,
                      const std::string& name, const StringRef& snippet,
                      AccessSpecifier access, clang::Linkage linkage);
-  void RecordException(const SourceManager& sm,
+  bool RecordException(const SourceManager& sm,
                        const clang::SourceRange& target,
                        const std::string& exception);
 

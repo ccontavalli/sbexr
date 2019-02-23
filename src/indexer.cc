@@ -52,55 +52,72 @@ bool Indexer::Id::operator==(const Id& other) const {
   return file == other.file && object == other.object;
 }
 
-void Indexer::RecordException(const SourceManager& sm,
+bool Indexer::RecordException(const SourceManager& sm,
                               const clang::SourceRange& target,
                               const std::string& exception) {
-  if (!target.isValid()) return;
+  if (!target.isValid()) return false;
+
   Id tid(cache_, sm, target);
+  if (!tid.file) return false;
 
   auto& properties = index_[tid];
   properties.exceptions.push_back(exception);
+  return true;
 }
 
-void Indexer::RecordUse(const SourceManager& sm,
+bool Indexer::RecordUse(const SourceManager& sm,
                         const clang::SourceRange& target,
                         const clang::SourceRange& user,
                         const char* description) {
-  if (!target.isValid() || !user.isValid()) return;
+  if (!target.isValid() || !user.isValid()) return false;
+
   Id tid(cache_, sm, target);
   Id uid(cache_, sm, user);
 
+  if (!tid.file || !uid.file) return false;
+
   auto& properties = index_[tid];
   properties.users.emplace_back(Id(cache_, sm, user));
+  return true;
 }
 
-void Indexer::RecordDefines(const SourceManager& sm,
+bool Indexer::RecordDefines(const SourceManager& sm,
                             const clang::SourceRange& defined,
                             const clang::SourceRange& definer, const char* kind,
                             const std::string& name, const StringRef& snippet,
                             AccessSpecifier access,
                             const clang::Linkage linkage) {
-  if (!defined.isValid() || !definer.isValid()) return;
+  if (!defined.isValid() || !definer.isValid()) return false;
 
   Id definedid(cache_, sm, defined);
+  Id definerid(cache_, sm, definer);
+
+  if (!definedid.file || !definerid.file) return false;
+
   auto& properties = index_[definedid];
-  properties.providers.emplace_back(Properties::kFlagDefinition,
-                                    Id(cache_, sm, definer), name, snippet,
-                                    kind, access, linkage);
+  properties.providers.emplace_back(Properties::kFlagDefinition, definerid,
+                                    name, snippet, kind, access, linkage);
+  return true;
 }
-void Indexer::RecordDeclares(const SourceManager& sm,
+
+bool Indexer::RecordDeclares(const SourceManager& sm,
                              const clang::SourceRange& declared,
                              const clang::SourceRange& declarer,
                              const char* kind, const std::string& name,
                              const StringRef& snippet,
                              const AccessSpecifier access,
                              const clang::Linkage linkage) {
-  if (!declared.isValid() || !declarer.isValid()) return;
+  if (!declared.isValid() || !declarer.isValid()) return false;
+
   Id declaredid(cache_, sm, declared);
+  Id declarerid(cache_, sm, declarer);
+
+  if (!declaredid.file || !declarerid.file) return false;
+
   auto& properties = index_[declaredid];
-  properties.providers.emplace_back(Properties::kFlagNone,
-                                    Id(cache_, sm, declarer), name, snippet,
-                                    kind, access, linkage);
+  properties.providers.emplace_back(Properties::kFlagNone, declarerid, name,
+                                    snippet, kind, access, linkage);
+  return true;
 }
 
 class JsonWriter {
