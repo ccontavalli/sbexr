@@ -648,24 +648,6 @@
             ]
         },
         {
-            "name": "POINT",
-            "kinds": [
-                {
-                    "kind": "MACRO",
-                    "linkage": 0,
-                    "access": 0,
-                    "defs": [
-                        {
-                            "href": "../cf/341b97b05a5692.html#0001300a0001301f",
-                            "location": "test-multiple-file-1.cc:19:10-19:31",
-                            "snippet": "# define POINT volatile test::Point"
-                        }
-                    ],
-                    "decls": []
-                }
-            ]
-        },
-        {
             "name": "P_tmpdir",
             "kinds": [
                 {
@@ -874,24 +856,6 @@
                             "href": "../e0/389d8d16166a86.html#0001e00a0001e00a",
                             "location": "test-multiple-file-0.h:30:10-30:10",
                             "snippet": "# define TEST2_H"
-                        }
-                    ],
-                    "decls": []
-                }
-            ]
-        },
-        {
-            "name": "TEST_MULTIPLE_FILE_1_H",
-            "kinds": [
-                {
-                    "kind": "MACRO",
-                    "linkage": 0,
-                    "access": 0,
-                    "defs": [
-                        {
-                            "href": "../e5/66fd4ef5cee94a.html#0001e00a0001e00a",
-                            "location": "test-multiple-file-1.h:30:10-30:10",
-                            "snippet": "# define TEST_MULTIPLE_FILE_1_H"
                         }
                     ],
                     "decls": []

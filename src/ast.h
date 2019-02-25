@@ -74,19 +74,26 @@ class SbexrRecorder {
   //   - another function:
   //     - goal: record that foo, uses the Point definition.
   //
-  TagDecl* GetTagDeclForType(const QualType& qual_type) const {
+  const clang::Type* GetNonPointerType(const QualType& qual_type) const {
     auto* real_type = qual_type.split().Ty;
-    // For pointers, like:
-    //     Point *** foo;
-    // find the original type, descending the type system.
-    //
-    // Note that nullptr_t seems to have hasPointerRepresentation() true,
-    // and real_type->getPointeeType().split().Ty returning null.
     while (real_type && real_type->hasPointerRepresentation())
       real_type = real_type->getPointeeType().split().Ty;
+    return real_type;
+  }
 
-    if (!real_type) return nullptr;
-    return real_type->getAsTagDecl();
+  SourceRange GetRangeForType(const QualType& qual_type) const {
+    const auto* real_type = GetNonPointerType(qual_type);
+    if (!real_type) return SourceRange();
+    if (const auto* t = real_type->getAs<TagType>())
+      return GetSourceRangeOrFail(*t->getDecl());
+    if (const auto* t = real_type->getAs<InjectedClassNameType>())
+      return GetSourceRangeOrFail(*t->getDecl());
+    if (const auto* t = real_type->getAs<TypedefType>())
+      return GetSourceRangeOrFail(*t->getDecl());
+    // Candidates:
+    // - UnresolvedUsingTypenameType
+    // - TemplateTypeParamType
+    return SourceRange();
   }
 
   // Returns true if the location has already been rendered.
@@ -96,10 +103,8 @@ class SbexrRecorder {
   }
 
   template <typename UserT>
-  void LinkToType(const UserT& user, const char* description, TagDecl* target) {
-    if (!target) return;
-
-    const auto& ntarget = NormalizeSourceRange(target->getSourceRange());
+  void LinkToType(const UserT& user, const char* description, const SourceRange& target) {
+    const auto& ntarget = NormalizeSourceRange(target);
     if (!ntarget.isValid()) return;
 
     auto sr = GetSourceRangeOrFail(user);
@@ -110,10 +115,10 @@ class SbexrRecorder {
 
   template <typename UserT>
   bool RecordTypeUse(const UserT& user, const char* description,
-                     TagDecl* target) {
-    if (!target) return false;
+                     const SourceRange& target) {
+    const auto& ntarget = NormalizeSourceRange(target);
+    if (!ntarget.isValid()) return false;
 
-    const auto& ntarget = NormalizeSourceRange(target->getSourceRange());
     const auto& nuser = NormalizeSourceRange(GetSourceRangeOrFail(user));
     return index_->RecordUse(ci_->getSourceManager(), ntarget, nuser,
                              description);
@@ -122,9 +127,9 @@ class SbexrRecorder {
   template <typename UserT>
   void CodeUsesQualType(const UserT& user, const char* description,
                         const QualType& qual_type) {
-    auto* real_type = GetTagDeclForType(qual_type);
-    if (RecordTypeUse(user, description, real_type))
-      LinkToType(user, description, real_type);
+    auto range = GetRangeForType(qual_type);
+    if (RecordTypeUse(user, description, range))
+      LinkToType(user, description, range);
   }
 
   // Same as CodeUses, but TargetT is an element of the clang/llvm AST.
@@ -473,9 +478,9 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
       // The type link was already created by the DeclStmt.
       auto* vt = dyn_cast<VarDecl>(v);
       if (vt && vt->isLocalVarDecl()) {
-        auto* rt = recorder_->GetTagDeclForType(v->getType());
+        auto range = recorder_->GetRangeForType(v->getType());
         recorder_->RecordTypeUse(v->getTypeSourceInfo()->getTypeLoc(),
-                                 "declaration", rt);
+                                 "declaration", range);
       } else {
         recorder_->CodeUsesQualType(v->getTypeSourceInfo()->getTypeLoc(),
                                     "declaration", v->getType());
@@ -485,7 +490,7 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
   }
   bool VisitUsingDecl(UsingDecl* v) {
     // FIXME: do something smart on using declarations.
-    if (gl_verbose) std::cerr << recorder_->TryPrint(v) << std::endl;
+    if (gl_verbose) std::cerr << "VisitUsingDecl " << recorder_->TryPrint(v) << std::endl;
 #if 0
     if (v->shadow_size() == 1) {
       const auto& target = v->shadow_begin()->getTargetDecl();
@@ -501,7 +506,7 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
   bool VisitNamedDecl(NamedDecl* v) {
     if (!v) return true;
 
-    if (gl_verbose) std::cerr << recorder_->TryPrint(v) << std::endl;
+    if (gl_verbose) std::cerr << "VisitNamedDecl " << recorder_->TryPrint(v) << std::endl;
 
     if (isa<FunctionDecl>(v)) {
       // For each use of a templated function, the AST will contain,
@@ -520,7 +525,7 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 
       auto* first = f->getFirstDecl();
       if (!first) first = f;
-      if (gl_verbose) std::cerr << recorder_->TryPrint(f) << "\n";
+      if (gl_verbose) std::cerr << "- FunctionDecl " << recorder_->TryPrint(f) << "\n";
 
       if (f->isThisDeclarationADefinition()) {
         // SOURCE OF BUGGY[1] (IO_FILE_)
@@ -550,7 +555,7 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
       }
     } else if (isa<VarDecl>(v)) {
       auto* t = cast<VarDecl>(v);
-      if (gl_verbose) std::cerr << recorder_->TryPrint(t) << std::endl;
+      if (gl_verbose) std::cerr << "- VarDecl " << recorder_->TryPrint(t) << std::endl;
 
       auto* first = t->getFirstDecl();
       if (!first) first = t;
@@ -587,7 +592,7 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
   }
 
   bool VisitDeclStmt(DeclStmt* stmt) {
-    if (gl_verbose) std::cerr << recorder_->TryPrint(stmt) << std::endl;
+    if (gl_verbose) std::cerr << "VisitDeclStmt " << recorder_->TryPrint(stmt) << std::endl;
 
     // The first declaration in the statement that has a type should link the
     // type. Example:
@@ -599,9 +604,11 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
     for (auto& decl : stmt->decls()) {
       auto* decldecl = dyn_cast<DeclaratorDecl>(decl);
       if (decldecl) {
-        auto* rt = recorder_->GetTagDeclForType(decldecl->getType());
+        auto type = decldecl->getType();
+        auto range = recorder_->GetRangeForType(type);
+	// if (gl_verbose) std::cerr << "- GetTagDeclFortype " << recorder_->TryPrint(&type) << std::endl; 
         recorder_->LinkToType(decldecl->getTypeSourceInfo()->getTypeLoc(),
-                              "declaration", rt);
+                              "declaration", range);
         break;
       }
     }

@@ -27,7 +27,7 @@
 <span class='comment'>/* Read NBYTES bytes from COOKIE into a buffer pointed to by BUF.
    Return number of bytes read.  */</span>
 <span class='def def-Typedef' id='0001b0010001c03a'><span class='keyword typedef'>typedef</span> __ssize_t cookie_read_function_t (<span class='keyword void'>void</span> *__cookie, <span class='keyword char'>char</span> *__buf,
-                                          size_t __nbytes)</span>;
+                                          <a class='declaration-uses' href='../fd/abf26b4f65020a.html#0003e0010003e017'>size_t</a> __nbytes)</span>;
 
 <span class='comment'>/* Write NBYTES bytes pointed to by BUF to COOKIE.  Write all NBYTES bytes
    unless there is an error.  Return number of bytes written.  If
@@ -36,7 +36,7 @@
    pointer to the end of the file and then do the write; if not, just
    write at the current file pointer.  */</span>
 <span class='def def-Typedef' id='000240010002503b'><span class='keyword typedef'>typedef</span> __ssize_t cookie_write_function_t (<span class='keyword void'>void</span> *__cookie, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__buf,
-                                           size_t __nbytes)</span>;
+                                           <a class='declaration-uses' href='../fd/abf26b4f65020a.html#0003e0010003e017'>size_t</a> __nbytes)</span>;
 
 <span class='comment'>/* Move COOKIE's file position to *POS bytes from the
    beginning of the file (if W is SEEK_SET),
@@ -44,7 +44,7 @@
    or the end of the file (if W is SEEK_END).
    Set *POS to the new file position.
    Returns zero if successful, nonzero if not.  */</span>
-<span class='def def-Typedef' id='0002d0010002d04e'><span class='keyword typedef'>typedef</span> <span class='keyword int'>int</span> cookie_seek_function_t (<span class='keyword void'>void</span> *__cookie, __off64_t *__pos, <span class='keyword int'>int</span> __w)</span>;
+<span class='def def-Typedef' id='0002d0010002d04e'><span class='keyword typedef'>typedef</span> <span class='keyword int'>int</span> cookie_seek_function_t (<span class='keyword void'>void</span> *__cookie, <a class='declaration-uses' href='../41/e28fc1cdef774c.html#000880160009701b000970010009701b'>__off64_t *</a>__pos, <span class='keyword int'>int</span> __w)</span>;
 
 <span class='comment'>/* Close COOKIE.  */</span>
 <span class='def def-Typedef' id='0003000100030034'><span class='keyword typedef'>typedef</span> <span class='keyword int'>int</span> cookie_close_function_t (<span class='keyword void'>void</span> *__cookie)</span>;
@@ -56,10 +56,10 @@
    new code.  */</span>
 <span class='def def-Typedef' id='000370010003d003'><span class='keyword typedef'>typedef</span> <span class='def def-CXXRecord' id='000370090003d001'><span class='keyword struct'>struct</span> _IO_cookie_io_functions_t
 {
-  <span class='def def-Field' id='000390030003901b'>cookie_read_function_t *read</span>;		<span class='comment'>/* Read bytes.  */</span>
-  <span class='def def-Field' id='0003a0030003a01c'>cookie_write_function_t *write</span>;	<span class='comment'>/* Write bytes.  */</span>
-  <span class='def def-Field' id='0003b0030003b01b'>cookie_seek_function_t *seek</span>;		<span class='comment'>/* Seek/tell file position.  */</span>
-  <span class='def def-Field' id='0003c0030003c01c'>cookie_close_function_t *close</span>;	<span class='comment'>/* Close file.  */</span>
+  <span class='def def-Field' id='000390030003901b'><a class='declaration-uses' href='../f9/72a0e406b846b3.html#0001b0010001c03a'>cookie_read_function_t *</a>read</span>;		<span class='comment'>/* Read bytes.  */</span>
+  <span class='def def-Field' id='0003a0030003a01c'><a class='declaration-uses' href='../f9/72a0e406b846b3.html#000240010002503b'>cookie_write_function_t *</a>write</span>;	<span class='comment'>/* Write bytes.  */</span>
+  <span class='def def-Field' id='0003b0030003b01b'><a class='declaration-uses' href='../f9/72a0e406b846b3.html#0002d0010002d04e'>cookie_seek_function_t *</a>seek</span>;		<span class='comment'>/* Seek/tell file position.  */</span>
+  <span class='def def-Field' id='0003c0030003c01c'><a class='declaration-uses' href='../f9/72a0e406b846b3.html#0003000100030034'>cookie_close_function_t *</a>close</span>;	<span class='comment'>/* Close file.  */</span>
 }</span> cookie_io_functions_t</span>;
 
 <span class='directive'>#endif</span>
