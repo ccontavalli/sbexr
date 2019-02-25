@@ -423,7 +423,6 @@ func (vs *Validator) PerformFullTreeTests() {
 	requested_sorted, _ := misc.StringKeys(requested)
 	sort.Strings(requested_sorted)
 
-
 	for _, rk := range requested_sorted {
 		rr := requested[rk]
 
@@ -433,6 +432,8 @@ func (vs *Validator) PerformFullTreeTests() {
 		pr, ok := provided[rk]
 		if !ok {
 			keys, _ := misc.StringKeys(rr.User)
+			sort.Strings(keys)
+
 			vs.AddWarning("", "Resource %s aka %s is needed by %v, but could not be found", rk, rr.Name, keys)
 			continue
 		}
@@ -447,7 +448,7 @@ func (vs *Validator) PerformFullTreeTests() {
 
 			_, ok := pr.Target[rt]
 			if !ok {
-				vs.AddWarning("", "Resource %s aka %s requires target %s, which is not provided (%d of %d request, %d provided)", rk, rr.Name, rt, i, len(rr.Target), len(pr.Target))
+				vs.AddWarning("", "Resource %s aka %s is required to provide target %s, but does not (%d of %d requested, %d provided)", rk, rr.Name, rt, i, len(rr.Target), len(pr.Target))
 			} else {
 				delete(pr.Target, rt)
 			}
