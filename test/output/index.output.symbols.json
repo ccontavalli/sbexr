@@ -138,8 +138,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001600100016011",
-                            "location": "test-multiple-file-1.cc:22:1-22:17",
+                            "href": "../cf/341b97b05a5692.html#0001800100018011",
+                            "location": "test-multiple-file-1.cc:24:1-24:17",
                             "snippet": "using namespace test;"
                         }
                     ],
@@ -261,8 +261,8 @@
                     "access": 0,
                     "defs": [
                         {
-                            "href": "../bc/764de7984141e0.html#0002a00a0002a013",
-                            "location": "include-all.h:42:10-42:19",
+                            "href": "../bc/764de7984141e0.html#0002b00a0002b013",
+                            "location": "include-all.h:43:10-43:19",
                             "snippet": "# define FIELD(A) A"
                         }
                     ],
@@ -461,8 +461,8 @@
                     "access": 0,
                     "defs": [
                         {
-                            "href": "../bc/764de7984141e0.html#0002600a00026022",
-                            "location": "include-all.h:38:10-38:34",
+                            "href": "../bc/764de7984141e0.html#0002900a00029022",
+                            "location": "include-all.h:41:10-41:34",
                             "snippet": "# define MACRO(A) IncludedByAll(A)"
                         }
                     ],
@@ -479,9 +479,45 @@
                     "access": 0,
                     "defs": [
                         {
-                            "href": "../bc/764de7984141e0.html#0002800a0002801c",
-                            "location": "include-all.h:40:10-40:28",
+                            "href": "../bc/764de7984141e0.html#0002a00a0002a01c",
+                            "location": "include-all.h:42:10-42:28",
                             "snippet": "# define MACROP(B) printf(B)"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "MACRO_HIGHEST",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../bc/764de7984141e0.html#0002600a00026018",
+                            "location": "include-all.h:38:10-38:24",
+                            "snippet": "# define MACRO_HIGHEST 65535"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "MACRO_RECURSIVE",
+            "kinds": [
+                {
+                    "kind": "MACRO",
+                    "linkage": 0,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../bc/764de7984141e0.html#0002700a0002701a",
+                            "location": "include-all.h:39:10-39:26",
+                            "snippet": "# define MACRO_RECURSIVE MACRO_HIGHEST"
                         }
                     ],
                     "decls": []
@@ -988,8 +1024,8 @@
                     "linkage": 6,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#000190010002d001",
-                            "location": "test-multiple-file-1.cc:25:1-45:1",
+                            "href": "../cf/341b97b05a5692.html#0001b00100030001",
+                            "location": "test-multiple-file-1.cc:27:1-48:1",
                             "snippet": "void TestMore(Test* test) {"
                         }
                     ],
@@ -6995,8 +7031,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001a0030001a009",
-                            "location": "test-multiple-file-1.cc:26:3-26:9",
+                            "href": "../cf/341b97b05a5692.html#0001c0030001c009",
+                            "location": "test-multiple-file-1.cc:28:3-28:9",
                             "snippet": "Point ab, ac, ad;"
                         }
                     ],
@@ -7012,8 +7048,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001a0030001a00d",
-                            "location": "test-multiple-file-1.cc:26:3-26:13",
+                            "href": "../cf/341b97b05a5692.html#0001c0030001c00d",
+                            "location": "test-multiple-file-1.cc:28:3-28:13",
                             "snippet": "Point ab, ac, ad;"
                         }
                     ],
@@ -7029,8 +7065,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001a0030001a011",
-                            "location": "test-multiple-file-1.cc:26:3-26:17",
+                            "href": "../cf/341b97b05a5692.html#0001c0030001c011",
+                            "location": "test-multiple-file-1.cc:28:3-28:17",
                             "snippet": "Point ab, ac, ad;"
                         }
                     ],
@@ -7607,8 +7643,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0002100300021008",
-                            "location": "test-multiple-file-1.cc:33:3-33:8",
+                            "href": "../cf/341b97b05a5692.html#0002400300024008",
+                            "location": "test-multiple-file-1.cc:36:3-36:8",
                             "snippet": "punt foffa;"
                         }
                     ],
@@ -7624,8 +7660,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0002400300024009",
-                            "location": "test-multiple-file-1.cc:36:3-36:9",
+                            "href": "../cf/341b97b05a5692.html#0002700300027009",
+                            "location": "test-multiple-file-1.cc:39:3-39:9",
                             "snippet": "punt* foffa2;"
                         }
                     ],
@@ -8066,8 +8102,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001c0030001c027",
-                            "location": "test-multiple-file-1.cc:28:3-28:39",
+                            "href": "../cf/341b97b05a5692.html#0001e0030001e027",
+                            "location": "test-multiple-file-1.cc:30:3-30:39",
                             "snippet": "static POINT __attribute__((used))* fuffa;"
                         }
                     ],
@@ -8083,8 +8119,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001d0030001d027",
-                            "location": "test-multiple-file-1.cc:29:3-29:39",
+                            "href": "../cf/341b97b05a5692.html#0001f0030001f027",
+                            "location": "test-multiple-file-1.cc:31:3-31:39",
                             "snippet": "static __attribute__((used)) POINT* fuffa2;"
                         }
                     ],
@@ -8446,8 +8482,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001b0030001b009",
-                            "location": "test-multiple-file-1.cc:27:3-27:9",
+                            "href": "../cf/341b97b05a5692.html#0001d0030001d009",
+                            "location": "test-multiple-file-1.cc:29:3-29:9",
                             "snippet": "Point p0, p1, p2, *p3, *p4;"
                         }
                     ],
@@ -8463,8 +8499,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001b0030001b00d",
-                            "location": "test-multiple-file-1.cc:27:3-27:13",
+                            "href": "../cf/341b97b05a5692.html#0001d0030001d00d",
+                            "location": "test-multiple-file-1.cc:29:3-29:13",
                             "snippet": "Point p0, p1, p2, *p3, *p4;"
                         }
                     ],
@@ -8480,8 +8516,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001b0030001b011",
-                            "location": "test-multiple-file-1.cc:27:3-27:17",
+                            "href": "../cf/341b97b05a5692.html#0001d0030001d011",
+                            "location": "test-multiple-file-1.cc:29:3-29:17",
                             "snippet": "Point p0, p1, p2, *p3, *p4;"
                         }
                     ],
@@ -8497,8 +8533,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001b0030001b016",
-                            "location": "test-multiple-file-1.cc:27:3-27:22",
+                            "href": "../cf/341b97b05a5692.html#0001d0030001d016",
+                            "location": "test-multiple-file-1.cc:29:3-29:22",
                             "snippet": "Point p0, p1, p2, *p3, *p4;"
                         }
                     ],
@@ -8514,8 +8550,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001b0030001b01b",
-                            "location": "test-multiple-file-1.cc:27:3-27:27",
+                            "href": "../cf/341b97b05a5692.html#0001d0030001d01b",
+                            "location": "test-multiple-file-1.cc:29:3-29:27",
                             "snippet": "Point p0, p1, p2, *p3, *p4;"
                         }
                     ],
@@ -9143,8 +9179,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001900f00019015",
-                            "location": "test-multiple-file-1.cc:25:15-25:21",
+                            "href": "../cf/341b97b05a5692.html#0001b00f0001b015",
+                            "location": "test-multiple-file-1.cc:27:15-27:21",
                             "snippet": "void TestMore(Test* test) {"
                         }
                     ],
@@ -9172,8 +9208,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#000270030002700f",
-                            "location": "test-multiple-file-1.cc:39:3-39:15",
+                            "href": "../cf/341b97b05a5692.html#0002a0030002a00f",
+                            "location": "test-multiple-file-1.cc:42:3-42:15",
                             "snippet": "test::Point test3;"
                         }
                     ],
@@ -9303,6 +9339,23 @@
             ]
         },
         {
+            "name": "u65535_t",
+            "kinds": [
+                {
+                    "kind": "Typedef",
+                    "linkage": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#000160010001600d",
+                            "location": "test-multiple-file-1.cc:22:1-22:13",
+                            "snippet": "typedef int u65535_t;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
             "name": "ungetc",
             "kinds": [
                 {
@@ -9424,6 +9477,18 @@
                             "href": "../bc/764de7984141e0.html#0002202200022026",
                             "location": "include-all.h:34:34-34:38",
                             "snippet": "static inline void IncludedByAll(int value) {"
+                        }
+                    ],
+                    "decls": []
+                },
+                {
+                    "kind": "Var",
+                    "linkage": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0002000300020014",
+                            "location": "test-multiple-file-1.cc:32:3-32:20",
+                            "snippet": "u65535_t value = 1000;"
                         }
                     ],
                     "decls": []

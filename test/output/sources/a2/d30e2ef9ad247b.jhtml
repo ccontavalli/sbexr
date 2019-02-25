@@ -7,7 +7,7 @@ CXXFLAGS := $(shell $(LLVMCONFIG) --cxxflags) -ggdb3 -O0 -I../
 LDFLAGS := $(shell $(LLVMCONFIG) --ldflags)
 EXTRALIBS :=
 
-all: test-single-file test-multiple-file
+all: test-single test-multi
 
 dump-single:
 	clang-$(LLVMVERSION) -Xclang -ast-dump -fsyntax-only $(CXXFLAGS) $(LIBS) $(LIBDIR) ./test-single-file.c
@@ -17,10 +17,13 @@ dump-multi:
 	clang-$(LLVMVERSION) -Xclang -ast-dump -fsyntax-only $(CXXFLAGS) $(LIBS) $(LIBDIR) ./test-multiple-file-1.cc
 
 
+test-single: test-single-file
 
 test-single-file: test-single-file.o
 
 test-single-file.o: test-single-file.c test-single-file.h
+
+test-multi: test-multiple-file
 
 test-multiple-file: test-multiple-file-0.o test-multiple-file-1.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(LIBS) $(LIBDIR) -o test-multiple-file $^ $(EXTRALIBS)

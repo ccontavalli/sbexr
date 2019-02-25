@@ -19,6 +19,8 @@ void TestFunction() {
 # define POINT volatile test::Point
 typedef POINT* punt;
 
+typedef int u65535_t;
+
 using namespace test;
 
 
@@ -27,6 +29,7 @@ void TestMore(Test* test) {
   Point p0, p1, p2, *p3, *p4;
   static POINT __attribute__((used))* fuffa;
   static __attribute__((used)) POINT* fuffa2;
+  u65535_t value = 1000;
 
   // POINT* foffa
   // volatile Point* foffa
@@ -38,8 +41,8 @@ void TestMore(Test* test) {
   // std::list<bool>* plist2, *plist3;
   test::Point test3;
 
-  MACRO(20);
+  MACRO(MACRO_RECURSIVE);
   MACROP("TOST TOST");
-  printf("Test pointer %p\n", (void*)test);
+  printf("Test pointer %p %d\n", (void*)test, value);
   printf("Test point %d %d %d\n", p0.x, p1.x, p2.x);
 }

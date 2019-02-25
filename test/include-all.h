@@ -35,10 +35,11 @@ static inline void IncludedByAll(int value) {
   printf("%d\n", value);
 }
 
+# define MACRO_HIGHEST 65535
+# define MACRO_RECURSIVE MACRO_HIGHEST
+
 # define MACRO(A) IncludedByAll(A)
-
 # define MACROP(B) printf(B)
-
 # define FIELD(A) A
 
 #endif /* INCLUDE_ALL_H */

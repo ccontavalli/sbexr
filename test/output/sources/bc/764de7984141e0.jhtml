@@ -37,10 +37,11 @@
   <a class='variable-uses' href='../6f/078dbcc264af74.html#0014c0010014c038'>printf</a>(<span class='string'>"%d\n"</span>, <a class='variable-uses' href='../bc/764de7984141e0.html#0002202200022026'>value</a>);
 }</span>
 
-<span class='directive'># define <span class='def def-MACRO' id='0002600a00026022'>MACRO(A) IncludedByAll(A)</span></span>
+<span class='directive'># define <span class='def def-MACRO' id='0002600a00026018'>MACRO_HIGHEST 65535</span></span>
+<span class='directive'># define <span class='def def-MACRO' id='0002700a0002701a'>MACRO_RECURSIVE MACRO_HIGHEST</span></span>
 
-<span class='directive'># define <span class='def def-MACRO' id='0002800a0002801c'>MACROP(B) printf(B)</span></span>
-
-<span class='directive'># define <span class='def def-MACRO' id='0002a00a0002a013'>FIELD(A) A</span></span>
+<span class='directive'># define <span class='def def-MACRO' id='0002900a00029022'>MACRO(A) IncludedByAll(A)</span></span>
+<span class='directive'># define <span class='def def-MACRO' id='0002a00a0002a01c'>MACROP(B) printf(B)</span></span>
+<span class='directive'># define <span class='def def-MACRO' id='0002b00a0002b013'>FIELD(A) A</span></span>
 
 <span class='directive'>#endif /* INCLUDE_ALL_H */</span>
