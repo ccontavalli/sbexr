@@ -8,26 +8,26 @@ Warnings: 4, Pedantic: 395
 
 File system statistcs:
    root: 'output/sources/06/416cc91f3e3d90.jhtml' absolute, 'output/sources/be/e2916b98dcf1fc.jhtml' relative
-   paths: 61 scanned, of which 16 directories, 41 source, 1 copied, 2 meta, 1 unexpected
+   paths: 59 scanned, of which 15 directories, 40 source, 1 copied, 2 meta, 1 unexpected
 
 Resource statistcs:
-   requested: 58 file/dir resources, 101 targets, 282 users
+   requested: 56 file/dir resources, 103 targets, 279 users
    unused: 0 file/dir resources, 395 targets
-   total: 58 file/dir resources, 496 targets
+   total: 56 file/dir resources, 498 targets
 
 JHTML Statistics:
-   Text: 5847 blocks for 1918236 bytes
-   Tags: 3293 opened, 3293 closed, in a 7 elements max stack
-   Attributes: 414 href, 493 id, 3293 class (4624 classes specified)
+   Text: 5863 blocks for 1918219 bytes
+   Tags: 3306 opened, 3306 closed, in a 7 elements max stack
+   Attributes: 425 href, 495 id, 3306 class (4639 classes specified)
 
 CLASS Attributes seen (57 different ones):
-     210:MACRO-uses                17:__attribute__              6:__extension__              2:bool                     126:char                
+     218:MACRO-uses                17:__attribute__              6:__extension__              2:bool                     126:char                
        2:class                    415:comment                   83:const                     92:decl                       6:decl-CXXRecord      
-      78:decl-Function              8:decl-Var                 124:declaration-uses           1:decltype                 401:def                 
-       3:def-CXXMethod             12:def-CXXRecord             46:def-Field                  7:def-Function             258:def-MACRO           
+      78:decl-Function              8:decl-Var                 124:declaration-uses           1:decltype                 403:def                 
+       3:def-CXXMethod             12:def-CXXRecord             46:def-Field                  7:def-Function             260:def-MACRO           
        1:def-Namespace              8:def-ParmVar               49:def-Typedef                1:def-UsingDirective        16:def-Var             
     1078:directive                  7:expression-uses          131:extern                     1:float                      1:if                  
-      31:include                    1:inline                   161:int                      736:keyword                   23:long                
+      34:include                    1:inline                   161:int                      736:keyword                   23:long                
      102:muted                      3:namespace                  1:nullptr                   47:numeric                  102:preprocessor-if     
        1:private                    1:public                     8:return                    20:return-uses                4:short               
        6:signed                     3:sizeof                     3:static                     8:string                    32:struct              

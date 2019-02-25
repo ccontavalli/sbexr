@@ -65,11 +65,6 @@
             "href": "../d2/b0f1e1540e4279.html"
         },
         {
-            "file": ".test-multiple-file-1.cc.swp",
-            "parent": "../be/e2916b98dcf1fc.html",
-            "href": "../a5/601752740222b5.html"
-        },
-        {
             "file": "Makefile",
             "parent": "../be/e2916b98dcf1fc.html",
             "href": "../a2/d30e2ef9ad247b.html"
@@ -228,11 +223,6 @@
             "file": "/usr/include/x86_64-linux-gnu/sys/cdefs.h",
             "parent": "../97/537cbc7aefc4ad.html",
             "href": "../11/d2796f2851903a.html"
-        },
-        {
-            "dir": "indexes",
-            "href": "../bb/d950330291e9d9.html",
-            "parent": "../be/e2916b98dcf1fc.html"
         },
         {
             "dir": "/usr/include/clang/8.0.0/include",

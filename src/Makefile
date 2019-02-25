@@ -37,7 +37,7 @@ test-run:
 
 test-gen: validator sbexr test-multi
 	cd ../test && rm -rf output/ && rm -rf indexes/ && ln -sfT ../static ./static \
-	    && $(TIME) ../src/sbexr $(VERBOSE) --index=indexes -x "output|indexes" --jsondb . \
+	    && $(TIME) ../src/sbexr $(VERBOSE) --index=indexes -x "output|indexes|\\.swp" --jsondb . \
 	    && ../validator/validator --root ./output |tee ./output/validator.report \
 	    && cp -a ./indexes/*.json ./output/
 

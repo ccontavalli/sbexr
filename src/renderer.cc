@@ -41,7 +41,7 @@ cl::opt<std::string> gl_project_name(
     }()),
     cl::cat(gl_category));
 cl::opt<std::string> gl_scan_filter_regex(
-    "x",
+    "x", cl::init("\\.swp$"),
     cl::desc(
         "Regex describing which files to EXCLUDE from the directory scan."),
     cl::value_desc("regex"), cl::cat(gl_category));
@@ -276,15 +276,18 @@ void FileRenderer::ScanTree(const std::string& start) {
       continue;
     }
     while (auto* entry = readdir(fd)) {
+      if (!gl_scan_filter_regex.empty() &&
+          std::regex_search(entry->d_name, exclude)) {
+        std::cerr << "REGEX MATCHED: " << entry->d_name << std::endl;
+        continue;
+      }
+
       if (entry->d_type == DT_DIR) {
         if (*entry->d_name == '.') continue;
 
         const auto& insert = drecord->directories.emplace(std::make_pair(
             entry->d_name, ParsedDirectory(drecord, entry->d_name)));
         auto* dir = &insert.first->second;
-        if (!gl_scan_filter_regex.empty() &&
-            std::regex_search(dir->path, exclude))
-          continue;
         to_scan.push(dir);
         continue;
       }
@@ -294,10 +297,6 @@ void FileRenderer::ScanTree(const std::string& start) {
             std::make_pair(entry->d_name, ParsedFile(drecord, entry->d_name)));
         auto* file = &insert.first->second;
         if (file->Rendered()) continue;
-        if (!gl_scan_filter_regex.empty() &&
-            std::regex_search(file->path, exclude))
-          continue;
-
         struct stat stats;
         int err = stat(file->path.c_str(), &stats);
         if (err != 0) {
