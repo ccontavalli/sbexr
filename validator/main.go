@@ -256,6 +256,11 @@ func (vs *Validator) ValidateSourceContent(apath, name string, content []byte) {
 			if string(name) == "a" {
 				tag_open_a -= 1
 			}
+			if len(tag_stack) <= 0 {
+				vs.AddWarning(apath, "HTML closing tag %s when none was open - around line %d", name, lines)
+				continue
+			}
+
 			if string(name) != tag_stack[len(tag_stack)-1] {
 				vs.AddWarning(apath, "HTML last opened tag was %s, but closed %s - around line %d", name, tag_stack[len(tag_stack)-1], lines)
 			}
