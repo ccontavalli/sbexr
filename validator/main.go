@@ -194,6 +194,7 @@ func (vs *Validator) ValidateSourceContent(apath, name string, content []byte) {
 	tag_open_a := 0
 	tag_closed_c := 0
 	tag_stack := []string{}
+	lines := 0
 
 	for {
 		tt := z.Next()
@@ -209,6 +210,7 @@ func (vs *Validator) ValidateSourceContent(apath, name string, content []byte) {
 			text := z.Text()
 			vs.Stats.HTMLTextBlocks += 1
 			vs.Stats.HTMLTextBytes += len(text)
+			lines += bytes.Count(text, []byte("\n"))
 
 		case html.StartTagToken:
 			vs.Stats.HTMLTagOpen += 1
@@ -218,7 +220,7 @@ func (vs *Validator) ValidateSourceContent(apath, name string, content []byte) {
 			if string(name) == "a" {
 				tag_open_a += 1
 				if tag_open_a > 1 {
-					vs.AddWarning(apath, "HTML has nested <a><a> tags, which is invalid")
+					vs.AddWarning(apath, "HTML has nested <a><a> tags, which is invalid - around line %d", lines)
 				}
 			}
 			for has_attr {
@@ -238,7 +240,7 @@ func (vs *Validator) ValidateSourceContent(apath, name string, content []byte) {
 					vs.Stats.HTMLIdAttr += 1
 					r.AddTarget(string(val))
 				default:
-					vs.AddWarning(apath, "HTML found unknonw attribute %s - %s in tag %s", key, val, string(name))
+					vs.AddWarning(apath, "HTML found unknonw attribute %s - %s in tag %s - around line %d", key, val, string(name), lines)
 				}
 			}
 			tag_stack = append(tag_stack, string(name))
@@ -255,7 +257,7 @@ func (vs *Validator) ValidateSourceContent(apath, name string, content []byte) {
 				tag_open_a -= 1
 			}
 			if string(name) != tag_stack[len(tag_stack)-1] {
-				vs.AddWarning(apath, "HTML last opened tag was %s, but closed %s", name, tag_stack[len(tag_stack)-1])
+				vs.AddWarning(apath, "HTML last opened tag was %s, but closed %s - around line %d", name, tag_stack[len(tag_stack)-1], lines)
 			}
 			tag_stack = tag_stack[:len(tag_stack)-1]
 		}
