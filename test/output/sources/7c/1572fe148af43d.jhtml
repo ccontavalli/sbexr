@@ -52,11 +52,11 @@
   }</span>;
 }</span>;
 
-<span class='def def-Function' id='0003500100037001'><span class='keyword bool'>bool</span> MySingle(<span class='def def-ParmVar' id='0003500f0003501e'><a class='declaration-uses' href='../7c/1572fe148af43d.html#0002600100028001'><span class='keyword struct'>struct</span> Single*</a> single</span>) {
+<span class='def def-Function' id='0003500100037001'><span class='keyword bool'>bool</span> MySingle(<span class='def def-ParmVar' id='0003500f0003501e'><a class='declaration-uses' href='../7c/1572fe148af43d.html#0002600100028001'><span class='keyword struct'>struct</span> Single</a>* single</span>) {
   <span class='keyword return'>return</span> (<span class='keyword long'>long</span> <span class='keyword long'>long</span> <span class='keyword int'>int</span>)(<a class='variable-uses' href='../7c/1572fe148af43d.html#0003500f0003501e'>single</a>) % <span class='numeric'>2</span>;
 }</span>
 
-<span class='def def-Function' id='000390010003d001'><span class='keyword int'>int</span> Mytest(<span class='def def-ParmVar' id='0003900c00039018'><a class='declaration-uses' href='../7c/1572fe148af43d.html#0002e00100033001'><span class='keyword struct'>struct</span> Nfs*</a> nfs</span>) {
+<span class='def def-Function' id='000390010003d001'><span class='keyword int'>int</span> Mytest(<span class='def def-ParmVar' id='0003900c00039018'><a class='declaration-uses' href='../7c/1572fe148af43d.html#0002e00100033001'><span class='keyword struct'>struct</span> Nfs</a>* nfs</span>) {
   <span class='keyword if'>if</span> (<a class='variable-uses' href='../7c/1572fe148af43d.html#0003500100037001'>MySingle</a>(&amp;<a class='variable-uses' href='../7c/1572fe148af43d.html#0003900c00039018'>nfs</a>-&gt;<a class='expression-uses' href='../7c/1572fe148af43d.html#0003000500030013'>fusingle</a>))
     <span class='keyword return'>return</span> <span class='numeric'>0</span>;
   <span class='keyword return'>return</span> <span class='numeric'>10</span>;
@@ -70,7 +70,7 @@
   <span class='keyword int'>int</span>, <span class='keyword char'>char</span>*, <span class='keyword bool'>bool</span> CheckArgs)</span>;
 
 <span class='decl decl-Function' id='0004600100047018'><span class='keyword int'>int</span> CheckMyArgs(
-  <span class='keyword const'>const</span> <a class='declaration-uses' href='../7c/1572fe148af43d.html#0002e00100033001'><span class='keyword struct'>struct</span> Nfs&amp;</a> nfs)</span>;
+  <span class='keyword const'>const</span> <a class='declaration-uses' href='../7c/1572fe148af43d.html#0002e00100033001'><span class='keyword struct'>struct</span> Nfs</a>&amp; nfs)</span>;
 
 <span class='def def-Function' id='000490010004c001'><span class='keyword int'>int</span> FuncWithNamedArgs(<span class='def def-ParmVar' id='000490170004901b'><span class='keyword int'>int</span> foo</span>, <span class='def def-ParmVar' id='000490200004902c'><span class='keyword const'>const</span> <span class='keyword char'>char</span>* bar</span>) {
   <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002900a00029022'>MACRO(</a>foo);

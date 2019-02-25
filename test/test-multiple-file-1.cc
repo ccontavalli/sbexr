@@ -8,6 +8,22 @@ namespace test {
 struct Point {
   int x = 0, y = 0;
 };
+
+
+struct PointerSquare {
+  // Coordinates of the four vertexes.
+  const Point *a, *b, *c, *d;
+};
+
+struct SimpleSquare {
+  // Coordinates of the four vertexes.
+  const Point a, b, c, d;
+};
+
+struct RefSquare {
+  const Point &f, &g, &h, &j;
+};
+
 }
 
 void TestFunction() {
@@ -40,6 +56,8 @@ void TestMore(Test* test) {
 
   // std::list<bool>* plist2, *plist3;
   test::Point test3;
+
+  test::Point &z = ab, &w = ac, &x = ad;
 
   MACRO(MACRO_RECURSIVE);
   MACROP("TOST TOST");

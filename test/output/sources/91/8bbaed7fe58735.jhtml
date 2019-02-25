@@ -67,9 +67,9 @@
   <span class='def def-Field' id='0004100300041009'><span class='keyword char'>char</span> *_IO_backup_base</span>;  <span class='comment'>/* Pointer to first valid character of backup area */</span>
   <span class='def def-Field' id='0004200300042009'><span class='keyword char'>char</span> *_IO_save_end</span>; <span class='comment'>/* Pointer to end of non-current get area. */</span>
 
-  <span class='def def-Field' id='0004400300044016'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0002400100024008'><span class='keyword struct'>struct</span> _IO_marker *</a>_markers</span>;
+  <span class='def def-Field' id='0004400300044016'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0002400100024008'><span class='keyword struct'>struct</span> _IO_marker</a> *_markers</span>;
 
-  <span class='def def-Field' id='0004600300046014'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'><span class='keyword struct'>struct</span> _IO_FILE *</a>_chain</span>;
+  <span class='def def-Field' id='0004600300046014'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'><span class='keyword struct'>struct</span> _IO_FILE</a> *_chain</span>;
 
   <span class='def def-Field' id='0004800300048007'><span class='keyword int'>int</span> _fileno</span>;
   <span class='def def-Field' id='0004900300049007'><span class='keyword int'>int</span> _flags2</span>;
@@ -80,7 +80,7 @@
   <span class='def def-Field' id='0004e0030004e00f'><span class='keyword signed'>signed</span> <span class='keyword char'>char</span> _vtable_offset</span>;
   <span class='def def-Field' id='0004f0030004f013'><span class='keyword char'>char</span> _shortbuf[<span class='numeric'>1</span>]</span>;
 
-  <span class='def def-Field' id='000510030005100f'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0002b0010002b00e'>_IO_lock_t *</a>_lock</span>;
+  <span class='def def-Field' id='000510030005100f'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0002b0010002b00e'>_IO_lock_t</a> *_lock</span>;
 <span class='directive'>#ifdef _IO_USE_OLD_IO_FILE</span><span class='preprocessor-if muted'>
 };
 
@@ -90,9 +90,9 @@
 <span class='directive'>#endif</span>
   <span class='def def-Field' id='000590030005900d'><a class='declaration-uses' href='../41/e28fc1cdef774c.html#000880160009701b000970010009701b'>__off64_t</a> _offset</span>;
   <span class='comment'>/* Wide character stream stuff.  */</span>
-  <span class='def def-Field' id='0005b0030005b017'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0002500100025008'><span class='keyword struct'>struct</span> _IO_codecvt *</a>_codecvt</span>;
-  <span class='def def-Field' id='0005c0030005c019'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0002600100026008'><span class='keyword struct'>struct</span> _IO_wide_data *</a>_wide_data</span>;
-  <span class='def def-Field' id='0005d0030005d014'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'><span class='keyword struct'>struct</span> _IO_FILE *</a>_freeres_list</span>;
+  <span class='def def-Field' id='0005b0030005b017'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0002500100025008'><span class='keyword struct'>struct</span> _IO_codecvt</a> *_codecvt</span>;
+  <span class='def def-Field' id='0005c0030005c019'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0002600100026008'><span class='keyword struct'>struct</span> _IO_wide_data</a> *_wide_data</span>;
+  <span class='def def-Field' id='0005d0030005d014'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'><span class='keyword struct'>struct</span> _IO_FILE</a> *_freeres_list</span>;
   <span class='def def-Field' id='0005e0030005e009'><span class='keyword void'>void</span> *_freeres_buf</span>;
   <span class='def def-Field' id='0005f0030005f00a'><a class='declaration-uses' href='../fd/abf26b4f65020a.html#0003e0010003e017'>size_t</a> __pad5</span>;
   <span class='def def-Field' id='0006000300060007'><span class='keyword int'>int</span> _mode</span>;

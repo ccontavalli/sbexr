@@ -40,6 +40,6 @@
   <span class='def def-CXXMethod' id='000260030002601e'><span class='keyword int'>int</span> Do01(<span class='keyword void'>void</span>) { <span class='keyword return'>return</span> <span class='numeric'>2</span>; }</span>
 }</span>;
 
-<span class='decl decl-Function' id='0002900100029020'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> TestMore(<a class='declaration-uses' href='../e0/389d8d16166a86.html#0002000100027001'>Test*</a> test)</span>;
+<span class='decl decl-Function' id='0002900100029020'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> TestMore(<a class='declaration-uses' href='../e0/389d8d16166a86.html#0002000100027001'>Test</a>* test)</span>;
 
 <span class='directive'>#endif /* TEST2_H */</span>

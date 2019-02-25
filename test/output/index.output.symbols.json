@@ -138,8 +138,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001800100018011",
-                            "location": "test-multiple-file-1.cc:24:1-24:17",
+                            "href": "../cf/341b97b05a5692.html#0002800100028011",
+                            "location": "test-multiple-file-1.cc:40:1-40:17",
                             "snippet": "using namespace test;"
                         }
                     ],
@@ -656,8 +656,8 @@
                     "access": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001300a0001301f",
-                            "location": "test-multiple-file-1.cc:19:10-19:31",
+                            "href": "../cf/341b97b05a5692.html#0002300a0002301f",
+                            "location": "test-multiple-file-1.cc:35:10-35:31",
                             "snippet": "# define POINT volatile test::Point"
                         }
                     ],
@@ -1001,8 +1001,8 @@
                     "linkage": 6,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0000d00100011001",
-                            "location": "test-multiple-file-1.cc:13:1-17:1",
+                            "href": "../cf/341b97b05a5692.html#0001d00100021001",
+                            "location": "test-multiple-file-1.cc:29:1-33:1",
                             "snippet": "void TestFunction() {"
                         }
                     ],
@@ -1024,8 +1024,8 @@
                     "linkage": 6,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001b00100030001",
-                            "location": "test-multiple-file-1.cc:27:1-48:1",
+                            "href": "../cf/341b97b05a5692.html#0002b00100042001",
+                            "location": "test-multiple-file-1.cc:43:1-66:1",
                             "snippet": "void TestMore(Test* test) {"
                         }
                     ],
@@ -7031,8 +7031,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001c0030001c009",
-                            "location": "test-multiple-file-1.cc:28:3-28:9",
+                            "href": "../cf/341b97b05a5692.html#0002c0030002c009",
+                            "location": "test-multiple-file-1.cc:44:3-44:9",
                             "snippet": "Point ab, ac, ad;"
                         }
                     ],
@@ -7048,8 +7048,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001c0030001c00d",
-                            "location": "test-multiple-file-1.cc:28:3-28:13",
+                            "href": "../cf/341b97b05a5692.html#0002c0030002c00d",
+                            "location": "test-multiple-file-1.cc:44:3-44:13",
                             "snippet": "Point ab, ac, ad;"
                         }
                     ],
@@ -7065,8 +7065,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001c0030001c011",
-                            "location": "test-multiple-file-1.cc:28:3-28:17",
+                            "href": "../cf/341b97b05a5692.html#0002c0030002c011",
+                            "location": "test-multiple-file-1.cc:44:3-44:17",
                             "snippet": "Point ab, ac, ad;"
                         }
                     ],
@@ -7643,8 +7643,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0002400300024008",
-                            "location": "test-multiple-file-1.cc:36:3-36:8",
+                            "href": "../cf/341b97b05a5692.html#0003400300034008",
+                            "location": "test-multiple-file-1.cc:52:3-52:8",
                             "snippet": "punt foffa;"
                         }
                     ],
@@ -7660,8 +7660,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0002700300027009",
-                            "location": "test-multiple-file-1.cc:39:3-39:9",
+                            "href": "../cf/341b97b05a5692.html#0003700300037009",
+                            "location": "test-multiple-file-1.cc:55:3-55:9",
                             "snippet": "punt* foffa2;"
                         }
                     ],
@@ -8102,8 +8102,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001e0030001e027",
-                            "location": "test-multiple-file-1.cc:30:3-30:39",
+                            "href": "../cf/341b97b05a5692.html#0002e0030002e027",
+                            "location": "test-multiple-file-1.cc:46:3-46:39",
                             "snippet": "static POINT __attribute__((used))* fuffa;"
                         }
                     ],
@@ -8119,8 +8119,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001f0030001f027",
-                            "location": "test-multiple-file-1.cc:31:3-31:39",
+                            "href": "../cf/341b97b05a5692.html#0002f0030002f027",
+                            "location": "test-multiple-file-1.cc:47:3-47:39",
                             "snippet": "static __attribute__((used)) POINT* fuffa2;"
                         }
                     ],
@@ -8482,8 +8482,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001d0030001d009",
-                            "location": "test-multiple-file-1.cc:29:3-29:9",
+                            "href": "../cf/341b97b05a5692.html#0002d0030002d009",
+                            "location": "test-multiple-file-1.cc:45:3-45:9",
                             "snippet": "Point p0, p1, p2, *p3, *p4;"
                         }
                     ],
@@ -8499,8 +8499,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001d0030001d00d",
-                            "location": "test-multiple-file-1.cc:29:3-29:13",
+                            "href": "../cf/341b97b05a5692.html#0002d0030002d00d",
+                            "location": "test-multiple-file-1.cc:45:3-45:13",
                             "snippet": "Point p0, p1, p2, *p3, *p4;"
                         }
                     ],
@@ -8516,8 +8516,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001d0030001d011",
-                            "location": "test-multiple-file-1.cc:29:3-29:17",
+                            "href": "../cf/341b97b05a5692.html#0002d0030002d011",
+                            "location": "test-multiple-file-1.cc:45:3-45:17",
                             "snippet": "Point p0, p1, p2, *p3, *p4;"
                         }
                     ],
@@ -8533,8 +8533,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001d0030001d016",
-                            "location": "test-multiple-file-1.cc:29:3-29:22",
+                            "href": "../cf/341b97b05a5692.html#0002d0030002d016",
+                            "location": "test-multiple-file-1.cc:45:3-45:22",
                             "snippet": "Point p0, p1, p2, *p3, *p4;"
                         }
                     ],
@@ -8550,8 +8550,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001d0030001d01b",
-                            "location": "test-multiple-file-1.cc:29:3-29:27",
+                            "href": "../cf/341b97b05a5692.html#0002d0030002d01b",
+                            "location": "test-multiple-file-1.cc:45:3-45:27",
                             "snippet": "Point p0, p1, p2, *p3, *p4;"
                         }
                     ],
@@ -8635,8 +8635,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001400100014010",
-                            "location": "test-multiple-file-1.cc:20:1-20:16",
+                            "href": "../cf/341b97b05a5692.html#0002400100024010",
+                            "location": "test-multiple-file-1.cc:36:1-36:16",
                             "snippet": "typedef POINT* punt;"
                         }
                     ],
@@ -9167,8 +9167,8 @@
                     "linkage": 6,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#000070010000b001",
-                            "location": "test-multiple-file-1.cc:7:1-11:1",
+                            "href": "../cf/341b97b05a5692.html#000070010001b001",
+                            "location": "test-multiple-file-1.cc:7:1-27:1",
                             "snippet": "namespace test {"
                         }
                     ],
@@ -9179,8 +9179,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0001b00f0001b015",
-                            "location": "test-multiple-file-1.cc:27:15-27:21",
+                            "href": "../cf/341b97b05a5692.html#0002b00f0002b015",
+                            "location": "test-multiple-file-1.cc:43:15-43:21",
                             "snippet": "void TestMore(Test* test) {"
                         }
                     ],
@@ -9208,8 +9208,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0002a0030002a00f",
-                            "location": "test-multiple-file-1.cc:42:3-42:15",
+                            "href": "../cf/341b97b05a5692.html#0003a0030003a00f",
+                            "location": "test-multiple-file-1.cc:58:3-58:15",
                             "snippet": "test::Point test3;"
                         }
                     ],
@@ -9264,6 +9264,273 @@
                             "href": "../cf/341b97b05a5692.html#0000900300009012",
                             "location": "test-multiple-file-1.cc:9:3-9:18",
                             "snippet": "int x = 0, y = 0;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "test::PointerSquare",
+            "kinds": [
+                {
+                    "kind": "CXXRecord",
+                    "linkage": 6,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0000d00100010001",
+                            "location": "test-multiple-file-1.cc:13:1-16:1",
+                            "snippet": "struct PointerSquare {"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "test::PointerSquare::a",
+            "kinds": [
+                {
+                    "kind": "Field",
+                    "linkage": 6,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0000f0030000f010",
+                            "location": "test-multiple-file-1.cc:15:3-15:16",
+                            "snippet": "const Point *a, *b, *c, *d;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "test::PointerSquare::b",
+            "kinds": [
+                {
+                    "kind": "Field",
+                    "linkage": 6,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0000f0030000f014",
+                            "location": "test-multiple-file-1.cc:15:3-15:20",
+                            "snippet": "const Point *a, *b, *c, *d;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "test::PointerSquare::c",
+            "kinds": [
+                {
+                    "kind": "Field",
+                    "linkage": 6,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0000f0030000f018",
+                            "location": "test-multiple-file-1.cc:15:3-15:24",
+                            "snippet": "const Point *a, *b, *c, *d;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "test::PointerSquare::d",
+            "kinds": [
+                {
+                    "kind": "Field",
+                    "linkage": 6,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0000f0030000f01c",
+                            "location": "test-multiple-file-1.cc:15:3-15:28",
+                            "snippet": "const Point *a, *b, *c, *d;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "test::RefSquare",
+            "kinds": [
+                {
+                    "kind": "CXXRecord",
+                    "linkage": 6,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0001700100019001",
+                            "location": "test-multiple-file-1.cc:23:1-25:1",
+                            "snippet": "struct RefSquare {"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "test::RefSquare::f",
+            "kinds": [
+                {
+                    "kind": "Field",
+                    "linkage": 6,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0001800300018010",
+                            "location": "test-multiple-file-1.cc:24:3-24:16",
+                            "snippet": "const Point &f, &g, &h, &j;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "test::RefSquare::g",
+            "kinds": [
+                {
+                    "kind": "Field",
+                    "linkage": 6,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0001800300018014",
+                            "location": "test-multiple-file-1.cc:24:3-24:20",
+                            "snippet": "const Point &f, &g, &h, &j;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "test::RefSquare::h",
+            "kinds": [
+                {
+                    "kind": "Field",
+                    "linkage": 6,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0001800300018018",
+                            "location": "test-multiple-file-1.cc:24:3-24:24",
+                            "snippet": "const Point &f, &g, &h, &j;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "test::RefSquare::j",
+            "kinds": [
+                {
+                    "kind": "Field",
+                    "linkage": 6,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#000180030001801c",
+                            "location": "test-multiple-file-1.cc:24:3-24:28",
+                            "snippet": "const Point &f, &g, &h, &j;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "test::SimpleSquare",
+            "kinds": [
+                {
+                    "kind": "CXXRecord",
+                    "linkage": 6,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0001200100015001",
+                            "location": "test-multiple-file-1.cc:18:1-21:1",
+                            "snippet": "struct SimpleSquare {"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "test::SimpleSquare::a",
+            "kinds": [
+                {
+                    "kind": "Field",
+                    "linkage": 6,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#000140030001400f",
+                            "location": "test-multiple-file-1.cc:20:3-20:15",
+                            "snippet": "const Point a, b, c, d;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "test::SimpleSquare::b",
+            "kinds": [
+                {
+                    "kind": "Field",
+                    "linkage": 6,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0001400300014012",
+                            "location": "test-multiple-file-1.cc:20:3-20:18",
+                            "snippet": "const Point a, b, c, d;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "test::SimpleSquare::c",
+            "kinds": [
+                {
+                    "kind": "Field",
+                    "linkage": 6,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0001400300014015",
+                            "location": "test-multiple-file-1.cc:20:3-20:21",
+                            "snippet": "const Point a, b, c, d;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "test::SimpleSquare::d",
+            "kinds": [
+                {
+                    "kind": "Field",
+                    "linkage": 6,
+                    "access": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0001400300014018",
+                            "location": "test-multiple-file-1.cc:20:3-20:24",
+                            "snippet": "const Point a, b, c, d;"
                         }
                     ],
                     "decls": []
@@ -9346,8 +9613,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#000160010001600d",
-                            "location": "test-multiple-file-1.cc:22:1-22:13",
+                            "href": "../cf/341b97b05a5692.html#000260010002600d",
+                            "location": "test-multiple-file-1.cc:38:1-38:13",
                             "snippet": "typedef int u65535_t;"
                         }
                     ],
@@ -9486,8 +9753,8 @@
                     "linkage": 0,
                     "defs": [
                         {
-                            "href": "../cf/341b97b05a5692.html#0002000300020014",
-                            "location": "test-multiple-file-1.cc:32:3-32:20",
+                            "href": "../cf/341b97b05a5692.html#0003000300030014",
+                            "location": "test-multiple-file-1.cc:48:3-48:20",
                             "snippet": "u65535_t value = 1000;"
                         }
                     ],
@@ -9645,6 +9912,57 @@
                             "snippet": "extern int vsscanf (const char *__restrict __s,"
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "name": "w",
+            "kinds": [
+                {
+                    "kind": "Var",
+                    "linkage": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0003c0030003c01d",
+                            "location": "test-multiple-file-1.cc:60:3-60:29",
+                            "snippet": "test::Point &z = ab, &w = ac, &x = ad;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "x",
+            "kinds": [
+                {
+                    "kind": "Var",
+                    "linkage": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0003c0030003c026",
+                            "location": "test-multiple-file-1.cc:60:3-60:38",
+                            "snippet": "test::Point &z = ab, &w = ac, &x = ad;"
+                        }
+                    ],
+                    "decls": []
+                }
+            ]
+        },
+        {
+            "name": "z",
+            "kinds": [
+                {
+                    "kind": "Var",
+                    "linkage": 0,
+                    "defs": [
+                        {
+                            "href": "../cf/341b97b05a5692.html#0003c0030003c014",
+                            "location": "test-multiple-file-1.cc:60:3-60:20",
+                            "snippet": "test::Point &z = ab, &w = ac, &x = ad;"
+                        }
+                    ],
+                    "decls": []
                 }
             ]
         }

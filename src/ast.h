@@ -103,11 +103,16 @@ class SbexrRecorder {
   }
 
   template <typename UserT>
-  void LinkToType(const UserT& user, const char* description, const SourceRange& target) {
+  void LinkToType(const UserT& user, const char* description,
+                  const SourceRange& target) {
     const auto& ntarget = NormalizeSourceRange(target);
     if (!ntarget.isValid()) return;
 
     auto sr = GetSourceRangeOrFail(user);
+    if (gl_verbose)
+      std::cerr << "- LINKING USER " << PrintLocation(sr) << " ("
+                << PrintCode(sr) << ") to " << PrintLocation(target) << " ("
+                << PrintCode(target) << ")" << std::endl;
     WrapWithTag(*ci_, cache_, sr,
                 MakeTag("a", {std::string(description) + "-uses"},
                         {"href", MakeIdLink(ntarget)}));
@@ -127,9 +132,9 @@ class SbexrRecorder {
   template <typename UserT>
   void CodeUsesQualType(const UserT& user, const char* description,
                         const QualType& qual_type) {
-    auto range = GetRangeForType(qual_type);
-    if (RecordTypeUse(user, description, range))
-      LinkToType(user, description, range);
+    auto target = GetRangeForType(qual_type);
+    if (RecordTypeUse(user, description, target))
+      LinkToType(user, description, target);
   }
 
   // Same as CodeUses, but TargetT is an element of the clang/llvm AST.
@@ -395,47 +400,12 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 
   bool VisitDeclaratorDecl(DeclaratorDecl* v) {
     if (!v) return true;
-      // Notes:
-      // getName -> returns the name of the variable declared.
-      // getTypeSourceInfo -> returns the original type declared in the source
-      // code (eg, 'auto') getType -> returns the type the variable is actually
-      // considered to be.
+    // Notes:
+    // getName -> returns the name of the variable declared.
+    // getTypeSourceInfo -> returns the original type declared in the source
+    // code (eg, 'auto') getType -> returns the type the variable is actually
+    // considered to be.
 
-#if 0
-    auto decl = v->getCanonicalDecl();
-    auto* und = v->getUnderlyingDecl();
-    auto* def1 = v->getDefinition();
-    auto* def2 = v->getActingDefinition();
-    auto* type = v->getTypeSourceInfo();
-    auto* under = v->getUnderlyingDecl();
-    auto rtype = v->getType();
-
-    assert(decl && "No declaration??");
-
-    std::cerr << "VARDECL " << v->getName().str() << " " << v->getQualifiedNameAsString() << " " << PrintLocation(v->getSourceRange()) << " " << PrintLocation(decl->getSourceRange());
-
-    if (def2) {
-      std::cerr << " ACTING " << PrintLocation(def2->getSourceRange());
-    }
-    if (def1) {
-      std::cerr << " ACTUAL " << PrintLocation(def1->getSourceRange());
-    }
-    if (und) {
-      std::cerr << " UNDERLYING " << PrintLocation(und->getSourceRange());
-    }
-    if (type) {
-      std::cerr << " TYPE " << PrintLocation(type->getTypeLoc().getSourceRange()) <<  " " << QualType::getAsString(type->getType().split());
-      type->getType().dump();
-    }
-    if (under) {
-      std::cerr << " UNDER " << PrintLocation(under->getSourceRange());
-    }
-    auto* td = rtype.split().Ty->getAsTagDecl();
-    std::cerr << " RTYPE " << rtype.getAsString() <<  " " << QualType::getAsString(rtype.split()) << " ";
-    if (td)
-     std::cerr << PrintLocation(td->getSourceRange());
-
-#endif
     auto decl = v->getCanonicalDecl();
     if (gl_verbose) {
       std::cerr << "DECLARATORDECL " << v->getName().str() << " "
@@ -443,54 +413,49 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
                 << recorder_->PrintLocation(v->getSourceRange()) << " "
                 << recorder_->PrintLocation(decl->getSourceRange());
       std::cerr << std::endl;
-      std::cerr << "DeclaratorDecl: " << recorder_->TryPrint(v) << std::endl;
+      // std::cerr << "DeclaratorDecl: " << recorder_->TryPrint(v) << std::endl;
     }
     // v->dump();
 
     // TODO:
-    //   DONE - pointer and reference types are not linked correctly, probably
-    //   need to go
-    //     to canonical type or similar before getAsTagDecl().
     //   - need to add tooltip to show canonical type if different from type
-    //   (eg, typedefs at play, typedef fuffa int;)
+    //     (eg, typedefs at play, typedef fuffa int;)
     //     and/or if getTypeSourceInfo != from type (eg, auto at play, auto&
     //     foo);
     //   - types in function names and return values.
     //   - hard to tell if a variable is public / private / local / global.
 
-    if (v->getTypeSourceInfo()) {
-#if 0
-      auto* expected = static_cast<Decl*>(v);
-      auto* context = v->getDeclContext();
-      if (context) {
-        TypeSourceInfo* type;
-        for (const auto* decl : context->decls()) {
-          if (decl == expected) break;
+    auto* tsi = v->getTypeSourceInfo();
+    if (tsi) {
+      auto tl = tsi->getTypeLoc();
+      {
+        const auto atl = tl.getAs<PointerTypeLoc>();
+        if (!atl.isNull()) {
+          tl = atl.getPointeeLoc();
         }
       }
-#endif
+      {
+        const auto atl = tl.getAs<ReferenceTypeLoc>();
+        if (!atl.isNull()) {
+          tl = atl.getPointeeLoc();
+        }
+      }
+
 
       if (gl_verbose)
-        std::cerr << "getTypeSourceInfo: "
-                  << recorder_->TryPrint(v->getTypeSourceInfo()) << std::endl;
+        std::cerr << "TYPESOURCEINFO: "
+                  << recorder_->PrintLocation(tl.getSourceRange()) << " "
+                  << recorder_->PrintCode(tl.getSourceRange()) << " "
+                  << recorder_->TryPrint(tsi) << std::endl;
 
-      // If this is a VarDecl in a DeclStmt, then it only needs to be recorded.
-      // The type link was already created by the DeclStmt.
-      auto* vt = dyn_cast<VarDecl>(v);
-      if (vt && vt->isLocalVarDecl()) {
-        auto range = recorder_->GetRangeForType(v->getType());
-        recorder_->RecordTypeUse(v->getTypeSourceInfo()->getTypeLoc(),
-                                 "declaration", range);
-      } else {
-        recorder_->CodeUsesQualType(v->getTypeSourceInfo()->getTypeLoc(),
-                                    "declaration", v->getType());
-      }
+      recorder_->CodeUsesQualType(tl, "declaration", v->getType());
     }
     return Base::VisitDeclaratorDecl(v);
   }
   bool VisitUsingDecl(UsingDecl* v) {
     // FIXME: do something smart on using declarations.
-    if (gl_verbose) std::cerr << "VisitUsingDecl " << recorder_->TryPrint(v) << std::endl;
+    if (gl_verbose)
+      std::cerr << "VisitUsingDecl " << recorder_->TryPrint(v) << std::endl;
 #if 0
     if (v->shadow_size() == 1) {
       const auto& target = v->shadow_begin()->getTargetDecl();
@@ -506,7 +471,8 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
   bool VisitNamedDecl(NamedDecl* v) {
     if (!v) return true;
 
-    if (gl_verbose) std::cerr << "VisitNamedDecl " << recorder_->TryPrint(v) << std::endl;
+    if (gl_verbose)
+      std::cerr << "VisitNamedDecl " << recorder_->TryPrint(v) << std::endl;
 
     if (isa<FunctionDecl>(v)) {
       // For each use of a templated function, the AST will contain,
@@ -525,7 +491,8 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 
       auto* first = f->getFirstDecl();
       if (!first) first = f;
-      if (gl_verbose) std::cerr << "- FunctionDecl " << recorder_->TryPrint(f) << "\n";
+      if (gl_verbose)
+        std::cerr << "- FunctionDecl " << recorder_->TryPrint(f) << "\n";
 
       if (f->isThisDeclarationADefinition()) {
         // SOURCE OF BUGGY[1] (IO_FILE_)
@@ -555,7 +522,8 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
       }
     } else if (isa<VarDecl>(v)) {
       auto* t = cast<VarDecl>(v);
-      if (gl_verbose) std::cerr << "- VarDecl " << recorder_->TryPrint(t) << std::endl;
+      if (gl_verbose)
+        std::cerr << "- VarDecl " << recorder_->TryPrint(t) << std::endl;
 
       auto* first = t->getFirstDecl();
       if (!first) first = t;
@@ -589,30 +557,6 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
                              v->getLinkageInternal());
     }
     return Base::VisitNamedDecl(v);
-  }
-
-  bool VisitDeclStmt(DeclStmt* stmt) {
-    if (gl_verbose) std::cerr << "VisitDeclStmt " << recorder_->TryPrint(stmt) << std::endl;
-
-    // The first declaration in the statement that has a type should link the
-    // type. Example:
-    //
-    //   Point foo, *bar;
-    //
-    // The declaration of 'foo' only contains the right offsets to find 'Point',
-    // so that should be linked to the Point type.
-    for (auto& decl : stmt->decls()) {
-      auto* decldecl = dyn_cast<DeclaratorDecl>(decl);
-      if (decldecl) {
-        auto type = decldecl->getType();
-        auto range = recorder_->GetRangeForType(type);
-	// if (gl_verbose) std::cerr << "- GetTagDeclFortype " << recorder_->TryPrint(&type) << std::endl; 
-        recorder_->LinkToType(decldecl->getTypeSourceInfo()->getTypeLoc(),
-                              "declaration", range);
-        break;
-      }
-    }
-    return Base::VisitDeclStmt(stmt);
   }
 
   // TODO: compound statement annotations have been disabled for some time.
