@@ -47,6 +47,7 @@ Page {
   {% for _, parent := range data.Parents %}
 <a href="{%s parent.Href %}">{%s parent.Name %}</a>/
   {% endfor %}
+  {%s data.Name %}
 {% endfunc %}
 
 {% func GetJnavTitle(data *structs.JNavData) %}{% if data.Project != "" %}{%s data.Project %}{% space %}{% endif %}{% if data.Tag != "" %}{%s data.Tag %}{% space %}{% endif %}{% if (data.Tag != "" || data.Project != "") && (data.Name != "" || data.Path != "") %}-{% space %}{% endif %}{% if data.Path != "" %}{%s data.Path %}{% elseif data.Name != "" %}{%s data.Name %}{% endif %}{% endfunc %}

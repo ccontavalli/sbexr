@@ -86,6 +86,11 @@ func (ss *SourceServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	tagdata := ss.getTagData(upath, sources)
 	subpath := upath[sources+len(kSourceRoot):]
+        if subpath == "" {
+		http.Redirect(w, r, upath+"meta/", http.StatusMovedPermanently)
+		return
+        }
+
 	if subpath == "meta/globals.js" {
 		templates.WriteGlobalsJs(w, tagdata)
 		return
