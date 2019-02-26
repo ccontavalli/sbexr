@@ -12,7 +12,12 @@ struct Point {
 
 struct PointerSquare {
   // Coordinates of the four vertexes.
-  const Point *a, *b, *c, *d;
+  const Point *a, **b, ***c, *d;
+};
+
+struct MixedSquare {
+  // Coordinates of the four vertexes.
+  const Point ***a, &b, *c[3], *&d;
 };
 
 struct SimpleSquare {
@@ -22,6 +27,14 @@ struct SimpleSquare {
 
 struct RefSquare {
   const Point &f, &g, &h, &j;
+};
+
+struct ArraySquare {
+  const Point vx[4];
+};
+
+struct ArrayPointerSquare {
+  const Point ***vx[4];
 };
 
 }

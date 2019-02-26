@@ -74,15 +74,22 @@ class SbexrRecorder {
   //   - another function:
   //     - goal: record that foo, uses the Point definition.
   //
-  const clang::Type* GetNonPointerType(const QualType& qual_type) const {
-    auto* real_type = qual_type.split().Ty;
-    while (real_type && real_type->hasPointerRepresentation())
-      real_type = real_type->getPointeeType().split().Ty;
-    return real_type;
+  const clang::Type* GetUnderlyingType(const QualType& qual_type) const {
+    const clang::Type* rt = qual_type.split().Ty;
+    while (rt) {
+      if (rt->hasPointerRepresentation()) {
+        rt = rt->getPointeeType().split().Ty;
+      } else if (rt->isArrayType()) {
+        rt = rt->getBaseElementTypeUnsafe();
+      } else {
+        break;
+      }
+    }
+    return rt;
   }
 
   SourceRange GetRangeForType(const QualType& qual_type) const {
-    const auto* real_type = GetNonPointerType(qual_type);
+    const auto* real_type = GetUnderlyingType(qual_type);
     if (!real_type) return SourceRange();
     if (const auto* t = real_type->getAs<TagType>())
       return GetSourceRangeOrFail(*t->getDecl());
@@ -428,19 +435,18 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
     auto* tsi = v->getTypeSourceInfo();
     if (tsi) {
       auto tl = tsi->getTypeLoc();
-      {
-        const auto atl = tl.getAs<PointerTypeLoc>();
-        if (!atl.isNull()) {
+      while (true) {
+        if (const auto atl = tl.getAs<PointerTypeLoc>())
           tl = atl.getPointeeLoc();
-        }
-      }
-      {
-        const auto atl = tl.getAs<ReferenceTypeLoc>();
-        if (!atl.isNull()) {
+        else if (const auto atl = tl.getAs<ReferenceTypeLoc>())
           tl = atl.getPointeeLoc();
-        }
+        else if (const auto atl = tl.getAs<ArrayTypeLoc>())
+          tl = atl.getElementLoc();
+	else if (const auto atl = tl.getAs<AttributedTypeLoc>())
+          tl = atl.getModifiedLoc();
+	else
+	  break;
       }
-
 
       if (gl_verbose)
         std::cerr << "TYPESOURCEINFO: "
