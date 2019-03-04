@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import collections
+import datetime
 import glob
 import grp
 import operator
@@ -10,6 +11,8 @@ import subprocess
 import sys
 import tempfile
 import time
+import errno
+import traceback
 
 KERNEL_TREE = "/opt/sbexr/linux-stable"
 KERNEL_REVISIONS = 5
@@ -19,33 +22,60 @@ BEAR_TREE = "/opt/sbexr/builds"
 RUN_TREE = "/opt/sbexr/run"
 INDEX_TREE = "/opt/sbexr/indexes"
 BINARY_TREE = "/opt/sbexr/sbexr"
+UTILS_TREE = "/opt/sbexr/sbexr/utils"
+METRICS_TREE = "/opt/sbexr/metrics"
 TMP_TREE = "/opt/sbexr/tmp"
 
-RunResult = collections.namedtuple("RunResult", ["status", "stdout", "stderr", "time"])
+RunResult = collections.namedtuple("RunResult", ["status", "stdout", "stderr", "rusage", "time"])
 def Run(args, **kwargs):
   kwargs.setdefault("stderr", subprocess.PIPE)
   kwargs.setdefault("stdout", subprocess.PIPE)
 
+  class runner(subprocess.Popen):
+    def wait(self):
+      if self.returncode is None:
+        pid, status, rusage = os.wait4(self.pid, 0)
+        self.rusage = rusage
+        self._handle_exitstatus(status)
+      return self.returncode
+ 
   start = time.time()
-  process = subprocess.Popen(args, stdin=subprocess.PIPE,
-                             shell=isinstance(args, str), **kwargs)
+  process = runner(args, stdin=subprocess.PIPE,
+                   shell=isinstance(args, str), **kwargs)
   sys.stderr.write("Running: %s" % args)
   sys.stderr.flush()
 
   stdout, stderr = process.communicate()
   status = process.wait()
   end = time.time()
-  sys.stderr.write(" %0.3fs\n" % (end - start))
+  sys.stderr.write(" %0.3fs - rss: %s\n" % (end - start, process.rusage.ru_maxrss))
   sys.stderr.flush()
 
   if status:
-    print >>sys.stderr, "FAILED:", kwargs, "\n"
+    print >>sys.stderr, "FAILED:", kwargs
     if stdout:
       print >>sys.stderr, "  stdout:", stdout.strip()
     if stderr:
       print >>sys.stderr, "  stderr:", stderr.strip()
     print >>sys.stderr, "  status:", status
-  return RunResult(status, stdout, stderr, end - start)
+  return RunResult(status, stdout, stderr, process.rusage, end - start)
+
+def RecordMetric(metric, value, labels=[]):
+  tool = os.path.join(UTILS_TREE, "tsdb-cli")
+  metric = os.path.join(METRICS_TREE, metric)
+  etime =  int(round(time.time() * 1000))
+
+  # ./tsdb-cli -serie /opt/sbexr/metrics/kernel-build-time -label=a -label=b -label=c --time=10 --value=1000
+  Run([tool, "-serie=%s" % metric, "-time=%s" % etime, "-value=%s" % value] + ["-label=%s" % l for l in labels])
+
+def RecordCommandMetric(metric, runstatus, labels=[]):
+  if runstatus.status > 0:
+    labels.append("status:failed")
+  else:
+    labels.append("status:succeeded")
+
+  RecordMetric(metric + "-rss", runstatus.rusage.ru_maxrss, labels)
+  RecordMetric(metric + "-time", runstatus.time, labels)
 
 def KernelRun(args, **kwargs):
   return Run(args, cwd=KERNEL_TREE, **kwargs)
@@ -156,6 +186,8 @@ def CreateBearFile(tag, directory, output):
   stdout = open(os.path.join(directory, tag + ".build.stdout"), "w")
   stderr = open(os.path.join(directory, tag + ".build.stderr"), "w")
   result = KernelRun(["bear", "-a", "-o", path, "make", "-j3"], stdout=stdout, stderr=stderr)
+  RecordCommandMetric("bear-build", result, labels=["kernel:%s" % tag])
+
   if result.status:
     raise BuildError("bear make failed", result)
   Run(["mv", path, output])
@@ -266,10 +298,14 @@ def NeedsUpdating(tag):
 
 def RunSbexr(tag):
   rewriter_tagfile, rewriter_binfile = GetVersionFiles(tag)
+  sbexr_version = datetime.datetime.utcfromtimestamp(int(os.path.getctime(rewriter_binfile))).strftime('%Y-%m-%d-%H:%M:%S')
+  print >>sys.stderr, "RUNNING SBEXR", sbexr_version
 
   stdout = open(os.path.join(BEAR_TREE, tag + ".rewriter.stdout"), "w")
   stderr = open(os.path.join(BEAR_TREE, tag + ".rewriter.stderr"), "w")
   result = Run([rewriter_binfile, "-c", "/opt/sbexr/linux-stable", "--index", INDEX_TREE, "-t", tag, "-p", "Linux", "--jsondb", "."], stdout=stdout, stderr=stderr, cwd=RUN_TREE)
+  RecordCommandMetric("sbexr-run", result, labels=["kernel:%s" % tag, "version:%s" % sbexr_version])
+
   if result.status == 0:
     open(rewriter_tagfile, "w").write("DONE %0.3f" % result.time)
     return True

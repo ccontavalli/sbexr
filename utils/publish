@@ -88,6 +88,9 @@ def Transfer():
   Run('ssh root@pertini -- killall server')
 
 def UpdateBinaries():
+  Run("cd /opt/projects/goutils/tsdb/tsdb-cli && go build")
+  Run("cp /opt/projects/goutils/tsdb/tsdb-cli/tsdb-cli %s" % os.path.join(BASE, "utils"))
+
   Run("make", cwd=os.path.join(BASE, "src"))
   Run("make", cwd=os.path.join(BASE, "sitemap"))
   Run("make", cwd=os.path.join(BASE, "server"))
