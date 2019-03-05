@@ -417,12 +417,12 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
                 << recorder_->TryPrint(e) << std::endl;
     }
     const auto* tp = e->getType().getTypePtrOrNull();
-    if (tp && tp->isBuiltinType()) {
-      c_use_of_builtins.Add(e->getSourceRange()) << e->getNameInfo().getAsString();
+    if (tp && tp->isBuiltinType() && tp->getAs<BuiltinType>()->getKind() == BuiltinType::BuiltinFn) {
+      c_use_of_builtin_fns.Add(e->getSourceRange()) << e->getNameInfo().getAsString();
     } else {
       recorder_->CodeUses(*e, "variable", *e->getFoundDecl());
     }
-   
+  
     return Base::VisitDeclRefExpr(e);
   }
 

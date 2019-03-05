@@ -31,6 +31,6 @@
 Counter& c_discarded_tags_macro = MakeCounter(
     "wrapping/discarded/macro",
     "TAGS that have not been applied because the range contains a MacroID");
-Counter& c_use_of_builtins = MakeCounter(
-    "info/ast/ignored-uses-of-builtin",
+Counter& c_use_of_builtin_fns = MakeCounter(
+    "info/ast/ignored-uses-of-builtin-functions",
     "USES that have not been recorded because they refer to builtin things");
