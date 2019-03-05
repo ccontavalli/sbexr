@@ -37,6 +37,7 @@
 #include "wrapping.h"
 
 extern Counter& c_discarded_tags_macro;
+extern Counter& c_use_of_builtins;
 
 class SbexrRecorder {
  public:
@@ -407,12 +408,21 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
   bool VisitDeclRefExpr(DeclRefExpr* e) {
     // getNameInfo().getAsString() -> returns the variable name, eg, int foo;
     // would return foo.
-    if (gl_verbose)
+    if (gl_verbose) {
+      auto sr = e->getFoundDecl()->getSourceRange();
       std::cerr << "DECLREFEXPR " << e->getNameInfo().getAsString() << " "
                 << e->getFoundDecl()->getNameAsString() << " "
-                << recorder_->PrintLocation(e->getFoundDecl()->getSourceRange())
-                << std::endl;
-    recorder_->CodeUses(*e, "variable", *e->getFoundDecl());
+                << recorder_->PrintLocation(sr)
+                << " '" << recorder_->PrintCode(sr) << "'"
+                << recorder_->TryPrint(e) << std::endl;
+    }
+    const auto* tp = e->getType().getTypePtrOrNull();
+    if (tp && tp->isBuiltinType()) {
+      c_use_of_builtins.Add(e->getSourceRange()) << e->getNameInfo().getAsString();
+    } else {
+      recorder_->CodeUses(*e, "variable", *e->getFoundDecl());
+    }
+   
     return Base::VisitDeclRefExpr(e);
   }
 

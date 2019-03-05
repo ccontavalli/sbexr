@@ -495,6 +495,27 @@ class Printer {
     //       PRINT_RECURSE_PTR(v, getUnderlyingDecl);
   });
 
+  PRINT_FUNCTION(DeclRefExpr, v, {
+    PRINT_RECURSE_PTR(v, getDecl);
+    PRINT_RECURSE_TMP(v, getNameInfo);
+    PRINT_LOCATION(v, getLocation);
+    PRINT_LOCATION(v, getBeginLoc);
+    PRINT_LOCATION(v, getEndLoc);
+    PRINT_BOOL(v, hasQualifier);
+    PRINT_RECURSE_PTR(v, getFoundDecl);
+    PRINT_BOOL(v, hasTemplateKWAndArgsInfo);
+    PRINT_BOOL(v, hasTemplateKeyword);
+    PRINT_BOOL(v, hasExplicitTemplateArgs);
+    PRINT_BOOL(v, hadMultipleCandidates);
+    PRINT_BOOL(v, refersToEnclosingVariableOrCapture);
+    PRINT_RECURSE_TMP(v, getType);
+    PRINT_BOOL(v, isValueDependent);
+    PRINT_BOOL(v, isTypeDependent);
+    PRINT_BOOL(v, isInstantiationDependent);
+    PRINT_LOCATION(v, getExprLoc);
+    PRINT_RECURSE_PTR(v, getReferencedDeclOfCallee);
+  });
+
   PRINT_FUNCTION(Decl, v, {
     PRINT_STRING(v, getDeclKindName);
     PRINT_BOOL(v, hasBody);
