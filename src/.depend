@@ -23,7 +23,8 @@ indexer.o: indexer.cc \
 	json-helpers.h \
 	mempool.h \
 	rewriter.h \
-	cindex.h
+	cindex.h \
+	counters.h
 wrapping.o: wrapping.cc \
 	wrapping.h \
 	base.h \
@@ -32,7 +33,8 @@ wrapping.o: wrapping.cc \
 	renderer.h \
 	json-helpers.h \
 	mempool.h \
-	rewriter.h
+	rewriter.h \
+	counters.h
 sbexr.o: sbexr.cc \
 	ast.h \
 	base.h \
@@ -46,7 +48,14 @@ sbexr.o: sbexr.cc \
 	cindex.h \
 	printer.h \
 	pp-tracker.h \
-	wrapping.h
+	wrapping.h \
+	counters.h
+counters.o: counters.cc \
+	counters.h \
+	common.h \
+	base.h \
+	json-helpers.h \
+	mempool.h
 cache.o: cache.cc \
 	cache.h \
 	base.h \
@@ -74,12 +83,14 @@ rewriter.o: rewriter.cc \
 	common.cc \
 	indexer.h \
 	cindex.h \
+	counters.h \
 	indexer.cc \
 	wrapping.cc \
 	ast.h \
 	printer.h \
 	pp-tracker.h \
 	sbexr.cc \
+	counters.cc \
 	cache.cc \
 	rewriter.cc \
 	Makefile

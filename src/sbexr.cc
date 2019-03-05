@@ -32,6 +32,7 @@
 #include "pp-tracker.h"
 #include "printer.h"
 #include "wrapping.h"
+#include "counters.h"
 
 // TODO:
 //   P0 - compound blocks insert html in random places, pretty much breaking
@@ -355,6 +356,16 @@ int main(int argc, const char** argv) {
   renderer.OutputJOther();
   renderer.OutputJsonTree(gl_index_dir.c_str(), gl_tag.c_str());
   MemoryPrinter::OutputStats();
+
+  std::cerr << "COUNTERS" << std::endl;
+  const auto& counters = GlobalRegister().GetCounters();
+  for (const auto& keyvalue : counters) {
+    const auto& name = keyvalue.first;
+    const auto& counter = keyvalue.second;
+
+    std::cerr << "  " << name << " " << counter.Value() << std::endl;
+  }
+  GlobalRegister().OutputJson(MakeMetaPath("counters.json"));
 
   const auto& index = MakeMetaPath("index.jhtml");
   if (!MakeDirs(index, 0777)) {

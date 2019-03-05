@@ -27,15 +27,36 @@
 // policies, either expressed or implied, of Carlo Contavalli.
 
 #include "indexer.h"
+#include "counters.h"
 
 #include "json-helpers.h"
+
+auto& c_invalid_object_id = MakeCounter(
+	"indexer/object-id/invalid-file",
+	"Link lead to an #invalid-id, as there was no file set in the Id objecT");
+
+auto& c_discarded_define_range = MakeCounter(
+	"indexer/record/define/invalid-range",
+	"Ranges passed to RecordDefines are not valid");
+auto& c_discarded_define_file = MakeCounter(
+	"indexer/record/define/invalid-file",
+	"Ranges passed to RecordDefines refer to an invalid file");
+auto& c_discarded_declare_range = MakeCounter(
+	"indexer/record/declare/invalid-range",
+	"Ranges passed to RecordDefines are not valid");
+auto& c_discarded_declare_file = MakeCounter(
+	"indexer/record/declare/invalid-file",
+	"Ranges passed to RecordDefines refer to an invalid file");
 
 const char _kIndexString[] = "Generic";
 const char _kSnippetString[] = "Snippet";
 const char _kNameString[] = "Name";
 
 std::string ObjIdToLink(const Indexer::Id& id) {
-  if (!id.file) return "#invalid-id";
+  if (!id.file) {
+    c_invalid_object_id.Add() << id;
+    return "#invalid-id";
+  }
   return MakeHtmlPath(id.file->hash) + "#" + MakeIdName(id.object);
 }
 
@@ -87,12 +108,18 @@ bool Indexer::RecordDefines(const SourceManager& sm,
                             const std::string& name, const StringRef& snippet,
                             AccessSpecifier access,
                             const clang::Linkage linkage) {
-  if (!defined.isValid() || !definer.isValid()) return false;
+  if (!defined.isValid() || !definer.isValid()) {
+    c_discarded_define_range.Add(defined) << "name: " << name << ", snippet: " << snippet.str();
+    return false;
+  }
 
   Id definedid(cache_, sm, defined);
   Id definerid(cache_, sm, definer);
 
-  if (!definedid.file || !definerid.file) return false;
+  if (!definedid.file || !definerid.file) {
+    c_discarded_define_file.Add(defined) << "name: " << name << ", snippet: " << snippet.str();
+    return false;
+  }
 
   auto& properties = index_[definedid];
   properties.providers.emplace_back(Properties::kFlagDefinition, definerid,
@@ -107,12 +134,18 @@ bool Indexer::RecordDeclares(const SourceManager& sm,
                              const StringRef& snippet,
                              const AccessSpecifier access,
                              const clang::Linkage linkage) {
-  if (!declared.isValid() || !declarer.isValid()) return false;
+  if (!declared.isValid() || !declarer.isValid()) {
+    c_discarded_declare_range.Add(declared) << "name: " << name << ", snippet: " << snippet.str();
+    return false;
+  }
 
   Id declaredid(cache_, sm, declared);
   Id declarerid(cache_, sm, declarer);
 
-  if (!declaredid.file || !declarerid.file) return false;
+  if (!declaredid.file || !declarerid.file) {
+    c_discarded_declare_file.Add(declared) << "name: " << name << ", snippet: " << snippet.str();
+    return false;
+  }
 
   auto& properties = index_[declaredid];
   properties.providers.emplace_back(Properties::kFlagNone, declarerid, name,

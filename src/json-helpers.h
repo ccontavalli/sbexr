@@ -99,6 +99,12 @@ void WriteJsonKeyValue(Writer* writer, const char* key, int value) {
   writer->Uint(value);
 }
 
+template <typename Writer>
+void WriteJsonKeyValue(Writer* writer, const char* key, uint64_t value) {
+  writer->Key(key);
+  writer->Uint64(value);
+}
+
 inline void AddJHtmlSeparator(std::ostream* stream) { (*stream) << "\n---\n"; }
 
 #endif /* JSON_HELPERS_H */

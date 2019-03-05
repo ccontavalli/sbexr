@@ -27,6 +27,14 @@
 // policies, either expressed or implied, of Carlo Contavalli.
 
 #include "wrapping.h"
+#include "counters.h"
+
+auto& c_discarded_tags_macro = MakeCounter(
+	"wrapping/discarded/macro",
+        "TAGS that have not been applied because the range contains a MacroID");
+auto& c_discarded_tags_file = MakeCounter(
+	"wrapping/discarded/file",
+        "TAGS that have not been applied because no corresponding file could be found");
 
 void WrapWithTag(FileRenderer::ParsedFile* file, Tag tag) {
   file->rewriter.Add(std::move(tag));
@@ -42,13 +50,19 @@ bool WrapWithTag(const CompilerInstance& ci, FileCache* cache,
                  const SourceLocation& obegin, const SourceLocation& oend,
                  Tag tag) {
   SourceManager& sm = ci.getSourceManager();
-  if (obegin.isMacroID() || oend.isMacroID()) return false;
+  if (obegin.isMacroID() || oend.isMacroID()) {
+    c_discarded_tags_macro.Add(obegin, oend) << tag;
+    return false;
+  }
 
   auto begin = sm.getExpansionLoc(obegin);
   auto end = sm.getExpansionLoc(oend);
 
   auto* file = cache->GetFileFor(sm, begin, end);
-  if (!file) return false;
+  if (!file) {
+    c_discarded_tags_file.Add(begin, end) << tag;
+    return false;
+  }
 
   unsigned bo = sm.getFileOffset(begin);
   unsigned eo = sm.getFileOffset(end);
@@ -70,7 +84,9 @@ bool WrapWithTag(const CompilerInstance& ci, FileCache* cache,
 bool WrapEolSol(const SourceManager& sm, FileCache* cache, SourceLocation start,
                 SourceLocation end, Tag tag) {
   auto* file = cache->GetFileFor(sm, start, end);
-  if (!file) return false;
+  if (!file) {
+    c_discarded_tags_file.Add(start, end) << tag;
+  }
 
   // FIXME FIXME FIXME: don't use sm.getBufferData(), get the data from the
   // cache.

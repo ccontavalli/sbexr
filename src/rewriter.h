@@ -62,6 +62,11 @@ struct Tag {
   TagString attributes;
 };
 
+static inline std::ostream& operator<<(std::ostream& stream, const Tag& tag) {
+  stream << "<" << (tag.tag ? tag.tag : "-null-") << " " << tag.attributes << "> opened at " << tag.open << ", closed at " << tag.close;
+  return stream;
+}
+
 inline Tag MakeTag(const char* tag, std::initializer_list<StringRef> classes,
                    std::initializer_list<StringRef> attributes) {
   std::string elements;
