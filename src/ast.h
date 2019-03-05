@@ -37,7 +37,7 @@
 #include "wrapping.h"
 
 extern Counter& c_discarded_tags_macro;
-extern Counter& c_use_of_builtins;
+extern Counter& c_use_of_builtin_fns;
 
 class SbexrRecorder {
  public:
