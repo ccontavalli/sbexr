@@ -239,7 +239,7 @@ void Indexer::OutputJsonIndex(const char* path) {
   };
 
   auto OutputUser = [&writer, this](const NameString& name,
-                                        const Properties::User& user) {
+                                    const Properties::User& user) {
     auto juser = MakeJsonObject(&writer);
 
     writer.Key("href");

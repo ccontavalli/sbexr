@@ -37,7 +37,8 @@
 
 class Counter {
  public:
-  Counter(const char* name, const char* description, std::ostream* capture) : name_(name), description_(description), capture_(capture) {}
+  Counter(const char* name, const char* description, std::ostream* capture)
+      : name_(name), description_(description), capture_(capture) {}
 
   std::ostream& Add();
   std::ostream& Add(SourceRange range);

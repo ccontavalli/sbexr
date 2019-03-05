@@ -32,11 +32,12 @@
 // GetSourceRangeOrFail will return a SourceRange from an object
 // or fail to compile.
 template <typename AnyT>
-SourceRange GetSourceRangeOrFail(const AnyT& any) {
+static inline SourceRange GetSourceRangeOrFail(const AnyT& any) {
   return any.getSourceRange();
 }
 template <>
-SourceRange GetSourceRangeOrFail<SourceRange>(const SourceRange& any) {
+inline SourceRange GetSourceRangeOrFail<SourceRange>(
+    const SourceRange& any) {
   return any;
 }
 
@@ -45,33 +46,35 @@ SourceRange GetSourceRangeOrFail<SourceRange>(const SourceRange& any) {
 // If it succeeds, though, this function will be preferred to the one taking
 // long as a parameter.
 template <typename AnyT>
-auto GetSourceRange_impl(const AnyT& any, int)
+static inline auto GetSourceRange_impl(const AnyT& any, int)
     -> decltype(any.getSourceRange(), SourceRange()) {
   return any.getSourceRange();
 }
 template <typename AnyT>
-SourceRange GetSourceRange_impl(const AnyT& any, long) {
+static inline SourceRange GetSourceRange_impl(const AnyT& any, long) {
   return SourceRange();
 }
 
 template <>
-SourceRange GetSourceRange_impl<SourceRange>(const SourceRange& any, long) {
+inline SourceRange GetSourceRange_impl<SourceRange>(
+    const SourceRange& any, long) {
   return any;
 }
 
 template <typename AnyT>
-SourceRange GetSourceRange(const AnyT& any) {
+static inline SourceRange GetSourceRange(const AnyT& any) {
   return GetSourceRange_impl(any, 0);
 }
 
-void PrintLineNumbers(raw_ostream& s, const SourceManager& sm,
-                      SourceLocation location) {
+static inline void PrintLineNumbers(raw_ostream& s, const SourceManager& sm,
+                                    SourceLocation location) {
   s << sm.getExpansionLineNumber(location);
   s << ":" << sm.getExpansionColumnNumber(location);
 }
 
-void PrintSpellingLineNumbers(raw_ostream& s, const SourceManager& sm,
-                              SourceLocation location) {
+static inline void PrintSpellingLineNumbers(raw_ostream& s,
+                                            const SourceManager& sm,
+                                            SourceLocation location) {
   s << sm.getSpellingLineNumber(location);
   s << ":" << sm.getSpellingColumnNumber(location);
 }
@@ -98,8 +101,8 @@ void PrintSpellingLineNumbers(raw_ostream& s, const SourceManager& sm,
 //   ExpansionLocation (eg, where the code is being processed) and lookup
 //   all human interesting information about that location.
 //   (eg, file name, column and line number, all in one go).
-inline std::string PrintCode(const SourceManager& sm,
-                             const SourceRange& range) {
+static inline std::string PrintCode(const SourceManager& sm,
+                                    const SourceRange& range) {
   FileID bid;
   unsigned boffset;
   std::tie(bid, boffset) = sm.getDecomposedExpansionLoc(range.getBegin());
@@ -123,8 +126,9 @@ inline std::string PrintCode(const SourceManager& sm,
   return std::string(data + boffset, eoffset - boffset);
 }
 
-inline std::string PrintLocation(const SourceManager& sm, FileCache* cache,
-                                 SourceRange location) {
+static inline std::string PrintLocation(const SourceManager& sm,
+                                        FileCache* cache,
+                                        SourceRange location) {
   if (!location.isValid()) return "<invalid-location>";
 
   auto sf = cache->GetFileFor(sm, location.getBegin());
@@ -140,8 +144,9 @@ inline std::string PrintLocation(const SourceManager& sm, FileCache* cache,
   return s.str();
 }
 
-inline std::string PrintLocation(const SourceManager& sm, FileCache* cache,
-                                 SourceLocation location) {
+static inline std::string PrintLocation(const SourceManager& sm,
+                                        FileCache* cache,
+                                        SourceLocation location) {
   std::string output(GetFilePath(cache->GetFileFor(sm, location)));
   raw_string_ostream s(output);
   s << ":";
@@ -149,9 +154,9 @@ inline std::string PrintLocation(const SourceManager& sm, FileCache* cache,
   return s.str();
 }
 
-inline std::string PrintSpellingLocation(const SourceManager& sm,
-                                         FileCache* cache,
-                                         SourceRange location) {
+static inline std::string PrintSpellingLocation(const SourceManager& sm,
+                                                FileCache* cache,
+                                                SourceRange location) {
   if (!location.isValid()) return "<invalid-location>";
 
   auto sf = cache->GetSpellingFileFor(sm, location.getBegin());
@@ -167,9 +172,9 @@ inline std::string PrintSpellingLocation(const SourceManager& sm,
   return s.str();
 }
 
-inline std::string PrintSpellingLocation(const SourceManager& sm,
-                                         FileCache* cache,
-                                         SourceLocation location) {
+static inline std::string PrintSpellingLocation(const SourceManager& sm,
+                                                FileCache* cache,
+                                                SourceLocation location) {
   std::string output(GetFilePath(cache->GetSpellingFileFor(sm, location)));
   raw_string_ostream s(output);
   s << ":";
@@ -404,6 +409,8 @@ class Printer {
   PRINT_FUNCTION(UsingShadowDecl, v, { PRINT_RECURSE_PTR(v, getTargetDecl); });
 
   PRINT_FUNCTION(DeclContext, v, {
+    return "";
+
     switch (v->getDeclKind()) {
       case Decl::Function: {
         auto* function = cast<FunctionDecl>(v);
