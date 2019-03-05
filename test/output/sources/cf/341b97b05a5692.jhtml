@@ -42,13 +42,13 @@
 }</span>
 
 <span class='def def-Function' id='0002a0010002e001'><span class='keyword void'>void</span> TestFunction() {
-  <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002900a00029022'>MACRO(</a><span class='numeric'>10</span>);
-  <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002a00a0002a01c'>MACROP(</a><span class='string'>"TEST TEST"</span>);
-  <a class='variable-uses' href='../6f/078dbcc264af74.html#0014c0010014c038'>printf</a>(<span class='string'>"Test Function: %d\n"</span>, <a class='variable-uses' href='../e5/66fd4ef5cee94a.html#000220010002200c'>global_counter</a>);
+  <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002900a00029022'>MACRO</a>(<span class='numeric'>10</span>);
+  <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002a00a0002a01c'>MACROP</a>(<span class='string'>"TEST TEST"</span>);
+  <a class='variable-uses' href='../6f/078dbcc264af74.html#0014c0010014c038'>printf</a>(<span class='string'>"Test Function: %d\n"</span>, global_counter);
 }</span>
 
 <span class='directive'># define <span class='def def-MACRO' id='0003000a0003001f'>POINT volatile test::Point</span></span>
-<span class='def def-Typedef' id='0003100100031010'><span class='keyword typedef'>typedef</span> <a class='MACRO-uses' href='../cf/341b97b05a5692.html#0003000a0003001f'>POINT*</a> punt</span>;
+<span class='def def-Typedef' id='0003100100031010'><span class='keyword typedef'>typedef</span> <a class='MACRO-uses' href='../cf/341b97b05a5692.html#0003000a0003001f'>POINT</a>* punt</span>;
 
 <span class='def def-Typedef' id='000330010003300d'><span class='keyword typedef'>typedef</span> <span class='keyword int'>int</span> u65535_t</span>;
 
@@ -59,7 +59,7 @@
   <span class='def def-Var' id='0003900300039011'><span class='def def-Var' id='000390030003900d'><span class='def def-Var' id='0003900300039009'><a class='declaration-uses' href='../cf/341b97b05a5692.html#000080010000a001'>Point</a> ab</span>, ac</span>, ad</span>;
   <span class='def def-Var' id='0003a0030003a01b'><span class='def def-Var' id='0003a0030003a016'><span class='def def-Var' id='0003a0030003a011'><span class='def def-Var' id='0003a0030003a00d'><span class='def def-Var' id='0003a0030003a009'><a class='declaration-uses' href='../cf/341b97b05a5692.html#000080010000a001'>Point</a> p0</span>, p1</span>, p2</span>, *p3</span>, *p4</span>;
   <span class='def def-Var' id='0003b0030003b027'><span class='keyword static'>static</span> <a class='MACRO-uses' href='../cf/341b97b05a5692.html#0003000a0003001f'>POINT</a> <span class='keyword __attribute__'>__attribute__</span>((used))* fuffa</span>;
-  <span class='def def-Var' id='0003c0030003c027'><span class='keyword static'>static</span> <span class='keyword __attribute__'>__attribute__</span>((used)) <a class='MACRO-uses' href='../cf/341b97b05a5692.html#0003000a0003001f'>POINT*</a> fuffa2</span>;
+  <span class='def def-Var' id='0003c0030003c027'><span class='keyword static'>static</span> <span class='keyword __attribute__'>__attribute__</span>((used)) <a class='MACRO-uses' href='../cf/341b97b05a5692.html#0003000a0003001f'>POINT</a>* fuffa2</span>;
   <span class='def def-Var' id='0003d0030003d014'><a class='declaration-uses' href='../cf/341b97b05a5692.html#000330010003300d'>u65535_t</a> value = <span class='numeric'>1000</span></span>;
 
   <span class='comment'>// POINT* foffa</span>
@@ -74,8 +74,8 @@
 
   <span class='def def-Var' id='0004900300049026'><span class='def def-Var' id='000490030004901d'><span class='def def-Var' id='0004900300049014'><a class='declaration-uses' href='../cf/341b97b05a5692.html#000080010000a001'>test::Point</a> &amp;z = <a class='variable-uses' href='../cf/341b97b05a5692.html#0003900300039009'>ab</a></span>, &amp;w = <a class='variable-uses' href='../cf/341b97b05a5692.html#000390030003900d'>ac</a></span>, &amp;x = <a class='variable-uses' href='../cf/341b97b05a5692.html#0003900300039011'>ad</a></span>;
 
-  <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002900a00029022'>MACRO(</a><a class='MACRO-uses' href='../bc/764de7984141e0.html#0002700a0002701a'>MACRO_RECURSIVE)</a>;
-  <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002a00a0002a01c'>MACROP(</a><span class='string'>"TOST TOST"</span>);
-  <a class='variable-uses' href='../6f/078dbcc264af74.html#0014c0010014c038'>printf</a>(<span class='string'>"Test pointer %p %d\n"</span>, (<span class='keyword void'>void</span>*)<a class='variable-uses' href='../cf/341b97b05a5692.html#0003800f00038015'>test</a>, <a class='variable-uses' href='../cf/341b97b05a5692.html#0003d0030003d014'>value</a>);
+  <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002900a00029022'>MACRO</a>(<a class='MACRO-uses' href='../bc/764de7984141e0.html#0002700a0002701a'>MACRO_RECURSIVE</a>);
+  <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002a00a0002a01c'>MACROP</a>(<span class='string'>"TOST TOST"</span>);
+  <a class='variable-uses' href='../6f/078dbcc264af74.html#0014c0010014c038'>printf</a>(<span class='string'>"Test pointer %p %d\n"</span>, (<span class='keyword void'>void</span>*)<a class='variable-uses' href='../cf/341b97b05a5692.html#0003800f00038015'>test</a>, value);
   <a class='variable-uses' href='../6f/078dbcc264af74.html#0014c0010014c038'>printf</a>(<span class='string'>"Test point %d %d %d\n"</span>, <a class='variable-uses' href='../cf/341b97b05a5692.html#0003a0030003a009'>p0</a>.<a class='expression-uses' href='../cf/341b97b05a5692.html#000090030000900b'>x</a>, <a class='variable-uses' href='../cf/341b97b05a5692.html#0003a0030003a00d'>p1</a>.<a class='expression-uses' href='../cf/341b97b05a5692.html#000090030000900b'>x</a>, <a class='variable-uses' href='../cf/341b97b05a5692.html#0003a0030003a011'>p2</a>.<a class='expression-uses' href='../cf/341b97b05a5692.html#000090030000900b'>x</a>);
 }</span>

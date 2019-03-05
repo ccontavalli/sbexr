@@ -142,60 +142,60 @@
 <span class='directive'>#include <a class='include' href='../44/abbd7f05c3bb64.html'>&lt;bits/typesizes.h&gt;</a>	/* Defines __*_T_TYPE macros.  */</span>
 
 
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002600900026017'>__DEV_T_TYPE</a> __dev_t;	<span class='comment'>/* Type of device numbers.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002700900027017'>__UID_T_TYPE</a> __uid_t;	<span class='comment'>/* Type of user identifications.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002800900028017'>__GID_T_TYPE</a> __gid_t;	<span class='comment'>/* Type of group identifications.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002900900029017'>__INO_T_TYPE</a> __ino_t;	<span class='comment'>/* Type of file serial numbers.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002a0090002a019'>__INO64_T_TYPE</a> __ino64_t;	<span class='comment'>/* Type of file serial numbers (LFS).*/</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002b0090002b018'>__MODE_T_TYPE</a> __mode_t;	<span class='comment'>/* Type of file attribute bitmasks.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002d00a0002d01a'>__NLINK_T_TYPE</a> __nlink_t;	<span class='comment'>/* Type of file link counts.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003300900033017'>__OFF_T_TYPE</a> __off_t;	<span class='comment'>/* Type of file sizes and offsets.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003400900034019'>__OFF64_T_TYPE</a> __off64_t;	<span class='comment'>/* Type of file sizes and offsets (LFS).  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003500900035017'>__PID_T_TYPE</a> __pid_t;	<span class='comment'>/* Type of process identifications.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000480090004802f'>__FSID_T_TYPE</a> __fsid_t;	<span class='comment'>/* Type of file system IDs.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003f0090003f019'>__CLOCK_T_TYPE</a> __clock_t;	<span class='comment'>/* Type of CPU usage counts.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003600900036018'>__RLIM_T_TYPE</a> __rlim_t;	<span class='comment'>/* Type for resource measurement.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000370090003701a'>__RLIM64_T_TYPE</a> __rlim64_t;	<span class='comment'>/* Type for resource measurement (LFS).  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003e0090003e016'>__ID_T_TYPE</a> __id_t;		<span class='comment'>/* General type for IDs.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0004000900040018'>__TIME_T_TYPE</a> __time_t;	<span class='comment'>/* Seconds since the Epoch.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000410090004101b'>__USECONDS_T_TYPE</a> __useconds_t; <span class='comment'>/* Count of microseconds.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000420090004201c'>__SUSECONDS_T_TYPE</a> __suseconds_t; <span class='comment'>/* Signed count of microseconds.  */</span>
+<span class='def def-Typedef' id='000880160008f0190008f0010008f019'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002600900026017'>__DEV_T_TYPE</a> __dev_t</span>;	<span class='comment'>/* Type of device numbers.  */</span>
+<span class='def def-Typedef' id='00088016000900190009000100090019'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002700900027017'>__UID_T_TYPE</a> __uid_t</span>;	<span class='comment'>/* Type of user identifications.  */</span>
+<span class='def def-Typedef' id='00088016000910190009100100091019'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002800900028017'>__GID_T_TYPE</a> __gid_t</span>;	<span class='comment'>/* Type of group identifications.  */</span>
+<span class='def def-Typedef' id='00088016000920190009200100092019'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002900900029017'>__INO_T_TYPE</a> __ino_t</span>;	<span class='comment'>/* Type of file serial numbers.  */</span>
+<span class='def def-Typedef' id='000880160009301b000930010009301b'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002a0090002a019'>__INO64_T_TYPE</a> __ino64_t</span>;	<span class='comment'>/* Type of file serial numbers (LFS).*/</span>
+<span class='def def-Typedef' id='000880160009401a000940010009401a'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002b0090002b018'>__MODE_T_TYPE</a> __mode_t</span>;	<span class='comment'>/* Type of file attribute bitmasks.  */</span>
+<span class='def def-Typedef' id='000880160009501b000950010009501b'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002d00a0002d01a'>__NLINK_T_TYPE</a> __nlink_t</span>;	<span class='comment'>/* Type of file link counts.  */</span>
+<span class='def def-Typedef' id='00088016000960190009600100096019'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003300900033017'>__OFF_T_TYPE</a> __off_t</span>;	<span class='comment'>/* Type of file sizes and offsets.  */</span>
+<span class='def def-Typedef' id='000880160009701b000970010009701b'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003400900034019'>__OFF64_T_TYPE</a> __off64_t</span>;	<span class='comment'>/* Type of file sizes and offsets (LFS).  */</span>
+<span class='def def-Typedef' id='00088016000980190009800100098019'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003500900035017'>__PID_T_TYPE</a> __pid_t</span>;	<span class='comment'>/* Type of process identifications.  */</span>
+<span class='def def-Typedef' id='000880160009901a000990010009901a'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000480090004802f'><span class='def def-CXXRecord' id='000480180004802f0009900c0009900c'><span class='def def-Field' id='000480210004802c0009900c0009900c'>__FSID_T_TYPE</span></span></a> __fsid_t</span>;	<span class='comment'>/* Type of file system IDs.  */</span>
+<span class='def def-Typedef' id='000880160009a01b0009a0010009a01b'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003f0090003f019'>__CLOCK_T_TYPE</a> __clock_t</span>;	<span class='comment'>/* Type of CPU usage counts.  */</span>
+<span class='def def-Typedef' id='000880160009b01a0009b0010009b01a'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003600900036018'>__RLIM_T_TYPE</a> __rlim_t</span>;	<span class='comment'>/* Type for resource measurement.  */</span>
+<span class='def def-Typedef' id='000880160009c01c0009c0010009c01c'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000370090003701a'>__RLIM64_T_TYPE</a> __rlim64_t</span>;	<span class='comment'>/* Type for resource measurement (LFS).  */</span>
+<span class='def def-Typedef' id='000880160009d0180009d0010009d018'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003e0090003e016'>__ID_T_TYPE</a> __id_t</span>;		<span class='comment'>/* General type for IDs.  */</span>
+<span class='def def-Typedef' id='000880160009e01a0009e0010009e01a'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0004000900040018'>__TIME_T_TYPE</a> __time_t</span>;	<span class='comment'>/* Seconds since the Epoch.  */</span>
+<span class='def def-Typedef' id='000880160009f01e0009f0010009f01e'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000410090004101b'>__USECONDS_T_TYPE</a> __useconds_t</span>; <span class='comment'>/* Count of microseconds.  */</span>
+<span class='def def-Typedef' id='00088016000a001f000a0001000a001f'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000420090004201c'>__SUSECONDS_T_TYPE</a> __suseconds_t</span>; <span class='comment'>/* Signed count of microseconds.  */</span>
 
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0004300900043019'>__DADDR_T_TYPE</a> __daddr_t;	<span class='comment'>/* The type of a disk address.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0004400900044017'>__KEY_T_TYPE</a> __key_t;	<span class='comment'>/* Type of an IPC key.  */</span>
+<span class='def def-Typedef' id='00088016000a201b000a2001000a201b'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0004300900043019'>__DADDR_T_TYPE</a> __daddr_t</span>;	<span class='comment'>/* The type of a disk address.  */</span>
+<span class='def def-Typedef' id='00088016000a3019000a3001000a3019'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0004400900044017'>__KEY_T_TYPE</a> __key_t</span>;	<span class='comment'>/* Type of an IPC key.  */</span>
 
 <span class='comment'>/* Clock ID used in clock and timer functions.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000450090004501a'>__CLOCKID_T_TYPE</a> __clockid_t;
+<span class='def def-Typedef' id='00088016000a601d000a6001000a601d'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000450090004501a'>__CLOCKID_T_TYPE</a> __clockid_t</span>;
 
 <span class='comment'>/* Timer ID returned by `timer_create'.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000460090004601e'>__TIMER_T_TYPE</a> __timer_t;
+<span class='def def-Typedef' id='00088016000a901b000a9001000a901b'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000460090004601e'>__TIMER_T_TYPE</a> __timer_t</span>;
 
 <span class='comment'>/* Type to represent block size.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000470090004701a'>__BLKSIZE_T_TYPE</a> __blksize_t;
+<span class='def def-Typedef' id='00088016000ac01d000ac001000ac01d'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000470090004701a'>__BLKSIZE_T_TYPE</a> __blksize_t</span>;
 
 <span class='comment'>/* Types from the Large File Support interface.  */</span>
 
 <span class='comment'>/* Type to count number of disk blocks.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000380090003801a'>__BLKCNT_T_TYPE</a> __blkcnt_t;
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000390090003901b'>__BLKCNT64_T_TYPE</a> __blkcnt64_t;
+<span class='def def-Typedef' id='00088016000b101c000b1001000b101c'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000380090003801a'>__BLKCNT_T_TYPE</a> __blkcnt_t</span>;
+<span class='def def-Typedef' id='00088016000b201e000b2001000b201e'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#000390090003901b'>__BLKCNT64_T_TYPE</a> __blkcnt64_t</span>;
 
 <span class='comment'>/* Type to count file system blocks.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003a0090003a01b'>__FSBLKCNT_T_TYPE</a> __fsblkcnt_t;
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003b0090003b01d'>__FSBLKCNT64_T_TYPE</a> __fsblkcnt64_t;
+<span class='def def-Typedef' id='00088016000b501e000b5001000b501e'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003a0090003a01b'>__FSBLKCNT_T_TYPE</a> __fsblkcnt_t</span>;
+<span class='def def-Typedef' id='00088016000b6020000b6001000b6020'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003b0090003b01d'>__FSBLKCNT64_T_TYPE</a> __fsblkcnt64_t</span>;
 
 <span class='comment'>/* Type to count file system nodes.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003c0090003c01b'>__FSFILCNT_T_TYPE</a> __fsfilcnt_t;
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003d0090003d01d'>__FSFILCNT64_T_TYPE</a> __fsfilcnt64_t;
+<span class='def def-Typedef' id='00088016000b901e000b9001000b901e'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003c0090003c01b'>__FSFILCNT_T_TYPE</a> __fsfilcnt_t</span>;
+<span class='def def-Typedef' id='00088016000ba020000ba001000ba020'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0003d0090003d01d'>__FSFILCNT64_T_TYPE</a> __fsfilcnt64_t</span>;
 
 <span class='comment'>/* Type of miscellaneous file system fields.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002e00a0002e01a'>__FSWORD_T_TYPE</a> __fsword_t;
+<span class='def def-Typedef' id='00088016000bd01c000bd001000bd01c'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002e00a0002e01a'>__FSWORD_T_TYPE</a> __fsword_t</span>;
 
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0004900900049019'>__SSIZE_T_TYPE</a> __ssize_t; <span class='comment'>/* Type of a byte count, or error.  */</span>
+<span class='def def-Typedef' id='00088016000bf01b000bf001000bf01b'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0004900900049019'>__SSIZE_T_TYPE</a> __ssize_t</span>; <span class='comment'>/* Type of a byte count, or error.  */</span>
 
 <span class='comment'>/* Signed long type used in system calls.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002200a0002201f'>__SYSCALL_SLONG_TYPE</a> __syscall_slong_t;
+<span class='def def-Typedef' id='00088016000c2021000c2001000c2021'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002200a0002201f'>__SYSCALL_SLONG_TYPE</a> __syscall_slong_t</span>;
 <span class='comment'>/* Unsigned long type used in system calls.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002300a0002301f'>__SYSCALL_ULONG_TYPE</a> __syscall_ulong_t;
+<span class='def def-Typedef' id='00088016000c4021000c4001000c4021'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../44/abbd7f05c3bb64.html#0002300a0002301f'>__SYSCALL_ULONG_TYPE</a> __syscall_ulong_t</span>;
 
 <span class='comment'>/* These few don't really vary by system, they always correspond
    to one of the other defined types.  */</span>
@@ -203,10 +203,10 @@
 <span class='def def-Typedef' id='000c9001000c900f'><span class='keyword typedef'>typedef</span> <span class='keyword char'>char</span> *__caddr_t</span>;
 
 <span class='comment'>/* Duplicates info from stdint.h but this is used in unistd.h.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008100a0008101d'>__SWORD_TYPE</a> __intptr_t;
+<span class='def def-Typedef' id='00088016000cc019000cc001000cc019'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008100a0008101d'>__SWORD_TYPE</a> __intptr_t</span>;
 
 <span class='comment'>/* Duplicate info from sys/socket.h.  */</span>
-<a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0006f0090006f01e'>__U32_TYPE</a> __socklen_t;
+<span class='def def-Typedef' id='00088016000cf017000cf001000cf017'><a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0008800a00088016'>__STD_TYPE</a> <a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0006f0090006f01e'>__U32_TYPE</a> __socklen_t</span>;
 
 <span class='comment'>/* C99: An integer type that can be accessed as an atomic entity,
    even in the presence of asynchronous interrupts.

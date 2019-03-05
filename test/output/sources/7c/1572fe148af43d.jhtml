@@ -73,8 +73,8 @@
   <span class='keyword const'>const</span> <a class='declaration-uses' href='../7c/1572fe148af43d.html#0002e00100033001'><span class='keyword struct'>struct</span> Nfs</a>&amp; nfs)</span>;
 
 <span class='def def-Function' id='000490010004c001'><span class='keyword int'>int</span> FuncWithNamedArgs(<span class='def def-ParmVar' id='000490170004901b'><span class='keyword int'>int</span> foo</span>, <span class='def def-ParmVar' id='000490200004902c'><span class='keyword const'>const</span> <span class='keyword char'>char</span>* bar</span>) {
-  <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002900a00029022'>MACRO(</a>foo);
-  <span class='keyword return'>return</span> <a class='variable-uses' href='../7c/1572fe148af43d.html#000490170004901b'>foo</a> * *<a class='variable-uses' href='../7c/1572fe148af43d.html#000490200004902c'>bar</a> + <span class='numeric'>2</span>;
+  <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002900a00029022'>MACRO</a>(foo);
+  <span class='keyword return'>return</span> foo * *<a class='variable-uses' href='../7c/1572fe148af43d.html#000490200004902c'>bar</a> + <span class='numeric'>2</span>;
 }</span>
 
 <span class='def def-Function' id='0004e00100056001'><span class='keyword int'>int</span> main(<span class='def def-ParmVar' id='0004e00a0004e00e'><span class='keyword int'>int</span> argc</span>, <span class='def def-ParmVar' id='0004e0140004e021'><span class='keyword const'>const</span> <span class='keyword char'>char</span>** argv</span>) {
@@ -82,7 +82,7 @@
   <a class='variable-uses' href='../bc/764de7984141e0.html#0002200100024001'>IncludedByAll</a>(<span class='numeric'>8</span>);
 
   <a class='variable-uses' href='../e0/389d8d16166a86.html#0002900100029020'>TestMore</a>(&amp;<a class='variable-uses' href='../7c/1572fe148af43d.html#0004f0030004f008'>test</a>);
-  <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002a00a0002a01c'>MACROP(</a><span class='string'>"this is a test\n"</span>);
-  <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002900a00029022'>MACRO(</a><span class='numeric'>12</span>);
+  <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002a00a0002a01c'>MACROP</a>(<span class='string'>"this is a test\n"</span>);
+  <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002900a00029022'>MACRO</a>(<span class='numeric'>12</span>);
   <span class='keyword return'>return</span> <a class='variable-uses' href='../7c/1572fe148af43d.html#0004f0030004f008'>test</a>.<a class='expression-uses' href='../e0/389d8d16166a86.html#000220030002201e'>Do00</a>() + <a class='variable-uses' href='../7c/1572fe148af43d.html#0004f0030004f008'>test</a>.<a class='expression-uses' href='../e0/389d8d16166a86.html#0002300300023023'>Do02</a>() + <a class='variable-uses' href='../7c/1572fe148af43d.html#000490010004c001'>FuncWithNamedArgs</a>(<span class='numeric'>3</span>, <span class='string'>"sbexr"</span>);
 }</span>

@@ -44,11 +44,23 @@
         "value": 0
     },
     {
+        "metric": "info/ast/ignored-uses-of-builtin",
+        "value": 5
+    },
+    {
+        "metric": "preprocessor/include/failed-inclusion",
+        "value": 0
+    },
+    {
+        "metric": "preprocessor/include/not-found",
+        "value": 0
+    },
+    {
         "metric": "wrapping/discarded/file",
         "value": 0
     },
     {
         "metric": "wrapping/discarded/macro",
-        "value": 127
+        "value": 57
     }
 ]
