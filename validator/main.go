@@ -107,17 +107,32 @@ type Validator struct {
 	Stats Stats
 	Props Properties
 
+	Messages map[string]int
+
 	Warning  []Warning
 	Pedantic []Warning
 }
 
 var kAnyName = ".."
 
+func (vs *Validator) AddNote(list *[]Warning, path, message string, a ...interface{}) {
+	formatted := fmt.Sprintf(message, a...)
+	percent := strings.IndexAny(message, "-%")
+	if percent >= 0 {
+		message = strings.TrimSpace(message[:percent])
+	}
+	if vs.Messages == nil {
+		vs.Messages = make(map[string]int)
+	}
+	vs.Messages[message] += 1
+
+	*list = append((*list), Warning{path, formatted})
+}
+
 func (vs *Validator) AddWarning(path, message string, a ...interface{}) {
 	formatted := fmt.Sprintf(message, a...)
 	fmt.Fprintf(vs.Output, "%s: WARNING - %s\n", path, formatted)
-
-	vs.Warning = append(vs.Warning, Warning{path, formatted})
+	vs.AddNote(&vs.Warning, path, message, a...)
 }
 
 func (vs *Validator) AddPedantic(path, message string, a ...interface{}) {
@@ -125,8 +140,7 @@ func (vs *Validator) AddPedantic(path, message string, a ...interface{}) {
 	if *pedantic {
 		fmt.Fprintf(vs.Output, "%s: PEDANTIC - %s\n", path, formatted)
 	}
-
-	vs.Pedantic = append(vs.Pedantic, Warning{path, formatted})
+	vs.AddNote(&vs.Pedantic, path, message, a...)
 }
 
 func (vs *Validator) AssertNotEmpty(apath, value, description string) bool {
@@ -262,7 +276,7 @@ func (vs *Validator) ValidateSourceContent(apath, name string, content []byte) {
 			}
 
 			if string(name) != tag_stack[len(tag_stack)-1] {
-				vs.AddWarning(apath, "HTML last opened tag was %s, but closed %s - around line %d", name, tag_stack[len(tag_stack)-1], lines)
+				vs.AddWarning(apath, "HTML last opened tag does not match closure - %s, %s - around line %d", name, tag_stack[len(tag_stack)-1], lines)
 			}
 			tag_stack = tag_stack[:len(tag_stack)-1]
 		}
@@ -305,12 +319,12 @@ func (vs *Validator) RecordRequested(requirer string, ty ResourceType, name, ori
 		vs.Props.Requested[href] = resource
 	} else {
 		if resource.Name != name && resource.Name != kAnyName && name != kAnyName && !((resource.Type == kRoot || ty == kRoot) && (name == "" || resource.Name == "")) {
-			vs.AddWarning(requirer, "requires a resource '%s' named '%s', but it is named '%s' instead", href, name, resource.Name)
+			vs.AddWarning(requirer, "requires a resource with a different name - '%s' named '%s', but it is named '%s' instead", href, name, resource.Name)
 		} else if resource.Name == kAnyName {
 			resource.Name = name
 		}
 		if resource.Type != ty && !(resource.Type == kRoot && ty == kDir) && !(ty == kRoot && resource.Type == kDir) {
-			vs.AddWarning(requirer, "requires a resource '%s' named %s with type %d, but it is of type %d instead", href, name, ty, resource.Type)
+			vs.AddWarning(requirer, "requires a resource with a different type - '%s' named %s with type %d, but it is of type %d instead", href, name, ty, resource.Type)
 		}
 		if ty == kRoot {
 			resource.Type = ty
@@ -330,15 +344,15 @@ func (vs *Validator) RecordProvided(href string, ty ResourceType, name string) *
 		vs.Props.Provided[href] = resource
 	} else {
 		if resource.Name != name && resource.Name != kAnyName && name != kAnyName && !((resource.Type == kRoot || ty == kRoot) && (name == "" || resource.Name == "")) {
-			vs.AddWarning(href, "provided with name '%s' before, instead of name name '%s'", name, resource.Name)
+			vs.AddWarning(href, "provided with a different name before - '%s' instead of name name '%s'", name, resource.Name)
 		} else if resource.Name == kAnyName {
 			resource.Name = name
 		}
 		if resource.Type != ty && !(resource.Type == kRoot && ty == kDir) && !(ty == kRoot && resource.Type == kDir) {
-			vs.AddWarning(href, "%s provided with type %d before, instead of type %d", name, ty, resource.Type)
+			vs.AddWarning(href, "%s provided with different type - %d before, instead of type %d", name, ty, resource.Type)
 		}
 		if resource.Type != ty {
-			vs.AddWarning(href, "%s provided with type %d before, instead of type %d", name, ty, resource.Type)
+			vs.AddWarning(href, "%s provided with different type - %d before, instead of type %d", name, ty, resource.Type)
 		}
 	}
 	if id != "" {
@@ -441,7 +455,7 @@ func (vs *Validator) PerformFullTreeTests() {
 			keys, _ := misc.StringKeys(rr.User)
 			sort.Strings(keys)
 
-			vs.AddWarning("", "Resource %s aka %s is needed by %v, but could not be found", rk, rr.Name, keys)
+			vs.AddWarning("", "Resource needed but could not be found - %s aka %s is needed by %v", rk, rr.Name, keys)
 			continue
 		}
 
@@ -455,7 +469,7 @@ func (vs *Validator) PerformFullTreeTests() {
 
 			_, ok := pr.Target[rt]
 			if !ok {
-				vs.AddWarning("", "Resource %s aka %s is required to provide target %s, but does not (%d of %d requested, %d provided)", rk, rr.Name, rt, i, len(rr.Target), len(pr.Target))
+				vs.AddWarning("", "Resource required to provide target, but does not - %s aka %s needs to provide %s", rk, rr.Name, rt)
 			} else {
 				delete(pr.Target, rt)
 			}
@@ -474,14 +488,14 @@ func (vs *Validator) PerformFullTreeTests() {
 		_, ok := requested[pk]
 		if len(pr.Target) <= 0 || !ok {
 			vs.Stats.ResourceUnused += 1
-			vs.AddPedantic("", "Resource %s aka %s is provided, but not used by anyone", pk, pr.Name)
+			vs.AddPedantic("", "Resource is unused - %s aka %s has no users", pk, pr.Name)
 		} else {
 			targets_sorted, _ := misc.StringKeys(pr.Target)
 			sort.Strings(targets_sorted)
 
 			for _, pt := range targets_sorted {
 				vs.Stats.ResourceTargetUnused += 1
-				vs.AddPedantic("", "Target %s in resource %s aka %s is provided, but not used by anyone", pt, pk, pr.Name)
+				vs.AddPedantic("", "Target is unused - %s in resource %s aka %s has no users", pt, pk, pr.Name)
 			}
 		}
 	}
@@ -505,6 +519,12 @@ func (vs *Validator) String() string {
 
 func (vs *Validator) PrintStats(w io.Writer) {
 	fmt.Fprintf(vs.Output, "Warnings: %d, Pedantic: %d\n", len(vs.Warning), len(vs.Pedantic))
+
+	keys, _ := misc.StringKeys(vs.Messages)
+	sort.Strings(keys)
+	for _, key := range keys {
+		fmt.Fprintf(vs.Output, "    '%s': %d\n", key, vs.Messages[key])
+	}
 	fmt.Fprintf(vs.Output, "\n")
 	fmt.Fprintf(vs.Output, "File system statistcs:\n")
 	fmt.Fprintf(vs.Output, "   root: '%s' absolute, '%s' relative\n",
