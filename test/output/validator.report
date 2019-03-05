@@ -1,11 +1,14 @@
 ==== WARNINGS FOR ./output
 output/validator.report: WARNING - unexpected file
 output/sources/meta/counters.json: WARNING - unexpected file
-: WARNING - Resource 41/e28fc1cdef774c aka types.h is required to provide target 00088016000960190009600100096019, but does not (3 of 6 requested, 40 provided)
-: WARNING - Resource 41/e28fc1cdef774c aka types.h is required to provide target 000880160009701b000970010009701b, but does not (4 of 6 requested, 40 provided)
-: WARNING - Resource 41/e28fc1cdef774c aka types.h is required to provide target 00088016000bf01b000bf001000bf01b, but does not (5 of 6 requested, 40 provided)
+: WARNING - Resource required to provide target, but does not - 41/e28fc1cdef774c aka types.h needs to provide 00088016000960190009600100096019
+: WARNING - Resource required to provide target, but does not - 41/e28fc1cdef774c aka types.h needs to provide 000880160009701b000970010009701b
+: WARNING - Resource required to provide target, but does not - 41/e28fc1cdef774c aka types.h needs to provide 00088016000bf01b000bf001000bf01b
 ==== STATISTICS FOR ./output
 Warnings: 5, Pedantic: 419
+    'Resource required to provide target, but does not': 3
+    'Target is unused': 419
+    'unexpected file': 2
 
 File system statistcs:
    root: 'output/sources/06/416cc91f3e3d90.jhtml' absolute, 'output/sources/be/e2916b98dcf1fc.jhtml' relative
