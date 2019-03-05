@@ -66,7 +66,7 @@ def RecordMetric(metric, value, labels=[]):
   etime =  int(round(time.time() * 1000))
 
   # ./tsdb-cli -serie /opt/sbexr/metrics/kernel-build-time -label=a -label=b -label=c --time=10 --value=1000
-  Run([tool, "-serie=%s" % metric, "-time=%s" % etime, "-value=%s" % value] + ["-label=%s" % l for l in labels])
+  Run([tool, "-serie=%s" % metric, "-time=%s" % etime, "-value=%s" % int(value)] + ["-label=%s" % l for l in labels])
 
 def RecordCommandMetric(metric, runstatus, labels=[]):
   if runstatus.status > 0:
@@ -75,7 +75,7 @@ def RecordCommandMetric(metric, runstatus, labels=[]):
     labels.append("status:succeeded")
 
   RecordMetric(metric + "-rss", runstatus.rusage.ru_maxrss, labels)
-  RecordMetric(metric + "-time", runstatus.time, labels)
+  RecordMetric(metric + "-time", runstatus.time * 1000, labels)
 
 def KernelRun(args, **kwargs):
   return Run(args, cwd=KERNEL_TREE, **kwargs)
