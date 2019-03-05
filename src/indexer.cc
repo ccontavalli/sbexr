@@ -238,6 +238,18 @@ void Indexer::OutputJsonIndex(const char* path) {
     WriteJsonString(&writer, provider.snippet);
   };
 
+  auto OutputUser = [&writer, this](const NameString& name,
+                                        const Properties::User& user) {
+    auto juser = MakeJsonObject(&writer);
+
+    writer.Key("href");
+    WriteJsonString(&writer, ObjIdToLink(user.location));
+
+    writer.Key("location");
+    WriteJsonString(&writer,
+                    cache_->GetUserPath(std::to_string(user.location)));
+  };
+
   for (const auto& objit : locations) {
     const auto& objname = objit.first;
     const auto& linkkinds = objit.second;
@@ -293,6 +305,21 @@ void Indexer::OutputJsonIndex(const char* path) {
                 deduper.find(provider.location) == deduper.end()) {
               OutputProvider(objname, provider);
               deduper.insert(provider.location);
+            }
+        }
+      }
+
+      {
+        writer.Key("users");
+        auto decls = MakeJsonArray(&writer);
+        std::set<Id> deduper;
+
+        for (const auto& objdata : objdatas) {
+          const auto* objprops = objdata.second;
+          for (const auto& user : objprops->users)
+            if (deduper.find(user.location) == deduper.end()) {
+              OutputUser(objname, user);
+              deduper.insert(user.location);
             }
         }
       }
