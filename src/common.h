@@ -211,4 +211,10 @@ inline std::string GetRealPath(const std::string& path) {
   return retval;
 }
 
+static inline std::ostream& operator<<(std::ostream& stream,
+                                       const FileID& fid) {
+  stream << "FID:" << fid.getHashValue();
+  return stream;
+}
+
 #endif /* COMMON_H */

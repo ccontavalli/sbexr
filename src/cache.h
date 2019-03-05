@@ -31,6 +31,7 @@
 
 #include "base.h"
 #include "common.h"
+#include "counters.h"
 #include "renderer.h"
 
 // There are 2 kind of files:
@@ -105,9 +106,19 @@ class FileCache {
   FileRenderer* renderer_;
 };
 
+extern Counter& c_begin_end_different_files;
+extern Counter& c_internal_buffer;
+extern Counter& c_no_content_cache;
+extern Counter& c_no_sloc_entry;
+extern Counter& c_empty_path;
+extern Counter& c_invalid_fid;
+
 inline FileRenderer::ParsedFile* FileCache::GetFileFor(const StringRef& path) {
   if (path.data() == last_path_.data()) return last_path_file_;
-  if (path.empty()) return nullptr;
+  if (path.empty()) {
+    c_empty_path.Add();
+    return nullptr;
+  }
 
   last_path_file_ = renderer_->GetFileFor(path);
   return last_path_file_;
@@ -115,7 +126,10 @@ inline FileRenderer::ParsedFile* FileCache::GetFileFor(const StringRef& path) {
 
 inline FileRenderer::ParsedFile* FileCache::GetFileFor(const SourceManager& sm,
                                                        const FileID& fid) {
-  if (!fid.isValid()) return nullptr;
+  if (!fid.isValid()) {
+    c_invalid_fid.Add() << fid;
+    return nullptr;
+  }
   if (last_sm_ == &sm && fid == last_id_) return last_sm_file_;
 
   last_sm_ = &sm;
@@ -127,10 +141,12 @@ inline FileRenderer::ParsedFile* FileCache::GetFileFor(const SourceManager& sm,
   bool invalid = false;
   auto& entry = sm.getSLocEntry(fid, &invalid);
   if (invalid || !entry.isFile()) {
+    c_no_sloc_entry.Add() << fid;
     return nullptr;
   }
   auto* cache = entry.getFile().getContentCache();
   if (!cache) {
+    c_no_content_cache.Add() << fid;
     return nullptr;
   }
 
@@ -140,6 +156,7 @@ inline FileRenderer::ParsedFile* FileCache::GetFileFor(const SourceManager& sm,
   // However, buffers seem to be used for <built-in> and possibly other
   // magic stuff that we don't need to index, so just return nullptr here.
   if (!cache->OrigEntry) {
+    c_internal_buffer.Add() << fid;
     return nullptr;
   }
 
@@ -166,6 +183,7 @@ inline FileRenderer::ParsedFile* FileCache::GetFileFor(const SourceManager& sm,
   std::tie(eid, eoff) = sm.getDecomposedExpansionLoc(end);
 
   if (eid != bid) {
+    c_begin_end_different_files.Add(begin, end);
     std::cerr << "WARNING: begin and end of locaiton in different files ("
               << sm.getFilename(begin).str() << " vs "
               << sm.getFilename(end).str() << ")" << std::endl;
@@ -192,6 +210,7 @@ inline FileRenderer::ParsedFile* FileCache::GetSpellingFileFor(
   std::tie(eid, eoff) = sm.getDecomposedSpellingLoc(end);
 
   if (eid != bid) {
+    c_begin_end_different_files.Add(begin, end);
     std::cerr << "WARNING: begin and end of locaiton in different files ("
               << sm.getFilename(begin).str() << " vs "
               << sm.getFilename(end).str() << ")" << std::endl;

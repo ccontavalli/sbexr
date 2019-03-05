@@ -27,3 +27,25 @@
 // policies, either expressed or implied, of Carlo Contavalli.
 
 #include "cache.h"
+
+Counter& c_begin_end_different_files =
+    MakeCounter("cache/nullreturn/begin-end-different-files",
+                "Returned a nullptr because a source and dest location were in "
+                "different files");
+Counter& c_internal_buffer = MakeCounter(
+    "cache/nullreturn/internal-buffer",
+    "Returned a nullptr because a location referred to an internal buffer");
+Counter& c_no_content_cache =
+    MakeCounter("cache/nullreturn/no-content-cache",
+                "Returned a nullptr because the SourceManager had no content "
+                "associated to the file");
+Counter& c_no_sloc_entry =
+    MakeCounter("cache/nullreturn/no-sloc-entry",
+                "Returned a nullptr because the SourceManager had no SLocEntry "
+                "associated to the file");
+Counter& c_empty_path = MakeCounter(
+    "cache/nullreturn/empty-path",
+    "Returned a nullptr because an empty path was passed to GetFileFor");
+Counter& c_invalid_fid = MakeCounter(
+    "cache/nullreturn/invalid-fid",
+    "Returned a nullptr because an invalid FileID was passed to GetFileFor");
