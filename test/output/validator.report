@@ -1,22 +1,23 @@
 ==== WARNINGS FOR ./output
 output/validator.report: WARNING - unexpected file
+output/sources/meta/counters.json: WARNING - unexpected file
 : WARNING - Resource 41/e28fc1cdef774c aka types.h is required to provide target 00088016000960190009600100096019, but does not (3 of 6 requested, 40 provided)
 : WARNING - Resource 41/e28fc1cdef774c aka types.h is required to provide target 000880160009701b000970010009701b, but does not (4 of 6 requested, 40 provided)
 : WARNING - Resource 41/e28fc1cdef774c aka types.h is required to provide target 00088016000bf01b000bf001000bf01b, but does not (5 of 6 requested, 40 provided)
 ==== STATISTICS FOR ./output
-Warnings: 4, Pedantic: 419
+Warnings: 5, Pedantic: 419
 
 File system statistcs:
    root: 'output/sources/06/416cc91f3e3d90.jhtml' absolute, 'output/sources/be/e2916b98dcf1fc.jhtml' relative
-   paths: 60 scanned, of which 15 directories, 41 source, 1 copied, 2 meta, 1 unexpected
+   paths: 60 scanned, of which 15 directories, 40 source, 1 copied, 2 meta, 2 unexpected
 
 Resource statistcs:
-   requested: 57 file/dir resources, 106 targets, 281 users
+   requested: 56 file/dir resources, 106 targets, 279 users
    unused: 0 file/dir resources, 419 targets
-   total: 57 file/dir resources, 525 targets
+   total: 56 file/dir resources, 525 targets
 
 JHTML Statistics:
-   Text: 5944 blocks for 1918725 bytes
+   Text: 5943 blocks for 1921864 bytes
    Tags: 3361 opened, 3361 closed, in a 7 elements max stack
    Attributes: 435 href, 522 id, 3361 class (4733 classes specified)
 
