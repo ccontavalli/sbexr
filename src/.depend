@@ -26,6 +26,20 @@ indexer.o: indexer.cc \
 	mempool.h \
 	rewriter.h \
 	cindex.h
+pp-tracker.o: pp-tracker.cc \
+	ast.h \
+	base.h \
+	cache.h \
+	common.h \
+	counters.h \
+	renderer.h \
+	json-helpers.h \
+	mempool.h \
+	rewriter.h \
+	indexer.h \
+	cindex.h \
+	printer.h \
+	wrapping.h
 wrapping.o: wrapping.cc \
 	wrapping.h \
 	base.h \
@@ -49,8 +63,8 @@ sbexr.o: sbexr.cc \
 	indexer.h \
 	cindex.h \
 	printer.h \
-	pp-tracker.h \
-	wrapping.h
+	wrapping.h \
+	pp-tracker.h
 counters.o: counters.cc \
 	counters.h \
 	common.h \
@@ -71,6 +85,20 @@ rewriter.o: rewriter.cc \
 	common.h \
 	base.h \
 	mempool.h
+ast.o: ast.cc \
+	ast.h \
+	base.h \
+	cache.h \
+	common.h \
+	counters.h \
+	renderer.h \
+	json-helpers.h \
+	mempool.h \
+	rewriter.h \
+	indexer.h \
+	cindex.h \
+	printer.h \
+	wrapping.h
 .depend: \
 	mempool.h \
 	base.h \
@@ -87,12 +115,14 @@ rewriter.o: rewriter.cc \
 	indexer.h \
 	cindex.h \
 	indexer.cc \
-	wrapping.cc \
 	ast.h \
 	printer.h \
+	pp-tracker.cc \
+	wrapping.cc \
 	pp-tracker.h \
 	sbexr.cc \
 	counters.cc \
 	cache.cc \
 	rewriter.cc \
+	ast.cc \
 	Makefile

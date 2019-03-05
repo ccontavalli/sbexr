@@ -25,7 +25,7 @@ EXTRALIBS := -lclangFrontend \
 
 all: sbexr
 
-DEPS := sbexr.o indexer.o renderer.o wrapping.o rewriter.o cache.o mempool.o common.o counters.o
+DEPS := sbexr.o indexer.o renderer.o wrapping.o rewriter.o cache.o mempool.o common.o counters.o ast.o pp-tracker.o
 
 sbexr: .depend $(DEPS)
 	$(CXX) -lclang-$(LLVMVERSION) -lLLVM-$(LLVMVERSION) $(CXXFLAGS) $(LDFLAGS) $(LIBS) $(LIBDIR) -o sbexr $(DEPS) $(EXTRALIBS)

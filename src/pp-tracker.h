@@ -31,7 +31,11 @@
 
 #include "ast.h"
 #include "common.h"
+#include "counters.h"
 #include "wrapping.h"
+
+extern Counter& c_pp_file_not_found;
+extern Counter& c_pp_file_failed_inclusion;
 
 class PPTracker : public PPCallbacks {
  public:
@@ -94,11 +98,11 @@ class PPTracker : public PPCallbacks {
             include_ignored_ <= 0);
   }
 
-  //  bool FileNotFound(StringRef filename,
-  //                    SmallVectorImpl<char>& RecoveryPath) override {
-  //    std::cerr << "FILE NOT FOUND !!! " << filename.str() << std::endl;
-  //    return false;
-  //  }
+  bool FileNotFound(StringRef filename,
+                    SmallVectorImpl<char>& RecoveryPath) override {
+    c_pp_file_not_found.Add() << filename.str();
+    return false;
+  }
 
   void InclusionDirective(SourceLocation loc, const Token& IncludeTok,
                           StringRef FileName, bool IsAngled,
@@ -118,10 +122,9 @@ class PPTracker : public PPCallbacks {
                 << ") P:" << ShouldProcess()
                 << " F:" << (File ? "[has file]" : "[NO FILE]") << std::endl;
 
-    if (!ShouldProcess() || !File) {
-      if (gl_verbose) std::cerr << "#IGNORING STATEMENT" << std::endl;
-      // FIXME: this means there's something wrong. The build would have failed,
-      // but here we are trying to index the file.
+    if (!File) {
+      c_pp_file_failed_inclusion.Add(filename_range.getAsRange())
+          << included_full_path;
       return;
     }
 
@@ -139,11 +142,13 @@ class PPTracker : public PPCallbacks {
     if (!ShouldProcess()) return;
 
     auto target = GetMacroRange(*md.getLocalDirective()->getInfo());
-    auto mrange = SourceRange(name.getLocation(), name.getEndLoc());
+    auto mrange =
+        SourceRange(name.getLocation(), name.getEndLoc().getLocWithOffset(-1));
 
     if (gl_verbose) {
       std::cerr << "MACRO EXPAND " << name.getIdentifierInfo()->getName().str()
-                << " expanding:" << recorder_->PrintLocation(mrange)
+                << " expanding:" << recorder_->PrintLocation(mrange) << "'"
+                << recorder_->PrintCode(mrange) << "' "
                 << " target:" << recorder_->PrintLocation(target) << " '"
                 << recorder_->PrintCode(target) << "'" << std::endl;
     }

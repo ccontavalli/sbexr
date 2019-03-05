@@ -142,9 +142,9 @@ cl::opt<std::string> gl_strip_dir(
     cl::value_desc("directory"), cl::init(GetCwd()), cl::cat(gl_category));
 
 cl::opt<std::string> gl_capture_counter(
-   "counter",
-   cl::desc("Regular expression defining which counters to capture."),
-   cl::value_desc("regex"), cl::cat(gl_category));
+    "counter",
+    cl::desc("Regular expression defining which counters to capture."),
+    cl::value_desc("regex"), cl::cat(gl_category));
 
 struct ToParse {
   ToParse(const std::string& file, const std::string& directory,

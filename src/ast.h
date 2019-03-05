@@ -34,6 +34,9 @@
 #include "common.h"
 #include "indexer.h"
 #include "printer.h"
+#include "wrapping.h"
+
+extern Counter& c_discarded_tags_macro;
 
 class SbexrRecorder {
  public:
@@ -120,6 +123,12 @@ class SbexrRecorder {
       std::cerr << "- LINKING USER " << PrintLocation(sr) << " ("
                 << PrintCode(sr) << ") to " << PrintLocation(target) << " ("
                 << PrintCode(target) << ")" << std::endl;
+
+    if (sr.getBegin().isMacroID() || sr.getEnd().isMacroID()) {
+      c_discarded_tags_macro.Add(sr.getBegin(), sr.getEnd())
+          << MakeIdLink(ntarget);
+      return;
+    }
     WrapWithTag(*ci_, cache_, sr,
                 MakeTag("a", {std::string(description) + "-uses"},
                         {"href", MakeIdLink(ntarget)}));
@@ -193,6 +202,11 @@ class SbexrRecorder {
 
     if (index_->RecordUse(ci_->getSourceManager(), ntarget, nuser,
                           description)) {
+      if (sr.getBegin().isMacroID() || sr.getEnd().isMacroID()) {
+        c_discarded_tags_macro.Add(sr.getBegin(), sr.getEnd())
+            << MakeIdLink(ntarget);
+        return;
+      }
       WrapWithTag(*ci_, cache_, sr,
                   MakeTag("a", {std::string(description) + "-uses"},
                           {"href", MakeIdLink(ntarget)}));
@@ -224,23 +238,20 @@ class SbexrRecorder {
     auto defined_range = NormalizeSourceRange(GetSourceRangeOrFail(defined));
 
     const auto& id = MakeIdName(definer_range);
-    if (gl_verbose) {
-      const auto& buggy = MakeIdName(definer_range);
-      if (std::string(kind) != "MACRO" && id != buggy) {
-        std::cerr << "BUGGY!" << std::endl;
-        std::cerr << "  DEFINER " << PrintLocation(definer_range) << " "
-                  << PrintCode(definer_range) << std::endl;
-        std::cerr << "  DEFINED " << PrintLocation(defined_range) << " "
-                  << PrintCode(defined_range) << std::endl;
-      }
-      std::cerr << "+ DEFINE FOR " << id << " " << kind << " "
-                << PrintCode(definer_range) << std::endl;
-      std::cerr << "+ BUGGY FOR " << MakeIdName(definer_range) << " " << kind
-                << std::endl;
-    }
-
     auto highlight_range =
         NormalizeSourceRange(GetSourceRangeOrFail(highlight));
+
+    if (gl_verbose) {
+      const auto& buggy = MakeIdName(definer_range);
+
+      std::cerr << "  DEFINER " << id << " " << PrintLocation(definer_range)
+                << " " << PrintCode(definer_range) << std::endl;
+      std::cerr << "  DEFINED " << id << " " << PrintLocation(defined_range)
+                << " " << PrintCode(defined_range) << std::endl;
+      std::cerr << "  HIGHLIGHT " << id << " " << PrintLocation(highlight_range)
+                << " " << PrintCode(highlight_range) << std::endl;
+    }
+
     if (index_->RecordDefines(ci_->getSourceManager(), defined_range,
                               definer_range, kind, name,
                               GetSnippet(definer_range), access, linkage)) {
@@ -442,10 +453,10 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
           tl = atl.getPointeeLoc();
         else if (const auto atl = tl.getAs<ArrayTypeLoc>())
           tl = atl.getElementLoc();
-	else if (const auto atl = tl.getAs<AttributedTypeLoc>())
+        else if (const auto atl = tl.getAs<AttributedTypeLoc>())
           tl = atl.getModifiedLoc();
-	else
-	  break;
+        else
+          break;
       }
 
       if (gl_verbose)

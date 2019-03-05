@@ -29,9 +29,6 @@
 #include "wrapping.h"
 #include "counters.h"
 
-auto& c_discarded_tags_macro = MakeCounter(
-    "wrapping/discarded/macro",
-    "TAGS that have not been applied because the range contains a MacroID");
 auto& c_discarded_tags_file =
     MakeCounter("wrapping/discarded/file",
                 "TAGS that have not been applied because no corresponding file "
@@ -51,10 +48,6 @@ bool WrapWithTag(const CompilerInstance& ci, FileCache* cache,
                  const SourceLocation& obegin, const SourceLocation& oend,
                  Tag tag) {
   SourceManager& sm = ci.getSourceManager();
-  if (obegin.isMacroID() || oend.isMacroID()) {
-    c_discarded_tags_macro.Add(obegin, oend) << tag;
-    return false;
-  }
 
   auto begin = sm.getExpansionLoc(obegin);
   auto end = sm.getExpansionLoc(oend);
@@ -71,7 +64,6 @@ bool WrapWithTag(const CompilerInstance& ci, FileCache* cache,
   // Include the whole end token in the range.
   // This was taken from the WrapRange implementation in clang.
   eo += Lexer::MeasureTokenLength(end, sm, ci.getLangOpts());
-
   WrapWithTag(file, bo, eo, std::move(tag));
   return true;
 }
