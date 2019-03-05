@@ -27,13 +27,13 @@
 // policies, either expressed or implied, of Carlo Contavalli.
 
 #ifndef COUNTERS_H
-# define COUNTERS_H
+#define COUNTERS_H
 
-# include "common.h"
+#include "common.h"
 
-# include <ostream>
-# include <map>
-# include <string>
+#include <map>
+#include <ostream>
+#include <string>
 
 class Counter {
  public:

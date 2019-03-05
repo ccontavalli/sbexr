@@ -30,11 +30,12 @@
 #include "counters.h"
 
 auto& c_discarded_tags_macro = MakeCounter(
-	"wrapping/discarded/macro",
-        "TAGS that have not been applied because the range contains a MacroID");
-auto& c_discarded_tags_file = MakeCounter(
-	"wrapping/discarded/file",
-        "TAGS that have not been applied because no corresponding file could be found");
+    "wrapping/discarded/macro",
+    "TAGS that have not been applied because the range contains a MacroID");
+auto& c_discarded_tags_file =
+    MakeCounter("wrapping/discarded/file",
+                "TAGS that have not been applied because no corresponding file "
+                "could be found");
 
 void WrapWithTag(FileRenderer::ParsedFile* file, Tag tag) {
   file->rewriter.Add(std::move(tag));

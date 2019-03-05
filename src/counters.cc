@@ -39,8 +39,8 @@ Counter& MakeCounter(const char* path, const char* description) {
 }
 
 Counter& Register::MakeCounter(const char* path, const char* description) {
-   auto result = counters_.emplace(path, description);
-   return result.first->second;
+  auto result = counters_.emplace(path, description);
+  return result.first->second;
 }
 
 bool Register::OutputJson(const std::string& path) const {

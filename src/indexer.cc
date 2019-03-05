@@ -32,21 +32,21 @@
 #include "json-helpers.h"
 
 auto& c_invalid_object_id = MakeCounter(
-	"indexer/object-id/invalid-file",
-	"Link lead to an #invalid-id, as there was no file set in the Id objecT");
+    "indexer/object-id/invalid-file",
+    "Link lead to an #invalid-id, as there was no file set in the Id objecT");
 
-auto& c_discarded_define_range = MakeCounter(
-	"indexer/record/define/invalid-range",
-	"Ranges passed to RecordDefines are not valid");
-auto& c_discarded_define_file = MakeCounter(
-	"indexer/record/define/invalid-file",
-	"Ranges passed to RecordDefines refer to an invalid file");
-auto& c_discarded_declare_range = MakeCounter(
-	"indexer/record/declare/invalid-range",
-	"Ranges passed to RecordDefines are not valid");
-auto& c_discarded_declare_file = MakeCounter(
-	"indexer/record/declare/invalid-file",
-	"Ranges passed to RecordDefines refer to an invalid file");
+auto& c_discarded_define_range =
+    MakeCounter("indexer/record/define/invalid-range",
+                "Ranges passed to RecordDefines are not valid");
+auto& c_discarded_define_file =
+    MakeCounter("indexer/record/define/invalid-file",
+                "Ranges passed to RecordDefines refer to an invalid file");
+auto& c_discarded_declare_range =
+    MakeCounter("indexer/record/declare/invalid-range",
+                "Ranges passed to RecordDefines are not valid");
+auto& c_discarded_declare_file =
+    MakeCounter("indexer/record/declare/invalid-file",
+                "Ranges passed to RecordDefines refer to an invalid file");
 
 const char _kIndexString[] = "Generic";
 const char _kSnippetString[] = "Snippet";
@@ -109,7 +109,8 @@ bool Indexer::RecordDefines(const SourceManager& sm,
                             AccessSpecifier access,
                             const clang::Linkage linkage) {
   if (!defined.isValid() || !definer.isValid()) {
-    c_discarded_define_range.Add(defined) << "name: " << name << ", snippet: " << snippet.str();
+    c_discarded_define_range.Add(defined)
+        << "name: " << name << ", snippet: " << snippet.str();
     return false;
   }
 
@@ -117,7 +118,8 @@ bool Indexer::RecordDefines(const SourceManager& sm,
   Id definerid(cache_, sm, definer);
 
   if (!definedid.file || !definerid.file) {
-    c_discarded_define_file.Add(defined) << "name: " << name << ", snippet: " << snippet.str();
+    c_discarded_define_file.Add(defined)
+        << "name: " << name << ", snippet: " << snippet.str();
     return false;
   }
 
@@ -135,7 +137,8 @@ bool Indexer::RecordDeclares(const SourceManager& sm,
                              const AccessSpecifier access,
                              const clang::Linkage linkage) {
   if (!declared.isValid() || !declarer.isValid()) {
-    c_discarded_declare_range.Add(declared) << "name: " << name << ", snippet: " << snippet.str();
+    c_discarded_declare_range.Add(declared)
+        << "name: " << name << ", snippet: " << snippet.str();
     return false;
   }
 
@@ -143,7 +146,8 @@ bool Indexer::RecordDeclares(const SourceManager& sm,
   Id declarerid(cache_, sm, declarer);
 
   if (!declaredid.file || !declarerid.file) {
-    c_discarded_declare_file.Add(declared) << "name: " << name << ", snippet: " << snippet.str();
+    c_discarded_declare_file.Add(declared)
+        << "name: " << name << ", snippet: " << snippet.str();
     return false;
   }
 

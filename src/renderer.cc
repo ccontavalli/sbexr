@@ -796,7 +796,8 @@ bool FileRenderer::OutputJDirectory(ParsedDirectory* dir) {
 
         WriteJsonKeyValue(&writer, "href", descriptor.HtmlPath());
         WriteJsonKeyValue(&writer, "mtime", ctime(&descriptor.mtime));
-        WriteJsonKeyValue(&writer, "size", static_cast<uint64_t>(descriptor.size));
+        WriteJsonKeyValue(&writer, "size",
+                          static_cast<uint64_t>(descriptor.size));
       }
     }
 

@@ -28,11 +28,11 @@
 
 #include "ast.h"
 #include "base.h"
+#include "counters.h"
 #include "indexer.h"
 #include "pp-tracker.h"
 #include "printer.h"
 #include "wrapping.h"
-#include "counters.h"
 
 // TODO:
 //   P0 - compound blocks insert html in random places, pretty much breaking
