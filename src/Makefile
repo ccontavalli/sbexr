@@ -5,6 +5,7 @@ CXXFLAGS := $(shell $(LLVMCONFIG) --cxxflags) -ggdb3 -O0
 LDFLAGS := $(shell $(LLVMCONFIG) --ldflags)
 TIME := time --format='MEM: unshared process size=%D, average total=%K, max resident=%M\nTIME: total wall time=%e, user time=%U, kernel time=%S'
 VERBOSE := --verbose
+EXTRA := 
 
 EXTRALIBS := -lclangFrontend \
 	     -lclangParse \
@@ -37,7 +38,7 @@ test-run:
 
 test-gen: validator sbexr test-multi
 	cd ../test && rm -rf output/ && rm -rf indexes/ && ln -sfT ../static ./static \
-	    && $(TIME) ../src/sbexr $(VERBOSE) --index=indexes -x "output|indexes|\\.swp" --jsondb . \
+	    && $(TIME) ../src/sbexr $(VERBOSE) $(EXTRA) --index=indexes -x "output|indexes|\\.swp" --jsondb . \
 	    && ../validator/validator --root ./output |tee ./output/validator.report \
 	    && cp -a ./indexes/*.json ./output/
 

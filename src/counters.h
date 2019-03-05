@@ -37,16 +37,20 @@
 
 class Counter {
  public:
-  Counter(const char* description) : description_(description) {}
+  Counter(const char* name, const char* description, std::ostream* capture) : name_(name), description_(description), capture_(capture) {}
 
   std::ostream& Add();
   std::ostream& Add(SourceRange range);
   std::ostream& Add(SourceLocation begin, SourceLocation end);
 
+  void Capture(std::ostream* capture);
+
   uint64_t Value() const { return counter_; }
 
  private:
+  const std::string name_;
   const std::string description_;
+  std::ostream* capture_;
   uint64_t counter_ = 0;
 };
 
@@ -56,6 +60,7 @@ class Register {
 
   Counter& MakeCounter(const char* path, const char* description);
   const CounterMap& GetCounters() const { return counters_; }
+  int Capture(const std::string& match, std::ostream* stream);
 
   bool OutputJson(const std::string& path) const;
 

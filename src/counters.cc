@@ -34,13 +34,39 @@ Register& GlobalRegister() {
   return *counters;
 }
 
+std::ostream* NullStream() {
+  static auto* nullstream = new std::ofstream;
+  return nullstream;
+}
+
 Counter& MakeCounter(const char* path, const char* description) {
   return GlobalRegister().MakeCounter(path, description);
 }
 
 Counter& Register::MakeCounter(const char* path, const char* description) {
-  auto result = counters_.emplace(path, description);
+  auto result = counters_.emplace(std::pair<std::string, Counter>(path, {path, description, NullStream()}));
   return result.first->second;
+}
+
+int Register::Capture(const std::string& match, std::ostream* stream) {
+   std::regex regex(match);
+   int matched = 0;
+   for (auto& it : counters_) {
+    const auto& name = it.first;
+    auto& counter = it.second;
+
+    if (!std::regex_search(name, regex))
+      continue;
+
+    matched++;
+    if (stream != nullptr) {
+      (*stream) << "COUNTER - enabling capture of '" << name << "'" << std::endl;
+      counter.Capture(stream);
+    } else {
+      counter.Capture(NullStream());
+    }
+  }
+  return matched;
 }
 
 bool Register::OutputJson(const std::string& path) const {
@@ -73,8 +99,13 @@ std::ostream& Counter::Add(SourceLocation begin, SourceLocation end) {
   return Add();
 }
 
+void Counter::Capture(std::ostream* capture) {
+  capture_ = capture;
+}
+
 std::ostream& Counter::Add() {
-  static std::ofstream null;
   counter_++;
-  return null;
+ 
+  *capture_ << "COUNTER - " << name_ << ": ";
+  return *capture_;
 }

@@ -141,6 +141,11 @@ cl::opt<std::string> gl_strip_dir(
              "where you checked out the code / uncompressed the tarball."),
     cl::value_desc("directory"), cl::init(GetCwd()), cl::cat(gl_category));
 
+cl::opt<std::string> gl_capture_counter(
+   "counter",
+   cl::desc("Regular expression defining which counters to capture."),
+   cl::value_desc("regex"), cl::cat(gl_category));
+
 struct ToParse {
   ToParse(const std::string& file, const std::string& directory,
           const std::vector<std::string>& argv = std::vector<std::string>())
@@ -225,6 +230,9 @@ int main(int argc, const char** argv) {
   LLVMInitializeX86TargetInfo();
   LLVMInitializeX86TargetMC();
   LLVMInitializeX86AsmParser();
+
+  if (!gl_capture_counter.empty())
+    GlobalRegister().Capture(gl_capture_counter, &std::cerr);
 
   // If those flags were not specified, initialize them to reasonable values.
   if (gl_scan_dir.getNumOccurrences() <= 0) gl_scan_dir.setValue(gl_jsondb_dir);
