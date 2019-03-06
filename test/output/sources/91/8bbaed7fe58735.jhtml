@@ -34,7 +34,7 @@
 
 <span class='directive'>#include <a class='include' href='../41/e28fc1cdef774c.html'>&lt;bits/types.h&gt;</a></span>
 
-<span class='keyword struct'>struct</span> _IO_FILE;
+<span class='decl decl-CXXRecord' id='0002300100023008'><span class='keyword struct'>struct</span> _IO_FILE</span>;
 <span class='decl decl-CXXRecord' id='0002400100024008'><span class='keyword struct'>struct</span> _IO_marker</span>;
 <span class='decl decl-CXXRecord' id='0002500100025008'><span class='keyword struct'>struct</span> _IO_codecvt</span>;
 <span class='decl decl-CXXRecord' id='0002600100026008'><span class='keyword struct'>struct</span> _IO_wide_data</span>;

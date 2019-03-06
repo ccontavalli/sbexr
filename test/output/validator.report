@@ -2,8 +2,8 @@
 output/validator.report: WARNING - unexpected file
 output/sources/meta/counters.json: WARNING - unexpected file
 ==== STATISTICS FOR ./output
-Warnings: 2, Pedantic: 485
-    'Target is unused': 485
+Warnings: 2, Pedantic: 487
+    'Target is unused': 487
     'unexpected file': 2
 
 File system statistcs:
@@ -12,17 +12,17 @@ File system statistcs:
 
 Resource statistcs:
    requested: 56 file/dir resources, 106 targets, 279 users
-   unused: 0 file/dir resources, 485 targets
-   total: 56 file/dir resources, 591 targets
+   unused: 0 file/dir resources, 487 targets
+   total: 56 file/dir resources, 593 targets
 
 JHTML Statistics:
-   Text: 5986 blocks for 1921979 bytes
-   Tags: 3430 opened, 3430 closed, in a 7 elements max stack
-   Attributes: 435 href, 591 id, 3430 class (4871 classes specified)
+   Text: 5988 blocks for 1921979 bytes
+   Tags: 3432 opened, 3432 closed, in a 7 elements max stack
+   Attributes: 435 href, 593 id, 3432 class (4875 classes specified)
 
 CLASS Attributes seen (57 different ones):
      218:MACRO-uses                17:__attribute__              6:__extension__              2:bool                     126:char                
-       2:class                    418:comment                   89:const                    123:decl                       6:decl-CXXRecord      
+       2:class                    418:comment                   89:const                    125:decl                       8:decl-CXXRecord      
      109:decl-Function              8:decl-Var                 131:declaration-uses           1:decltype                 468:def                 
        3:def-CXXMethod             19:def-CXXRecord             66:def-Field                  7:def-Function             260:def-MACRO           
        1:def-Namespace              8:def-ParmVar               84:def-Typedef                1:def-UsingDirective        19:def-Var             

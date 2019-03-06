@@ -3,7 +3,7 @@
 <span class='directive'>#ifndef __FILE_defined</span>
 <span class='directive'>#define <span class='def def-MACRO' id='0000200900002018'>__FILE_defined 1</span></span>
 
-<span class='keyword struct'>struct</span> _IO_FILE;
+<span class='decl decl-CXXRecord' id='0000400100004008'><span class='keyword struct'>struct</span> _IO_FILE</span>;
 
 <span class='comment'>/* The opaque type of streams.  This is the definition used elsewhere.  */</span>
 <span class='def def-Typedef' id='0000700100007019'><span class='keyword typedef'>typedef</span> <span class='keyword struct'>struct</span> _IO_FILE FILE</span>;
