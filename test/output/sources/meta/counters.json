@@ -44,6 +44,14 @@
         "value": 0
     },
     {
+        "metric": "indexer/record/use/invalid-file",
+        "value": 121
+    },
+    {
+        "metric": "indexer/record/use/invalid-range",
+        "value": 6
+    },
+    {
         "metric": "info/ast/ignored-uses-of-builtin-functions",
         "value": 0
     },
