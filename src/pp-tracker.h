@@ -100,12 +100,6 @@ class PPTracker : public PPCallbacks {
     }
   }
 
-  bool ShouldProcess() {
-    return include_stack_.empty() ||
-           (include_stack_.top() && !include_stack_.top()->preprocessed &&
-            include_ignored_ <= 0);
-  }
-
   bool FileNotFound(StringRef filename,
                     SmallVectorImpl<char>& RecoveryPath) override {
     c_pp_file_not_found.Add() << filename.str();
@@ -142,9 +136,6 @@ class PPTracker : public PPCallbacks {
                 std::move(MakeTag("a", {"include"}, {"href", html_path})));
   }
 
- public:
-  /// \brief Called by Preprocessor::HandleMacroExpandedIdentifier when a
-  /// macro invocation is found.
   void MacroExpands(const Token& name, const MacroDefinition& md,
                     SourceRange range, const MacroArgs* args) override {
     if (!ShouldProcess()) return;
@@ -165,7 +156,6 @@ class PPTracker : public PPCallbacks {
     recorder_->CodeUses(mrange, "MACRO", "MACRO", target);
   };
 
-  /// \brief Hook called whenever a macro definition is seen.
   void MacroDefined(const Token& name, const MacroDirective* md) override {
     if (!ShouldProcess()) return;
 
@@ -209,40 +199,15 @@ class PPTracker : public PPCallbacks {
     }
   };
 
-  /// \brief Hook called whenever a macro \#undef is seen.
-  ///
-  /// MD is released immediately following this callback.
-  void MacroUndefined(const Token& MacroNameTok, const MacroDefinition& MD,
-                      const MacroDirective* Undef) override{};
-
-  /// \brief Hook called when a source range is skipped.
-  /// \param Range The SourceRange that was skipped. The range begins at the
-  /// \#if/\#else directive and ends after the \#endif/\#else directive.
-  void SourceRangeSkipped(SourceRange Range,
-                          SourceLocation endifloc) override{};
-
-  /// \brief Hook called whenever an \#if is seen.
-  /// \param Loc the source location of the directive.
-  /// \param ConditionRange The SourceRange of the expression being tested.
-  /// \param ConditionValue The evaluated value of the condition.
-  ///
-  // FIXME: better to pass in a list (or tree!) of Tokens.
   void If(SourceLocation location, SourceRange cond_range,
           ConditionValueKind value) override {
     if (!ShouldProcess()) return;
     if_stack_.emplace(value, cond_range.getBegin());
   };
 
-  /// \brief Hook called whenever an \#elif is seen.
-  /// \param Loc the source location of the directive.
-  /// \param ConditionRange The SourceRange of the expression being tested.
-  /// \param ConditionValue The evaluated value of the condition.
-  /// \param IfLoc the source location of the \#if/\#ifdef/\#ifndef directive.
-  // FIXME: better to pass in a list (or tree!) of Tokens.
   void Elif(SourceLocation location, SourceRange cond_range,
             ConditionValueKind value, SourceLocation if_loc) override {
     if (!ShouldProcess()) return;
-    if (if_stack_.empty()) return;
 
     auto& state = if_stack_.top();
     if (state.condition == CVK_False) {
@@ -253,38 +218,71 @@ class PPTracker : public PPCallbacks {
     state.if_start = cond_range.getBegin();
   };
 
-  /// \brief Hook called whenever an \#ifdef is seen.
-  /// \param Loc the source location of the directive.
-  /// \param MacroNameTok Information on the token being tested.
-  /// \param MD The MacroDefinition if the name was a macro, null otherwise.
-  void Ifdef(SourceLocation location, const Token& token,
+  void Defined(const Token &name, const MacroDefinition &definition,
+                       SourceRange location) override {
+    if (!ShouldProcess()) return;
+    if (gl_verbose)
+      std::cerr << "#DEFINED IN " << recorder_->PrintLocation(location)
+		<< "  " << (bool)(definition)
+                << std::endl;
+
+    auto* mi = definition.getMacroInfo();
+    auto mrange = SourceRange(name.getLocation(), name.getEndLoc().getLocWithOffset(-1));
+    if (definition && mi) {
+      auto target = GetMacroRange(*mi);
+      recorder_->CodeUses(mrange, "MACRO", "MACRO", target);
+    } else {
+      WrapWithTag(*recorder_->GetCI(), recorder_->GetCache(),
+                  mrange, std::move(MakeTag("span", {"macro-undefined"}, {})));
+    }
+  }
+
+  void Ifdef(SourceLocation location, const Token& name,
              const MacroDefinition& definition) override {
     if (!ShouldProcess()) return;
     if (gl_verbose)
       std::cerr << "#IFDEF IN " << recorder_->PrintLocation(location)
+		<< "  " << (bool)(definition)
                 << std::endl;
-    if_stack_.emplace((definition ? CVK_True : CVK_False), token.getEndLoc());
+
+    auto* mi = definition.getMacroInfo();
+    auto mrange = SourceRange(name.getLocation(), name.getEndLoc().getLocWithOffset(-1));
+    if (definition && mi) {
+      auto target = GetMacroRange(*mi);
+
+      recorder_->CodeUses(mrange, "MACRO", "MACRO", target);
+    } else {
+      WrapWithTag(*recorder_->GetCI(), recorder_->GetCache(),
+                  mrange, std::move(MakeTag("span", {"macro-undefined"}, {})));
+    }
+
+    if_stack_.emplace((definition ? CVK_True : CVK_False), name.getEndLoc());
   };
 
-  /// \brief Hook called whenever an \#ifndef is seen.
-  /// \param Loc the source location of the directive.
-  /// \param MacroNameTok Information on the token being tested.
-  /// \param MD The MacroDefiniton if the name was a macro, null otherwise.
-  void Ifndef(SourceLocation location, const Token& token,
+  void Ifndef(SourceLocation location, const Token& name,
               const MacroDefinition& definition) override {
     if (!ShouldProcess()) return;
     if (gl_verbose)
       std::cerr << "#IFNDEF IN " << recorder_->PrintLocation(location)
+		<< " " << (bool)(definition)
                 << std::endl;
-    if_stack_.emplace((definition ? CVK_False : CVK_True), token.getEndLoc());
+
+    auto* mi = definition.getMacroInfo();
+      auto mrange =
+        SourceRange(name.getLocation(), name.getEndLoc().getLocWithOffset(-1));
+    if (definition && mi) {
+      auto target = GetMacroRange(*mi);
+      recorder_->CodeUses(mrange, "MACRO", "MACRO", target);
+    } else {
+      WrapWithTag(*recorder_->GetCI(), recorder_->GetCache(),
+                  mrange, std::move(MakeTag("span", {"macro-undefined"}, {})));
+    }
+
+    if_stack_.emplace((definition ? CVK_False : CVK_True), name.getEndLoc());
   };
 
-  /// \brief Hook called whenever an \#else is seen.
-  /// \param Loc the source location of the directive.
-  /// \param IfLoc the source location of the \#if/\#ifdef/\#ifndef directive.
   void Else(SourceLocation location, SourceLocation if_location) override {
     if (!ShouldProcess()) return;
-    if (if_stack_.empty()) return;
 
     if (gl_verbose)
       std::cerr << "#ELSE IN " << recorder_->PrintLocation(location)
@@ -301,16 +299,11 @@ class PPTracker : public PPCallbacks {
     state.if_start = location;
   };
 
-  /// \brief Hook called whenever an \#endif is seen.
-  /// \param Loc the source location of the directive.
-  /// \param IfLoc the source location of the \#if/\#ifdef/\#ifndef directive.
   void Endif(SourceLocation location, SourceLocation if_location) override {
     if (!ShouldProcess()) return;
     if (gl_verbose)
       std::cerr << "#ENDIF IN " << recorder_->PrintLocation(location)
                 << std::endl;
-
-    if (if_stack_.empty()) return;
 
     const auto& state = if_stack_.top();
     if (state.condition == CVK_False) {
@@ -321,6 +314,13 @@ class PPTracker : public PPCallbacks {
   };
 
  private:
+  // Return true if we should process this file. Ensures a file is processed only once.
+  bool ShouldProcess() {
+    return include_stack_.empty() ||
+           (include_stack_.top() && !include_stack_.top()->preprocessed &&
+            include_ignored_ <= 0);
+  }
+
   // Return the range used to identify a MACRO.
   SourceRange GetMacroRange(const MacroInfo& mi) {
     // in #define FOO 1, getDefinitionLoc points right after FOO,

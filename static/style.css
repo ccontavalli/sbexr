@@ -114,4 +114,7 @@ pre .cl {
     opacity: 0.5 !important;
     /* text-decoration: blink !important; */
   }
+  .macro-undefined *:hover, .macro-undefined span:hover, .macro-undefined:hover {
+    text-decoration: underline wavy red !important;
+  }
 
