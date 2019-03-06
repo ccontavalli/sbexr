@@ -74,7 +74,7 @@
 
 <span class='def def-Function' id='000490010004c001'><span class='keyword int'>int</span> FuncWithNamedArgs(<span class='def def-ParmVar' id='000490170004901b'><span class='keyword int'>int</span> foo</span>, <span class='def def-ParmVar' id='000490200004902c'><span class='keyword const'>const</span> <span class='keyword char'>char</span>* bar</span>) {
   <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002900a00029022'>MACRO</a>(foo);
-  <span class='keyword return'>return</span> foo * *<a class='variable-uses' href='../7c/1572fe148af43d.html#000490200004902c'>bar</a> + <span class='numeric'>2</span>;
+  <span class='keyword return'>return</span> <a class='variable-uses' href='../7c/1572fe148af43d.html#000490170004901b'>foo</a> * *<a class='variable-uses' href='../7c/1572fe148af43d.html#000490200004902c'>bar</a> + <span class='numeric'>2</span>;
 }</span>
 
 <span class='def def-Function' id='0004e00100056001'><span class='keyword int'>int</span> main(<span class='def def-ParmVar' id='0004e00a0004e00e'><span class='keyword int'>int</span> argc</span>, <span class='def def-ParmVar' id='0004e0140004e021'><span class='keyword const'>const</span> <span class='keyword char'>char</span>** argv</span>) {

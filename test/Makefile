@@ -3,7 +3,11 @@ LLVMCONFIG := llvm-config-$(LLVMVERSION)
 LIBS := $(shell $(LLVMCONFIG) --libs)
 CXXFLAGS := $(shell $(LLVMCONFIG) --cxxflags) -ggdb3 -O0 -I../
 LDFLAGS := $(shell $(LLVMCONFIG) --ldflags)
+#CFLAGS += -ccc-print-phases
+#CXXFLAGS += -ccc-print-phases
 EXTRALIBS :=
+CC := clang-$(LLVMVERSION)
+CXX := clang-$(LLVMVERSION)
 
 all: test-single test-multi
 

@@ -2,8 +2,8 @@
 output/validator.report: WARNING - unexpected file
 output/sources/meta/counters.json: WARNING - unexpected file
 ==== STATISTICS FOR ./output
-Warnings: 2, Pedantic: 489
-    'Target is unused': 489
+Warnings: 2, Pedantic: 485
+    'Target is unused': 485
     'unexpected file': 2
 
 File system statistcs:
@@ -11,14 +11,14 @@ File system statistcs:
    paths: 60 scanned, of which 15 directories, 40 source, 1 copied, 2 meta, 2 unexpected
 
 Resource statistcs:
-   requested: 56 file/dir resources, 102 targets, 278 users
-   unused: 0 file/dir resources, 489 targets
+   requested: 56 file/dir resources, 106 targets, 279 users
+   unused: 0 file/dir resources, 485 targets
    total: 56 file/dir resources, 591 targets
 
 JHTML Statistics:
-   Text: 5978 blocks for 1921864 bytes
-   Tags: 3426 opened, 3426 closed, in a 7 elements max stack
-   Attributes: 431 href, 591 id, 3426 class (4867 classes specified)
+   Text: 5986 blocks for 1921979 bytes
+   Tags: 3430 opened, 3430 closed, in a 7 elements max stack
+   Attributes: 435 href, 591 id, 3430 class (4871 classes specified)
 
 CLASS Attributes seen (57 different ones):
      218:MACRO-uses                17:__attribute__              6:__extension__              2:bool                     126:char                
@@ -31,5 +31,5 @@ CLASS Attributes seen (57 different ones):
      102:muted                      3:namespace                  1:nullptr                   50:numeric                  102:preprocessor-if     
        1:private                    1:public                     8:return                    20:return-uses                4:short               
        6:signed                     3:sizeof                     3:static                     8:string                    38:struct              
-      62:typedef                    2:union                     15:unsigned                   2:using                     21:variable-uses       
+      62:typedef                    2:union                     15:unsigned                   2:using                     25:variable-uses       
       37:void                       1:wchar_t             

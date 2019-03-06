@@ -34,7 +34,7 @@
 <span class='directive'># include <a class='include' href='../6f/078dbcc264af74.html'>"stdio.h"</a></span>
 
 <span class='def def-Function' id='0002200100024001'><span class='keyword static'>static</span> <span class='keyword inline'>inline</span> <span class='keyword void'>void</span> IncludedByAll(<span class='def def-ParmVar' id='0002202200022026'><span class='keyword int'>int</span> value</span>) {
-  <a class='variable-uses' href='../6f/078dbcc264af74.html#0014c0010014c038'>printf</a>(<span class='string'>"%d\n"</span>, value);
+  <a class='variable-uses' href='../6f/078dbcc264af74.html#0014c0010014c038'>printf</a>(<span class='string'>"%d\n"</span>, <a class='variable-uses' href='../bc/764de7984141e0.html#0002202200022026'>value</a>);
 }</span>
 
 <span class='directive'># define <span class='def def-MACRO' id='0002600a00026018'>MACRO_HIGHEST 65535</span></span>

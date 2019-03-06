@@ -44,8 +44,8 @@
         "value": 0
     },
     {
-        "metric": "info/ast/ignored-uses-of-builtin",
-        "value": 5
+        "metric": "info/ast/ignored-uses-of-builtin-functions",
+        "value": 0
     },
     {
         "metric": "preprocessor/include/failed-inclusion",
@@ -61,6 +61,6 @@
     },
     {
         "metric": "wrapping/discarded/macro",
-        "value": 57
+        "value": 58
     }
 ]

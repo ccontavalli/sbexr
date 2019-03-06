@@ -44,7 +44,7 @@
 <span class='def def-Function' id='0002a0010002e001'><span class='keyword void'>void</span> TestFunction() {
   <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002900a00029022'>MACRO</a>(<span class='numeric'>10</span>);
   <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002a00a0002a01c'>MACROP</a>(<span class='string'>"TEST TEST"</span>);
-  <a class='variable-uses' href='../6f/078dbcc264af74.html#0014c0010014c038'>printf</a>(<span class='string'>"Test Function: %d\n"</span>, global_counter);
+  <a class='variable-uses' href='../6f/078dbcc264af74.html#0014c0010014c038'>printf</a>(<span class='string'>"Test Function: %d\n"</span>, <a class='variable-uses' href='../e5/66fd4ef5cee94a.html#000220010002200c'>global_counter</a>);
 }</span>
 
 <span class='directive'># define <span class='def def-MACRO' id='0003000a0003001f'>POINT volatile test::Point</span></span>
@@ -76,6 +76,6 @@
 
   <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002900a00029022'>MACRO</a>(<a class='MACRO-uses' href='../bc/764de7984141e0.html#0002700a0002701a'>MACRO_RECURSIVE</a>);
   <a class='MACRO-uses' href='../bc/764de7984141e0.html#0002a00a0002a01c'>MACROP</a>(<span class='string'>"TOST TOST"</span>);
-  <a class='variable-uses' href='../6f/078dbcc264af74.html#0014c0010014c038'>printf</a>(<span class='string'>"Test pointer %p %d\n"</span>, (<span class='keyword void'>void</span>*)<a class='variable-uses' href='../cf/341b97b05a5692.html#0003800f00038015'>test</a>, value);
+  <a class='variable-uses' href='../6f/078dbcc264af74.html#0014c0010014c038'>printf</a>(<span class='string'>"Test pointer %p %d\n"</span>, (<span class='keyword void'>void</span>*)<a class='variable-uses' href='../cf/341b97b05a5692.html#0003800f00038015'>test</a>, <a class='variable-uses' href='../cf/341b97b05a5692.html#0003d0030003d014'>value</a>);
   <a class='variable-uses' href='../6f/078dbcc264af74.html#0014c0010014c038'>printf</a>(<span class='string'>"Test point %d %d %d\n"</span>, <a class='variable-uses' href='../cf/341b97b05a5692.html#0003a0030003a009'>p0</a>.<a class='expression-uses' href='../cf/341b97b05a5692.html#000090030000900b'>x</a>, <a class='variable-uses' href='../cf/341b97b05a5692.html#0003a0030003a00d'>p1</a>.<a class='expression-uses' href='../cf/341b97b05a5692.html#000090030000900b'>x</a>, <a class='variable-uses' href='../cf/341b97b05a5692.html#0003a0030003a011'>p2</a>.<a class='expression-uses' href='../cf/341b97b05a5692.html#000090030000900b'>x</a>);
 }</span>
