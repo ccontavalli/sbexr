@@ -365,6 +365,10 @@ class Printer {
     PRINT_BOOL(v, isThisDeclarationADefinition);
     PRINT_BOOL(v, doesThisDeclarationHaveABody);
 
+    PRINT_RANGE(v, getReturnTypeSourceRange);
+    PRINT_RECURSE_TMP(v, getReturnType);
+    PRINT_RECURSE_TMP(v, getDeclaredReturnType);
+
     PRINT_RECURSE_BASE(DeclaratorDecl, v);
   });
   PRINT_FUNCTION(DeclaratorDecl, v, {

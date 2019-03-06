@@ -150,6 +150,10 @@ class SbexrRecorder {
   void CodeUsesQualType(const UserT& user, const char* description,
                         const QualType& qual_type) {
     auto target = GetRangeForType(qual_type);
+    if (gl_verbose)
+      std::cerr << "- CODE USES QUAL TYPE " << target.isValid() << " "
+                << TryPrint(&qual_type) << std::endl;
+
     if (RecordTypeUse(user, description, target))
       LinkToType(user, description, target);
   }
@@ -520,8 +524,12 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
         return true;
 
       // Record the use of the return type.
+      // Note: code here was originally using getReturnType. However,
+      // getReturnType seems to sometime return the canonicalized version of the
+      // type (eg, int instead of __kernel_size). DeclaredReturnType seems to
+      // always return the original one.
       recorder_->CodeUsesQualType(f->getReturnTypeSourceRange(), "return",
-                                  f->getReturnType());
+                                  f->getDeclaredReturnType());
 
       auto* first = f->getFirstDecl();
       if (!first) first = f;

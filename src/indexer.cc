@@ -47,6 +47,12 @@ auto& c_discarded_declare_range =
 auto& c_discarded_declare_file =
     MakeCounter("indexer/record/declare/invalid-file",
                 "Ranges passed to RecordDefines refer to an invalid file");
+auto& c_discarded_use_range =
+    MakeCounter("indexer/record/use/invalid-range",
+                "Ranges passed to RecordUse are not valid");
+auto& c_discarded_use_file =
+    MakeCounter("indexer/record/use/invalid-file",
+                "Ranges passed to RecordUse refer to an invalid file");
 
 const char _kIndexString[] = "Generic";
 const char _kSnippetString[] = "Snippet";
@@ -90,12 +96,18 @@ bool Indexer::RecordUse(const SourceManager& sm,
                         const clang::SourceRange& target,
                         const clang::SourceRange& user,
                         const char* description) {
-  if (!target.isValid() || !user.isValid()) return false;
+  if (!target.isValid() || !user.isValid()) {
+    c_discarded_use_range.Add(target) << "description: " << description;
+    return false;
+  }
 
   Id tid(cache_, sm, target);
   Id uid(cache_, sm, user);
 
-  if (!tid.file || !uid.file) return false;
+  if (!tid.file || !uid.file) {
+    c_discarded_use_file.Add(target) << "description: " << description;
+    return false;
+  }
 
   auto& properties = index_[tid];
   properties.users.emplace_back(Id(cache_, sm, user));
