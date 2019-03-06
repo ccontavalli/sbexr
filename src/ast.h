@@ -243,11 +243,9 @@ class SbexrRecorder {
         NormalizeSourceRange(GetSourceRangeOrFail(highlight));
 
     if (gl_verbose) {
-      const auto& buggy = MakeIdName(definer_range);
-
-      std::cerr << "  DEFINER " << id << " " << PrintLocation(definer_range)
+      std::cerr << "  DEFINER " << MakeIdName(definer_range) << " " << PrintLocation(definer_range)
                 << " " << PrintCode(definer_range) << std::endl;
-      std::cerr << "  DEFINED " << id << " " << PrintLocation(defined_range)
+      std::cerr << "  DEFINED " << MakeIdName(defined_range) << " " << PrintLocation(defined_range)
                 << " " << PrintCode(defined_range) << std::endl;
       std::cerr << "  HIGHLIGHT " << id << " " << PrintLocation(highlight_range)
                 << " " << PrintCode(highlight_range) << std::endl;
@@ -272,16 +270,19 @@ class SbexrRecorder {
     auto declarer_range = NormalizeSourceRange(declarer.getSourceRange());
     auto declared_range = NormalizeSourceRange(declared.getSourceRange());
 
-    const auto& id = MakeIdName(declared_range);
-    if (gl_verbose)
-      std::cerr << "+ DECLARES FOR " << id << " " << kind << std::endl;
+    const auto& id = MakeIdName(declarer_range);
+    if (gl_verbose)  {
+      std::cerr << "  DECLARER " << MakeIdName(declarer_range) << " " << PrintLocation(declarer_range)
+                << " " << PrintCode(declarer_range) << " " << &declarer << std::endl;
+      std::cerr << "  DECLARED " << MakeIdName(declared_range) << " " << PrintLocation(declared_range)
+                << " " << PrintCode(declared_range) << " " << &declared << std::endl;
+    }
 
     if (index_->RecordDeclares(ci_->getSourceManager(), declared_range,
                                declarer_range, kind, name,
-                               GetSnippet(declared_range), access, linkage) &&
-        &declared == &declarer) {
+                               GetSnippet(declared_range), access, linkage)) {
       WrapWithTag(
-          *ci_, cache_, declared_range,
+          *ci_, cache_, declarer_range,
           MakeTag("span", {"decl", std::string("decl-") + kind}, {"id", id}));
     }
   }
@@ -533,6 +534,9 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
       }
     } else if (isa<TagDecl>(v)) {
       auto* t = cast<TagDecl>(v);
+
+      if (gl_verbose)
+        std::cerr << "- TagDecl " << recorder_->TryPrint(t) << std::endl;
 
       auto* first = t->getFirstDecl();
       if (!first) first = t;
