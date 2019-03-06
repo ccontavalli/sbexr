@@ -2,8 +2,8 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/ccontavalli/goutils/misc"
 	"github.com/ccontavalli/goutils/config"
+	"github.com/ccontavalli/goutils/misc"
 	"github.com/ccontavalli/sbexr/server/structs"
 	"github.com/ccontavalli/sbexr/server/templates"
 	"io/ioutil"
@@ -18,8 +18,7 @@ import (
 
 type SourceServer struct {
 	root     string
-	tagsmap  map[string]structs.JNavData
-	tagslist []string
+	tagsmap  map[string]*structs.JNavData
 	tagslock sync.RWMutex
 }
 
@@ -44,8 +43,8 @@ func getIndex(root, upath string, dir structs.JDir) []byte {
 
 		entry := dir.Files[found]
 		if (entry.Type == "text" || entry.Type == "parsed") && entry.Href != "" {
-		  index = entry
-		  break
+			index = entry
+			break
 		}
 	}
 	if index.Name == "" || index.Href == "" {
@@ -66,13 +65,12 @@ func getIndex(root, upath string, dir structs.JDir) []byte {
 func (ss *SourceServer) getTagData(upath string, sources int) structs.JNavData {
 	tag := path.Base(upath[:sources])
 	ss.tagslock.RLock()
-	tdata := ss.tagsmap[tag]
-	tlist := ss.tagslist
+	tdata, ok := ss.tagsmap[tag]
 	ss.tagslock.RUnlock()
-
-	tdata.Tag = tag
-	tdata.Tags = tlist
-	return tdata
+	if ok {
+		return *tdata
+	}
+	return structs.JNavData{}
 }
 
 func (ss *SourceServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -86,10 +84,10 @@ func (ss *SourceServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	tagdata := ss.getTagData(upath, sources)
 	subpath := upath[sources+len(kSourceRoot):]
-        if subpath == "" {
+	if subpath == "" {
 		http.Redirect(w, r, upath+"meta/", http.StatusMovedPermanently)
 		return
-        }
+	}
 
 	if subpath == "meta/globals.js" {
 		templates.WriteGlobalsJs(w, tagdata)
@@ -155,9 +153,9 @@ func (ss *SourceServer) Update() {
 		return
 	}
 
-	newtagsmap := make(map[string]structs.JNavData)
+	newtagsmap := make(map[string]*structs.JNavData)
 	for _, dir := range list {
-		if !dir.IsDir() {
+		if !dir.IsDir() && (dir.Mode()&os.ModeSymlink) == 0 {
 			continue
 		}
 		globals := filepath.Join(ss.root, dir.Name(), "sources", "meta", "globals.json")
@@ -172,14 +170,18 @@ func (ss *SourceServer) Update() {
 			log.Printf("DIR: %s - does not have a valid globals.json - %s (%s)\n", dir.Name(), err, globals)
 			continue
 		}
-		newtagsmap[dir.Name()] = gdata
+		gdata.Tag = dir.Name()
+		newtagsmap[dir.Name()] = &gdata
 	}
 
 	newtagslist := misc.StringKeysOrPanic(newtagsmap)
+	for tag, tagsdata := range newtagsmap {
+		tagsdata.Tags = newtagslist
+		log.Printf("TAGDATA %s - %#v\n", tag, tagsdata)
+	}
 
 	ss.tagslock.Lock()
 	ss.tagsmap = newtagsmap
-	ss.tagslist = newtagslist
 	ss.tagslock.Unlock()
 }
 

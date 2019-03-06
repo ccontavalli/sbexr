@@ -6,14 +6,14 @@ import (
 	"github.com/ccontavalli/sbexr/server/db"
 	"github.com/gorilla/handlers"
 	"gopkg.in/natefinch/lumberjack.v2"
+	"io"
 	"log"
 	"net/http"
 	"net/http/fcgi"
 	"os"
+	"path/filepath"
 	"runtime"
 	"time"
-	"io"
-	"path/filepath"
 )
 
 //import _ "net/http/pprof"
@@ -75,21 +75,20 @@ func main() {
 	writer = os.Stdout
 	if *logdir != "" {
 		log.SetOutput(&lumberjack.Logger{
-			Filename: filepath.Join(*logdir, "errors.log"),
-			MaxSize: 500,
+			Filename:   filepath.Join(*logdir, "errors.log"),
+			MaxSize:    500,
 			MaxBackups: 12,
-			MaxAge: 30,
-			Compress: true,
+			MaxAge:     30,
+			Compress:   true,
 		})
-	  	writer = &lumberjack.Logger{
-			Filename: filepath.Join(*logdir, "access.log"),
-			MaxSize: 500,
+		writer = &lumberjack.Logger{
+			Filename:   filepath.Join(*logdir, "access.log"),
+			MaxSize:    500,
 			MaxBackups: 12,
-			MaxAge: 30,
-			Compress: true,
+			MaxAge:     30,
+			Compress:   true,
 		}
 	}
-
 
 	index := NewIndex(*indexdir, *webroot)
 	go Updater(&index)

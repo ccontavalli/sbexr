@@ -232,6 +232,7 @@ func (data *CompactBinarySymbolData) GetHashData(hash uint64) *C.SymbolHashToDet
 	}
 	return nil
 }
+
 func (data *CompactBinarySymbolData) GetHashDetails(hash uint64) (*structs.SymbolObject, error) {
 	hashdata := data.GetHashData(hash)
 	if hashdata == nil {
