@@ -47,10 +47,19 @@ class PPTracker : public PPCallbacks {
     if (gl_verbose) {
       std::cerr << "#CHANGED EVENT " << reason << " FOR "
                 << recorder_->PrintLocation(loc) << " P:" << ShouldProcess()
-                << " I:" << include_ignored_ << std::endl;
+                << " I:" << include_ignored_ << " S:" << include_stack_.size() << " " << (!include_stack_.empty() ? GetFilePath(include_stack_.top()) : "nullptr") << std::endl;
     }
     if (reason == EnterFile) {
-      if (!ShouldProcess()) {
+      // clang/llvm enters a fake file containing pre-defined macros and similar.
+      // This file is not indexed by sbexr, and results in a nullptr when GetFileFor()
+      // is called on the corresponding locations.
+      // If we just process it, we end up emitting warnings related to code we don't
+      // have in our own buffers. At the same time, this file can include important
+      // headers specified on the command line.
+      // So: ShouldProcess() returns false for a nullptr file. However, we enter any
+      // include in such file anyway here thanks to the include_stack_.top() check.
+      // (eg, "ignore the include only if the top of the stack is not nullptr").
+      if (!ShouldProcess() && include_stack_.top()) {
         include_ignored_++;
         return;
       }
@@ -65,8 +74,7 @@ class PPTracker : public PPCallbacks {
       }
 
       if (gl_verbose)
-        std::cerr << "  -> ENTERING "
-                  << (file ? file->path : std::string("<INVALID>")) << " ("
+        std::cerr << "  -> ENTERING " << file << " " << GetFilePath(file) << " ("
                   << recorder_->PrintLocation(loc) << ")" << std::endl;
 
       include_stack_.push(file);
@@ -83,8 +91,8 @@ class PPTracker : public PPCallbacks {
       if (file) file->preprocessed = true;
 
       if (gl_verbose)
-        std::cerr << "#EXITING "
-                  << (file ? file->path : std::string("<INVALID>"))
+        std::cerr << "#EXITING " << file << " "
+                  << GetFilePath(file)
                   << std::endl;
 
       include_stack_.pop();
