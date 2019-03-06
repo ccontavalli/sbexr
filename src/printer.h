@@ -36,8 +36,7 @@ static inline SourceRange GetSourceRangeOrFail(const AnyT& any) {
   return any.getSourceRange();
 }
 template <>
-inline SourceRange GetSourceRangeOrFail<SourceRange>(
-    const SourceRange& any) {
+inline SourceRange GetSourceRangeOrFail<SourceRange>(const SourceRange& any) {
   return any;
 }
 
@@ -56,8 +55,8 @@ static inline SourceRange GetSourceRange_impl(const AnyT& any, long) {
 }
 
 template <>
-inline SourceRange GetSourceRange_impl<SourceRange>(
-    const SourceRange& any, long) {
+inline SourceRange GetSourceRange_impl<SourceRange>(const SourceRange& any,
+                                                    long) {
   return any;
 }
 

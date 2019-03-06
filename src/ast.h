@@ -243,10 +243,12 @@ class SbexrRecorder {
         NormalizeSourceRange(GetSourceRangeOrFail(highlight));
 
     if (gl_verbose) {
-      std::cerr << "  DEFINER " << MakeIdName(definer_range) << " " << PrintLocation(definer_range)
-                << " " << PrintCode(definer_range) << std::endl;
-      std::cerr << "  DEFINED " << MakeIdName(defined_range) << " " << PrintLocation(defined_range)
-                << " " << PrintCode(defined_range) << std::endl;
+      std::cerr << "  DEFINER " << MakeIdName(definer_range) << " "
+                << PrintLocation(definer_range) << " "
+                << PrintCode(definer_range) << std::endl;
+      std::cerr << "  DEFINED " << MakeIdName(defined_range) << " "
+                << PrintLocation(defined_range) << " "
+                << PrintCode(defined_range) << std::endl;
       std::cerr << "  HIGHLIGHT " << id << " " << PrintLocation(highlight_range)
                 << " " << PrintCode(highlight_range) << std::endl;
     }
@@ -271,11 +273,13 @@ class SbexrRecorder {
     auto declared_range = NormalizeSourceRange(declared.getSourceRange());
 
     const auto& id = MakeIdName(declarer_range);
-    if (gl_verbose)  {
-      std::cerr << "  DECLARER " << MakeIdName(declarer_range) << " " << PrintLocation(declarer_range)
-                << " " << PrintCode(declarer_range) << " " << &declarer << std::endl;
-      std::cerr << "  DECLARED " << MakeIdName(declared_range) << " " << PrintLocation(declared_range)
-                << " " << PrintCode(declared_range) << " " << &declared << std::endl;
+    if (gl_verbose) {
+      std::cerr << "  DECLARER " << MakeIdName(declarer_range) << " "
+                << PrintLocation(declarer_range) << " "
+                << PrintCode(declarer_range) << " " << &declarer << std::endl;
+      std::cerr << "  DECLARED " << MakeIdName(declared_range) << " "
+                << PrintLocation(declared_range) << " "
+                << PrintCode(declared_range) << " " << &declared << std::endl;
     }
 
     if (index_->RecordDeclares(ci_->getSourceManager(), declared_range,
@@ -413,17 +417,19 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
       auto sr = e->getFoundDecl()->getSourceRange();
       std::cerr << "DECLREFEXPR " << e->getNameInfo().getAsString() << " "
                 << e->getFoundDecl()->getNameAsString() << " "
-                << recorder_->PrintLocation(sr)
-                << " '" << recorder_->PrintCode(sr) << "'"
-                << recorder_->TryPrint(e) << std::endl;
+                << recorder_->PrintLocation(sr) << " '"
+                << recorder_->PrintCode(sr) << "'" << recorder_->TryPrint(e)
+                << std::endl;
     }
     const auto* tp = e->getType().getTypePtrOrNull();
-    if (tp && tp->isBuiltinType() && tp->getAs<BuiltinType>()->getKind() == BuiltinType::BuiltinFn) {
-      c_use_of_builtin_fns.Add(e->getSourceRange()) << e->getNameInfo().getAsString();
+    if (tp && tp->isBuiltinType() &&
+        tp->getAs<BuiltinType>()->getKind() == BuiltinType::BuiltinFn) {
+      c_use_of_builtin_fns.Add(e->getSourceRange())
+          << e->getNameInfo().getAsString();
     } else {
       recorder_->CodeUses(*e, "variable", *e->getFoundDecl());
     }
-  
+
     return Base::VisitDeclRefExpr(e);
   }
 

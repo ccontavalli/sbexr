@@ -47,18 +47,23 @@ class PPTracker : public PPCallbacks {
     if (gl_verbose) {
       std::cerr << "#CHANGED EVENT " << reason << " FOR "
                 << recorder_->PrintLocation(loc) << " P:" << ShouldProcess()
-                << " I:" << include_ignored_ << " S:" << include_stack_.size() << " " << (!include_stack_.empty() ? GetFilePath(include_stack_.top()) : "nullptr") << std::endl;
+                << " I:" << include_ignored_ << " S:" << include_stack_.size()
+                << " "
+                << (!include_stack_.empty() ? GetFilePath(include_stack_.top())
+                                            : "nullptr")
+                << std::endl;
     }
     if (reason == EnterFile) {
-      // clang/llvm enters a fake file containing pre-defined macros and similar.
-      // This file is not indexed by sbexr, and results in a nullptr when GetFileFor()
-      // is called on the corresponding locations.
-      // If we just process it, we end up emitting warnings related to code we don't
-      // have in our own buffers. At the same time, this file can include important
+      // clang/llvm enters a fake file containing pre-defined macros and
+      // similar. This file is not indexed by sbexr, and results in a nullptr
+      // when GetFileFor() is called on the corresponding locations. If we just
+      // process it, we end up emitting warnings related to code we don't have
+      // in our own buffers. At the same time, this file can include important
       // headers specified on the command line.
-      // So: ShouldProcess() returns false for a nullptr file. However, we enter any
-      // include in such file anyway here thanks to the include_stack_.top() check.
-      // (eg, "ignore the include only if the top of the stack is not nullptr").
+      // So: ShouldProcess() returns false for a nullptr file. However, we enter
+      // any include in such file anyway here thanks to the include_stack_.top()
+      // check. (eg, "ignore the include only if the top of the stack is not
+      // nullptr").
       if (!ShouldProcess() && include_stack_.top()) {
         include_ignored_++;
         return;
@@ -74,8 +79,8 @@ class PPTracker : public PPCallbacks {
       }
 
       if (gl_verbose)
-        std::cerr << "  -> ENTERING " << file << " " << GetFilePath(file) << " ("
-                  << recorder_->PrintLocation(loc) << ")" << std::endl;
+        std::cerr << "  -> ENTERING " << file << " " << GetFilePath(file)
+                  << " (" << recorder_->PrintLocation(loc) << ")" << std::endl;
 
       include_stack_.push(file);
       return;
@@ -91,8 +96,7 @@ class PPTracker : public PPCallbacks {
       if (file) file->preprocessed = true;
 
       if (gl_verbose)
-        std::cerr << "#EXITING " << file << " "
-                  << GetFilePath(file)
+        std::cerr << "#EXITING " << file << " " << GetFilePath(file)
                   << std::endl;
 
       include_stack_.pop();
@@ -218,22 +222,22 @@ class PPTracker : public PPCallbacks {
     state.if_start = cond_range.getBegin();
   };
 
-  void Defined(const Token &name, const MacroDefinition &definition,
-                       SourceRange location) override {
+  void Defined(const Token& name, const MacroDefinition& definition,
+               SourceRange location) override {
     if (!ShouldProcess()) return;
     if (gl_verbose)
-      std::cerr << "#DEFINED IN " << recorder_->PrintLocation(location)
-		<< "  " << (bool)(definition)
-                << std::endl;
+      std::cerr << "#DEFINED IN " << recorder_->PrintLocation(location) << "  "
+                << (bool)(definition) << std::endl;
 
     auto* mi = definition.getMacroInfo();
-    auto mrange = SourceRange(name.getLocation(), name.getEndLoc().getLocWithOffset(-1));
+    auto mrange =
+        SourceRange(name.getLocation(), name.getEndLoc().getLocWithOffset(-1));
     if (definition && mi) {
       auto target = GetMacroRange(*mi);
       recorder_->CodeUses(mrange, "MACRO", "MACRO", target);
     } else {
-      WrapWithTag(*recorder_->GetCI(), recorder_->GetCache(),
-                  mrange, std::move(MakeTag("span", {"macro-undefined"}, {})));
+      WrapWithTag(*recorder_->GetCI(), recorder_->GetCache(), mrange,
+                  std::move(MakeTag("span", {"macro-undefined"}, {})));
     }
   }
 
@@ -241,19 +245,19 @@ class PPTracker : public PPCallbacks {
              const MacroDefinition& definition) override {
     if (!ShouldProcess()) return;
     if (gl_verbose)
-      std::cerr << "#IFDEF IN " << recorder_->PrintLocation(location)
-		<< "  " << (bool)(definition)
-                << std::endl;
+      std::cerr << "#IFDEF IN " << recorder_->PrintLocation(location) << "  "
+                << (bool)(definition) << std::endl;
 
     auto* mi = definition.getMacroInfo();
-    auto mrange = SourceRange(name.getLocation(), name.getEndLoc().getLocWithOffset(-1));
+    auto mrange =
+        SourceRange(name.getLocation(), name.getEndLoc().getLocWithOffset(-1));
     if (definition && mi) {
       auto target = GetMacroRange(*mi);
 
       recorder_->CodeUses(mrange, "MACRO", "MACRO", target);
     } else {
-      WrapWithTag(*recorder_->GetCI(), recorder_->GetCache(),
-                  mrange, std::move(MakeTag("span", {"macro-undefined"}, {})));
+      WrapWithTag(*recorder_->GetCI(), recorder_->GetCache(), mrange,
+                  std::move(MakeTag("span", {"macro-undefined"}, {})));
     }
 
     if_stack_.emplace((definition ? CVK_True : CVK_False), name.getEndLoc());
@@ -263,19 +267,18 @@ class PPTracker : public PPCallbacks {
               const MacroDefinition& definition) override {
     if (!ShouldProcess()) return;
     if (gl_verbose)
-      std::cerr << "#IFNDEF IN " << recorder_->PrintLocation(location)
-		<< " " << (bool)(definition)
-                << std::endl;
+      std::cerr << "#IFNDEF IN " << recorder_->PrintLocation(location) << " "
+                << (bool)(definition) << std::endl;
 
     auto* mi = definition.getMacroInfo();
-      auto mrange =
+    auto mrange =
         SourceRange(name.getLocation(), name.getEndLoc().getLocWithOffset(-1));
     if (definition && mi) {
       auto target = GetMacroRange(*mi);
       recorder_->CodeUses(mrange, "MACRO", "MACRO", target);
     } else {
-      WrapWithTag(*recorder_->GetCI(), recorder_->GetCache(),
-                  mrange, std::move(MakeTag("span", {"macro-undefined"}, {})));
+      WrapWithTag(*recorder_->GetCI(), recorder_->GetCache(), mrange,
+                  std::move(MakeTag("span", {"macro-undefined"}, {})));
     }
 
     if_stack_.emplace((definition ? CVK_False : CVK_True), name.getEndLoc());
@@ -314,7 +317,8 @@ class PPTracker : public PPCallbacks {
   };
 
  private:
-  // Return true if we should process this file. Ensures a file is processed only once.
+  // Return true if we should process this file. Ensures a file is processed
+  // only once.
   bool ShouldProcess() {
     return include_stack_.empty() ||
            (include_stack_.top() && !include_stack_.top()->preprocessed &&
