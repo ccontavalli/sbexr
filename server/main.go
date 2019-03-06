@@ -99,7 +99,7 @@ func main() {
 
 	var err error
 	if *listen != "" {
-		err = http.ListenAndServe(*listen, handlers.LoggingHandler(writer, handlers.CompressHandler(http.DefaultServeMux))) // set listen port
+		err = http.ListenAndServe(*listen, handlers.CombinedLoggingHandler(writer, handlers.CompressHandler(http.DefaultServeMux))) // set listen port
 	} else {
 		err = fcgi.Serve(nil, nil)
 	}
