@@ -2,7 +2,7 @@
 ---
 <span class='comment'>/* Determine the wordsize from the preprocessor defines.  */</span>
 
-<span class='directive'>#if defined __x86_64__ &amp;&amp; !defined __ILP32__</span>
+<span class='directive'>#if defined __x86_64__ &amp;&amp; !defined <span class='macro-undefined'>__ILP32__</span></span>
 <span class='directive'># define <span class='def def-MACRO' id='0000400a00004015'>__WORDSIZE	64</span></span>
 <span class='directive'>#else</span><span class='preprocessor-if muted'>
 <span class='directive'># define __WORDSIZE	32</span>

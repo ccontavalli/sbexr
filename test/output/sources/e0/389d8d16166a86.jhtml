@@ -28,7 +28,7 @@
 <span class='comment'>// those of the authors and should not be interpreted as representing official</span>
 <span class='comment'>// policies, either expressed or implied, of Carlo Contavalli.</span>
 
-<span class='directive'>#ifndef TEST2_H</span>
+<span class='directive'>#ifndef <span class='macro-undefined'>TEST2_H</span></span>
 <span class='directive'># define <span class='def def-MACRO' id='0001e00a0001e00a'>TEST2_H</span></span>
 
 <span class='def def-CXXRecord' id='0002000100027001'><span class='keyword class'>class</span> Test {

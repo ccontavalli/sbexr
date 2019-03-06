@@ -22,7 +22,7 @@
  * Never include this file directly; use &lt;sys/types.h&gt; instead.
  */</span>
 
-<span class='directive'>#ifndef	_BITS_TYPES_H</span>
+<span class='directive'>#ifndef	<span class='macro-undefined'>_BITS_TYPES_H</span></span>
 <span class='directive'>#define	<span class='def def-MACRO' id='0001800900018017'>_BITS_TYPES_H	1</span></span>
 
 <span class='directive'>#include <a class='include' href='../08/80fafb6e566ce0.html'>&lt;features.h&gt;</a></span>

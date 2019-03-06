@@ -17,18 +17,18 @@
    License along with the GNU C Library; if not, see
    &lt;http://www.gnu.org/licenses/&gt;.  */</span>
 
-<span class='directive'>#ifndef __struct_FILE_defined</span>
+<span class='directive'>#ifndef <span class='macro-undefined'>__struct_FILE_defined</span></span>
 <span class='directive'>#define <span class='def def-MACRO' id='000130090001301f'>__struct_FILE_defined 1</span></span>
 
 <span class='comment'>/* Caution: The contents of this file are not part of the official
    stdio.h API.  However, much of it is part of the official *binary*
    interface, and therefore cannot be changed.  */</span>
 
-<span class='directive'>#if defined _IO_USE_OLD_IO_FILE &amp;&amp; !defined _LIBC</span><span class='preprocessor-if muted'>
+<span class='directive'>#if defined <span class='macro-undefined'>_IO_USE_OLD_IO_FILE</span> &amp;&amp; !defined <span class='macro-undefined'>_LIBC</span></span><span class='preprocessor-if muted'>
 <span class='directive'># error "_IO_USE_OLD_IO_FILE should only be defined when building libc itself"</span></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#if defined _IO_lock_t_defined &amp;&amp; !defined _LIBC</span><span class='preprocessor-if muted'>
+<span class='directive'>#if defined <span class='macro-undefined'>_IO_lock_t_defined</span> &amp;&amp; !defined <span class='macro-undefined'>_LIBC</span></span><span class='preprocessor-if muted'>
 <span class='directive'># error "_IO_lock_t_defined should only be defined when building libc itself"</span></span>
 <span class='directive'>#endif</span>
 
@@ -41,7 +41,7 @@
 
 <span class='comment'>/* During the build of glibc itself, _IO_lock_t will already have been
    defined by internal headers.  */</span>
-<span class='directive'>#ifndef _IO_lock_t_defined</span>
+<span class='directive'>#ifndef <span class='macro-undefined'>_IO_lock_t_defined</span></span>
 <span class='def def-Typedef' id='0002b0010002b00e'><span class='keyword typedef'>typedef</span> <span class='keyword void'>void</span> _IO_lock_t</span>;
 <span class='directive'>#endif</span>
 
@@ -81,7 +81,7 @@
   <span class='def def-Field' id='0004f0030004f013'><span class='keyword char'>char</span> _shortbuf[<span class='numeric'>1</span>]</span>;
 
   <span class='def def-Field' id='000510030005100f'><a class='declaration-uses' href='../91/8bbaed7fe58735.html#0002b0010002b00e'>_IO_lock_t</a> *_lock</span>;
-<span class='directive'>#ifdef _IO_USE_OLD_IO_FILE</span><span class='preprocessor-if muted'>
+<span class='directive'>#ifdef <span class='macro-undefined'>_IO_USE_OLD_IO_FILE</span></span><span class='preprocessor-if muted'>
 };
 
 <span class='keyword struct'>struct</span> _IO_FILE_complete

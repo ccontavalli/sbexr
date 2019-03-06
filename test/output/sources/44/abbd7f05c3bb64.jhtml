@@ -18,18 +18,18 @@
    License along with the GNU C Library; if not, see
    &lt;http://www.gnu.org/licenses/&gt;.  */</span>
 
-<span class='directive'>#ifndef _BITS_TYPES_H</span><span class='preprocessor-if muted'>
+<span class='directive'>#ifndef <a class='MACRO-uses' href='../41/e28fc1cdef774c.html#0001800900018017'>_BITS_TYPES_H</a></span><span class='preprocessor-if muted'>
 <span class='directive'># error "Never include &lt;bits/typesizes.h&gt; directly; use &lt;sys/types.h&gt; instead."</span></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#ifndef	_BITS_TYPESIZES_H</span>
+<span class='directive'>#ifndef	<span class='macro-undefined'>_BITS_TYPESIZES_H</span></span>
 <span class='directive'>#define	<span class='def def-MACRO' id='000180090001801b'>_BITS_TYPESIZES_H	1</span></span>
 
 <span class='comment'>/* See &lt;bits/types.h&gt; for the meaning of these macros.  This file exists so
    that &lt;bits/types.h&gt; need not vary across different GNU platforms.  */</span>
 
 <span class='comment'>/* X32 kernel interface is 64-bit.  */</span>
-<span class='directive'>#if defined __x86_64__ &amp;&amp; defined __ILP32__</span><span class='preprocessor-if muted'>
+<span class='directive'>#if defined __x86_64__ &amp;&amp; defined <span class='macro-undefined'>__ILP32__</span></span><span class='preprocessor-if muted'>
 <span class='directive'># define __SYSCALL_SLONG_TYPE	__SQUAD_TYPE</span>
 <span class='directive'># define __SYSCALL_ULONG_TYPE	__UQUAD_TYPE</span></span>
 <span class='directive'>#else</span>

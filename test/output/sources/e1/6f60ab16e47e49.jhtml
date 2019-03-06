@@ -26,7 +26,7 @@
    header is included, not when the first system header is
    included.  */</span>
 
-<span class='directive'>#ifndef __GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION</span><span class='preprocessor-if muted'>
+<span class='directive'>#ifndef <a class='MACRO-uses' href='../6f/078dbcc264af74.html#0001a0090001a009'>__GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION</a></span><span class='preprocessor-if muted'>
 <span class='directive'># error "Never include &lt;bits/libc-header-start.h&gt; directly."</span></span>
 <span class='directive'>#endif</span>
 
@@ -37,8 +37,8 @@
 <span class='comment'>/* ISO/IEC TR 24731-2:2010 defines the __STDC_WANT_LIB_EXT2__
    macro.  */</span>
 <span class='directive'>#undef __GLIBC_USE_LIB_EXT2</span>
-<span class='directive'>#if (defined __USE_GNU							\
-     || (defined __STDC_WANT_LIB_EXT2__ &amp;&amp; __STDC_WANT_LIB_EXT2__ &gt; 0))</span>
+<span class='directive'>#if (defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a>							\
+     || (defined <span class='macro-undefined'>__STDC_WANT_LIB_EXT2__</span> &amp;&amp; __STDC_WANT_LIB_EXT2__ &gt; 0))</span>
 <span class='directive'># define <span class='def def-MACRO' id='0002800a0002801f'>__GLIBC_USE_LIB_EXT2 1</span></span>
 <span class='directive'>#else</span><span class='preprocessor-if muted'>
 <span class='directive'># define __GLIBC_USE_LIB_EXT2 0</span></span>
@@ -47,7 +47,7 @@
 <span class='comment'>/* ISO/IEC TS 18661-1:2014 defines the __STDC_WANT_IEC_60559_BFP_EXT__
    macro.  */</span>
 <span class='directive'>#undef __GLIBC_USE_IEC_60559_BFP_EXT</span>
-<span class='directive'>#if defined __USE_GNU || defined __STDC_WANT_IEC_60559_BFP_EXT__</span>
+<span class='directive'>#if defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a> || defined <span class='macro-undefined'>__STDC_WANT_IEC_60559_BFP_EXT__</span></span>
 <span class='directive'># define <span class='def def-MACRO' id='0003100a00031028'>__GLIBC_USE_IEC_60559_BFP_EXT 1</span></span>
 <span class='directive'>#else</span><span class='preprocessor-if muted'>
 <span class='directive'># define __GLIBC_USE_IEC_60559_BFP_EXT 0</span></span>
@@ -56,7 +56,7 @@
 <span class='comment'>/* ISO/IEC TS 18661-4:2015 defines the
    __STDC_WANT_IEC_60559_FUNCS_EXT__ macro.  */</span>
 <span class='directive'>#undef __GLIBC_USE_IEC_60559_FUNCS_EXT</span>
-<span class='directive'>#if defined __USE_GNU || defined __STDC_WANT_IEC_60559_FUNCS_EXT__</span>
+<span class='directive'>#if defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a> || defined <span class='macro-undefined'>__STDC_WANT_IEC_60559_FUNCS_EXT__</span></span>
 <span class='directive'># define <span class='def def-MACRO' id='0003a00a0003a02a'>__GLIBC_USE_IEC_60559_FUNCS_EXT 1</span></span>
 <span class='directive'>#else</span><span class='preprocessor-if muted'>
 <span class='directive'># define __GLIBC_USE_IEC_60559_FUNCS_EXT 0</span></span>
@@ -65,7 +65,7 @@
 <span class='comment'>/* ISO/IEC TS 18661-3:2015 defines the
    __STDC_WANT_IEC_60559_TYPES_EXT__ macro.  */</span>
 <span class='directive'>#undef __GLIBC_USE_IEC_60559_TYPES_EXT</span>
-<span class='directive'>#if defined __USE_GNU || defined __STDC_WANT_IEC_60559_TYPES_EXT__</span>
+<span class='directive'>#if defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a> || defined <span class='macro-undefined'>__STDC_WANT_IEC_60559_TYPES_EXT__</span></span>
 <span class='directive'># define <span class='def def-MACRO' id='0004300a0004302a'>__GLIBC_USE_IEC_60559_TYPES_EXT 1</span></span>
 <span class='directive'>#else</span><span class='preprocessor-if muted'>
 <span class='directive'># define __GLIBC_USE_IEC_60559_TYPES_EXT 0</span></span>

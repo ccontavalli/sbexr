@@ -5,7 +5,7 @@
    in the C library which is a stub, meaning it will fail
    every time called, usually setting errno to ENOSYS.  */</span>
 
-<span class='directive'>#ifdef _LIBC</span><span class='preprocessor-if muted'>
+<span class='directive'>#ifdef <span class='macro-undefined'>_LIBC</span></span><span class='preprocessor-if muted'>
 <span class='directive'># error Applications may not define the macro _LIBC</span></span>
 <span class='directive'>#endif</span>
 

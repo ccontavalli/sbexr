@@ -2,8 +2,8 @@
 output/validator.report: WARNING - unexpected file
 output/sources/meta/counters.json: WARNING - unexpected file
 ==== STATISTICS FOR ./output
-Warnings: 2, Pedantic: 487
-    'Target is unused': 487
+Warnings: 2, Pedantic: 453
+    'Target is unused': 453
     'unexpected file': 2
 
 File system statistcs:
@@ -11,25 +11,25 @@ File system statistcs:
    paths: 60 scanned, of which 15 directories, 40 source, 1 copied, 2 meta, 2 unexpected
 
 Resource statistcs:
-   requested: 56 file/dir resources, 106 targets, 279 users
-   unused: 0 file/dir resources, 487 targets
+   requested: 56 file/dir resources, 140 targets, 286 users
+   unused: 0 file/dir resources, 453 targets
    total: 56 file/dir resources, 593 targets
 
 JHTML Statistics:
-   Text: 5988 blocks for 1921979 bytes
-   Tags: 3432 opened, 3432 closed, in a 7 elements max stack
-   Attributes: 435 href, 593 id, 3432 class (4875 classes specified)
+   Text: 6309 blocks for 1921979 bytes
+   Tags: 3650 opened, 3650 closed, in a 7 elements max stack
+   Attributes: 556 href, 593 id, 3650 class (5093 classes specified)
 
-CLASS Attributes seen (57 different ones):
-     218:MACRO-uses                17:__attribute__              6:__extension__              2:bool                     126:char                
+CLASS Attributes seen (58 different ones):
+     339:MACRO-uses                17:__attribute__              6:__extension__              2:bool                     126:char                
        2:class                    418:comment                   89:const                    125:decl                       8:decl-CXXRecord      
      109:decl-Function              8:decl-Var                 131:declaration-uses           1:decltype                 468:def                 
        3:def-CXXMethod             19:def-CXXRecord             66:def-Field                  7:def-Function             260:def-MACRO           
        1:def-Namespace              8:def-ParmVar               84:def-Typedef                1:def-UsingDirective        19:def-Var             
     1078:directive                  7:expression-uses          131:extern                     1:float                      1:if                  
       34:include                    1:inline                   161:int                      748:keyword                   23:long                
-     102:muted                      3:namespace                  1:nullptr                   50:numeric                  102:preprocessor-if     
-       1:private                    1:public                     8:return                    20:return-uses                4:short               
-       6:signed                     3:sizeof                     3:static                     8:string                    38:struct              
-      62:typedef                    2:union                     15:unsigned                   2:using                     25:variable-uses       
-      37:void                       1:wchar_t             
+      97:macro-undefined          102:muted                      3:namespace                  1:nullptr                   50:numeric             
+     102:preprocessor-if            1:private                    1:public                     8:return                    20:return-uses         
+       4:short                      6:signed                     3:sizeof                     3:static                     8:string              
+      38:struct                    62:typedef                    2:union                     15:unsigned                   2:using               
+      25:variable-uses             37:void                       1:wchar_t             

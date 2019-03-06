@@ -1,6 +1,6 @@
 {"name":"__fpos64_t.h","path":"/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h","root":"../06/416cc91f3e3d90.html","project":"test","tag":"output","parents":[{"name":"usr","href":"../60/7abc7e1c17ae25.html"},{"name":"include","href":"../19/901c5d9478e5ce.html"},{"name":"x86_64-linux-gnu","href":"../f0/212845f8a256c3.html"},{"name":"bits","href":"../23/32e20e89ff3dae.html"},{"name":"types","href":"../50/6c0d28222dde39.html"}]}
 ---
-<span class='directive'>#ifndef _____fpos64_t_defined</span>
+<span class='directive'>#ifndef <span class='macro-undefined'>_____fpos64_t_defined</span></span>
 <span class='directive'>#define <span class='def def-MACRO' id='000020090000201f'>_____fpos64_t_defined 1</span></span>
 
 <span class='directive'>#include <a class='include' href='../41/e28fc1cdef774c.html'>&lt;bits/types.h&gt;</a></span>

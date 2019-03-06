@@ -17,11 +17,11 @@
    License along with the GNU C Library; if not, see
    &lt;http://www.gnu.org/licenses/&gt;.  */</span>
 
-<span class='directive'>#ifndef	_SYS_CDEFS_H</span>
+<span class='directive'>#ifndef	<span class='macro-undefined'>_SYS_CDEFS_H</span></span>
 <span class='directive'>#define	<span class='def def-MACRO' id='0001300900013016'>_SYS_CDEFS_H	1</span></span>
 
 <span class='comment'>/* We are almost always included from features.h. */</span>
-<span class='directive'>#ifndef _FEATURES_H</span><span class='preprocessor-if muted'>
+<span class='directive'>#ifndef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0001300900013015'>_FEATURES_H</a></span><span class='preprocessor-if muted'>
 <span class='directive'># include &lt;features.h&gt;</span></span>
 <span class='directive'>#endif</span>
 
@@ -40,7 +40,7 @@
 
 <span class='comment'>/* All functions, except those with callbacks or those that
    synchronize memory, are leaf functions.  */</span>
-<span class='directive'># if <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0009e00a0009f03d'>__GNUC_PREREQ</a> (4, 6) &amp;&amp; !defined _LIBC</span><span class='preprocessor-if muted'>
+<span class='directive'># if <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0009e00a0009f03d'>__GNUC_PREREQ</a> (4, 6) &amp;&amp; !defined <span class='macro-undefined'>_LIBC</span></span><span class='preprocessor-if muted'>
 <span class='directive'>#  define __LEAF , __leaf__</span>
 <span class='directive'>#  define __LEAF_ATTR __attribute__ ((__leaf__))</span></span>
 <span class='directive'># else</span>
@@ -141,7 +141,7 @@
    Headers that should use flexible arrays only if they're "real"
    (e.g. only if they won't affect sizeof()) should test
    #if __glibc_c99_flexarr_available.  */</span>
-<span class='directive'>#if defined __STDC_VERSION__ &amp;&amp; __STDC_VERSION__ &gt;= 199901L</span><span class='preprocessor-if muted'>
+<span class='directive'>#if defined <span class='macro-undefined'>__STDC_VERSION__</span> &amp;&amp; __STDC_VERSION__ &gt;= 199901L</span><span class='preprocessor-if muted'>
 <span class='directive'># define __flexarr	[]</span>
 <span class='directive'># define __glibc_c99_flexarr_available 1</span></span>
 <span class='directive'>#elif <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0009e00a0009f03d'>__GNUC_PREREQ</a> (2,97)</span>
@@ -308,7 +308,7 @@
 <span class='directive'>#else</span><span class='preprocessor-if muted'>
 <span class='directive'># define __attribute_warn_unused_result__ /* empty */</span></span>
 <span class='directive'>#endif</span>
-<span class='directive'>#ifndef __wur</span>
+<span class='directive'>#ifndef <span class='macro-undefined'>__wur</span></span>
 <span class='directive'># define <span class='def def-MACRO' id='0013600a0013600a'>__wur</span> /* Ignore */</span>
 <span class='directive'>#endif</span>
 
@@ -342,9 +342,9 @@
    semantics, that can be checked fot by using the __GNUC_STDC_INLINE_ and
    __GNUC_GNU_INLINE__ macro definitions.  */</span>
 <span class='directive'>#if (!defined __cplusplus || <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0009e00a0009f03d'>__GNUC_PREREQ</a> (4,3) \
-     || (defined __clang__ &amp;&amp; (defined __GNUC_STDC_INLINE__ \
+     || (defined __clang__ &amp;&amp; (defined <span class='macro-undefined'>__GNUC_STDC_INLINE__</span> \
 			       || defined __GNUC_GNU_INLINE__)))</span>
-<span class='directive'># if defined __GNUC_STDC_INLINE__ || defined __cplusplus</span>
+<span class='directive'># if defined <span class='macro-undefined'>__GNUC_STDC_INLINE__</span> || defined __cplusplus</span>
 <span class='directive'>#  define <span class='def def-MACRO' id='0015a00b0015a04a'>__extern_inline extern __inline __attribute__ ((__gnu_inline__))</span></span>
 <span class='directive'>#  define <span class='def def-MACRO' id='0015b00b0015c039'>__extern_always_inline \
   extern __always_inline __attribute__ ((__gnu_inline__))</span></span>
@@ -354,7 +354,7 @@
 <span class='directive'># endif</span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#ifdef __extern_always_inline</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../11/d2796f2851903a.html#0015b00b0015c039'>__extern_always_inline</a></span>
 <span class='directive'># define <span class='def def-MACRO' id='0016400a00164034'>__fortify_function __extern_always_inline __attribute_artificial__</span></span>
 <span class='directive'>#endif</span>
 
@@ -414,8 +414,8 @@
 <span class='directive'># define __glibc_has_attribute(attr)	0</span></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#if (!defined _Noreturn \
-     &amp;&amp; (defined __STDC_VERSION__ ? __STDC_VERSION__ : 0) &lt; 201112 \
+<span class='directive'>#if (!defined <span class='macro-undefined'>_Noreturn</span> \
+     &amp;&amp; (defined <span class='macro-undefined'>__STDC_VERSION__</span> ? __STDC_VERSION__ : 0) &lt; 201112 \
      &amp;&amp;  !<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0009e00a0009f03d'>__GNUC_PREREQ</a> (4,7))</span>
 <span class='directive'># if <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0009e00a0009f03d'>__GNUC_PREREQ</a> (2,8)</span>
 <span class='directive'>#  define <span class='def def-MACRO' id='001a300b001a3032'>_Noreturn __attribute__ ((__noreturn__))</span></span>
@@ -433,8 +433,8 @@
 <span class='directive'># define <span class='def def-MACRO' id='001af00a001af00a'>__attribute_nonstring__</span></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#if (!defined _Static_assert &amp;&amp; !defined __cplusplus \
-     &amp;&amp; (defined __STDC_VERSION__ ? __STDC_VERSION__ : 0) &lt; 201112 \
+<span class='directive'>#if (!defined <span class='macro-undefined'>_Static_assert</span> &amp;&amp; !defined __cplusplus \
+     &amp;&amp; (defined <span class='macro-undefined'>__STDC_VERSION__</span> ? __STDC_VERSION__ : 0) &lt; 201112 \
      &amp;&amp; (!<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0009e00a0009f03d'>__GNUC_PREREQ</a> (4, 6) || defined __STRICT_ANSI__))</span><span class='preprocessor-if muted'>
 <span class='directive'># define _Static_assert(expr, diagnostic) \
     extern int (*__Static_assert_function (void)) \
@@ -444,7 +444,7 @@
 <span class='directive'>#include <a class='include' href='../fd/cacc45a9906e85.html'>&lt;bits/wordsize.h&gt;</a></span>
 <span class='directive'>#include <a class='include' href='../2b/f7ba919473f734.html'>&lt;bits/long-double.h&gt;</a></span>
 
-<span class='directive'>#if defined __LONG_DOUBLE_MATH_OPTIONAL &amp;&amp; defined __NO_LONG_DOUBLE_MATH</span><span class='preprocessor-if muted'>
+<span class='directive'>#if defined <span class='macro-undefined'>__LONG_DOUBLE_MATH_OPTIONAL</span> &amp;&amp; defined <span class='macro-undefined'>__NO_LONG_DOUBLE_MATH</span></span><span class='preprocessor-if muted'>
 <span class='directive'># define __LDBL_COMPAT 1</span>
 <span class='directive'># ifdef __REDIRECT</span>
 <span class='directive'>#  define __LDBL_REDIR1(name, proto, alias) __REDIRECT (name, proto, alias)</span>
@@ -463,13 +463,13 @@
   __LDBL_REDIR1_NTH (name, proto, __nldbl_##alias)</span>
 <span class='directive'># endif</span></span>
 <span class='directive'>#endif</span>
-<span class='directive'>#if !defined __LDBL_COMPAT || !defined __REDIRECT</span>
+<span class='directive'>#if !defined <span class='macro-undefined'>__LDBL_COMPAT</span> || !defined <a class='MACRO-uses' href='../11/d2796f2851903a.html#000ae00a000ae04f'>__REDIRECT</a></span>
 <span class='directive'># define <span class='def def-MACRO' id='001d100a001d1031'>__LDBL_REDIR1(name, proto, alias) name proto</span></span>
 <span class='directive'># define <span class='def def-MACRO' id='001d200a001d2029'>__LDBL_REDIR(name, proto) name proto</span></span>
 <span class='directive'># define <span class='def def-MACRO' id='001d300a001d303b'>__LDBL_REDIR1_NTH(name, proto, alias) name proto __THROW</span></span>
 <span class='directive'># define <span class='def def-MACRO' id='001d400a001d4033'>__LDBL_REDIR_NTH(name, proto) name proto __THROW</span></span>
 <span class='directive'># define <span class='def def-MACRO' id='001d500a001d5020'>__LDBL_REDIR_DECL(name)</span></span>
-<span class='directive'># ifdef __REDIRECT</span>
+<span class='directive'># ifdef <a class='MACRO-uses' href='../11/d2796f2851903a.html#000ae00a000ae04f'>__REDIRECT</a></span>
 <span class='directive'>#  define <span class='def def-MACRO' id='001d700b001d704d'>__REDIRECT_LDBL(name, proto, alias) __REDIRECT (name, proto, alias)</span></span>
 <span class='directive'>#  define <span class='def def-MACRO' id='001d800b001d9025'>__REDIRECT_NTH_LDBL(name, proto, alias) \
   __REDIRECT_NTH (name, proto, alias)</span></span>
@@ -499,7 +499,7 @@
 <span class='directive'>#if !defined __cplusplus \
     &amp;&amp; (<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0009e00a0009f03d'>__GNUC_PREREQ</a> (4, 9) \
 	|| <a class='MACRO-uses' href='../11/d2796f2851903a.html#0005c00a0005c03f'>__glibc_clang_has_extension</a> (c_generic_selections) \
-	|| (!defined __GNUC__ &amp;&amp; defined __STDC_VERSION__ \
+	|| (!defined __GNUC__ &amp;&amp; defined <span class='macro-undefined'>__STDC_VERSION__</span> \
 	    &amp;&amp; __STDC_VERSION__ &gt;= 201112L))</span><span class='preprocessor-if muted'>
 <span class='directive'># define __HAVE_GENERIC_SELECTION 1</span></span>
 <span class='directive'>#else</span>

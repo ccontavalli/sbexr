@@ -25,10 +25,10 @@
  *===-----------------------------------------------------------------------===
  */</span>
 
-<span class='directive'>#ifndef __STDARG_H</span>
+<span class='directive'>#ifndef <span class='macro-undefined'>__STDARG_H</span></span>
 <span class='directive'>#define <span class='def def-MACRO' id='0001b0090001b009'>__STDARG_H</span></span>
 
-<span class='directive'>#ifndef _VA_LIST</span>
+<span class='directive'>#ifndef <span class='macro-undefined'>_VA_LIST</span></span>
 <span class='def def-Typedef' id='0001e0010001e01b'><span class='keyword typedef'>typedef</span> __builtin_va_list va_list</span>;
 <span class='directive'>#define <span class='def def-MACRO' id='0001f0090001f009'>_VA_LIST</span></span>
 <span class='directive'>#endif</span>
@@ -45,7 +45,7 @@
 <span class='directive'>#define <span class='def def-MACRO' id='0002b0090002b038'>va_copy(dest, src)  __builtin_va_copy(dest, src)</span></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#ifndef __GNUC_VA_LIST</span>
+<span class='directive'>#ifndef <span class='macro-undefined'>__GNUC_VA_LIST</span></span>
 <span class='directive'>#define <span class='def def-MACRO' id='0002f0090002f018'>__GNUC_VA_LIST 1</span></span>
 <span class='def def-Typedef' id='000300010003001b'><span class='keyword typedef'>typedef</span> __builtin_va_list __gnuc_va_list</span>;
 <span class='directive'>#endif</span>

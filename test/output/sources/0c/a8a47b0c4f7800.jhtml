@@ -17,10 +17,10 @@
    License along with the GNU C Library; if not, see
    &lt;http://www.gnu.org/licenses/&gt;.  */</span>
 
-<span class='directive'>#ifndef _BITS_STDIO_LIM_H</span>
+<span class='directive'>#ifndef <span class='macro-undefined'>_BITS_STDIO_LIM_H</span></span>
 <span class='directive'>#define <span class='def def-MACRO' id='000130090001301b'>_BITS_STDIO_LIM_H 1</span></span>
 
-<span class='directive'>#ifndef _STDIO_H</span><span class='preprocessor-if muted'>
+<span class='directive'>#ifndef <a class='MACRO-uses' href='../6f/078dbcc264af74.html#0001800900018012'>_STDIO_H</a></span><span class='preprocessor-if muted'>
 <span class='directive'># error "Never include &lt;bits/stdio_lim.h&gt; directly; use &lt;stdio.h&gt; instead."</span></span>
 <span class='directive'>#endif</span>
 
@@ -28,9 +28,9 @@
 <span class='directive'>#define <span class='def def-MACRO' id='0001a0090001a011'>TMP_MAX 238328</span></span>
 <span class='directive'>#define <span class='def def-MACRO' id='0001b0090001b016'>FILENAME_MAX 4096</span></span>
 
-<span class='directive'>#ifdef __USE_POSIX</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0012c00a0012c016'>__USE_POSIX</a></span>
 <span class='directive'># define <span class='def def-MACRO' id='0001e00a0001e014'>L_ctermid 9</span></span>
-<span class='directive'># if !defined __USE_XOPEN2K || defined __USE_GNU</span>
+<span class='directive'># if !defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015500c0015501a'>__USE_XOPEN2K</a> || defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a></span>
 <span class='directive'>#  define <span class='def def-MACRO' id='0002000b00020015'>L_cuserid 9</span></span>
 <span class='directive'># endif</span>
 <span class='directive'>#endif</span>

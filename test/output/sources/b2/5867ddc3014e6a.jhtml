@@ -18,17 +18,17 @@
    License along with the GNU C Library; if not, see
    &lt;http://www.gnu.org/licenses/&gt;.  */</span>
 
-<span class='directive'>#ifndef _STDIO_H</span><span class='preprocessor-if muted'>
+<span class='directive'>#ifndef <a class='MACRO-uses' href='../6f/078dbcc264af74.html#0001800900018012'>_STDIO_H</a></span><span class='preprocessor-if muted'>
 <span class='directive'># error "Never include &lt;bits/sys_errlist.h&gt; directly; use &lt;stdio.h&gt; instead."</span></span>
 <span class='directive'>#endif</span>
 
 <span class='comment'>/* sys_errlist and sys_nerr are deprecated.  Use strerror instead.  */</span>
 
-<span class='directive'>#ifdef  __USE_MISC</span>
+<span class='directive'>#ifdef  <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017000a00170015'>__USE_MISC</a></span>
 <span class='decl decl-Var' id='0001a0010001a00c'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> sys_nerr</span>;
 <span class='decl decl-Var' id='0001b0010001b026'><span class='keyword extern'>extern</span> <span class='keyword const'>const</span> <span class='keyword char'>char</span> *<span class='keyword const'>const</span> sys_errlist[]</span>;
 <span class='directive'>#endif</span>
-<span class='directive'>#ifdef  __USE_GNU</span>
+<span class='directive'>#ifdef  <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a></span>
 <span class='decl decl-Var' id='0001e0010001e00c'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> _sys_nerr</span>;
 <span class='decl decl-Var' id='0001f0010001f027'><span class='keyword extern'>extern</span> <span class='keyword const'>const</span> <span class='keyword char'>char</span> *<span class='keyword const'>const</span> _sys_errlist[]</span>;
 <span class='directive'>#endif</span>

@@ -11,6 +11,6 @@
 <span class='directive'>#if defined __x86_64__ &amp;&amp; defined __LP64__</span>
 <span class='directive'># include <a class='include' href='../b4/1f7b6f8bf83afb.html'>&lt;gnu/stubs-64.h&gt;</a></span>
 <span class='directive'>#endif</span>
-<span class='directive'>#if defined __x86_64__ &amp;&amp; defined __ILP32__</span><span class='preprocessor-if muted'>
+<span class='directive'>#if defined __x86_64__ &amp;&amp; defined <span class='macro-undefined'>__ILP32__</span></span><span class='preprocessor-if muted'>
 <span class='directive'># include &lt;gnu/stubs-x32.h&gt;</span></span>
 <span class='directive'>#endif</span>

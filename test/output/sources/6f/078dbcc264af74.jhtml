@@ -22,7 +22,7 @@
  *	ISO C99 Standard: 7.19 Input/output	&lt;stdio.h&gt;
  */</span>
 
-<span class='directive'>#ifndef _STDIO_H</span>
+<span class='directive'>#ifndef <span class='macro-undefined'>_STDIO_H</span></span>
 <span class='directive'>#define <span class='def def-MACRO' id='0001800900018012'>_STDIO_H	1</span></span>
 
 <span class='directive'>#define <span class='def def-MACRO' id='0001a0090001a009'>__GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION</span></span>
@@ -44,13 +44,13 @@
 <span class='directive'>#include <a class='include' href='../00/eb21e8e066d2fe.html'>&lt;bits/types/FILE.h&gt;</a></span>
 <span class='directive'>#include <a class='include' href='../91/8bbaed7fe58735.html'>&lt;bits/types/struct_FILE.h&gt;</a></span>
 
-<span class='directive'>#ifdef __USE_GNU</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a></span>
 <span class='directive'># include <a class='include' href='../f9/72a0e406b846b3.html'>&lt;bits/types/cookie_io_functions_t.h&gt;</a></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#if defined __USE_XOPEN || defined __USE_XOPEN2K8</span>
+<span class='directive'>#if defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0014a00a0014a016'>__USE_XOPEN</a> || defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015200d0015201c'>__USE_XOPEN2K8</a></span>
 <span class='directive'># ifdef __GNUC__</span>
-<span class='directive'>#  ifndef _VA_LIST_DEFINED</span>
+<span class='directive'>#  ifndef <span class='macro-undefined'>_VA_LIST_DEFINED</span></span>
 <span class='def def-Typedef' id='0003400100034018'><span class='keyword typedef'>typedef</span> __gnuc_va_list va_list</span>;
 <span class='directive'>#   define <span class='def def-MACRO' id='0003500c0003500c'>_VA_LIST_DEFINED</span></span>
 <span class='directive'>#  endif</span>
@@ -59,35 +59,35 @@
 <span class='directive'># endif</span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#if defined __USE_UNIX98 || defined __USE_XOPEN2K</span>
-<span class='directive'># ifndef __off_t_defined</span>
-<span class='directive'># ifndef __USE_FILE_OFFSET64</span>
+<span class='directive'>#if defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0014d00b0014d018'>__USE_UNIX98</a> || defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015500c0015501a'>__USE_XOPEN2K</a></span>
+<span class='directive'># ifndef <span class='macro-undefined'>__off_t_defined</span></span>
+<span class='directive'># ifndef <span class='macro-undefined'>__USE_FILE_OFFSET64</span></span>
 <span class='def def-Typedef' id='0003f0010003f011'><span class='keyword typedef'>typedef</span> __off_t off_t</span>;
 <span class='directive'># else</span><span class='preprocessor-if muted'>
 <span class='keyword typedef'>typedef</span> __off64_t off_t;</span>
 <span class='directive'># endif</span>
 <span class='directive'># define <span class='def def-MACRO' id='0004300a0004300a'>__off_t_defined</span></span>
 <span class='directive'># endif</span>
-<span class='directive'># if defined __USE_LARGEFILE64 &amp;&amp; !defined __off64_t_defined</span>
+<span class='directive'># if defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0016800a0016801c'>__USE_LARGEFILE64</a> &amp;&amp; !defined <span class='macro-undefined'>__off64_t_defined</span></span>
 <span class='def def-Typedef' id='0004600100046013'><span class='keyword typedef'>typedef</span> __off64_t off64_t</span>;
 <span class='directive'># define <span class='def def-MACRO' id='0004700a0004700a'>__off64_t_defined</span></span>
 <span class='directive'># endif</span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#ifdef __USE_XOPEN2K8</span>
-<span class='directive'># ifndef __ssize_t_defined</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015200d0015201c'>__USE_XOPEN2K8</a></span>
+<span class='directive'># ifndef <span class='macro-undefined'>__ssize_t_defined</span></span>
 <span class='def def-Typedef' id='0004d0010004d013'><span class='keyword typedef'>typedef</span> __ssize_t ssize_t</span>;
 <span class='directive'># define <span class='def def-MACRO' id='0004e00a0004e00a'>__ssize_t_defined</span></span>
 <span class='directive'># endif</span>
 <span class='directive'>#endif</span>
 
 <span class='comment'>/* The type of the second argument to `fgetpos' and `fsetpos'.  */</span>
-<span class='directive'>#ifndef __USE_FILE_OFFSET64</span>
+<span class='directive'>#ifndef <span class='macro-undefined'>__USE_FILE_OFFSET64</span></span>
 <span class='def def-Typedef' id='0005400100054012'><span class='keyword typedef'>typedef</span> __fpos_t fpos_t</span>;
 <span class='directive'>#else</span><span class='preprocessor-if muted'>
 <span class='keyword typedef'>typedef</span> __fpos64_t fpos_t;</span>
 <span class='directive'>#endif</span>
-<span class='directive'>#ifdef __USE_LARGEFILE64</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0016800a0016801c'>__USE_LARGEFILE64</a></span>
 <span class='def def-Typedef' id='0005900100059014'><span class='keyword typedef'>typedef</span> __fpos64_t fpos64_t</span>;
 <span class='directive'>#endif</span>
 
@@ -111,13 +111,13 @@
 <span class='directive'>#define <span class='def def-MACRO' id='0006d0090006d012'>SEEK_SET	0</span>	/* Seek from beginning of file.  */</span>
 <span class='directive'>#define <span class='def def-MACRO' id='0006e0090006e012'>SEEK_CUR	1</span>	/* Seek from current position.  */</span>
 <span class='directive'>#define <span class='def def-MACRO' id='0006f0090006f012'>SEEK_END	2</span>	/* Seek from end of file.  */</span>
-<span class='directive'>#ifdef __USE_GNU</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a></span>
 <span class='directive'># define <span class='def def-MACRO' id='0007100a00071014'>SEEK_DATA	3</span>	/* Seek to next data.  */</span>
 <span class='directive'># define <span class='def def-MACRO' id='0007200a00072014'>SEEK_HOLE	4</span>	/* Seek to next hole.  */</span>
 <span class='directive'>#endif</span>
 
 
-<span class='directive'>#if defined __USE_MISC || defined __USE_XOPEN</span>
+<span class='directive'>#if defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017000a00170015'>__USE_MISC</a> || defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0014a00a0014a016'>__USE_XOPEN</a></span>
 <span class='comment'>/* Default path prefix for `tempnam' and `tmpnam'.  */</span>
 <span class='directive'># define <span class='def def-MACRO' id='0007800a00078013'>P_tmpdir	"/tmp"</span></span>
 <span class='directive'>#endif</span>
@@ -149,13 +149,13 @@
 <span class='comment'>/* Rename file OLD to NEW.  */</span>
 <span class='decl decl-Function' id='000940010003d01b000940010009403a'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> rename (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__old, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__new) <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003d00c0003d01b'>__THROW</a></span>;
 
-<span class='directive'>#ifdef __USE_ATFILE</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017400a00174017'>__USE_ATFILE</a></span>
 <span class='comment'>/* Rename file OLD relative to OLDFD to NEW relative to NEWFD.  */</span>
 <span class='decl decl-Function' id='000980010003d01b000980010009901b'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> renameat (<span class='keyword int'>int</span> __oldfd, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__old, <span class='keyword int'>int</span> __newfd,
 		     <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__new) <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003d00c0003d01b'>__THROW</a></span>;
 <span class='directive'>#endif</span>
 
-<span class='directive'>#ifdef __USE_GNU</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a></span>
 <span class='comment'>/* Flags for renameat2.  */</span>
 <span class='directive'># define <span class='def def-MACRO' id='0009e00a0009e022'>RENAME_NOREPLACE (1 &lt;&lt; 0)</span></span>
 <span class='directive'># define <span class='def def-MACRO' id='0009f00a0009f021'>RENAME_EXCHANGE (1 &lt;&lt; 1)</span></span>
@@ -171,7 +171,7 @@
 
    This function is a possible cancellation point and therefore not
    marked with __THROW.  */</span>
-<span class='directive'>#ifndef __USE_FILE_OFFSET64</span>
+<span class='directive'>#ifndef <span class='macro-undefined'>__USE_FILE_OFFSET64</span></span>
 <span class='decl decl-Function' id='000ad001000ad01b'><span class='keyword extern'>extern</span> <a class='return-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE *</a>tmpfile (<span class='keyword void'>void</span>)</span> <a class='MACRO-uses' href='../11/d2796f2851903a.html#0013600a0013600a'>__wur</a>;
 <span class='directive'>#else</span><span class='preprocessor-if muted'>
 <span class='directive'># ifdef __REDIRECT</span>
@@ -181,21 +181,21 @@
 <span class='directive'># endif</span></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#ifdef __USE_LARGEFILE64</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0016800a0016801c'>__USE_LARGEFILE64</a></span>
 <span class='decl decl-Function' id='000b7001000b701d'><span class='keyword extern'>extern</span> <a class='return-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE *</a>tmpfile64 (<span class='keyword void'>void</span>)</span> <a class='MACRO-uses' href='../11/d2796f2851903a.html#0013600a0013600a'>__wur</a>;
 <span class='directive'>#endif</span>
 
 <span class='comment'>/* Generate a temporary filename.  */</span>
 <span class='decl decl-Function' id='000bb0010003d01b000bb001000bb021'><span class='keyword extern'>extern</span> <span class='keyword char'>char</span> *tmpnam (<span class='keyword char'>char</span> *__s) <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003d00c0003d01b'>__THROW</a></span> <a class='MACRO-uses' href='../11/d2796f2851903a.html#0013600a0013600a'>__wur</a>;
 
-<span class='directive'>#ifdef __USE_MISC</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017000a00170015'>__USE_MISC</a></span>
 <span class='comment'>/* This is the reentrant variant of `tmpnam'.  The only difference is
    that it does not allow S to be NULL.  */</span>
 <span class='decl decl-Function' id='000c00010003d01b000c0001000c0023'><span class='keyword extern'>extern</span> <span class='keyword char'>char</span> *tmpnam_r (<span class='keyword char'>char</span> *__s) <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003d00c0003d01b'>__THROW</a></span> <a class='MACRO-uses' href='../11/d2796f2851903a.html#0013600a0013600a'>__wur</a>;
 <span class='directive'>#endif</span>
 
 
-<span class='directive'>#if defined __USE_MISC || defined __USE_XOPEN</span>
+<span class='directive'>#if defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017000a00170015'>__USE_MISC</a> || defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0014a00a0014a016'>__USE_XOPEN</a></span>
 <span class='comment'>/* Generate a unique temporary filename using up to five characters of PFX
    if it is not NULL.  The directory to put this file in is searched for
    as follows: First the environment variable "TMPDIR" is checked.
@@ -219,7 +219,7 @@
    marked with __THROW.  */</span>
 <span class='decl decl-Function' id='000da001000da022'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fflush (<a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE</a> *__stream)</span>;
 
-<span class='directive'>#ifdef __USE_MISC</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017000a00170015'>__USE_MISC</a></span>
 <span class='comment'>/* Faster versions when locking is not required.
 
    This function is not part of POSIX and therefore no official
@@ -229,7 +229,7 @@
 <span class='decl decl-Function' id='000e3001000e302b'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fflush_unlocked (<a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE</a> *__stream)</span>;
 <span class='directive'>#endif</span>
 
-<span class='directive'>#ifdef __USE_GNU</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a></span>
 <span class='comment'>/* Close all streams.
 
    This function is not part of POSIX and therefore no official
@@ -240,7 +240,7 @@
 <span class='directive'>#endif</span>
 
 
-<span class='directive'>#ifndef __USE_FILE_OFFSET64</span>
+<span class='directive'>#ifndef <span class='macro-undefined'>__USE_FILE_OFFSET64</span></span>
 <span class='comment'>/* Open a file and create a new stream for it.
 
    This function is a possible cancellation point and therefore not
@@ -268,7 +268,7 @@
 <span class='directive'>#  define freopen freopen64</span>
 <span class='directive'># endif</span></span>
 <span class='directive'>#endif</span>
-<span class='directive'>#ifdef __USE_LARGEFILE64</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0016800a0016801c'>__USE_LARGEFILE64</a></span>
 <span class='decl decl-Function' id='0010e0010010f027'><span class='keyword extern'>extern</span> <a class='return-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE *</a>fopen64 (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __filename,
 		      <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __modes)</span> <a class='MACRO-uses' href='../11/d2796f2851903a.html#0013600a0013600a'>__wur</a>;
 <span class='decl decl-Function' id='001100010011201d'><span class='keyword extern'>extern</span> <a class='return-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE *</a>freopen64 (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __filename,
@@ -276,12 +276,12 @@
 			<a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE *</a>__restrict __stream)</span> <a class='MACRO-uses' href='../11/d2796f2851903a.html#0013600a0013600a'>__wur</a>;
 <span class='directive'>#endif</span>
 
-<span class='directive'>#ifdef	__USE_POSIX</span>
+<span class='directive'>#ifdef	<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0012c00a0012c016'>__USE_POSIX</a></span>
 <span class='comment'>/* Create a new stream that refers to an existing system file descriptor.  */</span>
 <span class='decl decl-Function' id='001170010003d01b0011700100117035'><span class='keyword extern'>extern</span> <a class='return-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE *</a>fdopen (<span class='keyword int'>int</span> __fd, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__modes) <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003d00c0003d01b'>__THROW</a></span> <a class='MACRO-uses' href='../11/d2796f2851903a.html#0013600a0013600a'>__wur</a>;
 <span class='directive'>#endif</span>
 
-<span class='directive'>#ifdef	__USE_GNU</span>
+<span class='directive'>#ifdef	<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a></span>
 <span class='comment'>/* Create a new stream that refers to the given magic cookie,
    and uses the given functions for input and output.  */</span>
 <span class='decl decl-Function' id='0011d0010003d01b0011d0010011f028'><span class='keyword extern'>extern</span> <a class='return-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE *</a>fopencookie (<span class='keyword void'>void</span> *__restrict __magic_cookie,
@@ -289,7 +289,7 @@
 			  <a class='declaration-uses' href='../f9/72a0e406b846b3.html#000370090003d001'>cookie_io_functions_t</a> __io_funcs) <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003d00c0003d01b'>__THROW</a></span> <a class='MACRO-uses' href='../11/d2796f2851903a.html#0013600a0013600a'>__wur</a>;
 <span class='directive'>#endif</span>
 
-<span class='directive'>#if defined __USE_XOPEN2K8 || <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#000b0009000b0028'>__GLIBC_USE</a> (LIB_EXT2)</span>
+<span class='directive'>#if defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015200d0015201c'>__USE_XOPEN2K8</a> || <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#000b0009000b0028'>__GLIBC_USE</a> (LIB_EXT2)</span>
 <span class='comment'>/* Create a new stream that refers to a memory buffer.  */</span>
 <span class='decl decl-Function' id='001240010003d01b0012400100125003'><span class='keyword extern'>extern</span> <a class='return-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE *</a>fmemopen (<span class='keyword void'>void</span> *__s, <a class='declaration-uses' href='../fd/abf26b4f65020a.html#0003e0010003e017'>size_t</a> __len, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__modes)
   <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003d00c0003d01b'>__THROW</a></span> <a class='MACRO-uses' href='../11/d2796f2851903a.html#0013600a0013600a'>__wur</a>;
@@ -310,7 +310,7 @@
 <span class='decl decl-Function' id='001340010003d01b0013400100135020'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> setvbuf (<a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE *</a>__restrict __stream, <span class='keyword char'>char</span> *__restrict __buf,
 		    <span class='keyword int'>int</span> __modes, <a class='declaration-uses' href='../fd/abf26b4f65020a.html#0003e0010003e017'>size_t</a> __n) <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003d00c0003d01b'>__THROW</a></span>;
 
-<span class='directive'>#ifdef	__USE_MISC</span>
+<span class='directive'>#ifdef	<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017000a00170015'>__USE_MISC</a></span>
 <span class='comment'>/* If BUF is NULL, make STREAM unbuffered.
    Else make it use SIZE bytes of BUF for buffering.  */</span>
 <span class='decl decl-Function' id='0013a0010003d01b0013a0010013b019'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> setbuffer (<a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE *</a>__restrict __stream, <span class='keyword char'>char</span> *__restrict __buf,
@@ -351,7 +351,7 @@
 <span class='decl decl-Function' id='0015d0010003e01d0015d0010015e01e'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> vsprintf (<span class='keyword char'>char</span> *__restrict __s, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format,
 		     __gnuc_va_list __arg) <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003e00c0003e01d'>__THROWNL</a></span>;
 
-<span class='directive'>#if defined __USE_ISOC99 || defined __USE_UNIX98</span>
+<span class='directive'>#if defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015a00c0015a01a'>__USE_ISOC99</a> || defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0014d00b0014d018'>__USE_UNIX98</a></span>
 <span class='comment'>/* Maximum chars of output to write in MAXLEN.  */</span>
 <span class='decl decl-Function' id='001620010016403e'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> snprintf (<span class='keyword char'>char</span> *__restrict __s, <a class='declaration-uses' href='../fd/abf26b4f65020a.html#0003e0010003e017'>size_t</a> __maxlen,
 		     <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, ...)
@@ -376,7 +376,7 @@
      <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003e00c0003e01d'>__THROWNL</a> <span class='keyword __attribute__'>__attribute__</span> ((__format__ (__printf__, <span class='numeric'>2</span>, <span class='numeric'>3</span>)))</span> <a class='MACRO-uses' href='../11/d2796f2851903a.html#0013600a0013600a'>__wur</a>;
 <span class='directive'>#endif</span>
 
-<span class='directive'>#ifdef __USE_XOPEN2K8</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015200d0015201c'>__USE_XOPEN2K8</a></span>
 <span class='comment'>/* Write formatted output to a file descriptor.  */</span>
 <span class='decl decl-Function' id='0017b0010017d034'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> vdprintf (<span class='keyword int'>int</span> __fd, <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __fmt,
 		     __gnuc_va_list __arg)
@@ -401,9 +401,9 @@
 <span class='decl decl-Function' id='0018f0010003d01b0018f0010019002c'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> sscanf (<span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __s,
 		   <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, ...) <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003d00c0003d01b'>__THROW</a></span>;
 
-<span class='directive'>#if defined __USE_ISOC99 &amp;&amp; !defined __USE_GNU \
-    &amp;&amp; (!defined __LDBL_COMPAT || !defined __REDIRECT) \
-    &amp;&amp; (defined __STRICT_ANSI__ || defined __USE_XOPEN2K)</span><span class='preprocessor-if muted'>
+<span class='directive'>#if defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015a00c0015a01a'>__USE_ISOC99</a> &amp;&amp; !defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a> \
+    &amp;&amp; (!defined <span class='macro-undefined'>__LDBL_COMPAT</span> || !defined <a class='MACRO-uses' href='../11/d2796f2851903a.html#000ae00a000ae04f'>__REDIRECT</a>) \
+    &amp;&amp; (defined __STRICT_ANSI__ || defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015500c0015501a'>__USE_XOPEN2K</a>)</span><span class='preprocessor-if muted'>
 <span class='directive'># ifdef __REDIRECT</span>
 <span class='comment'>/* For strict ISO C99 or POSIX compliance disallow %as, %aS and %a[
    GNU extension which conflicts with valid %a followed by letter
@@ -428,7 +428,7 @@
 <span class='directive'># endif</span></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#ifdef	__USE_ISOC99</span>
+<span class='directive'>#ifdef	<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015a00c0015a01a'>__USE_ISOC99</a></span>
 <span class='comment'>/* Read formatted input from S into argument list ARG.
 
    This function is a possible cancellation point and therefore not
@@ -449,9 +449,9 @@
 		    <span class='keyword const'>const</span> <span class='keyword char'>char</span> *__restrict __format, __gnuc_va_list __arg)
      <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003d00c0003d01b'>__THROW</a> <span class='keyword __attribute__'>__attribute__</span> ((__format__ (__scanf__, <span class='numeric'>2</span>, <span class='numeric'>0</span>)))</span>;
 
-<span class='directive'># if !defined __USE_GNU \
-     &amp;&amp; (!defined __LDBL_COMPAT || !defined __REDIRECT) \
-     &amp;&amp; (defined __STRICT_ANSI__ || defined __USE_XOPEN2K)</span><span class='preprocessor-if muted'>
+<span class='directive'># if !defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a> \
+     &amp;&amp; (!defined <span class='macro-undefined'>__LDBL_COMPAT</span> || !defined <a class='MACRO-uses' href='../11/d2796f2851903a.html#000ae00a000ae04f'>__REDIRECT</a>) \
+     &amp;&amp; (defined __STRICT_ANSI__ || defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015500c0015501a'>__USE_XOPEN2K</a>)</span><span class='preprocessor-if muted'>
 <span class='directive'>#  ifdef __REDIRECT</span>
 <span class='comment'>/* For strict ISO C99 or POSIX compliance disallow %as, %aS and %a[
    GNU extension which conflicts with valid %a followed by letter
@@ -499,7 +499,7 @@
    marked with __THROW.  */</span>
 <span class='decl decl-Function' id='001f2001001f2019'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> getchar (<span class='keyword void'>void</span>)</span>;
 
-<span class='directive'>#ifdef __USE_POSIX199506</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0013800a0013801c'>__USE_POSIX199506</a></span>
 <span class='comment'>/* These are defined in POSIX.1:1996.
 
    These functions are possible cancellation points and therefore not
@@ -508,7 +508,7 @@
 <span class='decl decl-Function' id='001fa001001fa022'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> getchar_unlocked (<span class='keyword void'>void</span>)</span>;
 <span class='directive'>#endif /* Use POSIX.  */</span>
 
-<span class='directive'>#ifdef __USE_MISC</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017000a00170015'>__USE_MISC</a></span>
 <span class='comment'>/* Faster version when locking is not necessary.
 
    This function is not part of POSIX and therefore no official
@@ -535,7 +535,7 @@
    marked with __THROW.  */</span>
 <span class='decl decl-Function' id='002160010021601c'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> putchar (<span class='keyword int'>int</span> __c)</span>;
 
-<span class='directive'>#ifdef __USE_MISC</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017000a00170015'>__USE_MISC</a></span>
 <span class='comment'>/* Faster version when locking is not necessary.
 
    This function is not part of POSIX and therefore no official
@@ -545,7 +545,7 @@
 <span class='decl decl-Function' id='0021f0010021f033'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fputc_unlocked (<span class='keyword int'>int</span> __c, <a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE</a> *__stream)</span>;
 <span class='directive'>#endif /* Use MISC.  */</span>
 
-<span class='directive'>#ifdef __USE_POSIX199506</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0013800a0013801c'>__USE_POSIX199506</a></span>
 <span class='comment'>/* These are defined in POSIX.1:1996.
 
    These functions are possible cancellation points and therefore not
@@ -555,8 +555,8 @@
 <span class='directive'>#endif /* Use POSIX.  */</span>
 
 
-<span class='directive'>#if defined __USE_MISC \
-    || (defined __USE_XOPEN &amp;&amp; !defined __USE_XOPEN2K)</span>
+<span class='directive'>#if defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017000a00170015'>__USE_MISC</a> \
+    || (defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0014a00a0014a016'>__USE_XOPEN</a> &amp;&amp; !defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015500c0015501a'>__USE_XOPEN2K</a>)</span>
 <span class='comment'>/* Get a word (int) from STREAM.  */</span>
 <span class='decl decl-Function' id='0022f0010022f020'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> getw (<a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE</a> *__stream)</span>;
 
@@ -585,7 +585,7 @@
 <span class='decl decl-Function' id='00247001000fb0420024700100247025'><span class='keyword extern'>extern</span> <span class='keyword char'>char</span> *gets (<span class='keyword char'>char</span> *__s) <a class='MACRO-uses' href='../11/d2796f2851903a.html#0013600a0013600a'>__wur</a> <a class='MACRO-uses' href='../11/d2796f2851903a.html#000fb00a000fb042'>__attribute_deprecated__</a></span>;
 <span class='directive'>#endif</span>
 
-<span class='directive'>#ifdef __USE_GNU</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a></span>
 <span class='comment'>/* This function does the same as `fgets' but does not lock the stream.
 
    This function is not part of POSIX and therefore no official
@@ -597,7 +597,7 @@
 <span class='directive'>#endif</span>
 
 
-<span class='directive'>#if defined __USE_XOPEN2K8 || <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#000b0009000b0028'>__GLIBC_USE</a> (LIB_EXT2)</span>
+<span class='directive'>#if defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015200d0015201c'>__USE_XOPEN2K8</a> || <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#000b0009000b0028'>__GLIBC_USE</a> (LIB_EXT2)</span>
 <span class='comment'>/* Read up to (and including) a DELIMITER from STREAM into *LINEPTR
    (and null-terminate it). *LINEPTR is a pointer returned from malloc (or
    NULL), pointing to *N characters of space.  It is realloc'd as
@@ -660,7 +660,7 @@
 <span class='decl decl-Function' id='0029200100293029'><span class='keyword extern'>extern</span> <a class='return-uses' href='../fd/abf26b4f65020a.html#0003e0010003e017'>size_t</a> fwrite (<span class='keyword const'>const</span> <span class='keyword void'>void</span> *__restrict __ptr, <a class='declaration-uses' href='../fd/abf26b4f65020a.html#0003e0010003e017'>size_t</a> __size,
 		      <a class='declaration-uses' href='../fd/abf26b4f65020a.html#0003e0010003e017'>size_t</a> __n, <a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE *</a>__restrict __s)</span>;
 
-<span class='directive'>#ifdef __USE_GNU</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a></span>
 <span class='comment'>/* This function does the same as `fputs' but does not lock the stream.
 
    This function is not part of POSIX and therefore no official
@@ -671,7 +671,7 @@
 			   <a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE *</a>__restrict __stream)</span>;
 <span class='directive'>#endif</span>
 
-<span class='directive'>#ifdef __USE_MISC</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017000a00170015'>__USE_MISC</a></span>
 <span class='comment'>/* Faster versions when locking is not necessary.
 
    These functions are not part of POSIX and therefore no official
@@ -706,8 +706,8 @@
    file offset.  `long int' is not the right type.  These definitions
    are originally defined in the Large File Support API.  */</span>
 
-<span class='directive'>#if defined __USE_LARGEFILE || defined __USE_XOPEN2K</span>
-<span class='directive'># ifndef __USE_FILE_OFFSET64</span>
+<span class='directive'>#if defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0016400a0016401a'>__USE_LARGEFILE</a> || defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015500c0015501a'>__USE_XOPEN2K</a></span>
+<span class='directive'># ifndef <span class='macro-undefined'>__USE_FILE_OFFSET64</span></span>
 <span class='comment'>/* Seek to a certain position on STREAM.
 
    This function is a possible cancellation point and therefore not
@@ -731,7 +731,7 @@
 <span class='directive'># endif</span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#ifndef __USE_FILE_OFFSET64</span>
+<span class='directive'>#ifndef <span class='macro-undefined'>__USE_FILE_OFFSET64</span></span>
 <span class='comment'>/* Get STREAM's position.
 
    This function is a possible cancellation point and therefore not
@@ -754,7 +754,7 @@
 <span class='directive'># endif</span></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#ifdef __USE_LARGEFILE64</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0016800a0016801c'>__USE_LARGEFILE64</a></span>
 <span class='decl decl-Function' id='002f4001002f4043'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fseeko64 (<a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE</a> *__stream, <a class='declaration-uses' href='../41/e28fc1cdef774c.html#000880160009701b000970010009701b'>__off64_t</a> __off, <span class='keyword int'>int</span> __whence)</span>;
 <span class='decl decl-Function' id='002f5001002f502a'><span class='keyword extern'>extern</span> <a class='return-uses' href='../41/e28fc1cdef774c.html#000880160009701b000970010009701b'>__off64_t</a> ftello64 (<a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE</a> *__stream)</span> <a class='MACRO-uses' href='../11/d2796f2851903a.html#0013600a0013600a'>__wur</a>;
 <span class='decl decl-Function' id='002f6001002f604c'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fgetpos64 (<a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE *</a>__restrict __stream, <a class='declaration-uses' href='../fa/0a0d3d8e7cc07c.html#0000a0090000e001'>fpos64_t *</a>__restrict __pos)</span>;
@@ -768,7 +768,7 @@
 <span class='comment'>/* Return the error indicator for STREAM.  */</span>
 <span class='decl decl-Function' id='002ff0010003d01b002ff001002ff024'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> ferror (<a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE</a> *__stream) <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003d00c0003d01b'>__THROW</a></span> <a class='MACRO-uses' href='../11/d2796f2851903a.html#0013600a0013600a'>__wur</a>;
 
-<span class='directive'>#ifdef __USE_MISC</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017000a00170015'>__USE_MISC</a></span>
 <span class='comment'>/* Faster versions when locking is not required.  */</span>
 <span class='decl decl-Function' id='003030010003d01b0030300100303030'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> clearerr_unlocked (<a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE</a> *__stream) <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003d00c0003d01b'>__THROW</a></span>;
 <span class='decl decl-Function' id='003040010003d01b003040010030402b'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> feof_unlocked (<a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE</a> *__stream) <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003d00c0003d01b'>__THROW</a></span> <a class='MACRO-uses' href='../11/d2796f2851903a.html#0013600a0013600a'>__wur</a>;
@@ -789,18 +789,18 @@
 <span class='directive'>#include <a class='include' href='../b2/5867ddc3014e6a.html'>&lt;bits/sys_errlist.h&gt;</a></span>
 
 
-<span class='directive'>#ifdef	__USE_POSIX</span>
+<span class='directive'>#ifdef	<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0012c00a0012c016'>__USE_POSIX</a></span>
 <span class='comment'>/* Return the system file descriptor for STREAM.  */</span>
 <span class='decl decl-Function' id='003180010003d01b0031800100318024'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fileno (<a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE</a> *__stream) <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003d00c0003d01b'>__THROW</a></span> <a class='MACRO-uses' href='../11/d2796f2851903a.html#0013600a0013600a'>__wur</a>;
 <span class='directive'>#endif /* Use POSIX.  */</span>
 
-<span class='directive'>#ifdef __USE_MISC</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017000a00170015'>__USE_MISC</a></span>
 <span class='comment'>/* Faster version when locking is not required.  */</span>
 <span class='decl decl-Function' id='0031d0010003d01b0031d0010031d02d'><span class='keyword extern'>extern</span> <span class='keyword int'>int</span> fileno_unlocked (<a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE</a> *__stream) <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003d00c0003d01b'>__THROW</a></span> <a class='MACRO-uses' href='../11/d2796f2851903a.html#0013600a0013600a'>__wur</a>;
 <span class='directive'>#endif</span>
 
 
-<span class='directive'>#ifdef __USE_POSIX2</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0013000a00130017'>__USE_POSIX2</a></span>
 <span class='comment'>/* Create a new stream connected to a pipe running the given command.
 
    This function is a possible cancellation point and therefore not
@@ -815,19 +815,19 @@
 <span class='directive'>#endif</span>
 
 
-<span class='directive'>#ifdef	__USE_POSIX</span>
+<span class='directive'>#ifdef	<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0012c00a0012c016'>__USE_POSIX</a></span>
 <span class='comment'>/* Return the name of the controlling terminal.  */</span>
 <span class='decl decl-Function' id='003320010003d01b0033200100332022'><span class='keyword extern'>extern</span> <span class='keyword char'>char</span> *ctermid (<span class='keyword char'>char</span> *__s) <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003d00c0003d01b'>__THROW</a></span>;
 <span class='directive'>#endif /* Use POSIX.  */</span>
 
 
-<span class='directive'>#if (defined __USE_XOPEN &amp;&amp; !defined __USE_XOPEN2K) || defined __USE_GNU</span>
+<span class='directive'>#if (defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0014a00a0014a016'>__USE_XOPEN</a> &amp;&amp; !defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015500c0015501a'>__USE_XOPEN2K</a>) || defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a></span>
 <span class='comment'>/* Return the name of the current user.  */</span>
 <span class='decl decl-Function' id='0033800100338020'><span class='keyword extern'>extern</span> <span class='keyword char'>char</span> *cuserid (<span class='keyword char'>char</span> *__s)</span>;
 <span class='directive'>#endif /* Use X/Open, but not issue 6.  */</span>
 
 
-<span class='directive'>#ifdef	__USE_GNU</span>
+<span class='directive'>#ifdef	<a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a></span>
 <span class='decl decl-CXXRecord' id='0033d0010033d008'><span class='keyword struct'>struct</span> obstack</span>;			<span class='comment'>/* See &lt;obstack.h&gt;.  */</span>
 
 <span class='comment'>/* Write formatted output to an obstack.  */</span>
@@ -841,7 +841,7 @@
 <span class='directive'>#endif /* Use GNU.  */</span>
 
 
-<span class='directive'>#ifdef __USE_POSIX199506</span>
+<span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0013800a0013801c'>__USE_POSIX199506</a></span>
 <span class='comment'>/* These are defined in POSIX.1:1996.  */</span>
 
 <span class='comment'>/* Acquire ownership of STREAM.  */</span>
@@ -855,7 +855,7 @@
 <span class='decl decl-Function' id='003550010003d01b003550010035502a'><span class='keyword extern'>extern</span> <span class='keyword void'>void</span> funlockfile (<a class='declaration-uses' href='../91/8bbaed7fe58735.html#0003100100063001'>FILE</a> *__stream) <a class='MACRO-uses' href='../11/d2796f2851903a.html#0003d00c0003d01b'>__THROW</a></span>;
 <span class='directive'>#endif /* POSIX */</span>
 
-<span class='directive'>#if defined __USE_XOPEN &amp;&amp; !defined __USE_XOPEN2K &amp;&amp; !defined __USE_GNU</span><span class='preprocessor-if muted'>
+<span class='directive'>#if defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0014a00a0014a016'>__USE_XOPEN</a> &amp;&amp; !defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015500c0015501a'>__USE_XOPEN2K</a> &amp;&amp; !defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0017800a00178014'>__USE_GNU</a></span><span class='preprocessor-if muted'>
 <span class='comment'>/*  X/Open Issues 1-5 required getopt to be declared in this
    header.  It was removed in Issue 6.  GNU follows Issue 6.  */</span>
 <span class='directive'># include &lt;bits/getopt_posix.h&gt;</span></span>
@@ -868,13 +868,13 @@
 
 <span class='comment'>/* If we are compiling with optimizing read this file.  It contains
    several optimizing inline functions and macros.  */</span>
-<span class='directive'>#ifdef __USE_EXTERN_INLINES</span><span class='preprocessor-if muted'>
+<span class='directive'>#ifdef <span class='macro-undefined'>__USE_EXTERN_INLINES</span></span><span class='preprocessor-if muted'>
 <span class='directive'># include &lt;bits/stdio.h&gt;</span></span>
 <span class='directive'>#endif</span>
-<span class='directive'>#if <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0018300a0018301e'>__USE_FORTIFY_LEVEL</a> &gt; 0 &amp;&amp; defined __fortify_function</span><span class='preprocessor-if muted'>
+<span class='directive'>#if <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0018300a0018301e'>__USE_FORTIFY_LEVEL</a> &gt; 0 &amp;&amp; defined <a class='MACRO-uses' href='../11/d2796f2851903a.html#0016400a00164034'>__fortify_function</a></span><span class='preprocessor-if muted'>
 <span class='directive'># include &lt;bits/stdio2.h&gt;</span></span>
 <span class='directive'>#endif</span>
-<span class='directive'>#ifdef __LDBL_COMPAT</span><span class='preprocessor-if muted'>
+<span class='directive'>#ifdef <span class='macro-undefined'>__LDBL_COMPAT</span></span><span class='preprocessor-if muted'>
 <span class='directive'># include &lt;bits/stdio-ldbl.h&gt;</span></span>
 <span class='directive'>#endif</span>
 

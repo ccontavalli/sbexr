@@ -25,13 +25,13 @@
  *===-----------------------------------------------------------------------===
  */</span>
 
-<span class='directive'>#if !defined(__STDDEF_H) || defined(__need_ptrdiff_t) ||                       \
-    defined(__need_size_t) || defined(__need_wchar_t) ||                       \
-    defined(__need_NULL) || defined(__need_wint_t)</span>
+<span class='directive'>#if !defined(<span class='macro-undefined'>__STDDEF_H</span>) || defined(<span class='macro-undefined'>__need_ptrdiff_t</span>) ||                       \
+    defined(<a class='MACRO-uses' href='../6f/078dbcc264af74.html#0001f0090001f009'>__need_size_t</a>) || defined(<span class='macro-undefined'>__need_wchar_t</span>) ||                       \
+    defined(<a class='MACRO-uses' href='../6f/078dbcc264af74.html#0002000900020009'>__need_NULL</a>) || defined(<span class='macro-undefined'>__need_wint_t</span>)</span>
 
-<span class='directive'>#if !defined(__need_ptrdiff_t) &amp;&amp; !defined(__need_size_t) &amp;&amp;                   \
-    !defined(__need_wchar_t) &amp;&amp; !defined(__need_NULL) &amp;&amp;                       \
-    !defined(__need_wint_t)</span><span class='preprocessor-if muted'>
+<span class='directive'>#if !defined(<span class='macro-undefined'>__need_ptrdiff_t</span>) &amp;&amp; !defined(<a class='MACRO-uses' href='../6f/078dbcc264af74.html#0001f0090001f009'>__need_size_t</a>) &amp;&amp;                   \
+    !defined(<span class='macro-undefined'>__need_wchar_t</span>) &amp;&amp; !defined(<a class='MACRO-uses' href='../6f/078dbcc264af74.html#0002000900020009'>__need_NULL</a>) &amp;&amp;                       \
+    !defined(<span class='macro-undefined'>__need_wint_t</span>)</span><span class='preprocessor-if muted'>
 <span class='comment'>/* Always define miscellaneous pieces when modules are available. */</span>
 <span class='directive'>#if !__has_feature(modules)</span>
 <span class='directive'>#define __STDDEF_H</span>
@@ -44,7 +44,7 @@
 <span class='comment'>/* __need_wint_t is intentionally not defined here. */</span></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#if defined(__need_ptrdiff_t)</span><span class='preprocessor-if muted'>
+<span class='directive'>#if defined(<span class='macro-undefined'>__need_ptrdiff_t</span>)</span><span class='preprocessor-if muted'>
 <span class='directive'>#if !defined(_PTRDIFF_T) || __has_feature(modules)</span>
 <span class='comment'>/* Always define ptrdiff_t when modules are available. */</span>
 <span class='directive'>#if !__has_feature(modules)</span>
@@ -55,8 +55,8 @@
 <span class='directive'>#undef __need_ptrdiff_t</span></span>
 <span class='directive'>#endif /* defined(__need_ptrdiff_t) */</span>
 
-<span class='directive'>#if defined(__need_size_t)</span>
-<span class='directive'>#if !defined(_SIZE_T) || __has_feature(modules)</span>
+<span class='directive'>#if defined(<a class='MACRO-uses' href='../6f/078dbcc264af74.html#0001f0090001f009'>__need_size_t</a>)</span>
+<span class='directive'>#if !defined(<span class='macro-undefined'>_SIZE_T</span>) || __has_feature(modules)</span>
 <span class='comment'>/* Always define size_t when modules are available. */</span>
 <span class='directive'>#if !__has_feature(modules)</span>
 <span class='directive'>#define <span class='def def-MACRO' id='0003c0090003c009'>_SIZE_T</span></span>
@@ -66,7 +66,7 @@
 <span class='directive'>#undef __need_size_t</span>
 <span class='directive'>#endif /*defined(__need_size_t) */</span>
 
-<span class='directive'>#if defined(__need_STDDEF_H_misc)</span><span class='preprocessor-if muted'>
+<span class='directive'>#if defined(<span class='macro-undefined'>__need_STDDEF_H_misc</span>)</span><span class='preprocessor-if muted'>
 <span class='comment'>/* ISO9899:2011 7.20 (C11 Annex K): Define rsize_t if __STDC_WANT_LIB_EXT1__ is
  * enabled. */</span>
 <span class='directive'>#if (defined(__STDC_WANT_LIB_EXT1__) &amp;&amp; __STDC_WANT_LIB_EXT1__ &gt;= 1 &amp;&amp; \
@@ -79,7 +79,7 @@
 <span class='directive'>#endif</span></span>
 <span class='directive'>#endif /* defined(__need_STDDEF_H_misc) */</span>
 
-<span class='directive'>#if defined(__need_wchar_t)</span><span class='preprocessor-if muted'>
+<span class='directive'>#if defined(<span class='macro-undefined'>__need_wchar_t</span>)</span><span class='preprocessor-if muted'>
 <span class='directive'>#ifndef __cplusplus</span>
 <span class='comment'>/* Always define wchar_t when modules are available. */</span>
 <span class='directive'>#if !defined(_WCHAR_T) || __has_feature(modules)</span>
@@ -95,10 +95,10 @@
 <span class='directive'>#undef __need_wchar_t</span></span>
 <span class='directive'>#endif /* defined(__need_wchar_t) */</span>
 
-<span class='directive'>#if defined(__need_NULL)</span>
+<span class='directive'>#if defined(<a class='MACRO-uses' href='../6f/078dbcc264af74.html#0002000900020009'>__need_NULL</a>)</span>
 <span class='directive'>#undef NULL</span>
 <span class='directive'>#ifdef __cplusplus</span>
-<span class='directive'>#  if !defined(__MINGW32__) &amp;&amp; !defined(_MSC_VER)</span>
+<span class='directive'>#  if !defined(<span class='macro-undefined'>__MINGW32__</span>) &amp;&amp; !defined(<span class='macro-undefined'>_MSC_VER</span>)</span>
 <span class='directive'>#    define <span class='def def-MACRO' id='0006400d00064012'>NULL __null</span></span>
 <span class='directive'>#  else</span><span class='preprocessor-if muted'>
 <span class='directive'>#    define NULL 0</span></span>
@@ -107,7 +107,7 @@
 <span class='directive'>#  define NULL ((void*)0)</span></span>
 <span class='directive'>#endif</span>
 <span class='directive'>#ifdef __cplusplus</span>
-<span class='directive'>#if defined(_MSC_EXTENSIONS) &amp;&amp; defined(_NATIVE_NULLPTR_SUPPORTED)</span><span class='preprocessor-if muted'>
+<span class='directive'>#if defined(<span class='macro-undefined'>_MSC_EXTENSIONS</span>) &amp;&amp; defined(<span class='macro-undefined'>_NATIVE_NULLPTR_SUPPORTED</span>)</span><span class='preprocessor-if muted'>
 <span class='keyword namespace'>namespace</span> std { <span class='keyword typedef'>typedef</span> <span class='keyword decltype'>decltype</span>(<span class='keyword nullptr'>nullptr</span>) nullptr_t; }
 <span class='keyword using'>using</span> ::std::nullptr_t;</span>
 <span class='directive'>#endif</span>
@@ -115,7 +115,7 @@
 <span class='directive'>#undef __need_NULL</span>
 <span class='directive'>#endif /* defined(__need_NULL) */</span>
 
-<span class='directive'>#if defined(__need_STDDEF_H_misc)</span><span class='preprocessor-if muted'>
+<span class='directive'>#if defined(<span class='macro-undefined'>__need_STDDEF_H_misc</span>)</span><span class='preprocessor-if muted'>
 <span class='directive'>#if __STDC_VERSION__ &gt;= 201112L || __cplusplus &gt;= 201103L</span>
 <span class='directive'>#include "__stddef_max_align_t.h"</span>
 <span class='directive'>#endif</span>
@@ -125,7 +125,7 @@
 
 <span class='comment'>/* Some C libraries expect to see a wint_t here. Others (notably MinGW) will use
 __WINT_TYPE__ directly; accommodate both by requiring __need_wint_t */</span>
-<span class='directive'>#if defined(__need_wint_t)</span><span class='preprocessor-if muted'>
+<span class='directive'>#if defined(<span class='macro-undefined'>__need_wint_t</span>)</span><span class='preprocessor-if muted'>
 <span class='comment'>/* Always define wint_t when modules are available. */</span>
 <span class='directive'>#if !defined(_WINT_T) || __has_feature(modules)</span>
 <span class='directive'>#if !__has_feature(modules)</span>

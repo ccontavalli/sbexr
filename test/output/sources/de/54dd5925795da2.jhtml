@@ -17,7 +17,7 @@
    License along with the GNU C Library; if not, see
    &lt;http://www.gnu.org/licenses/&gt;.  */</span>
 
-<span class='directive'>#ifndef	_STDC_PREDEF_H</span>
+<span class='directive'>#ifndef	<span class='macro-undefined'>_STDC_PREDEF_H</span></span>
 <span class='directive'>#define	<span class='def def-MACRO' id='0001300900013018'>_STDC_PREDEF_H	1</span></span>
 
 <span class='comment'>/* This header is separate from features.h so that the compiler can
@@ -35,7 +35,7 @@
    presume an older compiler has intent to support these features and
    define these macros by default.  */</span>
 
-<span class='directive'>#ifdef __GCC_IEC_559</span><span class='preprocessor-if muted'>
+<span class='directive'>#ifdef <span class='macro-undefined'>__GCC_IEC_559</span></span><span class='preprocessor-if muted'>
 <span class='directive'># if __GCC_IEC_559 &gt; 0</span>
 <span class='directive'>#  define __STDC_IEC_559__		1</span>
 <span class='directive'># endif</span></span>
@@ -43,7 +43,7 @@
 <span class='directive'># define <span class='def def-MACRO' id='0002900a0002901c'>__STDC_IEC_559__		1</span></span>
 <span class='directive'>#endif</span>
 
-<span class='directive'>#ifdef __GCC_IEC_559_COMPLEX</span><span class='preprocessor-if muted'>
+<span class='directive'>#ifdef <span class='macro-undefined'>__GCC_IEC_559_COMPLEX</span></span><span class='preprocessor-if muted'>
 <span class='directive'># if __GCC_IEC_559_COMPLEX &gt; 0</span>
 <span class='directive'>#  define __STDC_IEC_559_COMPLEX__	1</span>
 <span class='directive'># endif</span></span>
