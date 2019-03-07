@@ -71,6 +71,11 @@ counters.o: counters.cc \
 	base.h \
 	json-helpers.h \
 	mempool.h
+rewriter.o: rewriter.cc \
+	rewriter.h \
+	common.h \
+	base.h \
+	mempool.h
 cache.o: cache.cc \
 	cache.h \
 	base.h \
@@ -80,11 +85,6 @@ cache.o: cache.cc \
 	json-helpers.h \
 	mempool.h \
 	rewriter.h
-rewriter.o: rewriter.cc \
-	rewriter.h \
-	common.h \
-	base.h \
-	mempool.h
 ast.o: ast.cc \
 	ast.h \
 	base.h \
@@ -122,7 +122,7 @@ ast.o: ast.cc \
 	pp-tracker.h \
 	sbexr.cc \
 	counters.cc \
-	cache.cc \
 	rewriter.cc \
+	cache.cc \
 	ast.cc \
 	Makefile

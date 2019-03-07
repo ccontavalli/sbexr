@@ -35,14 +35,38 @@
 #include <ostream>
 #include <string>
 
+class DebugStream {
+ public:
+  explicit DebugStream(std::ostream& stream) : stream_(stream) {}
+  ~DebugStream() { stream_ << "\n"; }
+
+  DebugStream(const DebugStream& other) = delete;
+  DebugStream& operator=(const DebugStream& other) = delete;
+
+  DebugStream(DebugStream&& other) : stream_(other.stream_) {}
+  // DebugStream& operator=(DebugStream&& other) { stream_ = std::move(other.stream_); }
+
+  std::ostream& GetStream() const { return stream_; }
+
+ private:
+  std::ostream& stream_;
+};
+
+// Allows a DebugStream to be used as a plain stream, with the usual << fun. 
+template<typename Whatever>
+std::ostream& operator<<(DebugStream&& dstream, Whatever value) {
+  dstream.GetStream() << value;
+  return dstream.GetStream();
+}
+
 class Counter {
  public:
   Counter(const char* name, const char* description, std::ostream* capture)
       : name_(name), description_(description), capture_(capture) {}
 
-  std::ostream& Add();
-  std::ostream& Add(SourceRange range);
-  std::ostream& Add(SourceLocation begin, SourceLocation end);
+  DebugStream Add();
+  DebugStream Add(SourceRange range);
+  DebugStream Add(SourceLocation begin, SourceLocation end);
 
   void Capture(std::ostream* capture);
 

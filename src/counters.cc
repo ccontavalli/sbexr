@@ -92,19 +92,19 @@ bool Register::OutputJson(const std::string& path) const {
   return true;
 }
 
-std::ostream& Counter::Add(SourceRange range) {
+DebugStream Counter::Add(SourceRange range) {
   return Add(range.getBegin(), range.getEnd());
 }
 
-std::ostream& Counter::Add(SourceLocation begin, SourceLocation end) {
+DebugStream Counter::Add(SourceLocation begin, SourceLocation end) {
   return Add();
 }
 
 void Counter::Capture(std::ostream* capture) { capture_ = capture; }
 
-std::ostream& Counter::Add() {
+DebugStream Counter::Add() {
   counter_++;
 
   *capture_ << "COUNTER - " << name_ << ": ";
-  return *capture_;
+  return DebugStream(*capture_);
 }
