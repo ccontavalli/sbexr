@@ -92,6 +92,23 @@ class SbexrRecorder {
     return rt;
   }
 
+  const TypeLoc TypeSourceInfoToTypeLoc(TypeSourceInfo* tsi) {
+    auto tl = tsi->getTypeLoc();
+    while (true) {
+      if (const auto atl = tl.getAs<PointerTypeLoc>())
+        tl = atl.getPointeeLoc();
+      else if (const auto atl = tl.getAs<ReferenceTypeLoc>())
+        tl = atl.getPointeeLoc();
+      else if (const auto atl = tl.getAs<ArrayTypeLoc>())
+        tl = atl.getElementLoc();
+      else if (const auto atl = tl.getAs<AttributedTypeLoc>())
+        tl = atl.getModifiedLoc();
+      else
+        break;
+    }
+    return tl;
+  }
+
   SourceRange GetRangeForType(const QualType& qual_type) const {
     const auto* real_type = GetUnderlyingType(qual_type);
     if (!real_type) return SourceRange();
@@ -466,20 +483,7 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 
     auto* tsi = v->getTypeSourceInfo();
     if (tsi) {
-      auto tl = tsi->getTypeLoc();
-      while (true) {
-        if (const auto atl = tl.getAs<PointerTypeLoc>())
-          tl = atl.getPointeeLoc();
-        else if (const auto atl = tl.getAs<ReferenceTypeLoc>())
-          tl = atl.getPointeeLoc();
-        else if (const auto atl = tl.getAs<ArrayTypeLoc>())
-          tl = atl.getElementLoc();
-        else if (const auto atl = tl.getAs<AttributedTypeLoc>())
-          tl = atl.getModifiedLoc();
-        else
-          break;
-      }
-
+      const auto& tl = recorder_->TypeSourceInfoToTypeLoc(tsi);
       if (gl_verbose)
         std::cerr << "TYPESOURCEINFO: "
                   << recorder_->PrintLocation(tl.getSourceRange()) << " "
@@ -494,16 +498,25 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
     // FIXME: do something smart on using declarations.
     if (gl_verbose)
       std::cerr << "VisitUsingDecl " << recorder_->TryPrint(v) << std::endl;
-#if 0
-    if (v->shadow_size() == 1) {
-      const auto& target = v->shadow_begin()->getTargetDecl();
+
+    return Base::VisitUsingDecl(v);
+  }
+
+  bool VisitTypedefDecl(TypedefDecl* v) {
+    if (gl_verbose)
+      std::cerr << "VisitTypedefDecl " << __func__ << recorder_->TryPrint(v) << std::endl;
+
+    auto* tsi = v->getTypeSourceInfo();
+    if (!tsi) {
+      // Add counter?
+      return Base::VisitTypedefDecl(v);
     }
 
-    static int count = 0;
-    if (++count >= 5)
-      exit(1);
-#endif
-    return true;
+    const auto& tl = recorder_->TypeSourceInfoToTypeLoc(tsi);
+    const auto& qt = tsi->getType();
+
+    recorder_->CodeUsesQualType(tl, "typedef", qt);
+    return Base::VisitTypedefDecl(v);
   }
 
   bool VisitNamedDecl(NamedDecl* v) {

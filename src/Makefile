@@ -1,7 +1,8 @@
 LLVMVERSION := 8
 LLVMCONFIG := llvm-config-$(LLVMVERSION)
 LIBS := $(shell $(LLVMCONFIG) --libs)
-CXXFLAGS := $(shell $(LLVMCONFIG) --cxxflags) -ggdb3 -O0
+DEBUG := -ggdb3 -O0
+CXXFLAGS := $(shell $(LLVMCONFIG) --cxxflags) $(DEBUG)
 LDFLAGS := $(shell $(LLVMCONFIG) --ldflags)
 TIME := time --format='MEM: unshared process size=%D, average total=%K, max resident=%M\nTIME: total wall time=%e, user time=%U, kernel time=%S'
 VERBOSE := --verbose

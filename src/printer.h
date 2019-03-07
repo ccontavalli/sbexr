@@ -292,6 +292,21 @@ class Printer {
       PRINT_NAME_VALUE("size", v->getDeclGroup().getDeclGroup().size());
   });
 
+  PRINT_FUNCTION(TypedefNameDecl, v, {
+    PRINT_BOOL(v, isModed);
+    PRINT_RECURSE_PTR(v, getTypeSourceInfo);
+    PRINT_RECURSE_TMP(v, getUnderlyingType);
+    PRINT_RECURSE_PTR(v, getCanonicalDecl);
+    PRINT_RECURSE_PTR(v, getAnonDeclWithTypedefName);
+    PRINT_BOOL(v, isTransparentTag);
+    PRINT_RECURSE_BASE(NamedDecl, v);
+  });
+
+  PRINT_FUNCTION(TypedefDecl, v, {
+    PRINT_RANGE(v, getSourceRange);
+    PRINT_RECURSE_BASE(TypedefNameDecl, v);
+  });
+
   PRINT_FUNCTION(TagDecl, v, {
     PRINT_RANGE(v, getBraceRange);
     PRINT_RANGE(v, getSourceRange);
