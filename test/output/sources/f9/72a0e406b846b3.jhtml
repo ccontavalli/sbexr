@@ -54,7 +54,7 @@
    preserve historic C++ mangled names for functions taking
    cookie_io_functions_t arguments.  That name should not be used in
    new code.  */</span>
-<span class='def def-Typedef' id='000370010003d003'><span class='keyword typedef'>typedef</span> <span class='def def-CXXRecord' id='000370090003d001'><span class='keyword struct'>struct</span> _IO_cookie_io_functions_t
+<span class='def def-Typedef' id='000370010003d003'><span class='keyword typedef'>typedef</span> <span class='def def-CXXRecord' id='000370090003d001'><a class='typedef-uses' href='../f9/72a0e406b846b3.html#000370090003d001'><span class='keyword struct'>struct</span> _IO_cookie_io_functions_t</a>
 {
   <span class='def def-Field' id='000390030003901b'><a class='declaration-uses' href='../f9/72a0e406b846b3.html#0001b0010001c03a'>cookie_read_function_t</a> *read</span>;		<span class='comment'>/* Read bytes.  */</span>
   <span class='def def-Field' id='0003a0030003a01c'><a class='declaration-uses' href='../f9/72a0e406b846b3.html#000240010002503b'>cookie_write_function_t</a> *write</span>;	<span class='comment'>/* Write bytes.  */</span>

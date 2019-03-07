@@ -140,6 +140,14 @@
                     "decls": [],
                     "users": [
                         {
+                            "href": "../41/e28fc1cdef774c.html#00048018000480180009900c0009900c",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:153:12-153:12"
+                        },
+                        {
+                            "href": "../57/27d4eb0ac27416.html#0000d0090000d009",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:13:9-13:9"
+                        },
+                        {
                             "href": "../a3/5161b30e4c9c85.html#0000d0030000d003",
                             "location": "/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:13:3-13:3"
                         },
@@ -1423,6 +1431,14 @@
                     "decls": [],
                     "users": [
                         {
+                            "href": "../fa/0a0d3d8e7cc07c.html#0000a0090000a010",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:10:9-10:16"
+                        },
+                        {
+                            "href": "../6f/078dbcc264af74.html#0005900900059009",
+                            "location": "/usr/include/stdio.h:89:9-89:9"
+                        },
+                        {
                             "href": "../6f/078dbcc264af74.html#002f6032002f603b",
                             "location": "/usr/include/stdio.h:758:50-758:59"
                         },
@@ -1487,6 +1503,14 @@
                     ],
                     "decls": [],
                     "users": [
+                        {
+                            "href": "../a3/5161b30e4c9c85.html#0000a0090000a010",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:10:9-10:16"
+                        },
+                        {
+                            "href": "../6f/078dbcc264af74.html#0005400900054009",
+                            "location": "/usr/include/stdio.h:84:9-84:9"
+                        },
                         {
                             "href": "../6f/078dbcc264af74.html#002e1030002e1037",
                             "location": "/usr/include/stdio.h:737:48-737:55"
@@ -2274,6 +2298,10 @@
                     ],
                     "decls": [],
                     "users": [
+                        {
+                            "href": "../f9/72a0e406b846b3.html#0003700900037010",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:55:9-55:16"
+                        },
                         {
                             "href": "../6f/078dbcc264af74.html#0011f0060011f006",
                             "location": "/usr/include/stdio.h:287:6-287:6"
@@ -7602,7 +7630,12 @@
                         }
                     ],
                     "decls": [],
-                    "users": []
+                    "users": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0003500900035009",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:53:9-53:9"
+                        }
+                    ]
                 }
             ]
         },
@@ -7620,7 +7653,12 @@
                         }
                     ],
                     "decls": [],
-                    "users": []
+                    "users": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0003700900037009",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:55:9-55:9"
+                        }
+                    ]
                 }
             ]
         },
@@ -7638,7 +7676,12 @@
                         }
                     ],
                     "decls": [],
-                    "users": []
+                    "users": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0003900900039009",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:57:9-57:9"
+                        }
+                    ]
                 }
             ]
         },
@@ -7656,7 +7699,12 @@
                         }
                     ],
                     "decls": [],
-                    "users": []
+                    "users": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0003300900033009",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:51:9-51:9"
+                        }
+                    ]
                 }
             ]
         },
@@ -7976,6 +8024,10 @@
                     "decls": [],
                     "users": [
                         {
+                            "href": "../41/e28fc1cdef774c.html#000c8009000c8009",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:200:9-200:9"
+                        },
+                        {
                             "href": "../fa/0a0d3d8e7cc07c.html#0000c0030000c003",
                             "location": "/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:12:3-12:3"
                         },
@@ -7986,6 +8038,10 @@
                         {
                             "href": "../f9/72a0e406b846b3.html#0002d0350002d035",
                             "location": "/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:45:53-45:53"
+                        },
+                        {
+                            "href": "../6f/078dbcc264af74.html#0004600900046009",
+                            "location": "/usr/include/stdio.h:70:9-70:9"
                         },
                         {
                             "href": "../6f/078dbcc264af74.html#002f4026002f4026",
@@ -8040,6 +8096,10 @@
                         {
                             "href": "../91/8bbaed7fe58735.html#0004a0030004a003",
                             "location": "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:74:3-74:3"
+                        },
+                        {
+                            "href": "../6f/078dbcc264af74.html#0003f0090003f009",
+                            "location": "/usr/include/stdio.h:63:9-63:9"
                         },
                         {
                             "href": "../6f/078dbcc264af74.html#002c9024002c9024",
@@ -8270,6 +8330,10 @@
                     ],
                     "decls": [],
                     "users": [
+                        {
+                            "href": "../6f/078dbcc264af74.html#0004d0090004d009",
+                            "location": "/usr/include/stdio.h:77:9-77:9"
+                        },
                         {
                             "href": "../6f/078dbcc264af74.html#0026100800261008",
                             "location": "/usr/include/stdio.h:609:8-609:8"
@@ -8820,7 +8884,12 @@
                         }
                     ],
                     "decls": [],
-                    "users": []
+                    "users": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0003600900036009",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:54:9-54:9"
+                        }
+                    ]
                 }
             ]
         },
@@ -8838,7 +8907,12 @@
                         }
                     ],
                     "decls": [],
-                    "users": []
+                    "users": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0003800900038009",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:56:9-56:9"
+                        }
+                    ]
                 }
             ]
         },
@@ -8856,7 +8930,12 @@
                         }
                     ],
                     "decls": [],
-                    "users": []
+                    "users": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0003a0090003a009",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:58:9-58:9"
+                        }
+                    ]
                 }
             ]
         },
@@ -8874,7 +8953,12 @@
                         }
                     ],
                     "decls": [],
-                    "users": []
+                    "users": [
+                        {
+                            "href": "../41/e28fc1cdef774c.html#0003400900034009",
+                            "location": "/usr/include/x86_64-linux-gnu/bits/types.h:52:9-52:9"
+                        }
+                    ]
                 }
             ]
         },
@@ -12017,6 +12101,10 @@
                         {
                             "href": "../cf/341b97b05a5692.html#0002500900025009",
                             "location": "test-multiple-file-1.cc:37:9-37:9"
+                        },
+                        {
+                            "href": "../cf/341b97b05a5692.html#000300190003001f0003100900031009",
+                            "location": "test-multiple-file-1.cc:49:9-49:9"
                         },
                         {
                             "href": "../cf/341b97b05a5692.html#0003900300039003",

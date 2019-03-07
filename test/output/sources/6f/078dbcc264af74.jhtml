@@ -62,33 +62,33 @@
 <span class='directive'>#if defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0014d00b0014d018'>__USE_UNIX98</a> || defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015500c0015501a'>__USE_XOPEN2K</a></span>
 <span class='directive'># ifndef <span class='macro-undefined'>__off_t_defined</span></span>
 <span class='directive'># ifndef <span class='macro-undefined'>__USE_FILE_OFFSET64</span></span>
-<span class='def def-Typedef' id='0003f0010003f011'><span class='keyword typedef'>typedef</span> __off_t off_t</span>;
+<span class='def def-Typedef' id='0003f0010003f011'><span class='keyword typedef'>typedef</span> <a class='typedef-uses' href='../41/e28fc1cdef774c.html#00088016000960190009600100096019'>__off_t</a> off_t</span>;
 <span class='directive'># else</span><span class='preprocessor-if muted'>
 <span class='keyword typedef'>typedef</span> __off64_t off_t;</span>
 <span class='directive'># endif</span>
 <span class='directive'># define <span class='def def-MACRO' id='0004300a0004300a'>__off_t_defined</span></span>
 <span class='directive'># endif</span>
 <span class='directive'># if defined <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0016800a0016801c'>__USE_LARGEFILE64</a> &amp;&amp; !defined <span class='macro-undefined'>__off64_t_defined</span></span>
-<span class='def def-Typedef' id='0004600100046013'><span class='keyword typedef'>typedef</span> __off64_t off64_t</span>;
+<span class='def def-Typedef' id='0004600100046013'><span class='keyword typedef'>typedef</span> <a class='typedef-uses' href='../41/e28fc1cdef774c.html#000880160009701b000970010009701b'>__off64_t</a> off64_t</span>;
 <span class='directive'># define <span class='def def-MACRO' id='0004700a0004700a'>__off64_t_defined</span></span>
 <span class='directive'># endif</span>
 <span class='directive'>#endif</span>
 
 <span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0015200d0015201c'>__USE_XOPEN2K8</a></span>
 <span class='directive'># ifndef <span class='macro-undefined'>__ssize_t_defined</span></span>
-<span class='def def-Typedef' id='0004d0010004d013'><span class='keyword typedef'>typedef</span> __ssize_t ssize_t</span>;
+<span class='def def-Typedef' id='0004d0010004d013'><span class='keyword typedef'>typedef</span> <a class='typedef-uses' href='../41/e28fc1cdef774c.html#00088016000bf01b000bf001000bf01b'>__ssize_t</a> ssize_t</span>;
 <span class='directive'># define <span class='def def-MACRO' id='0004e00a0004e00a'>__ssize_t_defined</span></span>
 <span class='directive'># endif</span>
 <span class='directive'>#endif</span>
 
 <span class='comment'>/* The type of the second argument to `fgetpos' and `fsetpos'.  */</span>
 <span class='directive'>#ifndef <span class='macro-undefined'>__USE_FILE_OFFSET64</span></span>
-<span class='def def-Typedef' id='0005400100054012'><span class='keyword typedef'>typedef</span> __fpos_t fpos_t</span>;
+<span class='def def-Typedef' id='0005400100054012'><span class='keyword typedef'>typedef</span> <a class='typedef-uses' href='../a3/5161b30e4c9c85.html#0000a0090000e001'>__fpos_t</a> fpos_t</span>;
 <span class='directive'>#else</span><span class='preprocessor-if muted'>
 <span class='keyword typedef'>typedef</span> __fpos64_t fpos_t;</span>
 <span class='directive'>#endif</span>
 <span class='directive'>#ifdef <a class='MACRO-uses' href='../08/80fafb6e566ce0.html#0016800a0016801c'>__USE_LARGEFILE64</a></span>
-<span class='def def-Typedef' id='0005900100059014'><span class='keyword typedef'>typedef</span> __fpos64_t fpos64_t</span>;
+<span class='def def-Typedef' id='0005900100059014'><span class='keyword typedef'>typedef</span> <a class='typedef-uses' href='../fa/0a0d3d8e7cc07c.html#0000a0090000e001'>__fpos64_t</a> fpos64_t</span>;
 <span class='directive'>#endif</span>
 
 <span class='comment'>/* The possibilities for the third argument to `setvbuf'.  */</span>

@@ -6,6 +6,6 @@
 <span class='decl decl-CXXRecord' id='0000400100004008'><span class='keyword struct'>struct</span> _IO_FILE</span>;
 
 <span class='comment'>/* The opaque type of streams.  This is the definition used elsewhere.  */</span>
-<span class='def def-Typedef' id='0000700100007019'><span class='keyword typedef'>typedef</span> <span class='keyword struct'>struct</span> _IO_FILE FILE</span>;
+<span class='def def-Typedef' id='0000700100007019'><span class='keyword typedef'>typedef</span> <a class='typedef-uses' href='../91/8bbaed7fe58735.html#0003100100063001'><span class='keyword struct'>struct</span> _IO_FILE</a> FILE</span>;
 
 <span class='directive'>#endif</span>

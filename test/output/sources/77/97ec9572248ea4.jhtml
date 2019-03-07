@@ -4,6 +4,6 @@
 <span class='directive'>#define <span class='def def-MACRO' id='000020090000201a'>____FILE_defined 1</span></span>
 
 <span class='decl decl-CXXRecord' id='0000400100004008'><span class='keyword struct'>struct</span> _IO_FILE</span>;
-<span class='def def-Typedef' id='0000500100005019'><span class='keyword typedef'>typedef</span> <span class='keyword struct'>struct</span> _IO_FILE __FILE</span>;
+<span class='def def-Typedef' id='0000500100005019'><span class='keyword typedef'>typedef</span> <a class='typedef-uses' href='../91/8bbaed7fe58735.html#0003100100063001'><span class='keyword struct'>struct</span> _IO_FILE</a> __FILE</span>;
 
 <span class='directive'>#endif</span>

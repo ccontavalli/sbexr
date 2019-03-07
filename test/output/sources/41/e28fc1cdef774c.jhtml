@@ -50,14 +50,14 @@
 <span class='directive'>#endif</span>
 
 <span class='comment'>/* Smallest types with at least a given width.  */</span>
-<span class='def def-Typedef' id='0003300100033012'><span class='keyword typedef'>typedef</span> __int8_t __int_least8_t</span>;
-<span class='def def-Typedef' id='0003400100034013'><span class='keyword typedef'>typedef</span> __uint8_t __uint_least8_t</span>;
-<span class='def def-Typedef' id='0003500100035013'><span class='keyword typedef'>typedef</span> __int16_t __int_least16_t</span>;
-<span class='def def-Typedef' id='0003600100036014'><span class='keyword typedef'>typedef</span> __uint16_t __uint_least16_t</span>;
-<span class='def def-Typedef' id='0003700100037013'><span class='keyword typedef'>typedef</span> __int32_t __int_least32_t</span>;
-<span class='def def-Typedef' id='0003800100038014'><span class='keyword typedef'>typedef</span> __uint32_t __uint_least32_t</span>;
-<span class='def def-Typedef' id='0003900100039013'><span class='keyword typedef'>typedef</span> __int64_t __int_least64_t</span>;
-<span class='def def-Typedef' id='0003a0010003a014'><span class='keyword typedef'>typedef</span> __uint64_t __uint_least64_t</span>;
+<span class='def def-Typedef' id='0003300100033012'><span class='keyword typedef'>typedef</span> <a class='typedef-uses' href='../41/e28fc1cdef774c.html#0002400100024015'>__int8_t</a> __int_least8_t</span>;
+<span class='def def-Typedef' id='0003400100034013'><span class='keyword typedef'>typedef</span> <a class='typedef-uses' href='../41/e28fc1cdef774c.html#0002500100025017'>__uint8_t</a> __uint_least8_t</span>;
+<span class='def def-Typedef' id='0003500100035013'><span class='keyword typedef'>typedef</span> <a class='typedef-uses' href='../41/e28fc1cdef774c.html#000260010002601a'>__int16_t</a> __int_least16_t</span>;
+<span class='def def-Typedef' id='0003600100036014'><span class='keyword typedef'>typedef</span> <a class='typedef-uses' href='../41/e28fc1cdef774c.html#000270010002701c'>__uint16_t</a> __uint_least16_t</span>;
+<span class='def def-Typedef' id='0003700100037013'><span class='keyword typedef'>typedef</span> <a class='typedef-uses' href='../41/e28fc1cdef774c.html#0002800100028014'>__int32_t</a> __int_least32_t</span>;
+<span class='def def-Typedef' id='0003800100038014'><span class='keyword typedef'>typedef</span> <a class='typedef-uses' href='../41/e28fc1cdef774c.html#0002900100029016'>__uint32_t</a> __uint_least32_t</span>;
+<span class='def def-Typedef' id='0003900100039013'><span class='keyword typedef'>typedef</span> <a class='typedef-uses' href='../41/e28fc1cdef774c.html#0002b0010002b019'>__int64_t</a> __int_least64_t</span>;
+<span class='def def-Typedef' id='0003a0010003a014'><span class='keyword typedef'>typedef</span> <a class='typedef-uses' href='../41/e28fc1cdef774c.html#0002c0010002c01b'>__uint64_t</a> __uint_least64_t</span>;
 
 <span class='comment'>/* quad_t is also 64 bits.  */</span>
 <span class='directive'>#if <a class='MACRO-uses' href='../fd/cacc45a9906e85.html#0000400a00004015'>__WORDSIZE</a> == 64</span>
@@ -199,7 +199,7 @@
 
 <span class='comment'>/* These few don't really vary by system, they always correspond
    to one of the other defined types.  */</span>
-<span class='def def-Typedef' id='000c8001000c8013'><span class='keyword typedef'>typedef</span> __off64_t __loff_t</span>;	<span class='comment'>/* Type of file sizes and offsets (LFS).  */</span>
+<span class='def def-Typedef' id='000c8001000c8013'><span class='keyword typedef'>typedef</span> <a class='typedef-uses' href='../41/e28fc1cdef774c.html#000880160009701b000970010009701b'>__off64_t</a> __loff_t</span>;	<span class='comment'>/* Type of file sizes and offsets (LFS).  */</span>
 <span class='def def-Typedef' id='000c9001000c900f'><span class='keyword typedef'>typedef</span> <span class='keyword char'>char</span> *__caddr_t</span>;
 
 <span class='comment'>/* Duplicates info from stdint.h but this is used in unistd.h.  */</span>

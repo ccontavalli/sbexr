@@ -2,8 +2,8 @@
 output/validator.report: WARNING - unexpected file
 output/sources/meta/counters.json: WARNING - unexpected file
 ==== STATISTICS FOR ./output
-Warnings: 2, Pedantic: 453
-    'Target is unused': 453
+Warnings: 2, Pedantic: 445
+    'Target is unused': 445
     'unexpected file': 2
 
 File system statistcs:
@@ -11,16 +11,16 @@ File system statistcs:
    paths: 60 scanned, of which 15 directories, 40 source, 1 copied, 2 meta, 2 unexpected
 
 Resource statistcs:
-   requested: 56 file/dir resources, 140 targets, 286 users
-   unused: 0 file/dir resources, 453 targets
+   requested: 56 file/dir resources, 148 targets, 290 users
+   unused: 0 file/dir resources, 445 targets
    total: 56 file/dir resources, 593 targets
 
 JHTML Statistics:
-   Text: 6309 blocks for 1921979 bytes
-   Tags: 3650 opened, 3650 closed, in a 7 elements max stack
-   Attributes: 556 href, 593 id, 3650 class (5093 classes specified)
+   Text: 6342 blocks for 1921979 bytes
+   Tags: 3670 opened, 3670 closed, in a 7 elements max stack
+   Attributes: 576 href, 593 id, 3670 class (5113 classes specified)
 
-CLASS Attributes seen (58 different ones):
+CLASS Attributes seen (59 different ones):
      339:MACRO-uses                17:__attribute__              6:__extension__              2:bool                     126:char                
        2:class                    418:comment                   89:const                    125:decl                       8:decl-CXXRecord      
      109:decl-Function              8:decl-Var                 131:declaration-uses           1:decltype                 468:def                 
@@ -31,5 +31,5 @@ CLASS Attributes seen (58 different ones):
       97:macro-undefined          102:muted                      3:namespace                  1:nullptr                   50:numeric             
      102:preprocessor-if            1:private                    1:public                     8:return                    20:return-uses         
        4:short                      6:signed                     3:sizeof                     3:static                     8:string              
-      38:struct                    62:typedef                    2:union                     15:unsigned                   2:using               
-      25:variable-uses             37:void                       1:wchar_t             
+      38:struct                    62:typedef                   20:typedef-uses               2:union                     15:unsigned            
+       2:using                     25:variable-uses             37:void                       1:wchar_t             

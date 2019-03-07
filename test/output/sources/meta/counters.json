@@ -9,7 +9,7 @@
     },
     {
         "metric": "cache/nullreturn/internal-buffer",
-        "value": 196
+        "value": 123
     },
     {
         "metric": "cache/nullreturn/invalid-fid",
@@ -69,6 +69,6 @@
     },
     {
         "metric": "wrapping/discarded/macro",
-        "value": 58
+        "value": 60
     }
 ]

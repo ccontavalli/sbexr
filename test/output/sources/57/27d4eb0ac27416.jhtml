@@ -12,7 +12,7 @@
 <span class='directive'>#endif</span>
 
 <span class='comment'>/* Conversion state information.  */</span>
-<span class='def def-Typedef' id='0000d00100015003'><span class='keyword typedef'>typedef</span> <span class='def def-CXXRecord' id='0000d00900015001'><span class='keyword struct'>struct</span>
+<span class='def def-Typedef' id='0000d00100015003'><span class='keyword typedef'>typedef</span> <span class='def def-CXXRecord' id='0000d00900015001'><a class='typedef-uses' href='../57/27d4eb0ac27416.html#0000d00900015001'><span class='keyword struct'>struct</span></a>
 {
   <span class='def def-Field' id='0000f0030000f007'><span class='keyword int'>int</span> __count</span>;
   <span class='def def-Field' id='0001000300014005'><span class='def def-CXXRecord' id='0001000300014003'><a class='declaration-uses' href='../57/27d4eb0ac27416.html#0001000300014003'><span class='keyword union'>union</span></a>
