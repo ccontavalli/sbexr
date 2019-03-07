@@ -132,7 +132,10 @@ class MemPool {
   MemoryPrinter printer_;
 };
 
-template <typename Derived, typename OffsetT, const char* Instance = -1>
+extern const char defaultInstanceName[];
+
+template <typename Derived, typename OffsetT,
+          const char* Instance = defaultInstanceName>
 class ConstStringBase {
  public:
   using Type = ConstStringBase<Derived, OffsetT, Instance>;
@@ -196,25 +199,29 @@ class ConstStringBase {
   OffsetT offset_ = 0;
 };
 
-template <typename Derived, typename OffsetT, const char* Instance = -1>
+template <typename Derived, typename OffsetT,
+          const char* Instance = defaultInstanceName>
 bool operator==(const ConstStringBase<Derived, OffsetT, Instance>& first,
                 const std::string& second) {
   return first.size() == second.size() &&
          !memcmp(first.data(), second.data(), first.size());
 }
-template <typename Derived, typename OffsetT, const char* Instance = -1>
+template <typename Derived, typename OffsetT,
+          const char* Instance = defaultInstanceName>
 bool operator==(const std::string& first,
                 const ConstStringBase<Derived, OffsetT, Instance>& second) {
   return first.size() == second.size() &&
          !memcmp(first.data(), second.data(), first.size());
 }
-template <typename Derived, typename OffsetT, const char* Instance = -1>
+template <typename Derived, typename OffsetT,
+          const char* Instance = defaultInstanceName>
 bool operator!=(const ConstStringBase<Derived, OffsetT, Instance>& first,
                 const std::string& second) {
   return first.size() != second.size() ||
          memcmp(first.data(), second.data(), first.size());
 }
-template <typename Derived, typename OffsetT, const char* Instance = -1>
+template <typename Derived, typename OffsetT,
+          const char* Instance = defaultInstanceName>
 bool operator!=(const std::string& first,
                 const ConstStringBase<Derived, OffsetT, Instance>& second) {
   return first.size() != second.size() ||
@@ -237,14 +244,15 @@ struct ConstStringBaseHasher {
   }
 };
 
-template <typename OffsetT, const char* Instance = -1>
+template <typename OffsetT, const char* Instance = defaultInstanceName>
 class ConstString : public ConstStringBase<ConstString<OffsetT, Instance>,
                                            OffsetT, Instance> {
  public:
   using Base =
       ConstStringBase<ConstString<OffsetT, Instance>, OffsetT, Instance>;
 
-  using Base::ConstStringBase;
+  using Base::Base;
+  using typename Base::ConstStringBase;
   using typename Base::Pool;
 
   static Pool* GetPool() { return &pool_; }
@@ -284,7 +292,7 @@ struct Deduper {
                         }};
 };
 
-template <typename OffsetT, const char* Instance = -1>
+template <typename OffsetT, const char* Instance = defaultInstanceName>
 class UniqString
     : public ConstStringBase<UniqString<OffsetT, Instance>, OffsetT, Instance> {
  public:
@@ -292,7 +300,8 @@ class UniqString
       ConstStringBase<UniqString<OffsetT, Instance>, OffsetT, Instance>;
   using String = ConstString<OffsetT, Instance>;
 
-  using Base::ConstStringBase;
+  using Base::Base;
+  using typename Base::ConstStringBase;
 
   static typename Base::Pool* GetPool() { return String::GetPool(); }
 

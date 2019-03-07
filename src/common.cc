@@ -30,8 +30,8 @@
 
 std::string MakeOutputPath(uint64_t hash, const char* extension) {
   const auto& hex = ToHex(hash);
-  return JoinPath(
-             {{&hex.buffer[hex.size - 2], 2}, {hex.buffer, hex.size - 2}}) +
+  return JoinPath({{&hex.buffer[hex.size - 2], 2},
+                   {hex.buffer, static_cast<size_t>(hex.size - 2)}}) +
          extension;
 }
 std::string MakeHtmlPath(uint64_t hash, const char* extension) {

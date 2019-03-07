@@ -6,6 +6,7 @@ LDFLAGS := $(shell $(LLVMCONFIG) --ldflags)
 TIME := time --format='MEM: unshared process size=%D, average total=%K, max resident=%M\nTIME: total wall time=%e, user time=%U, kernel time=%S'
 VERBOSE := --verbose
 EXTRA := 
+#CXX := clang-$(LLVMVERSION)
 
 EXTRALIBS := -lclangFrontend \
 	     -lclangParse \
