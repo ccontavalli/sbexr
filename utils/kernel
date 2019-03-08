@@ -69,7 +69,7 @@ def RecordMetric(metric, value, labels=[]):
   Run([tool, "-serie=%s" % metric, "-time=%s" % etime, "-value=%s" % int(value)] + ["-label=%s" % l for l in labels])
 
 def RecordCommandMetric(metric, runstatus, labels=[]):
-  if runstatus.status > 0:
+  if runstatus.status != 0:
     labels.append("status:failed")
   else:
     labels.append("status:succeeded")
