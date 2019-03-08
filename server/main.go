@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"github.com/ccontavalli/goutils/misc"
+	"github.com/ccontavalli/goutils/tsdb/server"
 	"github.com/ccontavalli/sbexr/server/db"
 	"github.com/gorilla/handlers"
 	"gopkg.in/natefinch/lumberjack.v2"
@@ -27,6 +28,7 @@ var indexfiles = misc.MultiString("web-index-files", []string{
 	"NEWS", "README", "README.md", "00-INDEX", "CHANGES",
 	"Changes", "ChangeLog", "changelog", "Kconfig"}, "Files to display when rendering a directory.")
 var logdir = flag.String("logdir", "", "Where to keep logs. If not specified, stdout/stderr are used.")
+var metrics = flag.String("metrics", "", "Where metrics to be served are stored.")
 
 type Index struct {
 	Tree      db.TagSet
@@ -95,6 +97,13 @@ func main() {
 
 	if *webroot != "" {
 		http.Handle("/", index.Sources)
+	}
+	if *metrics != "" {
+		ms, err := server.New(*metrics)
+		if err != nil {
+			log.Fatal("Metrics error", err)
+		}
+		ms.Register("/metrics/api", http.DefaultServeMux)
 	}
 
 	var err error

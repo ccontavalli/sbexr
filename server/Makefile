@@ -11,7 +11,7 @@ test-index:
 	make -C ../src VERBOSE= test-gen
 
 test-run: test test-index all
-	./server --web-root=../test --index-dir=../test/indexes --listen=:10000
+	./server --metrics=../test/metrics --web-root=../test --index-dir=../test/indexes --listen=:10000
 
 test: test-index all
 	go test
