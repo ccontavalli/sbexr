@@ -44,7 +44,6 @@ class DebugStream {
   DebugStream& operator=(const DebugStream& other) = delete;
 
   DebugStream(DebugStream&& other) : stream_(other.stream_) {}
-  // DebugStream& operator=(DebugStream&& other) { stream_ = std::move(other.stream_); }
 
   std::ostream& GetStream() const { return stream_; }
 
@@ -52,8 +51,8 @@ class DebugStream {
   std::ostream& stream_;
 };
 
-// Allows a DebugStream to be used as a plain stream, with the usual << fun. 
-template<typename Whatever>
+// Allows a DebugStream to be used as a plain stream, with the usual << fun.
+template <typename Whatever>
 std::ostream& operator<<(DebugStream&& dstream, Whatever value) {
   dstream.GetStream() << value;
   return dstream.GetStream();
