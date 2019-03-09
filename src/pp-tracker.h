@@ -44,60 +44,66 @@ class PPTracker : public PPCallbacks {
 
   void FileChanged(SourceLocation loc, FileChangeReason reason,
                    SrcMgr::CharacteristicKind kind, FileID prevfid) override {
-    if (reason != ExitFile && reason != EnterFile) return;
-
     if (gl_verbose) {
-      if (reason == EnterFile) {
-        std::cerr << "## "
-                  << " ENTERING " << recorder_->PrintLocation(loc)
-                  << " P:" << ShouldProcess();
-      } else {
-        std::cerr << "## "
-                  << " EXITING " << GetFilePath(recorder_->GetFileFor(prevfid))
-                  << ShouldProcess();
+      std::cerr << "#CHANGED EVENT " << reason << " FOR "
+                << recorder_->PrintLocation(loc) << " P:" << ShouldProcess()
+                << " I:" << include_ignored_ << " S:" << include_stack_.size() << " " << (!include_stack_.empty() ? GetFilePath(include_stack_.top()) : "nullptr") << std::endl;
+    }
+    if (reason == EnterFile) {
+      // clang/llvm enters a fake file containing pre-defined macros and similar.
+      // This file is not indexed by sbexr, and results in a nullptr when GetFileFor()
+      // is called on the corresponding locations.
+      // If we just process it, we end up emitting warnings related to code we don't
+      // have in our own buffers. At the same time, this file can include important
+      // headers specified on the command line.
+      // So: ShouldProcess() returns false for a nullptr file. However, we enter any
+      // include in such file anyway here thanks to the include_stack_.top() check.
+      // (eg, "ignore the include only if the top of the stack is not nullptr").
+      if (!ShouldProcess() && include_stack_.top()) {
+        include_ignored_++;
+        return;
       }
+
+      auto file = recorder_->GetFileFor(loc);
+      if (file) {
+        if (file->preprocessing || file->preprocessed) {
+          include_ignored_++;
+          return;
+        }
+        file->preprocessing = true;
+      }
+
+      if (gl_verbose)
+        std::cerr << "  -> ENTERING " << file << " " << GetFilePath(file) << " ("
+                  << recorder_->PrintLocation(loc) << ")" << std::endl;
+
+      include_stack_.push(file);
+      return;
     }
 
-    // Examples:
-    //  file-1 -> processing=1, processed=0
-    //    ... block-a
-    //    include file-2  -> processing=1, processed=0
-    //      ... block-b
-    //      include file-1
-    //      exit file-1
-    //      ... block-c
-    //    exit file-2
-    //    ... block-d
-    switch (reason) {
-      case ExitFile: {
-        auto file = recorder_->GetFileFor(prevfid);
-        if (file && should_process_) file->preprocessed = true;
-
-        file = recorder_->GetFileFor(loc);
-        if (!file) {
-          should_process_ = false;
-        } else if (file->preprocessed) {
-          should_process_ = false;
-        } else {
-          file->preprocessing = true;
-          should_process_ = true;
-        }
-        break;
+    if (reason == ExitFile) {
+      if (include_ignored_ > 0) {
+        --include_ignored_;
+        return;
       }
 
-      case EnterFile: {
-        auto file = recorder_->GetFileFor(loc);
-        if (!file) {
-          should_process_ = false;
-        } else if (file->preprocessing || file->preprocessed) {
-          should_process_ = false;
-        } else {
-          file->preprocessing = true;
-          should_process_ = true;
-        }
-        break;
-      }
+      auto file = include_stack_.top();
+      if (file) file->preprocessed = true;
+
+      if (gl_verbose)
+        std::cerr << "#EXITING " << file << " "
+                  << GetFilePath(file)
+                  << std::endl;
+
+      include_stack_.pop();
+      return;
     }
+  }
+
+  bool ShouldProcess() {
+    return include_stack_.empty() ||
+           (include_stack_.top() && !include_stack_.top()->preprocessed &&
+            include_ignored_ <= 0);
   }
 
   bool FileNotFound(StringRef filename,
@@ -208,6 +214,7 @@ class PPTracker : public PPCallbacks {
   void Elif(SourceLocation location, SourceRange cond_range,
             ConditionValueKind value, SourceLocation if_loc) override {
     if (!ShouldProcess()) return;
+    if (if_stack_.empty()) return;
 
     auto& state = if_stack_.top();
     if (state.condition == CVK_False) {
@@ -282,6 +289,7 @@ class PPTracker : public PPCallbacks {
 
   void Else(SourceLocation location, SourceLocation if_location) override {
     if (!ShouldProcess()) return;
+    if (if_stack_.empty()) return;
 
     if (gl_verbose)
       std::cerr << "#ELSE IN " << recorder_->PrintLocation(location)
@@ -304,6 +312,8 @@ class PPTracker : public PPCallbacks {
       std::cerr << "#ENDIF IN " << recorder_->PrintLocation(location)
                 << std::endl;
 
+    if (if_stack_.empty()) return;
+
     const auto& state = if_stack_.top();
     if (state.condition == CVK_False) {
       WrapEolSol(*recorder_->GetCI(), recorder_->GetCache(), state.if_start,
@@ -313,10 +323,6 @@ class PPTracker : public PPCallbacks {
   };
 
  private:
-  // Return true if we should process this file. Ensures a file is processed
-  // only once.
-  bool ShouldProcess() { return should_process_; }
-
   // Return the range used to identify a MACRO.
   SourceRange GetMacroRange(const MacroInfo& mi) {
     // in #define FOO 1, getDefinitionLoc points right after FOO,
@@ -331,7 +337,8 @@ class PPTracker : public PPCallbacks {
     SourceLocation if_start;
   };
   std::stack<State> if_stack_;
-  bool should_process_ = true;
+  std::stack<FileRenderer::ParsedFile*> include_stack_;
+  int include_ignored_ = 0;
 
   SbexrRecorder* recorder_;
 };
