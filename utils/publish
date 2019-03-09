@@ -92,7 +92,7 @@ def UpdateBinaries():
   Run("cp /opt/projects/goutils/tsdb/tsdb-cli/tsdb-cli %s" % os.path.join(BASE, "utils"))
 
   Run("make clean", cwd=os.path.join(BASE, "src"))
-  Run("make DEBUG='-s -O2 -flto'", cwd=os.path.join(BASE, "src"))
+  Run("make opt", cwd=os.path.join(BASE, "src"))
   Run("make", cwd=os.path.join(BASE, "sitemap"))
   Run("make", cwd=os.path.join(BASE, "server"))
 
