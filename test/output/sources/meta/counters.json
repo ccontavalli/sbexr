@@ -9,11 +9,11 @@
     },
     {
         "metric": "cache/nullreturn/internal-buffer",
-        "value": 123
+        "value": 196
     },
     {
         "metric": "cache/nullreturn/invalid-fid",
-        "value": 0
+        "value": 4
     },
     {
         "metric": "cache/nullreturn/no-content-cache",
