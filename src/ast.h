@@ -332,6 +332,10 @@ class SbexrRecorder {
     return cache_->GetFileFor(ci_->getSourceManager(), location);
   }
 
+  FileRenderer::ParsedFile* GetFileFor(FileID fid) const {
+    return cache_->GetFileFor(ci_->getSourceManager(), fid);
+  }
+
  private:
   std::string MakeIdLink(SourceRange location) {
     auto& sm = ci_->getSourceManager();
@@ -504,7 +508,8 @@ class SbexrAstVisitor : public RecursiveASTVisitor<SbexrAstVisitor> {
 
   bool VisitTypedefDecl(TypedefDecl* v) {
     if (gl_verbose)
-      std::cerr << "VisitTypedefDecl " << __func__ << recorder_->TryPrint(v) << std::endl;
+      std::cerr << "VisitTypedefDecl " << __func__ << recorder_->TryPrint(v)
+                << std::endl;
 
     auto* tsi = v->getTypeSourceInfo();
     if (!tsi) {
