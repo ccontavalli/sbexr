@@ -53,10 +53,10 @@ test-gen: validator sbexr test-multi
 test-dump: test-dump-multi
 
 test-single:
-	cd .. && bear $(MAKE) -C ./test clean test-single-file
+	cd ../test && bear $(MAKE) clean test-single-file
 
 test-multi:
-	cd .. && bear $(MAKE) -C ./test clean test-multiple-file
+	cd ../test && bear $(MAKE) clean test-multiple-file
 
 test-dump-multi:
 	cd .. && $(MAKE) -C ./test dump-multi

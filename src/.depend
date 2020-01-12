@@ -26,20 +26,6 @@ indexer.o: indexer.cc \
 	mempool.h \
 	rewriter.h \
 	cindex.h
-pp-tracker.o: pp-tracker.cc \
-	ast.h \
-	base.h \
-	cache.h \
-	common.h \
-	counters.h \
-	renderer.h \
-	json-helpers.h \
-	mempool.h \
-	rewriter.h \
-	indexer.h \
-	cindex.h \
-	printer.h \
-	wrapping.h
 wrapping.o: wrapping.cc \
 	wrapping.h \
 	base.h \
@@ -71,6 +57,20 @@ counters.o: counters.cc \
 	base.h \
 	json-helpers.h \
 	mempool.h
+pp-tracker.o: pp-tracker.cc \
+	ast.h \
+	base.h \
+	cache.h \
+	common.h \
+	counters.h \
+	renderer.h \
+	json-helpers.h \
+	mempool.h \
+	rewriter.h \
+	indexer.h \
+	cindex.h \
+	printer.h \
+	wrapping.h
 cache.o: cache.cc \
 	cache.h \
 	base.h \
@@ -115,13 +115,13 @@ ast.o: ast.cc \
 	indexer.h \
 	cindex.h \
 	indexer.cc \
+	wrapping.cc \
 	ast.h \
 	printer.h \
-	pp-tracker.cc \
-	wrapping.cc \
 	pp-tracker.h \
 	sbexr.cc \
 	counters.cc \
+	pp-tracker.cc \
 	cache.cc \
 	rewriter.cc \
 	ast.cc \
